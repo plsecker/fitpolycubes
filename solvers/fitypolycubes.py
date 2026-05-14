@@ -106,7 +106,7 @@ def flipset(x, case):
 ##################
 
 # counting, finding unique and symmetric solutions and output
-with open("data/solutions.dat", "w") as f:
+with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions.dat"), "w") as f:
     f.write("# y-pentacubes\n")
 
 c = 0
@@ -120,7 +120,7 @@ for i in sol:
     print("Solution", c)
     # --- unique/symmetric filtering can go here ---
 
-with open("solutions.dat", "a") as f:
+with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions.dat"), "a") as f:
     f.write("Elements in Y: {}\n".format(len(Y)))
     f.write("Total combinations: {}\n".format(c))
     f.write("Total unique: {}\n".format(cu))

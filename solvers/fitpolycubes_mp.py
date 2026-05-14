@@ -117,7 +117,7 @@ def main():
     print(f"Parallel fan-out: {len(row_choices)} workers")
 
     # Output file
-    fname = "data/solutions_mp.dat"
+    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions_mp.dat")
 
     # Manager queue
     manager = mp.Manager()

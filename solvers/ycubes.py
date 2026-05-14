@@ -125,7 +125,8 @@ def flipset(x, case):
 ##################
 
 # counting, finding unique and symmetric solutions and output
-f=open("solutions.dat","w")
+fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions.dat")
+f=open(fname,"w")
 f.write("#ypentacubes")
 f.close()
 c=0
@@ -137,7 +138,7 @@ for i in sol:
     c=c+1
     print(c)
 #    solset=set()
-#    f=open("solutions.dat","a")
+#    f=open(fname,"a")
 #    f.write(format(c))
 #    print(i)
 #    for p in i:
@@ -163,7 +164,7 @@ for i in sol:
     #    for p in i:
     #        print >>f, Y[p]
         
-f=open("solutions.dat","a")
+f=open(fname,"a")
 f.write("Elements in Y".format(Y))
 f.write("Total combinations".format(c))
 f.write("Total unique".format(cu))

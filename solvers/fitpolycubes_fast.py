@@ -93,7 +93,8 @@ for i in Y:
 
 
 # Output results
-fname = "data/solutions_n.dat"
+import os
+fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions_n.dat")
 with open(fname, "w") as f:
     f.write("# N pentacubes\n")
 
