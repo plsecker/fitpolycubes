@@ -1,0 +1,15 @@
+# PyCharm/IntelliJ
+.idea/
+cmake-build-*/
+*.iws
+out/
+
+# Python clutter
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+build/
+dist/
+*.egg-info/
