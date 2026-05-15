@@ -47,11 +47,10 @@ def ypentacubesfromdirection(direction):
 
 # Generating box  to uniquely cover later
 X=set()
-hside=int(side/2)
-for i in range(-hside,hside+1):
-    for j in range(-hside,hside+1):
-        for k in range(-hside,hside+1):
-            X.add(tuple(array([i,j,k])))
+for i in range(side):
+    for j in range(side):
+        for k in range(side):
+            X.add((i, j, k))
 
 # Building Y, covering subsets
 def addsubs(ypent):
@@ -59,13 +58,13 @@ def addsubs(ypent):
     maxx, maxy,maxz = ypent.max(axis=0)    
     minx, miny,minz = ypent.min(axis=0)
     
-    for i in range(-hside-minx, hside+1-maxx):
-        for j in range(-hside-miny, hside+1-maxy):
-            for z in range(-hside-minz, hside+1-maxz):
+    for i in range(-minx, side-maxx):
+        for j in range(-miny, side-maxy):
+            for z in range(-minz, side-maxz):
                 tiles=ypent+array([i,j,z])
                 #print tiles.min()
-                tilestuple=map(tuple,list(tiles))
-                Y[count]=list(tilestuple)
+                tilestuple = [tuple(map(int, tile)) for tile in tiles]
+                Y[count]=tilestuple
                 count=count+1
             
 
@@ -127,49 +126,16 @@ def flipset(x, case):
 # counting, finding unique and symmetric solutions and output
 fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions.dat")
 f=open(fname,"w")
-f.write("#ypentacubes")
+f.write("#Ypentacubes\n")
 f.close()
+
 c=0
-cc=0
-cu=0
-unique=set()
-uniqueflip=set()
-for i in sol:
+for solution in sol:
     c=c+1
     print(c)
-#    solset=set()
-#    f=open(fname,"a")
-#    f.write(format(c))
-#    print(i)
-#    for p in i:
-#        solset.add(frozenset(Y[p]))
-#        f.write(format(Y[p]))
-#    f.close()
-    
-    #if solset not in unique and solset not in uniqueflip:
-    #    s=frozenset(solset)
-    #    unique.add(s)
-    #    s1=frozenset(flipset(solset,1))
-    #    uniqueflip.add(s1)
-    #    s2=frozenset(flipset(solset,2))
-    #    uniqueflip.add(s2)
-    #    s3=frozenset(flipset(solset,3))
-    #    uniqueflip.add(s3)
-    #    cu=cu+1
-    #    symlabel=""
-    #    if s.issubset(s1) or s.issubset(s2) or s.issubset(s3):
-    #        symlabel="Symmetric!"
-    #        cc=cc+1
-    #    print >> f, "#", cu
-    #    for p in i:
-    #        print >>f, Y[p]
-        
-f=open(fname,"a")
-f.write("Elements in Y".format(Y))
-f.write("Total combinations".format(c))
-f.write("Total unique".format(cu))
-f.write("Total symmetric".format(cc))
-f.close()
+    sol_str = "".join([str(Y[p_index]) for p_index in solution])
+    with open(fname, "a") as f:
+        f.write(f"{c}\n{sol_str}\n")
 
 
 #import pickle

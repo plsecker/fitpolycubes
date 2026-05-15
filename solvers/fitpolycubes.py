@@ -14,8 +14,8 @@ from common.algorithm_x import solve
 
 
 # Example polycube piece (Y pentacube)
-# p = np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[2, 0, 1],[3, 0, 1]])   # N piece
-p = np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[2, 0, 1],[3, 0, 0]])     # Y piece
+p = np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[2, 0, 1],[3, 0, 1]])   # N piece
+# p = np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[2, 0, 1],[3, 0, 0]])     # Y piece
 # p = np.array([[0, 0, 1],[1, 0, 1],[2, 0, 0],[2, 0, 1],[2, 0, 2]])   # T piece
 
 numcubes = p.shape[0]
@@ -29,10 +29,10 @@ Y = {}
 for cube in box:
     for rotindex in range(24):
         rp = cube + p @ RM[rotindex].T  # offset + rotate
-        rpl = rp.tolist()
-        rpinbox = [tuple(rpl[i]) in box for i in range(numcubes)]
+        rpl = [tuple(map(int, pt)) for pt in rp]
+        rpinbox = [pt in box for pt in rpl]
         if all(rpinbox):
-            Y[count] = list(map(tuple, rpl))
+            Y[count] = rpl
             count += 1
 
 print("Placements found:", count)
@@ -49,25 +49,12 @@ solutions = solve(X, Y)
 # Output results
 fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions_n.dat")
 with open(fname, "w") as f:
-    f.write("# N pentacubes\n")
+    f.write("#Npentacubes\n")
 
-c = cc = cu = 0
+c = 0
 for sol in solutions:
     c += 1
     print(c)
-    solset = set()
+    sol_str = "".join([str(Y[p_index]) for p_index in sol])
     with open(fname, "a") as f:
-        f.write(f"\n{c}\n")
-        for p_index in sol:
-            solset.add(frozenset(Y[p_index]))
-            f.write(f"{Y[p_index]}\n")
-
-    # Placeholder for uniqueness/symmetry checks
-    # cu and cc not yet implemented
-
-# Summary
-with open(fname, "a") as f:
-    f.write(f"\nElements in Y: {len(Y)}\n")
-    f.write(f"Total combinations: {c}\n")
-    f.write(f"Total unique: {cu}\n")
-    f.write(f"Total symmetric: {cc}\n")
+        f.write(f"{c}\n{sol_str}\n")

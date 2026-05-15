@@ -43,9 +43,9 @@ def ypentacubesfromdirection(direction):
 
 # Generating box to uniquely cover later
 X = set()
-for i in range(-hside, hside + 1):
-    for j in range(-hside, hside + 1):
-        for k in range(-hside, hside + 1):
+for i in range(side):
+    for j in range(side):
+        for k in range(side):
             X.add((i, j, k))
 
 # Building Y, covering subsets
@@ -54,11 +54,11 @@ def addsubs(ypent):
     maxx, maxy, maxz = ypent.max(axis=0)
     minx, miny, minz = ypent.min(axis=0)
 
-    for i in range(-hside - minx, hside + 1 - maxx):
-        for j in range(-hside - miny, hside + 1 - maxy):
-            for z in range(-hside - minz, hside + 1 - maxz):
+    for i in range(-minx, side - maxx):
+        for j in range(-miny, side - maxy):
+            for z in range(-minz, side - maxz):
                 tiles = ypent + np.array([i, j, z])
-                tilestuple = list(map(tuple, tiles))
+                tilestuple = [tuple(map(int, tile)) for tile in tiles]
                 Y[count] = tilestuple
                 count += 1
 
@@ -106,23 +106,15 @@ def flipset(x, case):
 ##################
 
 # counting, finding unique and symmetric solutions and output
-with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions.dat"), "w") as f:
-    f.write("# y-pentacubes\n")
+fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions_y.dat")
+with open(fname, "w") as f:
+    f.write("#Ypentacubes\n")
 
 c = 0
-cc = 0
-cu = 0
-unique = set()
-uniqueflip = set()
-
-for i in sol:
+for sol in sol:
     c += 1
     print("Solution", c)
-    # --- unique/symmetric filtering can go here ---
-
-with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions.dat"), "a") as f:
-    f.write("Elements in Y: {}\n".format(len(Y)))
-    f.write("Total combinations: {}\n".format(c))
-    f.write("Total unique: {}\n".format(cu))
-    f.write("Total symmetric: {}\n".format(cc))
+    sol_str = "".join([str(Y[p_index]) for p_index in sol])
+    with open(fname, "a") as f:
+        f.write(f"{c}\n{sol_str}\n")
 
