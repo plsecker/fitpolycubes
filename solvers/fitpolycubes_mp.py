@@ -11,6 +11,8 @@ import numpy as np
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from common.rotmatrix import RM
 from common.algorithm_x_fast import solve, select
+from common.utils import Timer
+from common.polycube_utils import generate_placements, build_exact_cover_data, filter_and_reindex_placements
 
 #############   Parallel worker & writer  #############
 
@@ -36,8 +38,6 @@ def solve_worker(X, Y, row_choice, active_cols_init, active_rows_init, out_q):
         out_q.put(sol)
         if count % 100 == 0:
             print(f"[Worker {pid}] found {count} solutions so far (start row {row_choice})")
-
-    # print(f"[Worker {pid}] finished branch {row_choice}, total {count} solutions")
 
 
 def writer_process(out_q, done_signal, fname, Y):
@@ -75,38 +75,27 @@ def frontier_splits(X0):
 #############   Main  #############
 
 def main():
-    # Define N pentacube
-    p = np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [3, 1, 0]])
+    # Example polycube piece (N pentacube)
+    p = np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[2, 0, 1],[3, 0, 1]])   # N piece
+    box_size = 5
+    break_symmetry = True
+    
+    print(f"Generating placements for piece in {box_size} box...")
+    with Timer() as t:
+        placements, canonical_p_000 = generate_placements(p, box_size, break_symmetry=break_symmetry)
+    print(f"Placements found: {len(placements)}")
 
-    side = 5
-    box = {(x, y, z) for z in range(side) for y in range(side) for x in range(side)}
+    if break_symmetry and canonical_p_000:
+        placements = filter_and_reindex_placements(placements, canonical_p_000)
 
-    # Generate placements
-    Y = {}
-    count = 0
-    for cube in box:
-        base = np.array(cube)
-        for rotindex in range(24):
-            rp = base + p @ RM[rotindex].T
-            rpl = [tuple(map(int, pt)) for pt in rp]
-            if all(pt in box for pt in rpl):
-                Y[count] = rpl
-                count += 1
-    print("Placements found:", count)
-
-    # Build X
-    X0 = {cell: set() for cell in box}
-    for row_id, cells in Y.items():
-        for cell in cells:
-            X0[cell].add(row_id)
+    X0, box_list = build_exact_cover_data(placements, box_size)
 
     # Split work
     row_choices = frontier_splits(X0)
     print(f"Parallel fan-out: {len(row_choices)} initial branches")
 
-    # Initial trackers
-    active_rows_init = [True] * len(Y)
-    active_cols_init = set(box)
+    active_rows_init = [True] * len(placements)
+    active_cols_init = set(box_list)
 
     # Output file
     fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions_mp.dat")
@@ -117,18 +106,19 @@ def main():
     DONE = ("__DONE__", os.getpid())
 
     # Start writer
-    wp = mp.Process(target=writer_process, args=(out_q, DONE, fname, Y))
+    wp = mp.Process(target=writer_process, args=(out_q, DONE, fname, placements))
     wp.start()
 
     # Use a Pool to manage worker processes
-    # Limits concurrent workers to the number of CPU cores
     num_cores = mp.cpu_count()
     print(f"Using a pool of {num_cores} workers.")
     
-    with mp.Pool(processes=num_cores) as pool:
-        # Prepare arguments for starmap
-        args_list = [(X0, Y, row, active_cols_init, active_rows_init, out_q) for row in row_choices]
-        pool.starmap(solve_worker, args_list)
+    print("Starting solver...")
+    with Timer() as t:
+        with mp.Pool(processes=num_cores) as pool:
+            # Prepare arguments for starmap
+            args_list = [(X0, placements, row, active_cols_init, active_rows_init, out_q) for row in row_choices]
+            pool.starmap(solve_worker, args_list)
 
     # Signal writer to finish
     out_q.put(DONE)
@@ -140,3 +130,4 @@ if __name__ == "__main__":
     if sys.platform.startswith("win"):
         mp.set_start_method("spawn", force=True)
     main()
+
