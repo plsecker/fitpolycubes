@@ -1,6 +1,24 @@
 import numpy as np
 from common.rotmatrix import RM
 
+PENTACUBES = {
+    "F": np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 1, 1], [0, 2, 0]]),
+    "I": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [4, 0, 0]]),
+    "L": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [3, 1, 0]]),
+    "N": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 0, 1], [3, 0, 1]]),
+    "P": np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [1, 1, 0], [2, 0, 0]]),
+    "T": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [1, 1, 0], [1, 0, 1]]),
+    "U": np.array([[0, 0, 0], [0, 1, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0]]),
+    "V": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [0, 1, 0], [0, 2, 0]]),
+    "W": np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [2, 1, 0], [2, 2, 0]]),
+    "X": np.array([[1, 0, 0], [0, 1, 0], [1, 1, 0], [1, 2, 0], [2, 1, 0]]),
+    "Y": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [2, 1, 0]]),
+    "Z": np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [2, 1, 0], [2, 2, 0]]),
+    # https://puzzler.sourceforge.net/docs/polycubes-intro.html#pentacubes
+    "J45": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [2, 1, 1]]), # piece 41 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
+    "J25": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [1, 0, 1]]), # piece 71 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
+}
+
 def generate_placements(piece, box_size, break_symmetry=False):
     """
     Generates all valid placements of a piece in a box.

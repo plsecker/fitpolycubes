@@ -14,7 +14,8 @@ from numpy import array
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from common.rotmatrix import RM
 from common.utils import Timer, timer
-from common.polycube_utils import generate_placements, build_exact_cover_data, filter_and_reindex_placements
+from common.polycube_utils import (generate_placements, build_exact_cover_data, 
+                                   filter_and_reindex_placements, PENTACUBES)
 from common.algorithm_x_fast import solve
 
 def run_solver(piece, box_size, output_file, break_symmetry=False):
@@ -52,10 +53,16 @@ def run_solver(piece, box_size, output_file, break_symmetry=False):
     print(f"Results written to {output_file}")
 
 if __name__ == "__main__":
-    # Example polycube piece (N pentacube)
-    p = np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[2, 0, 1],[3, 0, 1]])   # N piece
+    piece_name = sys.argv[1] if len(sys.argv) > 1 else "N"
+    if piece_name not in PENTACUBES:
+        print(f"Error: Piece '{piece_name}' not found in PENTACUBES.")
+        print(f"Available pieces: {', '.join(sorted(PENTACUBES.keys()))}")
+        sys.exit(1)
+        
+    p = PENTACUBES[piece_name]
+    print(f"Solving for {piece_name} pentacube (Fast solver)...")
     
-    output_fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions_fast.dat")
+    output_fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_fast_{piece_name.lower()}.dat")
     
     run_solver(p, 5, output_fname, break_symmetry=True)
 

@@ -1,25 +1,56 @@
 import os
+import sys
 import ast
 from collections import defaultdict
 
-
-def find_file():
-    """Look for solutions_fast.dat in standard relative positions to prevent FileNotFoundError."""
-    possible_paths = [
-        "data/solutions_fast.dat",
-        "solutions_fast.dat",
-        os.path.join(os.path.dirname(__file__), "../data/solutions_hybrid.dat"),
-    ]
-    for p in possible_paths:
-        if os.path.exists(p):
-            return p
-    return None
+# Set up path for common imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from common.polycube_utils import PENTACUBES
 
 
-def parse_solutions(filepath):
-    """Parses raw polycube lines from the .dat file format."""
-    solutions = {}
+def find_all_files(piece_name=None):
+    """Find all valid solution files for the given piece."""
+    suffixes = ["hybrid", "numba", "fast", "mp"]
+    found_files = []
+    
+    def is_valid_file(p):
+        if not os.path.exists(p):
+            return False
+        if os.path.getsize(p) < 50:
+            return False
+        return True
+
+    # Priority 1: Specific piece requested
+    if piece_name:
+        for s in suffixes:
+            paths = [
+                f"data/solutions_{s}_{piece_name.lower()}.dat",
+                f"solutions_{s}_{piece_name.lower()}.dat",
+                os.path.join(os.path.dirname(__file__), f"../data/solutions_{s}_{piece_name.lower()}.dat")
+            ]
+            for p in paths:
+                if is_valid_file(p) and p not in found_files:
+                    found_files.append(p)
+
+    # Priority 2: Generic files (only if no specific piece files found)
+    if not found_files:
+        for s in suffixes:
+            paths = [
+                f"data/solutions_{s}.dat",
+                f"solutions_{s}.dat",
+                os.path.join(os.path.dirname(__file__), f"../data/solutions_{s}.dat")
+            ]
+            for p in paths:
+                if is_valid_file(p) and p not in found_files:
+                    found_files.append(p)
+                
+    return found_files
+
+
+def parse_solutions(filepath, aggregated_solutions):
+    """Parses raw polycube lines from the .dat file format and adds to aggregation."""
     current_id = None
+    count = 0
     with open(filepath, 'r') as f:
         for line in f:
             line = line.strip()
@@ -29,13 +60,22 @@ def parse_solutions(filepath):
                 current_id = int(line)
                 continue
             if current_id is not None:
-                formatted = line.replace(')((', '), ((')
+                # Handle both list format [...][...] and tuple format (...)(...)
+                formatted = line.replace('][', '], [').replace(')(', '), (')
                 try:
                     pieces = ast.literal_eval(f"[{formatted}]")
-                    solutions[current_id] = pieces
+                    # Use the normalized frozenset of pieces as key to avoid duplicates across files
+                    normalized_pieces = []
+                    for p in pieces:
+                        normalized_pieces.append(frozenset(p))
+                    sol_key = frozenset(normalized_pieces)
+                    
+                    if sol_key not in aggregated_solutions:
+                        aggregated_solutions[sol_key] = pieces
+                        count += 1
                 except Exception as e:
-                    print(f"Failed to parse line for ID {current_id}: {e}")
-    return solutions
+                    print(f"Failed to parse line for ID {current_id} in {filepath}: {e}")
+    return count
 
 
 def get_48_transformations():
@@ -111,49 +151,83 @@ def print_grid(pieces_list):
 
 
 def main():
-    filepath = find_file()
-    if not filepath:
-        print("Error: Could not locate 'solutions_fast.dat' in any standard path combinations.")
+    piece_name = sys.argv[1] if len(sys.argv) > 1 else None
+    if piece_name and piece_name.upper() not in PENTACUBES:
+        print(f"Error: Piece '{piece_name}' not found in PENTACUBES.")
+        print(f"Available pieces: {', '.join(sorted(PENTACUBES.keys()))}")
+        sys.exit(1)
+
+    filepaths = find_all_files(piece_name)
+    if not filepaths:
+        target = f"'{piece_name}' " if piece_name else ""
+        print(f"Error: Could not locate solution files for {target}in any standard path combinations.")
         return
 
-    print(f"Loading data from: {filepath}")
-    raw_solutions = parse_solutions(filepath)
-    print(f"Parsed {len(raw_solutions)} raw solutions.\n")
+    aggregated_solutions = {}
+    for fp in filepaths:
+        print(f"Loading data from: {fp}")
+        count = parse_solutions(fp, aggregated_solutions)
+        print(f"  Added {count} new unique solutions.")
+
+    raw_solutions_list = list(aggregated_solutions.values())
+    print(f"\nTotal aggregated unique raw solutions: {len(raw_solutions_list)}\n")
 
     transforms = get_48_transformations()
     unique_groups = []
 
+    print("Grouping solutions via geometric equivalence...")
+    total = len(raw_solutions_list)
+    
+    # Progress tracking variables
+    last_p = -1
+
     # Group solutions via geometric equivalence
-    for raw_id, pieces in sorted(raw_solutions.items()):
+    for i, pieces in enumerate(raw_solutions_list):
+        # Manual progress bar
+        progress = int((i / total) * 100)
+        if progress > last_p:
+            sys.stdout.write(f"\rProgress: [{('=' * (progress // 2)).ljust(50)}] {progress}% ({i}/{total})")
+            sys.stdout.flush()
+            last_p = progress
+
         found_match = False
+        # To optimize, we can check if the current piece (identity) is already in any group's symmetry set.
+        # However, it's safer and easier to just transform the NEW piece once per group.
+        # Actually, the most efficient way is to pre-calculate all 48 symmetries of the FIRST piece 
+        # and see if it matches any existing group.
+        
+        # Identity transform for the new candidate
+        identity_transform = ((0, 1, 2), (1, 1, 1))
+        candidate_rep = apply_transform(pieces, identity_transform)
+
         for group in unique_groups:
-            for t in transforms:
-                transformed_set = apply_transform(pieces, t)
-                if transformed_set == group['representative']:
-                    group['raw_ids'].append(raw_id)
-                    found_match = True
-                    break
-            if found_match:
+            # Check if this candidate_rep matches ANY of the symmetries of the group representative
+            if candidate_rep in group['symmetries']:
+                group['match_count'] += 1
+                found_match = True
                 break
 
         if not found_match:
             # Initialize a new unique fundamental layout group
-            identity_transform = ((0, 1, 2), (1, 1, 1))
-            rep_set = apply_transform(pieces, identity_transform)
+            # We cache all 48 symmetries of the representative to speed up future checks
+            symmetries = set()
+            for t in transforms:
+                symmetries.add(apply_transform(pieces, t))
+            
             unique_groups.append({
-                'representative': rep_set,
-                'raw_ids': [raw_id],
+                'representative': candidate_rep,
+                'symmetries': symmetries,
+                'match_count': 1,
                 'first_raw_solution': pieces
             })
 
-    print(f"Found {len(unique_groups)} fundamental unique solutions!\n")
+    print(f"\n\nFound {len(unique_groups)} fundamental unique solutions!\n")
 
     for idx, group in enumerate(unique_groups, 1):
         print(f"=========================================")
         print(f"   UNIQUE SOLUTION {idx} SELECTION")
         print(f"=========================================")
-        print(f"Matches {len(group['raw_ids'])} raw file configurations:")
-        print(f"Raw IDs: {group['raw_ids']}\n")
+        print(f"Matches {group['match_count']} raw file configurations (including symmetries/duplicates)")
         print(f"Representative Grid Layout:")
         print_grid(group['first_raw_solution'])
         print("\n")

@@ -12,7 +12,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from common.rotmatrix import RM
 from common.algorithm_x_fast import solve, select
 from common.utils import Timer
-from common.polycube_utils import generate_placements, build_exact_cover_data, filter_and_reindex_placements
+from common.polycube_utils import (generate_placements, build_exact_cover_data, 
+                                   filter_and_reindex_placements, PENTACUBES)
 
 #############   Parallel worker & writer  #############
 
@@ -75,8 +76,15 @@ def frontier_splits(X0):
 #############   Main  #############
 
 def main():
-    # Example polycube piece (N pentacube)
-    p = np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[2, 0, 1],[3, 0, 1]])   # N piece
+    piece_name = sys.argv[1] if len(sys.argv) > 1 else "P"
+    if piece_name not in PENTACUBES:
+        print(f"Error: Piece '{piece_name}' not found in PENTACUBES.")
+        print(f"Available pieces: {', '.join(sorted(PENTACUBES.keys()))}")
+        sys.exit(1)
+        
+    p = PENTACUBES[piece_name]
+    print(f"Solving for {piece_name} pentacube (MP solver)...")
+    
     box_size = 5
     break_symmetry = True
     
@@ -98,7 +106,7 @@ def main():
     active_cols_init = set(box_list)
 
     # Output file
-    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions_mp.dat")
+    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_mp_{piece_name.lower()}.dat")
 
     # Manager for queue
     manager = mp.Manager()

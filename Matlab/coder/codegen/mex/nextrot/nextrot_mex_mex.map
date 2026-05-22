@@ -1,0 +1,11 @@
+MEX {
+	global:
+		mexFunction;
+		emlrtMexFcnProperties;
+		nextrot;
+		nextrot_initialize;
+		nextrot_terminate;
+		nextrot_atexit;
+	local:
+		*;
+};

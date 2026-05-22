@@ -17,7 +17,8 @@ from numba import njit
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from common.rotmatrix import RM
 from common.utils import Timer
-from common.polycube_utils import generate_placements, build_exact_cover_data, filter_and_reindex_placements
+from common.polycube_utils import (generate_placements, build_exact_cover_data, 
+                                   filter_and_reindex_placements, PENTACUBES)
 
 #############   Numba Core  #############
 
@@ -177,7 +178,15 @@ def writer_process(out_q, done_signal, fname, Y_dict):
 #############   Main  #############
 
 def main():
-    p = np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[2, 0, 1],[3, 0, 1]])   # N piece
+    piece_name = sys.argv[1] if len(sys.argv) > 1 else "N"
+    if piece_name not in PENTACUBES:
+        print(f"Error: Piece '{piece_name}' not found in PENTACUBES.")
+        print(f"Available pieces: {', '.join(sorted(PENTACUBES.keys()))}")
+        sys.exit(1)
+        
+    p = PENTACUBES[piece_name]
+    print(f"Solving for {piece_name} pentacube (Hybrid solver)...")
+    
     box_size = 5
     break_symmetry = True
     
@@ -222,7 +231,7 @@ def main():
     row_choices = list(X0[first_col])
     print(f"Parallel fan-out: {len(row_choices)} initial branches")
 
-    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/solutions_hybrid.dat")
+    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_hybrid_{piece_name.lower()}.dat")
 
     manager = mp.Manager()
     out_q = manager.Queue()

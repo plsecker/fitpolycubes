@@ -1,0 +1,12 @@
+MEX {
+	global:
+		mexFunction;
+		emlrtMexFcnProperties;
+		place;
+		reject;
+		place_mex_initialize;
+		place_mex_terminate;
+		place_mex_atexit;
+	local:
+		*;
+};
