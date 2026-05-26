@@ -76,24 +76,37 @@ def frontier_splits(X0):
 #############   Main  #############
 
 def main():
-    piece_name = sys.argv[1] if len(sys.argv) > 1 else "P"
-    if piece_name not in PENTACUBES:
-        print(f"Error: Piece '{piece_name}' not found in PENTACUBES.")
+    import argparse
+    parser = argparse.ArgumentParser(description="Polycube Exact Cover Solver (Multiprocess)")
+    parser.add_argument("piece", nargs="?", default="P", help="Piece name (e.g. N, Y, L)")
+    parser.add_argument("--box", nargs="+", type=int, default=[5, 5, 5], help="Box dimensions (e.g. 5 5 5 or 4 4 5)")
+    parser.add_argument("--no-symmetry", action="store_false", dest="symmetry", help="Disable symmetry breaking")
+    parser.set_defaults(symmetry=True)
+    
+    args = parser.parse_args()
+    
+    if args.piece not in PENTACUBES:
+        print(f"Error: Piece '{args.piece}' not found in PENTACUBES.")
         print(f"Available pieces: {', '.join(sorted(PENTACUBES.keys()))}")
         sys.exit(1)
         
-    p = PENTACUBES[piece_name]
-    print(f"Solving for {piece_name} pentacube (MP solver)...")
+    p = PENTACUBES[args.piece]
+    box_size = tuple(args.box) if len(args.box) == 3 else (args.box[0], args.box[0], args.box[0])
     
-    box_size = 5
-    break_symmetry = True
+    # Calculate expected number of pieces
+    volume = box_size[0] * box_size[1] * box_size[2]
+    num_cubes_per_piece = len(p)
+    expected_pieces = volume // num_cubes_per_piece
+
+    print(f"Solving for {args.piece} pentacube (MP solver)...")
+    print(f"Box size: {box_size}")
     
     print(f"Generating placements for piece in {box_size} box...")
     with Timer() as t:
-        placements, canonical_p_000 = generate_placements(p, box_size, break_symmetry=break_symmetry)
+        placements, canonical_p_000 = generate_placements(p, box_size, break_symmetry=args.symmetry)
     print(f"Placements found: {len(placements)}")
 
-    if break_symmetry and canonical_p_000:
+    if args.symmetry and canonical_p_000:
         placements = filter_and_reindex_placements(placements, canonical_p_000)
 
     X0, box_list = build_exact_cover_data(placements, box_size)
@@ -106,7 +119,8 @@ def main():
     active_cols_init = set(box_list)
 
     # Output file
-    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_mp_{piece_name.lower()}.dat")
+    box_str = "x".join(map(str, box_size))
+    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_mp_{args.piece.lower()}_{box_str}.dat")
 
     # Manager for queue
     manager = mp.Manager()

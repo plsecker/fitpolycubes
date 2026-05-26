@@ -2,7 +2,7 @@ import numpy as np
 from numba import njit
 
 @njit
-def solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, max_solutions=1000000):
+def solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions=1000000):
     """
     Numba-optimized Algorithm X.
     Using flat arrays for high performance.
@@ -18,9 +18,9 @@ def solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, so
         sol_count[0] += 1
         # Store a snapshot of the solution if we have space
         if sol_count[0] <= max_solutions:
-            # Flattened storage: each solution is 25 indices
-            idx = (sol_count[0] - 1) * 25
-            for i in range(25):
+            # Flattened storage
+            idx = (sol_count[0] - 1) * solution_length
+            for i in range(solution_length):
                 out_list[idx + i] = solution[i]
         return
 
@@ -60,8 +60,12 @@ def solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, so
 
         # Depth of solution is just count of non-negative entries
         depth = 0
-        while depth < 25 and solution[depth] != -1:
+        while depth < solution_length and solution[depth] != -1:
             depth += 1
+        
+        if depth >= solution_length:
+            continue # Should not happen in exact cover if logic is sound
+
         solution[depth] = r
         
         # Select: Deactivate rows and columns
@@ -82,7 +86,7 @@ def solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, so
                         active_rows[i] = False
                         deactivated_rows.append(i)
         
-        solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, max_solutions)
+        solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions)
         
         # Deselect: Backtrack
         for i in deactivated_rows:
@@ -91,7 +95,7 @@ def solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, so
             active_cols[j] = True
         solution[depth] = -1
 
-def solve(X_dict, Y_dict, box_list):
+def solve(X_dict, Y_dict, box_list, solution_length=25):
     """
     Wrapper to convert dictionary structures to Numba-friendly arrays and run solver.
     """
@@ -123,16 +127,16 @@ def solve(X_dict, Y_dict, box_list):
     
     active_cols = np.ones(num_cols, dtype=np.bool_)
     active_rows = np.ones(num_rows, dtype=np.bool_)
-    solution = np.full(25, -1, dtype=np.int32)
+    solution = np.full(solution_length, -1, dtype=np.int32)
     sol_count = np.array([0], dtype=np.int32)
     
     # Pre-allocate output for 100,000 solutions (adjustable)
     max_sols = 100000
-    out_list = np.zeros(max_sols * 25, dtype=np.int32)
+    out_list = np.zeros(max_sols * solution_length, dtype=np.int32)
     
-    solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, max_sols)
+    solve_numba(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols)
     
     # Yield solutions back to caller
     total = sol_count[0]
     for s_idx in range(min(total, max_sols)):
-        yield out_list[s_idx*25 : (s_idx+1)*25].tolist()
+        yield out_list[s_idx*solution_length : (s_idx+1)*solution_length].tolist()

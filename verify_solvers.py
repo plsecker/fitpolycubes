@@ -1,12 +1,15 @@
 import ast
+import sys
+import argparse
+import os
 
-def parse_solution_file(filepath):
+def parse_solution_file(filepath, expected_cells=125):
     solutions = []
-    try:
-        with open(filepath, 'r') as f:
-            lines = f.readlines()
-    except FileNotFoundError:
+    if not os.path.exists(filepath):
         return solutions
+        
+    with open(filepath, 'r') as f:
+        lines = f.readlines()
         
     i = 0
     while i < len(lines):
@@ -37,56 +40,60 @@ def parse_solution_file(filepath):
                 piece = tuple(sorted(piece))
                 sol_normalized.append(piece)
             
-            # Check validity: 125 unique cells for a 5x5x5 box
-            is_valid = len(all_cells) == 125 and len(set(all_cells)) == 125
+            # Check validity: unique cells covering the entire box
+            is_valid = len(all_cells) == expected_cells and len(set(all_cells)) == expected_cells
             
             # Normalize solution: sort pieces within the solution
             sol_normalized = tuple(sorted(sol_normalized))
             solutions.append({'sol': sol_normalized, 'valid': is_valid})
             i += 1
-        except Exception as e:
+        except Exception:
             i += 1
             
     return solutions
 
-sol_std_data = parse_solution_file('data/solutions_n.dat')
-sol_fast_data = parse_solution_file('data/solutions_fast.dat')
-sol_numba_data = parse_solution_file('data/solutions_numba.dat')
-sol_mp_data = parse_solution_file('data/solutions_mp.dat')
-sol_hybrid_data = parse_solution_file('data/solutions_hybrid.dat')
-
 def analyze_solver(name, data):
     unique_sols = {s['sol'] for s in data}
-    print(f"{name} solutions found: {len(unique_sols)} (Raw output lines: {len(data)})")
+    print(f"{name} solutions found: {len(unique_sols)} (Raw entries: {len(data)})")
     if data:
-        print(f"  All valid: {all(s['valid'] for s in data)}")
+        valid_count = sum(1 for s in data if s['valid'])
+        print(f"  Valid: {valid_count}/{len(data)}")
     return unique_sols
 
-sol_std = analyze_solver("Standard", sol_std_data)
-sol_fast = analyze_solver("Fast", sol_fast_data)
-sol_numba = analyze_solver("Numba", sol_numba_data)
-sol_mp = analyze_solver("Multiprocess", sol_mp_data)
-sol_hybrid = analyze_solver("Hybrid", sol_hybrid_data)
-
-all_sets = [("Standard", sol_std), ("Fast", sol_fast), ("Numba", sol_numba), 
-            ("Multiprocess", sol_mp), ("Hybrid", sol_hybrid)]
-
-print("\n--- Cross-Validation ---")
-# Pick a reference set (the largest one, assuming it explored the most)
-non_empty_sets = [s for s in all_sets if len(s[1]) > 0]
-if non_empty_sets:
-    ref_name, ref_set = max(non_empty_sets, key=lambda x: len(x[1]))
-    print(f"Using {ref_name} as reference ({len(ref_set)} solutions)")
+def main():
+    parser = argparse.ArgumentParser(description="Verify and Compare Polycube Solver Outputs")
+    parser.add_argument("files", nargs="+", help="Solution files to compare")
+    parser.add_argument("--box", nargs="+", type=int, default=[5, 5, 5], help="Box dimensions (default 5 5 5)")
     
-    for name, s_set in non_empty_sets:
-        if name == ref_name: continue
+    args = parser.parse_args()
+    
+    box_size = tuple(args.box) if len(args.box) == 3 else (args.box[0], args.box[0], args.box[0])
+    expected_cells = box_size[0] * box_size[1] * box_size[2]
+    
+    print(f"Verifying solutions for {box_size} box (expected cells: {expected_cells})")
+    
+    solver_data = []
+    for fpath in args.files:
+        name = os.path.basename(fpath)
+        data = parse_solution_file(fpath, expected_cells)
+        unique_sols = analyze_solver(name, data)
+        solver_data.append((name, unique_sols))
+        
+    if len(solver_data) < 2:
+        return
+        
+    print("\n--- Cross-Validation ---")
+    ref_name, ref_set = solver_data[0]
+    print(f"Using {ref_name} as reference")
+    
+    for name, s_set in solver_data[1:]:
         common = ref_set.intersection(s_set)
         print(f"Common solutions ({ref_name} & {name}): {len(common)}")
-        if len(s_set) == len(common):
-            print(f"SUCCESS: All {name} solutions are in the {ref_name} output.")
-        else:
-            print(f"INFO: {name} solver is exploring different parts of the search space.")
-else:
-    print("No solutions found by any solver.")
+        if len(s_set) > 0 and len(s_set) == len(common):
+            print(f"SUCCESS: All {name} solutions are in {ref_name}.")
+        elif len(s_set) > 0:
+            print(f"INFO: {name} and {ref_name} have different solution sets.")
 
+if __name__ == "__main__":
+    main()
 

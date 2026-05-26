@@ -19,6 +19,13 @@ from common.polycube_utils import (generate_placements, build_exact_cover_data,
 from common.algorithm_x_fast import solve
 
 def run_solver(piece, box_size, output_file, break_symmetry=False):
+    if isinstance(box_size, int):
+        box_size = (box_size, box_size, box_size)
+        
+    volume = box_size[0] * box_size[1] * box_size[2]
+    num_cubes_per_piece = len(piece)
+    expected_pieces = volume // num_cubes_per_piece
+
     print(f"Generating placements for piece in {box_size} box...")
     with Timer() as t:
         placements, canonical_p_000 = generate_placements(piece, box_size, break_symmetry=break_symmetry)
@@ -37,10 +44,13 @@ def run_solver(piece, box_size, output_file, break_symmetry=False):
         solutions = solve(X, placements, active_cols, active_rows)
         
         with open(output_file, "w") as f:
-            f.write(f"# Polycube solutions (Box: {box_size})\n")
+            f.write(f"# Polycube solutions - Fast (Box: {box_size}, Pieces: {expected_pieces})\n")
 
         c = 0
         for sol in solutions:
+            if len(sol) != expected_pieces:
+                continue
+                
             c += 1
             if c % 100 == 0:
                 print(f"Found {c} solutions...")
@@ -53,17 +63,29 @@ def run_solver(piece, box_size, output_file, break_symmetry=False):
     print(f"Results written to {output_file}")
 
 if __name__ == "__main__":
-    piece_name = sys.argv[1] if len(sys.argv) > 1 else "N"
-    if piece_name not in PENTACUBES:
-        print(f"Error: Piece '{piece_name}' not found in PENTACUBES.")
+    import argparse
+    parser = argparse.ArgumentParser(description="Polycube Exact Cover Solver (Fast)")
+    parser.add_argument("piece", nargs="?", default="N", help="Piece name (e.g. N, Y, L)")
+    parser.add_argument("--box", nargs="+", type=int, default=[5, 5, 5], help="Box dimensions (e.g. 5 5 5 or 4 4 5)")
+    parser.add_argument("--no-symmetry", action="store_false", dest="symmetry", help="Disable symmetry breaking")
+    parser.set_defaults(symmetry=True)
+    
+    args = parser.parse_args()
+    
+    if args.piece not in PENTACUBES:
+        print(f"Error: Piece '{args.piece}' not found in PENTACUBES.")
         print(f"Available pieces: {', '.join(sorted(PENTACUBES.keys()))}")
         sys.exit(1)
         
-    p = PENTACUBES[piece_name]
-    print(f"Solving for {piece_name} pentacube (Fast solver)...")
+    p = PENTACUBES[args.piece]
+    box_size = tuple(args.box) if len(args.box) == 3 else (args.box[0], args.box[0], args.box[0])
     
-    output_fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_fast_{piece_name.lower()}.dat")
+    print(f"Solving for {args.piece} pentacube (Fast solver)...")
+    print(f"Box size: {box_size}")
     
-    run_solver(p, 5, output_fname, break_symmetry=True)
+    box_str = "x".join(map(str, box_size))
+    output_fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_fast_{args.piece.lower()}_{box_str}.dat")
+    
+    run_solver(p, box_size, output_fname, break_symmetry=args.symmetry)
 
 

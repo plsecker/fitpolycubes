@@ -23,7 +23,7 @@ from common.polycube_utils import (generate_placements, build_exact_cover_data,
 #############   Numba Core  #############
 
 @njit(nogil=True)
-def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, max_solutions):
+def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions):
     """
     Numba-optimized Algorithm X.
     Using flat arrays for high performance.
@@ -40,9 +40,9 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
         sol_count[0] += 1
         # Store a snapshot of the solution if we have space
         if sol_count[0] <= max_solutions:
-            # Flattened storage: each solution is 25 indices
-            idx = (sol_count[0] - 1) * 25
-            for i in range(25):
+            # Flattened storage
+            idx = (sol_count[0] - 1) * solution_length
+            for i in range(solution_length):
                 out_list[idx + i] = solution[i]
         return
 
@@ -80,8 +80,12 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
             continue
 
         depth = 0
-        while depth < 25 and solution[depth] != -1:
+        while depth < solution_length and solution[depth] != -1:
             depth += 1
+        
+        if depth >= solution_length:
+            continue
+
         solution[depth] = r
         
         # Select: Deactivate rows and columns
@@ -102,7 +106,7 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
                         active_rows[i] = False
                         deactivated_rows.append(i)
         
-        solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, max_solutions)
+        solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions)
         
         # Deselect: Backtrack
         for i in deactivated_rows:
@@ -113,7 +117,7 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
 
 #############   Worker & Writer  #############
 
-def solve_worker(X_data, X_indptr, Y_data, Y_indptr, row_choice, num_cols, num_rows, out_q):
+def solve_worker(X_data, X_indptr, Y_data, Y_indptr, row_choice, num_cols, num_rows, solution_length, out_q):
     """
     Worker: start search with a single chosen row from the first column.
     """
@@ -122,11 +126,11 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, row_choice, num_cols, num_r
     # Initialize trackers for this branch
     active_cols = np.ones(num_cols, dtype=np.bool_)
     active_rows = np.ones(num_rows, dtype=np.bool_)
-    solution = np.full(25, -1, dtype=np.int32)
+    solution = np.full(solution_length, -1, dtype=np.int32)
     sol_count = np.array([0], dtype=np.int32)
     
     max_sols = 100000
-    out_list = np.zeros(max_sols * 25, dtype=np.int32)
+    out_list = np.zeros(max_sols * solution_length, dtype=np.int32)
 
     # Apply the initial row_choice (Select)
     solution[0] = row_choice
@@ -144,7 +148,7 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, row_choice, num_cols, num_r
                     active_rows[i] = False
                     
     # Enter Numba JIT Core
-    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, max_sols)
+    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols)
     
     total = sol_count[0]
     if total > 0:
@@ -152,16 +156,16 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, row_choice, num_cols, num_r
         
         # Pull solutions back to Python list to send to writer
         for s_idx in range(min(total, max_sols)):
-            sol = out_list[s_idx*25 : (s_idx+1)*25]
+            sol = out_list[s_idx*solution_length : (s_idx+1)*solution_length]
             clean_sol = [idx for idx in sol if idx != -1]
-            if len(clean_sol) == 25:
+            if len(clean_sol) == solution_length:
                 out_q.put(clean_sol)
 
 
-def writer_process(out_q, done_signal, fname, Y_dict):
+def writer_process(out_q, done_signal, fname, Y_dict, expected_pieces):
     c = 0
     with open(fname, "w") as f:
-        f.write("#Npentacubes (Hybrid MP+Numba)\n")
+        f.write(f"# Polycube solutions - Hybrid MP+Numba (Pieces: {expected_pieces})\n")
         while True:
             sol = out_q.get()
             if sol == done_signal:
@@ -178,24 +182,37 @@ def writer_process(out_q, done_signal, fname, Y_dict):
 #############   Main  #############
 
 def main():
-    piece_name = sys.argv[1] if len(sys.argv) > 1 else "N"
-    if piece_name not in PENTACUBES:
-        print(f"Error: Piece '{piece_name}' not found in PENTACUBES.")
+    import argparse
+    parser = argparse.ArgumentParser(description="Polycube Exact Cover Solver (Hybrid)")
+    parser.add_argument("piece", nargs="?", default="N", help="Piece name (e.g. N, Y, L)")
+    parser.add_argument("--box", nargs="+", type=int, default=[5, 5, 5], help="Box dimensions (e.g. 5 5 5 or 4 4 5)")
+    parser.add_argument("--no-symmetry", action="store_false", dest="symmetry", help="Disable symmetry breaking")
+    parser.set_defaults(symmetry=True)
+    
+    args = parser.parse_args()
+    
+    if args.piece not in PENTACUBES:
+        print(f"Error: Piece '{args.piece}' not found in PENTACUBES.")
         print(f"Available pieces: {', '.join(sorted(PENTACUBES.keys()))}")
         sys.exit(1)
         
-    p = PENTACUBES[piece_name]
-    print(f"Solving for {piece_name} pentacube (Hybrid solver)...")
+    p = PENTACUBES[args.piece]
+    box_size = tuple(args.box) if len(args.box) == 3 else (args.box[0], args.box[0], args.box[0])
     
-    box_size = 5
-    break_symmetry = True
+    # Calculate expected number of pieces
+    volume = box_size[0] * box_size[1] * box_size[2]
+    num_cubes_per_piece = len(p)
+    expected_pieces = volume // num_cubes_per_piece
+
+    print(f"Solving for {args.piece} pentacube (Hybrid solver)...")
+    print(f"Box size: {box_size}")
     
     print(f"Generating placements for piece in {box_size} box...")
     with Timer() as t:
-        placements, canonical_p_000 = generate_placements(p, box_size, break_symmetry=break_symmetry)
+        placements, canonical_p_000 = generate_placements(p, box_size, break_symmetry=args.symmetry)
     print(f"Placements found: {len(placements)}")
 
-    if break_symmetry and canonical_p_000:
+    if args.symmetry and canonical_p_000:
         placements = filter_and_reindex_placements(placements, canonical_p_000)
 
     X0, box_list = build_exact_cover_data(placements, box_size)
@@ -231,13 +248,14 @@ def main():
     row_choices = list(X0[first_col])
     print(f"Parallel fan-out: {len(row_choices)} initial branches")
 
-    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_hybrid_{piece_name.lower()}.dat")
+    box_str = "x".join(map(str, box_size))
+    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_hybrid_{args.piece.lower()}_{box_str}.dat")
 
     manager = mp.Manager()
     out_q = manager.Queue()
     DONE = ("__DONE__", os.getpid())
 
-    wp = mp.Process(target=writer_process, args=(out_q, DONE, fname, placements))
+    wp = mp.Process(target=writer_process, args=(out_q, DONE, fname, placements, expected_pieces))
     wp.start()
 
     num_cores = mp.cpu_count()
@@ -247,7 +265,7 @@ def main():
     with Timer() as t:
         with mp.Pool(processes=num_cores) as pool:
             # We pass the flattened read-only numpy arrays which multiprocess handles efficiently
-            args_list = [(X_data, X_indptr, Y_data, Y_indptr, row, num_cols, num_rows, out_q) for row in row_choices]
+            args_list = [(X_data, X_indptr, Y_data, Y_indptr, row, num_cols, num_rows, expected_pieces, out_q) for row in row_choices]
             pool.starmap(solve_worker, args_list)
 
     out_q.put(DONE)
