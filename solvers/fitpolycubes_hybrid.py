@@ -30,8 +30,6 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
     Runs without GIL allowing true multithreading or multiprocessing.
     """
     nodes_visited[0] += 1
-    if nodes_visited[0] % 1000000 == 0:
-        print("[Worker] Branch path:", solution[0], solution[1], solution[2], solution[3], "- Visited", nodes_visited[0], "nodes, found", sol_count[0], "solutions")
 
     # Check if all columns are covered
     any_active_col = False
@@ -127,7 +125,7 @@ def init_worker(q):
     global global_out_q
     global_out_q = q
 
-def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_rows, solution_length):
+def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_rows, solution_length, max_solutions_global):
     """
     Worker: start search with a list of chosen rows (a search state).
     """
@@ -159,14 +157,10 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
                     if active_rows[i]:
                         active_rows[i] = False
                     
-    # Announce start of this task so progress is visible immediately
-    print(f"[Worker {pid}] STARTING task {task_rows}")
-
     # Enter Numba JIT Core
     solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited)
     
     total = sol_count[0]
-    print(f"[Worker {pid}] finished branch {task_rows}, found {total} solutions (visited {nodes_visited[0]} nodes)")
     
     if total > 0:
         # Pull solutions back to Python list to send to writer
@@ -184,7 +178,7 @@ def worker_wrapper(args):
     return solve_worker(*args)
 
 
-def writer_process(out_q, done_signal, fname, Y_dict, expected_pieces):
+def writer_process(out_q, done_signal, fname, Y_dict, expected_pieces, max_solutions):
     c = 0
     with open(fname, "w") as f:
         f.write(f"# Polycube solutions - Hybrid MP+Numba (Pieces: {expected_pieces})\n")
@@ -193,11 +187,14 @@ def writer_process(out_q, done_signal, fname, Y_dict, expected_pieces):
             if sol == done_signal:
                 break
             c += 1
-            if c % 100 == 0:
-                print(f"[Writer] written {c} solutions to {fname}")
+            print(f"Solutions found so far: {c}")
             
             sol_str = "".join([str(Y_dict[p_index]) for p_index in sol])
             f.write(f"{c}\n{sol_str}\n")
+            
+            if max_solutions > 0 and c >= max_solutions:
+                print(f"Reached maximum solutions limit ({max_solutions}). Stopping.")
+                break
     print(f"Total combinations found: {c}")
 
 
@@ -274,6 +271,7 @@ def main():
     parser.add_argument("piece", nargs="?", default="N", help="Piece name (e.g. N, Y, L)")
     parser.add_argument("--box", nargs="+", type=int, default=[5, 5, 5], help="Box dimensions (e.g. 5 5 5 or 4 4 5)")
     parser.add_argument("--no-symmetry", action="store_false", dest="symmetry", help="Disable symmetry breaking")
+    parser.add_argument("--max-solutions", type=int, default=0, help="Stop after finding N solutions (0 = no limit)")
     parser.set_defaults(symmetry=True)
     
     args = parser.parse_args()
@@ -348,7 +346,7 @@ def main():
     out_q = mp.Queue()
     DONE = ("__DONE__", os.getpid())
 
-    wp = mp.Process(target=writer_process, args=(out_q, DONE, fname, placements, expected_pieces))
+    wp = mp.Process(target=writer_process, args=(out_q, DONE, fname, placements, expected_pieces, args.max_solutions))
     wp.start()
 
     print(f"Using a pool of {num_cores} workers.")
@@ -357,7 +355,7 @@ def main():
     with Timer() as t:
         with mp.Pool(processes=num_cores, initializer=init_worker, initargs=(out_q,)) as pool:
             # We pass the flattened read-only numpy arrays which multiprocess handles efficiently
-            args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces) for task in tasks]
+            args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions) for task in tasks]
             for _ in pool.imap_unordered(worker_wrapper, args_list, chunksize=1):
                 pass
 
