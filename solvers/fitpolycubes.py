@@ -12,6 +12,7 @@ import numpy as np
 from common.polycube_utils import (generate_placements, build_exact_cover_data, 
                                    filter_and_reindex_placements, PENTACUBES)
 from common.algorithm_x import solve
+from common.utils import Timer
 
 def run_solver(piece, box_size, output_file, break_symmetry=False):
     if isinstance(box_size, int):

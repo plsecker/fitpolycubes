@@ -2,12 +2,12 @@ import numpy as np
 from common.rotmatrix import RM
 
 PENTACUBES = {
-    "F": np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [1, 2, 1], [2, 1, 0]]),
+    "F": np.array([[1,0,0],[0,1,0],[1,1,0],[1,2,0],[2,2,0]]),
     "I": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [4, 0, 0]]),
     "L": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [3, 1, 0]]),
     "N": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 0, 1], [3, 0, 1]]),
     "P": np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [1, 1, 0], [2, 0, 0]]),
-    "T": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [1, 1, 0], [1, 0, 1]]),
+    "T": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [1, 1, 0], [1, 2, 0]]),
     "U": np.array([[0, 0, 0], [0, 1, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0]]),
     "V": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [0, 1, 0], [0, 2, 0]]),
     "W": np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [2, 1, 0], [2, 2, 0]]),
@@ -80,8 +80,8 @@ def generate_placements(piece, box_size, break_symmetry=False):
                     if rpl_tuple not in placements.values():
                         placements[count] = rpl_tuple
                         count += 1
-                        
-    if break_symmetry:
+    if break_symmetry and box_dims[0] == box_dims[1] == box_dims[2]:
+        # if break_symmetry:
         # Symmetry breaking for a cube:
         # 1. Identify all placements that cover (0,0,0).
         # 2. Group them into orbits under the 3 rotations that fix (0,0,0).
