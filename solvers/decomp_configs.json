@@ -1,0 +1,240 @@
+{
+    "F": {
+        "size": 5,
+        "primes": [
+            [
+                3,
+                6,
+                10
+            ],
+            [
+                5,
+                5,
+                5
+            ],
+            [
+                5,
+                5,
+                7
+            ]
+        ],
+        "searched_no_solution": [
+            [
+                4,
+                6,
+                10
+            ]
+        ],
+        "row_generators": {
+            "5,5": [
+                5,
+                7
+            ]
+        },
+        "width_generators": {
+            "10": [
+                3,
+                4,
+                5
+            ],
+            "15": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+            ]
+        },
+        "impossible_rules": {
+            "volume": true,
+            "cube": true,
+            "published": [
+                {
+                    "a": 3,
+                    "b_in": [
+                        3,
+                        4,
+                        5
+                    ]
+                },
+                {
+                    "a": 4,
+                    "b_in": [
+                        3,
+                        4
+                    ]
+                },
+                {
+                    "a": 4,
+                    "b": 5,
+                    "c_in": [
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        11
+                    ]
+                },
+                {
+                    "a": 5,
+                    "b": 5,
+                    "c_in": [
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        9
+                    ]
+                },
+                {
+                    "box": [
+                        5,
+                        7,
+                        7
+                    ]
+                }
+            ]
+        }
+    },
+    "I": {
+        "size": 5,
+        "impossible_rules": {
+            "volume": true,
+            "cube": false,
+            "published": []
+        },
+        "primes": [
+            [
+                1,
+                5,
+                5
+            ]
+        ],
+        "row_generators": {},
+        "searched_no_solution": [],
+        "width_generators": {}
+    },
+    "L35": {
+        "size": 5,
+        "impossible_rules": {
+            "volume": true,
+            "cube": false,
+            "published": []
+        },
+        "primes": [
+            [
+                2,
+                9,
+                15
+            ],
+            [
+                2,
+                10,
+                10
+            ],
+            [
+                3,
+                4,
+                30
+            ],
+            [
+                4,
+                5,
+                6
+            ],
+            [
+                5,
+                5,
+                6
+            ]
+        ],
+        "row_generators": {},
+        "searched_no_solution": [],
+        "width_generators": {}
+    },
+    "N": {
+        "size": 5,
+        "impossible_rules": {
+            "volume": true,
+            "cube": false,
+            "published": []
+        },
+        "primes": [
+            [
+                2,
+                5,
+                8
+            ],
+            [
+                2,
+                5,
+                9
+            ],
+            [
+                3,
+                3,
+                5
+            ],
+            [
+                5,
+                5,
+                5
+            ]
+        ],
+        "row_generators": {
+            "2,5": [
+                8,
+                9
+            ]
+        },
+        "searched_no_solution": [],
+        "width_generators": {}
+    },
+    "Y": {
+        "size": 5,
+        "impossible_rules": {
+            "volume": true,
+            "cube": false,
+            "published": []
+        },
+        "primes": [
+            [
+                5,
+                5,
+                5
+            ]
+        ],
+        "row_generators": {},
+        "searched_no_solution": [],
+        "width_generators": {}
+    },
+    "L": {
+        "size": 5,
+        "impossible_rules": {
+            "volume": true,
+            "cube": false,
+            "published": []
+        },
+        "primes": [
+            [
+                3,
+                3,
+                5
+            ],
+            [
+                3,
+                4,
+                5
+            ]
+        ],
+        "row_generators": {},
+        "searched_no_solution": [],
+        "width_generators": {}
+    }
+}
