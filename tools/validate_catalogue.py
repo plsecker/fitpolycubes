@@ -75,13 +75,14 @@ def validate_catalogue(catalogue_name):
     else:
         print(f"PASSED: No primes marked impossible")
 
-        # CHECK 3: Generator lengths are prime
-    print("\nCHECK 3: Generator lengths are prime")
+        # CHECK 3: Row generator lengths are prime
+    print("\nCHECK 3: Row generator lengths are prime")
     print("-" * 40)
 
     generator_failures = []
     total_generators = 0
 
+    # Only validate ROW_GENERATORS - they represent prime lengths
     for (a, b), generators in catalogue.row_generators.items():
         for g in generators:
             total_generators += 1
@@ -90,22 +91,13 @@ def validate_catalogue(catalogue_name):
             if not hasattr(node, '__class__') or node.__class__.__name__ != 'Prime':
                 generator_failures.append((test_box, node))
 
-    for width, generators in catalogue.width_generators.items():
-        for g in generators:
-            total_generators += 1
-            # Width generators are for the first dimension                                                       
-            test_box = Box(g, width, 1)  # Use minimal third dimension                                           
-            node = classify(test_box)
-            if not hasattr(node, '__class__') or node.__class__.__name__ != 'Prime':
-                generator_failures.append((test_box, node))
-
     if generator_failures:
-        print(f"FAILED: {len(generator_failures)} generators don't classify as Prime:")
+        print(f"FAILED: {len(generator_failures)} row generators don't classify as Prime:")
         for box, node in generator_failures:
             print(f"  {box} -> {node.__class__.__name__}")
         all_passed = False
     else:
-        print(f"PASSED: All {total_generators} generators classify as Prime")
+        print(f"PASSED: All {total_generators} row generators classify as Prime")
 
         # CHECK 4: Canonical duplicates
     print("\nCHECK 4: Canonical duplicates")
