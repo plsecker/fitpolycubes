@@ -98,6 +98,23 @@ def validate_catalogue(catalogue_name):
         all_passed = False
     else:
         print(f"PASSED: All {total_generators} row generators classify as Prime")
+    
+    # CHECK 3b: Family periods are valid
+    print("\nCHECK 3b: Family periods are valid")
+    print("-" * 40)
+    
+    period_failures = []
+    for (a, b), family in catalogue.row_families.items():
+        if family.period is not None and family.period <= 0:
+            period_failures.append(((a, b), family.period))
+    
+    if period_failures:
+        print(f"FAILED: {len(period_failures)} families have invalid periods:")
+        for (a, b), period in period_failures:
+            print(f"  ({a},{b}) -> period={period}")
+        all_passed = False
+    else:
+        print(f"PASSED: All family periods are valid")
 
         # CHECK 4: Canonical duplicates
     print("\nCHECK 4: Canonical duplicates")

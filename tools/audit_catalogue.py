@@ -36,6 +36,13 @@ def audit_catalogue(catalogue_name, max_dimension=20):
     print(f"Auditing catalogue: {catalogue_name}")
     print("=" * 50)
     
+    # Print family information
+    print(f"\nFamily information:")
+    print("-" * 30)
+    for (a, b), family in catalogue.row_families.items():
+        period_str = str(family.period) if family.period is not None else "unknown"
+        print(f"  ({a},{b}): seeds={family.seeds}, period={period_str}")
+    
     prime_mismatches = []
     unproven_composites = []
     discovered_composites = []

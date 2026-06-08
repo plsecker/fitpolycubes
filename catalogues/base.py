@@ -16,7 +16,7 @@ class Box:
 @dataclass(frozen=True)
 class Family:
     seeds: list[int]
-    period: int
+    period: int | None = None
 
 
 @dataclass
@@ -31,7 +31,14 @@ class Catalogue:
         return None
 
     def stats(self):
+        known_periods = sum(
+            1
+            for family in self.row_families.values()
+            if family.period is not None
+        )
+        
         print(f"Catalogue: {self.catalogue_name}")
         print(f"Prime boxes: {len(self.primes)}")
         print(f"Row families: {len(self.row_families)}")
+        print(f"Families with known period: {known_periods}")
         print(f"Width families: {len(self.width_splits)}")
