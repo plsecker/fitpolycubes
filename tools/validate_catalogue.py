@@ -82,9 +82,9 @@ def validate_catalogue(catalogue_name):
     generator_failures = []
     total_generators = 0
 
-    # Only validate ROW_GENERATORS - they represent prime lengths
-    for (a, b), generators in catalogue.row_generators.items():
-        for g in generators:
+    # Only validate ROW_FAMILIES seeds - they represent prime lengths
+    for (a, b), family in catalogue.row_families.items():
+        for g in family.seeds:
             total_generators += 1
             test_box = Box(a, b, g)
             node = classify(test_box)

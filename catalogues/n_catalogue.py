@@ -1,4 +1,4 @@
-from catalogues.base import Box, Catalogue
+from catalogues.base import Box, Catalogue, Family
 
 # ============================================================
 # Raw Primes
@@ -57,24 +57,24 @@ PRIMES = {b.canonical() for b in RAW_PRIMES}
 # Only lengths explicitly marked prime in the Sillke N summary.
 # ============================================================
 
-ROW_GENERATORS = {
-    (2, 5):  [4, 5, 6, 7],
-    (3, 5):  [8, 12, 13, 14, 15, 17, 18, 19],
-    (4, 5):  [2],
-    (5, 5):  [2, 5],
-    (5, 6):  [2],
-    (5, 7):  [2],
-    (3, 10): [4, 6, 7, 9],
-    (3, 15): [4, 5, 6, 7],
+ROW_FAMILIES = {
+    (2, 5):  Family(seeds=[4, 5, 6, 7], period=1),
+    (3, 5):  Family(seeds=[8, 12, 13, 14, 15, 17, 18, 19], period=1),
+    (4, 5):  Family(seeds=[2], period=1),
+    (5, 5):  Family(seeds=[2, 5], period=1),
+    (5, 6):  Family(seeds=[2], period=1),
+    (5, 7):  Family(seeds=[2], period=1),
+    (3, 10): Family(seeds=[4, 6, 7, 9], period=1),
+    (3, 15): Family(seeds=[4, 5, 6, 7], period=1),
 }
 
 
 # ============================================================
-# Width semigroup generators
+# Width splits
 # Leave empty - insufficient information in the supplied summary.
 # ============================================================
 
-WIDTH_GENERATORS = {}
+WIDTH_SPLITS = {}
 
 
 # ============================================================
@@ -113,6 +113,6 @@ N_CATALOGUE = NCatalogue(
     catalogue_name="N",
     primes=PRIMES,
     searched_no_solution=SEARCHED_NO_SOLUTION,
-    row_generators=ROW_GENERATORS,
-    width_generators=WIDTH_GENERATORS,
+    row_families=ROW_FAMILIES,
+    width_splits=WIDTH_SPLITS,
 )

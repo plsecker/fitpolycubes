@@ -1,4 +1,4 @@
-from catalogues.base import Box, Catalogue
+from catalogues.base import Box, Catalogue, Family
 
 RAW_PRIMES = {
 
@@ -88,63 +88,18 @@ SEARCHED_NO_SOLUTION = {
 }
 
 ROW_FAMILIES = {
-
-    (3,10): Family(
-        seeds=[6,7,8,9,10,11],
-        period=6,
-    ),
-
-    (3,15): Family(
-        seeds=[6,7,8,9,11],
-        period=6,
-    ),
-
-    (4,10): Family(
-        seeds=[5,7,8,9,11],
-        period=5,
-    ),
-
-    (4,15): Family(
-        seeds=[5,6,7,8,9],
-        period=5,
-    ),
-
-    (5,5): Family(
-        seeds=[8,10,11,12,13,14,15,17],
-        period=8,
-    ),
-
-    (5,6): Family(
-        seeds=[6,7,8,9,10,11],
-        period=6,
-    ),
-
-    (5,7): Family(
-        seeds=[6,8,9,10,11,13],
-        period=6,
-    ),
-
-    (5,8): Family(
-        seeds=[5,6,7,8,9],
-        period=5,
-    ),
-
-    (5,9): Family(
-        seeds=[6,7,8,9,11],
-        period=6,
-    ),
-
-    (5,10): Family(
-        seeds=[4,5,7],
-        period=4,
-    ),
-
-    (5,11): Family(
-        seeds=[5,6,7,9],
-        period=5,
-    ),
+    (3,10): Family(seeds=[6,7,8,9,10,11], period=6),
+    (3,15): Family(seeds=[6,7,8,9,11], period=6),
+    (4,10): Family(seeds=[5,7,8,9,11], period=5),
+    (4,15): Family(seeds=[5,6,7,8,9], period=5),
+    (5,5): Family(seeds=[8,10,11,12,13,14,15,17], period=8),
+    (5,6): Family(seeds=[6,7,8,9,10,11], period=6),
+    (5,7): Family(seeds=[6,8,9,10,11,13], period=6),
+    (5,8): Family(seeds=[5,6,7,8,9], period=5),
+    (5,9): Family(seeds=[6,7,8,9,11], period=6),
+    (5,10): Family(seeds=[4,5,7], period=4),
+    (5,11): Family(seeds=[5,6,7,9], period=5),
 }
-
 
 WIDTH_SPLITS = {
     10: [3,4,5],
@@ -186,6 +141,6 @@ F_CATALOGUE = FCatalogue(
     catalogue_name="F",
     primes={b.canonical() for b in RAW_PRIMES},
     searched_no_solution={b.canonical() for b in SEARCHED_NO_SOLUTION},
-    row_generators=ROW_GENERATORS,
-    width_generators=WIDTH_GENERATORS
+    row_families=ROW_FAMILIES,
+    width_splits=WIDTH_SPLITS
 )

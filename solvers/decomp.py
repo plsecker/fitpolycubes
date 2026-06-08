@@ -167,9 +167,9 @@ def classify(box):
     #
     # Row semigroup
     #
-    gens = catalogue.row_generators.get((a, b))
-    if gens:
-        decomp = semigroup_decompose(c, gens)
+    family = catalogue.row_families.get((a, b))
+    if family:
+        decomp = semigroup_decompose(c, family.seeds)
         if decomp and not (len(decomp) == 1 and decomp[0] == c):
             parts = []
             for g in decomp:
@@ -182,8 +182,8 @@ def classify(box):
     #
     # Width semigroup
     #
-    if b in catalogue.width_generators:
-        decomp = semigroup_decompose(a, catalogue.width_generators[b])
+    if b in catalogue.width_splits:
+        decomp = semigroup_decompose(a, catalogue.width_splits[b])
         if decomp and not (len(decomp) == 1 and decomp[0] == a):
             parts = []
             for w in decomp:
