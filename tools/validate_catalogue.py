@@ -133,22 +133,35 @@ def validate_catalogue(catalogue_name):
     print(f"Raw prime entries: {raw_count}")
     print(f"Unique prime boxes: {canonical_count}")
 
+    # Build canonical mapping for both checks
+    canonical_map = {}
+    for box in RAW_PRIMES:
+        canonical = box.canonical()
+        if canonical not in canonical_map:
+            canonical_map[canonical] = []
+        canonical_map[canonical].append(box)
+
     if raw_count > canonical_count:
         print(f"INFO: {raw_count - canonical_count} duplicates collapsed after canonicalization")
-
-        # Find the duplicates                                                                                    
-        canonical_map = {}
-        for box in RAW_PRIMES:
-            canonical = box.canonical()
-            if canonical not in canonical_map:
-                canonical_map[canonical] = []
-            canonical_map[canonical].append(box)
 
         duplicates = {k: v for k, v in canonical_map.items() if len(v) > 1}
         if duplicates:
             print("Duplicate groups:")
             for canonical, originals in duplicates.items():
                 print(f"  {canonical} <- {originals}")
+
+    # CHECK 4b: Orientation duplicates
+    print("\nCHECK 4b: Orientation duplicates")
+    print("-" * 40)
+
+    orientation_duplicates = {k: v for k, v in canonical_map.items() if len(v) > 1}
+    
+    if orientation_duplicates:
+        print(f"WARNING: {len(orientation_duplicates)} canonical boxes have multiple orientations in RAW_PRIMES")
+        for canonical, originals in orientation_duplicates.items():
+            print(f"  {canonical} <- {originals}")
+    else:
+        print("PASSED: No orientation duplicates")
 
     print("\n" + "=" * 50)
     if all_passed:
