@@ -172,6 +172,26 @@ class VCatalogue(Catalogue):
     def impossible_reason(self, box: Box) -> str | None:
         a, b, c = box.a, box.b, box.c
 
+
+        #
+        # Published impossible boxes (Sillke)
+        #
+
+        if box in {
+            Box(3, 5, 4),
+            Box(3, 5, 10),
+
+            Box(4, 4, 5),
+            Box(4, 5, 5),
+
+            Box(5, 5, 5),
+            Box(5, 5, 7),
+            Box(5, 5, 8),
+
+            Box(3, 7, 10),
+            Box(3, 7, 15),
+        }:
+            return "published_impossible"
         if a <= 1:
             return "published_impossible"
 
