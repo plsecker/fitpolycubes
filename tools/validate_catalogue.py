@@ -163,6 +163,23 @@ def validate_catalogue(catalogue_name):
     else:
         print("PASSED: No orientation duplicates")
 
+    # CHECK 4c: RAW_PRIMES canonicality
+    print("\nCHECK 4c: RAW_PRIMES canonicality")
+    print("-" * 40)
+
+    non_canonical = []
+    for box in RAW_PRIMES:
+        if box != box.canonical():
+            non_canonical.append((box, box.canonical()))
+
+    if non_canonical:
+        print(f"FAILED: {len(non_canonical)} RAW_PRIMES entries are not canonical:")
+        for box, canonical in non_canonical:
+            print(f"  {box} -> canonical {canonical}")
+        all_passed = False
+    else:
+        print("PASSED: All RAW_PRIMES entries are canonical")
+
     print("\n" + "=" * 50)
     if all_passed:
         print(f"✓ Catalogue {catalogue_name} validation PASSED")
