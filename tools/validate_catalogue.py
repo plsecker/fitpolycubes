@@ -162,6 +162,8 @@ def validate_catalogue(catalogue_name):
             print(f"  {canonical} <- {originals}")
     else:
         print("PASSED: No orientation duplicates")
+    if orientation_duplicates:
+        all_passed = False
 
     # CHECK 4c: RAW_PRIMES canonicality
     print("\nCHECK 4c: RAW_PRIMES canonicality")
