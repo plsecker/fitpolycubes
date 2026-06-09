@@ -16,17 +16,12 @@ from typing import Optional
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from common.polycube_utils import PENTACUBES
 from catalogues.base import Box, Catalogue
-from catalogues.f_catalogue import F_CATALOGUE
-from catalogues.n_catalogue import N_CATALOGUE
+from catalogues.registry import CATALOGUES
 
 # Global configuration variables
 PIECE_NAME = "F"
 PIECE_SIZE = len(PENTACUBES[PIECE_NAME])
 
-CATALOGUES = {
-    "F": F_CATALOGUE,
-    "N": N_CATALOGUE,
-}
 catalogue = CATALOGUES[PIECE_NAME]
 
 

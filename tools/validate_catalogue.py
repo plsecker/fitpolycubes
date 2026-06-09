@@ -12,11 +12,10 @@ from collections import Counter
 # Set up path for imports                                                                                        
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import importlib
 from catalogues.base import Box
-from catalogues.f_catalogue import F_CATALOGUE
-from catalogues.n_catalogue import N_CATALOGUE
-from catalogues.v_catalogue import V_CATALOGUE
-from solvers.decomp import classify, CATALOGUES
+from catalogues.registry import CATALOGUES
+from solvers.decomp import classify
 import solvers.decomp as decomp
 
 
@@ -121,12 +120,11 @@ def validate_catalogue(catalogue_name):
     print("\nCHECK 4: Canonical duplicates")
     print("-" * 40)
 
-    # Get raw primes from the catalogue module                                                                   
-    if catalogue_name == 'F':
-        from catalogues.f_catalogue import RAW_PRIMES
-    elif catalogue_name == 'N':
-        from catalogues.n_catalogue import RAW_PRIMES
-    else:
+    # Get raw primes from the catalogue module dynamically
+    try:
+        module = importlib.import_module(f"catalogues.{catalogue_name.lower()}_catalogue")
+        RAW_PRIMES = getattr(module, "RAW_PRIMES", set())
+    except (ImportError, AttributeError):
         RAW_PRIMES = set()
 
     raw_count = len(RAW_PRIMES)

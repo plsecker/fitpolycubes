@@ -12,9 +12,8 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from catalogues.base import Box
-from catalogues.f_catalogue import F_CATALOGUE
-from catalogues.n_catalogue import N_CATALOGUE
-from solvers.decomp import classify, CATALOGUES, closes
+from catalogues.registry import CATALOGUES
+from solvers.decomp import classify, closes
 import solvers.decomp as decomp
 
 
