@@ -165,8 +165,13 @@ PRIMES = {b.canonical() for b in RAW_PRIMES}
 
 WIDTH_SPLITS = {}
 
-SEARCHED_NO_SOLUTION = set()
-
+SEARCHED_NO_SOLUTION = {
+# Odd 3x5 lengths searched with hybrid exact-cover solver.
+# No packings found. Not known impossible.
+    Box(3, 5, 17),
+    Box(3, 5, 19),
+    Box(3, 5, 21),
+}
 
 class VCatalogue(Catalogue):
     def impossible_reason(self, box: Box) -> str | None:
@@ -204,6 +209,8 @@ class VCatalogue(Catalogue):
         if (a, b) == (3, 4):
             return "published_impossible"
 
+        if box in self.searched_no_solution:
+            return "searched_no_solution"
         return None
 
 
