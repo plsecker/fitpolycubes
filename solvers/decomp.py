@@ -161,6 +161,9 @@ def classify(box):
 
     #
     # Row semigroup
+    # NOTE: row_families encodes the semigroup generators for fixed (a, b) cross-sections.
+    # It is not dead metadata: removing it will cause many classifications to become UNKNOWN
+    # and significantly degrade performance by forcing deep Slab/Width recursion.
     #
     family = getattr(catalogue, "row_families", {}).get((a, b))
     if family:
@@ -176,6 +179,9 @@ def classify(box):
 
     #
     # Width semigroup
+    # NOTE: width_splits contains semigroup generators for splitting the 'a' dimension at fixed b.
+    # It is likewise essential; it cannot be derived automatically here from RAW_PRIMES and its absence
+    # leads to more UNKNOWN results and slower, deeper proofs.
     #
     width_splits = getattr(catalogue, "width_splits", None)
     if width_splits and b in width_splits:
