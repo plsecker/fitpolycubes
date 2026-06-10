@@ -58,14 +58,14 @@ PRIMES = {b.canonical() for b in RAW_PRIMES}
 # ============================================================
 
 ROW_FAMILIES = {
-    (2, 5):  Family(seeds=[4, 5, 6, 7]),
-    (3, 5):  Family(seeds=[8, 12, 13, 14, 15, 17, 18, 19]),
-    (4, 5):  Family(seeds=[2]),
-    (5, 5):  Family(seeds=[2, 5]),
-    (5, 6):  Family(seeds=[2]),
-    (5, 7):  Family(seeds=[2]),
-    (3, 10): Family(seeds=[4, 6, 7, 9]),
-    (3, 15): Family(seeds=[4, 5, 6, 7]),
+    # (2, 5):  Family(seeds=[4, 5, 6, 7]),
+    # (3, 5):  Family(seeds=[8, 12, 13, 14, 15, 17, 18, 19]),
+    # (4, 5):  Family(seeds=[2]),
+    # (5, 5):  Family(seeds=[2, 5]),
+    # (5, 6):  Family(seeds=[2]),
+    # (5, 7):  Family(seeds=[2]),
+    # (3, 10): Family(seeds=[4, 6, 7, 9]),
+    # (3, 15): Family(seeds=[4, 5, 6, 7]),
 }
 
 

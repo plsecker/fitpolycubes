@@ -79,82 +79,82 @@ SEARCHED_NO_SOLUTION = {
 
 
 ROW_FAMILIES = {
-
-    (3,5): Family(
-        seeds=[6,8],
-        period=6,
-    ),
-
-    (4,5): Family(
-        seeds=[6,7,8,9,10,11],
-        period=6,
-    ),
-
-    (5,5): Family(
-        seeds=[6,9,10,11,13,14],
-        period=6,
-    ),
-
-    (5,6): Family(
-        seeds=[3,4,5],
-        period=3,
-    ),
-
-    (5,7): Family(
-        seeds=[4,7,9],
-        period=4,
-    ),
-
-    (5,8): Family(
-        seeds=[3,4],
-        period=3,
-    ),
-
-    (5,9): Family(
-        seeds=[4,5,7],
-        period=4,
-    ),
-
-    (5,10): Family(
-        seeds=[4,5],
-        period=4,
-    ),
-
-    (5,11): Family(
-        seeds=[4,5],
-        period=4,
-    ),
-
-    (3,10): Family(
-        seeds=[9,10,11,13],
-        period=6,
-    ),
-
-    (3,15): Family(
-        seeds=[9,11,13],
-        period=6,
-    ),
-
-    (3,20): Family(
-        seeds=[7],
-        period=5,
-    ),
-
-    (3,25): Family(
-        seeds=[7],
-        period=6,
-    ),
-
-    (3,30): Family(
-        seeds=[7],
-        period=5,
-    ),
-
-    (3,35): Family(
-        seeds=[7],
-        period=6,
-    ),
 }
+#     (3,5): Family(
+#         seeds=[6,8],
+#         period=6,
+#     ),
+#
+#     (4,5): Family(
+#         seeds=[6,7,8,9,10,11],
+#         period=6,
+#     ),
+#
+#     (5,5): Family(
+#         seeds=[6,9,10,11,13,14],
+#         period=6,
+#     ),
+#
+#     (5,6): Family(
+#         seeds=[3,4,5],
+#         period=3,
+#     ),
+#
+#     (5,7): Family(
+#         seeds=[4,7,9],
+#         period=4,
+#     ),
+#
+#     (5,8): Family(
+#         seeds=[3,4],
+#         period=3,
+#     ),
+#
+#     (5,9): Family(
+#         seeds=[4,5,7],
+#         period=4,
+#     ),
+#
+#     (5,10): Family(
+#         seeds=[4,5],
+#         period=4,
+#     ),
+#
+#     (5,11): Family(
+#         seeds=[4,5],
+#         period=4,
+#     ),
+#
+#     (3,10): Family(
+#         seeds=[9,10,11,13],
+#         period=6,
+#     ),
+#
+#     (3,15): Family(
+#         seeds=[9,11,13],
+#         period=6,
+#     ),
+#
+#     (3,20): Family(
+#         seeds=[7],
+#         period=5,
+#     ),
+#
+#     (3,25): Family(
+#         seeds=[7],
+#         period=6,
+#     ),
+#
+#     (3,30): Family(
+#         seeds=[7],
+#         period=5,
+#     ),
+#
+#     (3,35): Family(
+#         seeds=[7],
+#         period=6,
+#     ),
+# }
 
 
 
@@ -166,20 +166,40 @@ PRIMES = {b.canonical() for b in RAW_PRIMES}
 WIDTH_SPLITS = {}
 
 SEARCHED_NO_SOLUTION = {
-# Odd 3x5 lengths searched with hybrid exact-cover solver.
-# No packings found. Not known impossible.
-    Box(3, 5, 17),
-    Box(3, 5, 19),
-    Box(3, 5, 21),
 }
 
 class VCatalogue(Catalogue):
     def impossible_reason(self, box: Box) -> str | None:
         a, b, c = box.a, box.b, box.c
 
+        if a <= 1:
+            return "published_impossible"
+
+        if a == b == c:
+            return "cube"
 
         #
-        # Published impossible boxes (Sillke)
+        # Published impossible families
+        #
+
+        # 2xNxN as NxN is impossible
+        if a == 2 and b == c:
+            return "published_impossible"
+
+        # 3x3xN dies out after 7 steps
+        if (a, b) == (3, 3):
+            return "published_impossible"
+
+        # 3x4xN dies out after 15 steps
+        if (a, b) == (3, 4):
+            return "published_impossible"
+
+        # 3x5xu (u odd)
+        if (a, b) == (3, 5) and (c % 2) == 1:
+            return "published_impossible"
+
+        #
+        # Published impossible individual boxes
         #
 
         if box in {
@@ -197,20 +217,7 @@ class VCatalogue(Catalogue):
             Box(3, 7, 15),
         }:
             return "published_impossible"
-        if a <= 1:
-            return "published_impossible"
 
-        if a == b == c:
-            return "cube"
-
-        if (a, b) == (3, 3):
-            return "published_impossible"
-
-        if (a, b) == (3, 4):
-            return "published_impossible"
-
-        if box in self.searched_no_solution:
-            return "searched_no_solution"
         return None
 
 
