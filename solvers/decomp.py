@@ -61,6 +61,11 @@ class Width(ProofNode):
     left: ProofNode
     right: ProofNode
 
+@dataclass
+class Breadth(ProofNode):
+    box: Box
+    left: ProofNode
+    right: ProofNode
 
 @dataclass
 class Generator(ProofNode):
@@ -91,6 +96,8 @@ def closes(node):
     if isinstance(node, Width):
         return closes(node.left) and closes(node.right)
 
+    if isinstance(node, Breadth):
+        return closes(node.left) and closes(node.right)
     return False
 
 
@@ -212,6 +219,17 @@ def classify(box):
         if closes(candidate):
             return candidate
 
+    #
+    # Breadth decomposition
+    #
+    for split in range(1, b):
+        left = classify(Box(a, split, c))
+        right = classify(Box(a, b - split, c))
+
+        candidate = Breadth(box, left, right)
+        if closes(candidate):
+            return candidate
+
     return Unknown(box)
 
 
@@ -252,6 +270,11 @@ def dump(node, indent=0):
         dump(node.right, indent + 2)
         return
 
+    if isinstance(node, Breadth):
+        print(f"{pad}BREADTH {node.box}")
+        dump(node.left, indent + 2)
+        dump(node.right, indent + 2)
+        return
 
 # ============================================================
 # Main

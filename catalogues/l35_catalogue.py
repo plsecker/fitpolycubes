@@ -78,19 +78,27 @@ class L35Catalogue(Catalogue):
         # Published impossible families
         #
 
-        # 2 x N x {2..7}
-        if a == 2 and c <= 7:
+        if a == 2 and b in {2, 3, 4, 5, 6, 7}:
             return "published_impossible"
+
+        # # 2 x N x {2..7}
+        # if a == 2 and c <= 7:
+        #     return "published_impossible"
 
         # 3 x N x 3
-        if a == 3 and c == 3:
+        if a == 3 and b == 3:
             return "published_impossible"
 
-        # odd width theorem:
-        # uxpxq with u odd and pq not divisible by 3
-        if (a % 2) == 1 and ((b * c) % 3) != 0:
+        # # odd width theorem:
+        # # uxpxq with u odd and pq not divisible by 3
+        # if (a % 2) == 1 and ((b * c) % 3) != 0:
+        #     return "published_impossible"
+        if a % 2 == 1 and (b * c) % 3 != 0:
             return "published_impossible"
-
+        if b % 2 == 1 and (a * c) % 3 != 0:
+            return "published_impossible"
+        if c % 2 == 1 and (a * b) % 3 != 0:
+            return "published_impossible"
         #
         # Published impossible individual boxes
         #

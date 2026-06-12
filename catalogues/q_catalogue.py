@@ -1,7 +1,7 @@
 from catalogues.base import Box, Catalogue, Family
 
 RAW_PRIMES = {
-
+    Box(2,3,5), # ?
     # 3x3
     Box(3,3,10),
     Box(3,3,15),
@@ -47,6 +47,10 @@ WIDTH_SPLITS = {
 
 class QCatalogue(Catalogue):
     def impossible_reason(self, box: Box) -> str | None:
+        a, b, c = box.a, box.b, box.c
+
+        if a <= 1:
+            return "published_impossible"
 
         #
         # Published impossible individual boxes
@@ -65,6 +69,9 @@ class QCatalogue(Catalogue):
             Box(3,5,11),
             Box(3,5,13),
         }:
+            return "published_impossible"
+
+        if (a * b * c) % 3 != 0:
             return "published_impossible"
 
         return None

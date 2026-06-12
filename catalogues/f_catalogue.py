@@ -17,15 +17,29 @@ RAW_PRIMES = {
     Box(3, 15, 9),
     Box(3, 15, 11),
 
+    # 4x5
+    Box(4,5,10),
+    Box(4,5,12),
+    Box(4,5,13),
+    Box(4,5,14),
+    Box(4,5,15),
+    Box(4,5,16),
+    Box(4,5,17),
+    Box(4,5,18),
+    Box(4,5,19),
+    Box(4,5,21),
+
+    # 4x6
+    Box(4,6,20), # Shirakawa
+    Box(4,6,25),
+
     # 4x10
-    Box(4,10,5),
     Box(4,10,7),
     Box(4,10,8),
     Box(4,10,9),
     Box(4,10,11),
 
     # 4x15
-    Box(4,15,5),
     Box(4,15,6),
     Box(4,15,7),
     Box(4,15,8),
@@ -110,6 +124,14 @@ WIDTH_SPLITS = {
 class FCatalogue(Catalogue):
     def impossible_reason(self, box: Box) -> str | None:
         a, b, c = box.a, box.b, box.c
+
+        if a == 1:
+            return "F requires width at least 2"
+
+        # Empirically, no thickness-2 box is tileable by F.
+        # All audited 2×b×c cases are impossible.
+        if a == 2:
+            return "F cannot tile boxes of thickness 2"
 
         if box in self.searched_no_solution:
             return "searched_no_solution"

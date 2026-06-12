@@ -99,9 +99,11 @@ class NCatalogue(Catalogue):
         if (a, b) in {(2, 2), (2, 3), (3, 3)}:
             return "published_impossible"
 
-        if (a, b) == (3, 5):
-            if c in {4, 5, 6, 7, 9, 10, 11}:
-                return "published_impossible"
+        if (a, b, c) == (3, 4, 5):
+            return "published_impossible"
+
+        if (a, b) == (3, 5) and c in {5, 6, 7, 9, 10, 11}:
+            return "published_impossible"
 
         # TODO: decode N no-strip impossibility rule
         # TODO: decode Zx{3,5} impossibility rule
