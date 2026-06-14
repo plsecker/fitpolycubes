@@ -418,6 +418,11 @@ def main():
         if f_out:
             print(*print_args, **print_kwargs, file=f_out)
 
+    # Initialize counters for subbox summary
+    total_analyzed = 0
+    with_cut = 0
+    no_cut = 0
+
     print(f"Saving results report to: {args.output} ...")
     with open(args.output, "w") as f_out:
         f_out.write(
@@ -444,10 +449,13 @@ def main():
                     grid[coord] = p_idx
             cuts = find_valid_cuts(grid, box_size)
             out_print("Subbox analysis:")
+            total_analyzed += 1
             if cuts:
+                with_cut += 1
                 for axis, pos, d1, d2 in cuts:
                     out_print(f"  Valid cut: {axis}={pos} -> {d1[0]}x{d1[1]}x{d1[2]} + {d2[0]}x{d2[1]}x{d2[2]}")
             else:
+                no_cut += 1
                 out_print("  No valid rectangular decomposition")
             
             out_print("\nRepresentative Grid Layout:")
@@ -464,6 +472,11 @@ def main():
                     f"\rOutputting results: {idx}/{len(sorted_groups)}"
                 )
                 sys.stdout.flush()
+
+    print("\nSubbox summary:")
+    print(f"  Fundamental solutions analysed: {total_analyzed}")
+    print(f"  Solutions with a valid cut: {with_cut}")
+    print(f"  Solutions with no valid cut: {no_cut}")
 
     print(f"\nAll tasks complete! Results written to {args.output}")
 
