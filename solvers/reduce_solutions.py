@@ -192,19 +192,15 @@ def run_sanity_check(solution, transforms):
     return len(keys) == 1
 
 
-def find_valid_cuts(solution, box_size):
+def find_valid_cuts(grid, box_size):
     """
-    Reconstructs the grid and finds all valid axis-aligned plane cuts.
+    Tests every possible axis-aligned plane cut.
     Returns a list of tuples: (axis, position, box1_dims, box2_dims)
     """
     X, Y, Z = box_size
-    grid = {}
-    for piece_idx, coords in enumerate(solution):
-        for x, y, z in coords:
-            grid[(x, y, z)] = piece_idx
-
     valid_cuts = []
-    for axis, limit in [('x', X), ('y', Y), ('z', Z)]:
+    
+    for axis, limit, idx in [('x', X, 0), ('y', Y, 1), ('z', Z, 2)]:
         for pos in range(1, limit):
             pieces_on_left = set()
             pieces_on_right = set()
@@ -216,10 +212,8 @@ def find_valid_cuts(solution, box_size):
                     pieces_on_right.add(p)
             
             if pieces_on_left.isdisjoint(pieces_on_right):
-                dims = [X, Y, Z]
-                idx = {'x': 0, 'y': 1, 'z': 2}[axis]
-                d1, d2 = list(dims), list(dims)
-                d1[idx], d2[idx] = pos, dims[idx] - pos
+                d1, d2 = list(box_size), list(box_size)
+                d1[idx], d2[idx] = pos, box_size[idx] - pos
                 valid_cuts.append((axis, pos, tuple(d1), tuple(d2)))
     return valid_cuts
 
@@ -443,7 +437,12 @@ def main():
             )
             
             # Add Subbox analysis
-            cuts = find_valid_cuts(group['first_raw_solution'], box_size)
+            # Reconstruct grid for analysis
+            grid = {}
+            for p_idx, coords in enumerate(group['first_raw_solution']):
+                for coord in coords:
+                    grid[coord] = p_idx
+            cuts = find_valid_cuts(grid, box_size)
             out_print("Subbox analysis:")
             if cuts:
                 for axis, pos, d1, d2 in cuts:

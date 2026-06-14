@@ -17,6 +17,7 @@ from catalogues.base import Box
 from catalogues.registry import CATALOGUES
 from solvers.decomp import classify
 import solvers.decomp as decomp
+from solvers.reduce_solutions import find_valid_cuts
 
 
 def validate_catalogue(catalogue_name):
