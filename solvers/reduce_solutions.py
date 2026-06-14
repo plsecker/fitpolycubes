@@ -192,6 +192,38 @@ def run_sanity_check(solution, transforms):
     return len(keys) == 1
 
 
+def find_valid_cuts(solution, box_size):
+    """
+    Reconstructs the grid and finds all valid axis-aligned plane cuts.
+    Returns a list of tuples: (axis, position, box1_dims, box2_dims)
+    """
+    X, Y, Z = box_size
+    grid = {}
+    for piece_idx, coords in enumerate(solution):
+        for x, y, z in coords:
+            grid[(x, y, z)] = piece_idx
+
+    valid_cuts = []
+    for axis, limit in [('x', X), ('y', Y), ('z', Z)]:
+        for pos in range(1, limit):
+            pieces_on_left = set()
+            pieces_on_right = set()
+            for (x, y, z), p in grid.items():
+                val = x if axis == 'x' else (y if axis == 'y' else z)
+                if val < pos:
+                    pieces_on_left.add(p)
+                else:
+                    pieces_on_right.add(p)
+            
+            if pieces_on_left.isdisjoint(pieces_on_right):
+                dims = [X, Y, Z]
+                idx = {'x': 0, 'y': 1, 'z': 2}[axis]
+                d1, d2 = list(dims), list(dims)
+                d1[idx], d2[idx] = pos, dims[idx] - pos
+                valid_cuts.append((axis, pos, tuple(d1), tuple(d2)))
+    return valid_cuts
+
+
 def print_grid(pieces_list, box_size, file=sys.stdout):
     """Visualizes the 3D polycube grid layer by layer to a specified output stream."""
     if isinstance(box_size, int):
@@ -409,7 +441,17 @@ def main():
             out_print(
                 f"Matches {group['match_count']} instances (including symmetries/duplicates)"
             )
-            out_print("Representative Grid Layout:")
+            
+            # Add Subbox analysis
+            cuts = find_valid_cuts(group['first_raw_solution'], box_size)
+            out_print("Subbox analysis:")
+            if cuts:
+                for axis, pos, d1, d2 in cuts:
+                    out_print(f"  Valid cut: {axis}={pos} -> {d1[0]}x{d1[1]}x{d1[2]} + {d2[0]}x{d2[1]}x{d2[2]}")
+            else:
+                out_print("  No valid rectangular decomposition")
+            
+            out_print("\nRepresentative Grid Layout:")
 
             # Cleaned up: Pass target streams directly into print_grid
             print_grid(group['first_raw_solution'], box_size, file=sys.stdout)
