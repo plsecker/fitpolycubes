@@ -196,6 +196,7 @@ def find_valid_cuts(grid, box_size):
     """
     Tests every possible axis-aligned plane cut.
     Returns a list of tuples: (axis, position, box1_dims, box2_dims)
+    Only returns cuts where both resulting subboxes contain at least 2 pieces.
     """
     X, Y, Z = box_size
     valid_cuts = []
@@ -214,7 +215,15 @@ def find_valid_cuts(grid, box_size):
             if pieces_on_left.isdisjoint(pieces_on_right):
                 d1, d2 = list(box_size), list(box_size)
                 d1[idx], d2[idx] = pos, box_size[idx] - pos
-                valid_cuts.append((axis, pos, tuple(d1), tuple(d2)))
+                
+                # Filter: Only report if both subboxes contain at least 2 pieces
+                # Volume of subbox / 5 = number of pieces
+                left_vol = d1[0] * d1[1] * d1[2]
+                right_vol = d2[0] * d2[1] * d2[2]
+                
+                if (left_vol // 5) >= 2 and (right_vol // 5) >= 2:
+                    valid_cuts.append((axis, pos, tuple(d1), tuple(d2)))
+                    
     return valid_cuts
 
 
