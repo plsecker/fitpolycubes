@@ -193,7 +193,7 @@ def writer_process(out_q, done_signal, fname, Y_dict, expected_pieces, max_solut
             if sol == done_signal:
                 break
             c += 1
-            if c % 10:
+            if (c % 10) == 0:
                 print(f"Solutions found so far: {c}")
             
             sol_str = "".join([str(Y_dict[p_index]) for p_index in sol])

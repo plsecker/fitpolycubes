@@ -1,8 +1,12 @@
 from catalogues.base import Box, Catalogue, Family
 
 RAW_PRIMES = {
-    Box(2,3,5), # ?
+    # 2x2
+    Box(2, 3, 5),  # discovered by solver
+    Box(2, 2, 15),  # discovered prime (required for decomposition completeness)
+
     # 3x3
+    Box(3, 3, 5),  # discovered prime (required for decomposition completeness)
     Box(3,3,10),
     Box(3,3,15),
 

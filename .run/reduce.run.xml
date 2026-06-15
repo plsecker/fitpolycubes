@@ -16,7 +16,7 @@
     <option name="DEBUG_JUST_MY_CODE" value="false" />
     <option name="RUN_TOOL" value="" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/solvers/reduce_solutions.py" />
-    <option name="PARAMETERS" value="data/solutions_hybrid_f_3x6x10.dat --reflections" />
+    <option name="PARAMETERS" value="data/solutions_hybrid_q_2x3x5.dat --reflections" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />
