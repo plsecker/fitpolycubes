@@ -16,7 +16,7 @@
     <option name="DEBUG_JUST_MY_CODE" value="false" />
     <option name="RUN_TOOL" value="" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/solvers/fitpolycubes_hybrid.py" />
-    <option name="PARAMETERS" value="Q --box 2 2 15" />
+    <option name="PARAMETERS" value="Q --box 3 3 10" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />

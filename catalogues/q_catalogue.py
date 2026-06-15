@@ -4,9 +4,9 @@ RAW_PRIMES = {
     # 2x2
     Box(2, 3, 5),  # discovered by solver
     Box(2, 2, 15),  # discovered prime (required for decomposition completeness)
-
-    # 3x3
-    Box(3, 3, 5),  # discovered prime (required for decomposition completeness)
+    #
+    # # 3x3
+    # Box(3, 3, 5),  # impossible
     Box(3,3,10),
     Box(3,3,15),
 
@@ -40,6 +40,7 @@ RAW_PRIMES = {
 PRIMES = {b.canonical() for b in RAW_PRIMES}
 
 SEARCHED_NO_SOLUTION = {
+    Box(3, 3, 5),
 }
 
 ROW_FAMILIES = {
