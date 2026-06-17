@@ -17,7 +17,7 @@ from solvers.decomp import classify, closes
 import solvers.decomp as decomp
 
 
-def audit_catalogue(catalogue_name, max_dimension=20):
+def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
     """Audit catalogue for surprising cases."""
     
     if catalogue_name not in CATALOGUES:
@@ -77,38 +77,26 @@ def audit_catalogue(catalogue_name, max_dimension=20):
             discovered_composites.append((box, node))
     
     # Report results
-    print(f"\nAUDIT A: Prime mismatches")
-    print("-" * 30)
-    if prime_mismatches:
-        print(f"PRIME_MISMATCH: {len(prime_mismatches)} cases")
-        for box, node in prime_mismatches[:10]:  # Show first 10
-            print(f"  {box} -> {node.__class__.__name__}")
-        if len(prime_mismatches) > 10:
-            print(f"  ... and {len(prime_mismatches) - 10} more")
-    else:
-        print("No prime mismatches found")
-    
-    print(f"\nAUDIT B: Unproven composites")
-    print("-" * 30)
-    if unproven_composites:
-        print(f"UNPROVEN_COMPOSITE: {len(unproven_composites)} cases")
-        for box, node in unproven_composites[:10]:
-            print(f"  {box} -> Unknown")
-        if len(unproven_composites) > 10:
-            print(f"  ... and {len(unproven_composites) - 10} more")
-    else:
-        print("No unproven composites found")
-    
-    print(f"\nAUDIT C: Discovered composites")
-    print("-" * 30)
-    if discovered_composites:
-        print(f"DISCOVERED_COMPOSITE: {len(discovered_composites)} cases")
-        for box, node in discovered_composites[:10]:
-            print(f"  {box} -> {node.__class__.__name__}")
-        if len(discovered_composites) > 10:
-            print(f"  ... and {len(discovered_composites) - 10} more")
-    else:
-        print("No new composites discovered")
+    def print_section(title, items, limit):
+        print(f"\nAUDIT {title}")
+        print("-" * 30)
+        if not items:
+            print("No issues found")
+            return
+
+        count = len(items)
+        display_items = items[:limit] if limit is not None else items
+
+        for box, node in display_items:
+            label = node.__class__.__name__ if hasattr(node, '__class__') else "Unknown"
+            print(f"  {box} -> {label}")
+
+        if limit is not None and count > limit:
+            print(f"  ... and {count - limit} more")
+
+    print_section("A: Prime mismatches", prime_mismatches, limit)
+    print_section("B: Unproven composites", unproven_composites, limit)
+    print_section("C: Discovered composites", discovered_composites, limit)
     
     print("\n" + "=" * 50)
     print(f"Audit complete for {catalogue_name}")
@@ -119,10 +107,11 @@ def main():
     parser = argparse.ArgumentParser(description="Audit polycube catalogues")
     parser.add_argument("catalogue", help="Catalogue name (F, N)")
     parser.add_argument("--max-dim", type=int, default=15, help="Maximum dimension to test")
+    parser.add_argument("--limit", type=int, default=None, help="Limit number of cases per section")
     args = parser.parse_args()
     
     catalogue_name = args.catalogue.upper()
-    audit_catalogue(catalogue_name, args.max_dim)
+    audit_catalogue(catalogue_name, args.max_dim, args.limit)
 
 
 if __name__ == "__main__":
