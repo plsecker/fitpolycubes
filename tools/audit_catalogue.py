@@ -80,11 +80,13 @@ def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
     def print_section(title, items, limit):
         print(f"\nAUDIT {title}")
         print("-" * 30)
+        count = len(items)
+        print(f"Count: {count}")
+        
         if not items:
             print("No issues found")
             return
 
-        count = len(items)
         display_items = items[:limit] if limit is not None else items
 
         for box, node in display_items:
