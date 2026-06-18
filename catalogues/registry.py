@@ -15,6 +15,7 @@ from catalogues.l_catalogue import L_CATALOGUE
 from catalogues.p_catalogue import P_CATALOGUE
 from catalogues.z_catalogue import Z_CATALOGUE
 from catalogues.w_catalogue import W_CATALOGUE
+from catalogues.t_catalogue import T_CATALOGUE
 
 CATALOGUES = {
     "F": F_CATALOGUE,
@@ -26,4 +27,5 @@ CATALOGUES = {
     "P": P_CATALOGUE,
     "Z": Z_CATALOGUE,
     "W": W_CATALOGUE,
+    "T": T_CATALOGUE,
 }
