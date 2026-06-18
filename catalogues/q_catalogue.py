@@ -63,9 +63,9 @@ class QCatalogue(Catalogue):
 
         if box in {
 
-            # 3x5 family
-            Box(3,5,3),
-            Box(3,5,4),
+            # 3x family (canonical)
+            Box(3,3,5),
+            Box(3,4,5),
             Box(3,5,5),
             Box(3,5,7),
             Box(3,5,8),

@@ -109,7 +109,7 @@ class ZCatalogue(Catalogue):
     def impossible_reason(self, box: Box) -> str | None:
         a, b, c = box.a, box.b, box.c
 
-        if a <= 1:
+        if a <= 2:
             return "published_impossible"
 
         #
@@ -120,6 +120,9 @@ class ZCatalogue(Catalogue):
             return "published_impossible"
 
         if a == 4 and 4 <= b <= 9:
+            return "published_impossible"
+
+        if (a, b) == (4, 10) and 10 <= c <= 45:
             return "published_impossible"
 
         if a == 5 and b in {5, 6, 7}:
