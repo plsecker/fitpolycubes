@@ -282,6 +282,11 @@ SEARCHED_NO_SOLUTION |= {
     Box(4,14,15),
 
     #
+    # 5x10
+    #
+    Box(5,10,10),   # ran all night
+
+    #
     # 6x7
     #
     Box(6,7,10),
