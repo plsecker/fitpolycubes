@@ -20,6 +20,7 @@ PENTACUBES = {
     "J25": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [1, 0, 1]]), # piece 71 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
     "L35": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [2, 0, 1]]), # piece 81 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
     "Q": np.array([[0,0,0],[1,0,0],[0,1,0],[1,1,0],[2,2,0]]),
+    "K": np.array([[0,0,0],[1,0,0],[2,0,0],[2,1,0],[2,0,1],]), # piece 21 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.21
 }
 
 def generate_placements(piece, box_size, break_symmetry=False):
