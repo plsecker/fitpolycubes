@@ -40,7 +40,7 @@ def find_all_files(piece_name=None, box_size=None):
     # Priority 1: Specific piece requested
     if piece_name:
         for s in suffixes:
-            pattern = f"solutions_{s}_{piece_name.lower()}"
+            pattern = f"solutions_{s}_{piece_name}"
 
             # 1. Try with specific box_str if provided
             if box_str:
@@ -305,8 +305,8 @@ def main():
             piece_name = os.path.splitext(
                 os.path.basename(args.piece)
             )[0]
-        elif args.piece.upper() in PENTACUBES:
-            piece_name = args.piece.upper()
+        elif args.piece in PENTACUBES:
+            piece_name = args.piece
         else:
             print(
                 f"Error: '{args.piece}' is not a valid file path or piece name."
@@ -353,7 +353,7 @@ def main():
     if not args.output:
         p_label = piece_name if piece_name else "all"
         b_label = f"{box_size[0]}x{box_size[1]}x{box_size[2]}" if box_size else "default"
-        filename = f"reduce_{p_label.lower()}_{b_label}.txt"
+        filename = f"reduce_{p_label}_{b_label}.txt"
 
         # If a valid source filepath exists, extract its directory path
         if filepaths:
