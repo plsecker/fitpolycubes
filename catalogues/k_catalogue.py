@@ -28,6 +28,7 @@ RAW_PRIMES = {
     # 5x7
     #
     Box(5, 7, 24),
+    Box(5, 7, 24),
     Box(5, 7, 36),
     Box(5, 7, 42),
 
@@ -48,6 +49,9 @@ RAW_PRIMES = {
 PRIMES = {b.canonical() for b in RAW_PRIMES}
 
 SEARCHED_NO_SOLUTION = {
+
+    # Box(3,3,5),
+
     Box(4, 5, 7),
 
 
@@ -73,9 +77,12 @@ SEARCHED_NO_SOLUTION = {
 
     #
     # Sillke claimed solution,
-    # Shirakawa says wrong
+    # Shirakawa says wrong, but gives a solution
     #
-    Box(5, 7, 30),
+    # Box(5, 7, 30),
+
+    Box(8, 8, 10),
+
 }
 
 ROW_FAMILIES = {}
@@ -88,9 +95,6 @@ class KCatalogue(Catalogue):
         a, b, c = box.a, box.b, box.c
 
         if a <= 1:
-            return "published_impossible"
-
-        if (a * b * c) % 5 != 0:
             return "published_impossible"
 
         #
@@ -119,6 +123,9 @@ class KCatalogue(Catalogue):
         # Interpretation unresolved.
         #
 
+        if (a, b) == (3, 3):
+            return "discovered_impossible"
+
         # Shirakawa 2014
         # 3x13xN impossible
         #
@@ -131,7 +138,16 @@ class KCatalogue(Catalogue):
         if a == 4 and b in {4, 7}:
             return "published_impossible"
 
-        if a == 4 and b == 8 and c ==10:
+        if a == 4 and b == 8 and c in{10, 30, 50, 70, 90, 110}:
+            return "published_impossible"
+
+        if a == 4 and b == 9 and c in{10, 15, 20, 25, 30, 35, 40, 45,}:
+            return "published_impossible"
+
+        if a == 4 and b == 5 and c ==5:
+            return "published_impossible"
+
+        if a == 4 and b == 10 and c ==14:
             return "published_impossible"
 
         #
@@ -140,14 +156,35 @@ class KCatalogue(Catalogue):
         if a == 5 and b == 5:
             return "published_impossible"
 
+        if a == 5 and b == 9 and c == 9:
+            return "published_impossible"
+
+        if a == 6 and b == 6 and c == 10:
+            return "published_impossible"
+
+        # #
+        # # 14x
+        # #
+        # if a == 8 and b == 10 and c == 14:
+        #     return "published_impossible, due to 4x10x14"
+        #
+        # if a == 10 and b == 14 and c == 14:
+        #     return "published_impossible, due to ?"
+
+
         #
         # odd-width theorem
         #
         if a % 2 == 1 and (b * c) % 3 != 0:
-            return "published_impossible"
+            return "published_impossible, odd-width theorem"
+        if b % 2 == 1 and (a * c) % 3 != 0:
+            return "published_impossible, odd-width theorem"
+        if c % 2 == 1 and (a * b) % 3 != 0:
+            return "published_impossible, odd-width theorem"
 
         if box in SEARCHED_NO_SOLUTION:
             return "published_impossible"
+
 
         return None
 

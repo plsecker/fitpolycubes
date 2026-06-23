@@ -285,6 +285,7 @@ SEARCHED_NO_SOLUTION |= {
     # 5x10
     #
     Box(5,10,10),   # ran all night
+    Box(5, 10, 28),  # ran all weekend
 
     #
     # 6x7
