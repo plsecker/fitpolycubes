@@ -19,6 +19,7 @@ from catalogues.t_catalogue import T_CATALOGUE
 from catalogues.u_catalogue import U_CATALOGUE
 from catalogues.k_catalogue import K_CATALOGUE
 from catalogues.h_catalogue import H_CATALOGUE
+from catalogues.j_catalogue import J_CATALOGUE
 
 CATALOGUES = {
     "F": F_CATALOGUE,
@@ -34,4 +35,5 @@ CATALOGUES = {
     "U": U_CATALOGUE,
     "K": K_CATALOGUE,
     "H": H_CATALOGUE,
+    "J": J_CATALOGUE,
 }
