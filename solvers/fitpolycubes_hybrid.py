@@ -23,23 +23,24 @@ from common.polycube_utils import (generate_placements, build_exact_cover_data,
 #############   Numba Core  #############
 
 @njit(nogil=True)
-def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth):
+def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth, profile_enabled):
     """
     Numba-optimized Algorithm X.
     Using flat arrays for high performance.
     Runs without GIL allowing true multithreading or multiprocessing.
     """
 
-    nodes_visited[0] += 1
+    if profile_enabled:
+        nodes_visited[0] += 1
 
-    # Track max depth
-    if depth > nodes_visited[1]:
-        nodes_visited[1] = depth
+        # Track max depth
+        if depth > nodes_visited[1]:
+            nodes_visited[1] = depth
 
-    # Track nodes per depth.
-    nodes_visited[2 + depth] += 1
-    if nodes_visited[0] % 1000000 == 0:
-        print("[Worker] Branch path:", solution[0], solution[1], solution[2], solution[3], "- Visited", nodes_visited[0], "nodes, found", sol_count[0], "solutions")
+        # Track nodes per depth.
+        nodes_visited[2 + depth] += 1
+        if nodes_visited[0] % 1000000 == 0:
+            print("[Worker] Branch path:", solution[0], solution[1], solution[2], solution[3], "- Visited", nodes_visited[0], "nodes, found", sol_count[0], "solutions")
 
     # Check if all columns are covered
     any_active_col = False
@@ -79,7 +80,8 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
             if count == 0: break 
 
     if min_rows == 0 or best_col == -1:
-        nodes_visited[3 + solution_length + depth] += 1
+        if profile_enabled:
+            nodes_visited[3 + solution_length + depth] += 1
         return
 
     # Try each active row that covers the chosen column
@@ -133,7 +135,7 @@ def init_worker(q):
     global global_out_q
     global_out_q = q
 
-def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_rows, solution_length, max_solutions_global):
+def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_rows, solution_length, max_solutions_global, profile_enabled):
     """
     Worker: start search with a list of chosen rows (a search state).
     """
@@ -169,24 +171,25 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     print(f"[Worker {pid}] STARTING task {task_rows}")
 
     # Enter Numba JIT Core
-    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited, len(task_rows))
+    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited, len(task_rows), profile_enabled)
     
-    total = sol_count[0]
-    print(f"[Worker {pid}] finished branch {task_rows}, found {total} solutions.")
-    print(f"Nodes visited: {nodes_visited[0]}")
-    max_depth = nodes_visited[1]
-    print(f"Maximum depth: {max_depth}\n")
-    print("Nodes by depth:")
-    for i in range(int(max_depth) + 1):
-        if nodes_visited[2 + i] > 0:
-            print(f"{i}: {nodes_visited[2 + i]}")
+    if profile_enabled:
+        total = sol_count[0]
+        print(f"[Worker {pid}] finished branch {task_rows}, found {total} solutions.")
+        print(f"Nodes visited: {nodes_visited[0]}")
+        max_depth = nodes_visited[1]
+        print(f"Maximum depth: {max_depth}\n")
+        print("Nodes by depth:")
+        for i in range(int(max_depth) + 1):
+            if nodes_visited[2 + i] > 0:
+                print(f"{i}: {nodes_visited[2 + i]}")
 
-    print("\nDead ends by depth:")
-    dead_end_offset = 2 + solution_length + 1
-    for i in range(int(max_depth) + 1):
-        if nodes_visited[dead_end_offset + i] > 0:
-            print(f"{i}: {nodes_visited[dead_end_offset + i]}")
-    sys.stdout.flush()
+        print("\nDead ends by depth:")
+        dead_end_offset = 2 + solution_length + 1
+        for i in range(int(max_depth) + 1):
+            if nodes_visited[dead_end_offset + i] > 0:
+                print(f"{i}: {nodes_visited[dead_end_offset + i]}")
+        sys.stdout.flush()
     
     if total > 0:
         # Pull solutions back to Python list to send to writer
@@ -370,7 +373,7 @@ def main(args):
     wp.start()
 
     # Prepare args_list for both modes
-    args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions) for task in tasks]
+    args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions, args.profile_single) for task in tasks]
 
     print(f"Using a pool of {num_cores} workers.")
 
@@ -382,7 +385,7 @@ def main(args):
             profiler.enable()
             init_worker(out_q)
             for worker_args in args_list:
-                worker_wrapper(worker_args)
+                solve_worker(*worker_args)
             profiler.disable()
             profiler.dump_stats("profile.prof")
             print("\nProfile written to profile.prof")
