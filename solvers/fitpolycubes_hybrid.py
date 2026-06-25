@@ -79,6 +79,7 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
             if count == 0: break 
 
     if min_rows == 0 or best_col == -1:
+        nodes_visited[3 + solution_length + depth] += 1
         return
 
     # Try each active row that covers the chosen column
@@ -143,7 +144,7 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     active_rows = np.ones(num_rows, dtype=np.bool_)
     solution = np.full(solution_length, -1, dtype=np.int32)
     sol_count = np.array([0], dtype=np.int32)
-    nodes_visited = np.zeros(solution_length + 3, dtype=np.int64)  # 0: nodes, 1: max_depth, 2..: nodes_at_depth
+    nodes_visited = np.zeros(2 * (solution_length + 1) + 2, dtype=np.int64)  # stats, nodes/depth, dead_ends/depth
     
     max_sols = 100000
     out_list = np.zeros(max_sols * solution_length, dtype=np.int32)
@@ -179,6 +180,12 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     for i in range(int(max_depth) + 1):
         if nodes_visited[2 + i] > 0:
             print(f"{i}: {nodes_visited[2 + i]}")
+
+    print("\nDead ends by depth:")
+    dead_end_offset = 2 + solution_length + 1
+    for i in range(int(max_depth) + 1):
+        if nodes_visited[dead_end_offset + i] > 0:
+            print(f"{i}: {nodes_visited[dead_end_offset + i]}")
     sys.stdout.flush()
     
     if total > 0:
