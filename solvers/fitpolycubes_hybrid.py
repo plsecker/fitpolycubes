@@ -143,7 +143,7 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     active_rows = np.ones(num_rows, dtype=np.bool_)
     solution = np.full(solution_length, -1, dtype=np.int32)
     sol_count = np.array([0], dtype=np.int32)
-    nodes_visited = np.zeros(solution_length + 2, dtype=np.int64)  # 0: nodes, 1: max_depth, 2..: nodes_at_depth
+    nodes_visited = np.zeros(solution_length + 3, dtype=np.int64)  # 0: nodes, 1: max_depth, 2..: nodes_at_depth
     
     max_sols = 100000
     out_list = np.zeros(max_sols * solution_length, dtype=np.int32)
@@ -168,8 +168,7 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     print(f"[Worker {pid}] STARTING task {task_rows}")
 
     # Enter Numba JIT Core
-    initial_depth = len(task_rows)
-    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited, initial_depth)
+    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited, len(task_rows))
     
     total = sol_count[0]
     print(f"[Worker {pid}] finished branch {task_rows}, found {total} solutions.")
