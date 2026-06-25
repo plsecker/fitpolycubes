@@ -173,8 +173,9 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     # Enter Numba JIT Core
     solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited, len(task_rows), profile_enabled)
     
+    total = sol_count[0]
+    
     if profile_enabled:
-        total = sol_count[0]
         print(f"[Worker {pid}] finished branch {task_rows}, found {total} solutions.")
         print(f"Nodes visited: {nodes_visited[0]}")
         max_depth = nodes_visited[1]
