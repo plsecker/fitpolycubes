@@ -349,19 +349,21 @@ def main(args):
     wp = mp.Process(target=writer_process, args=(out_q, DONE, fname, placements, expected_pieces, args.max_solutions))
     wp.start()
 
+    # Prepare args_list for both modes
+    args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions) for task in tasks]
+
     print(f"Using a pool of {num_cores} workers.")
-    
+
     print("Starting solver...")
     with Timer() as t:
         if args.profile_single:
             # Sequential execution for profiling
             init_worker(out_q)
-            for task in tasks:
-                worker_wrapper((X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions))
+            for worker_args in args_list:
+                worker_wrapper(worker_args)
         else:
+            # Original multiprocessing execution
             with mp.Pool(processes=num_cores, initializer=init_worker, initargs=(out_q,)) as pool:
-                # We pass the flattened read-only numpy arrays which multiprocess handles efficiently
-                args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions) for task in tasks]
                 for _ in pool.imap_unordered(worker_wrapper, args_list, chunksize=1):
                     pass
 
