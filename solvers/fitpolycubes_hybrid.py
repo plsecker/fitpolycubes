@@ -23,16 +23,12 @@ from common.polycube_utils import (generate_placements, build_exact_cover_data,
 #############   Numba Core  #############
 
 @njit(nogil=True)
-def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited):
+def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth):
     """
     Numba-optimized Algorithm X.
     Using flat arrays for high performance.
     Runs without GIL allowing true multithreading or multiprocessing.
     """
-    # Calculate depth for instrumentation.
-    depth = 0
-    while depth < solution_length and solution[depth] != -1:
-        depth += 1
 
     nodes_visited[0] += 1
 
@@ -40,9 +36,8 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
     if depth > nodes_visited[1]:
         nodes_visited[1] = depth
 
-    # Track nodes per depth. Max depth 100.
-    if depth < 100:
-        nodes_visited[2 + depth] += 1
+    # Track nodes per depth.
+    nodes_visited[2 + depth] += 1
     if nodes_visited[0] % 1000000 == 0:
         print("[Worker] Branch path:", solution[0], solution[1], solution[2], solution[3], "- Visited", nodes_visited[0], "nodes, found", sol_count[0], "solutions")
 
@@ -96,9 +91,6 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
         if not active_rows[r]:
             continue
 
-        depth = 0
-        while depth < solution_length and solution[depth] != -1:
-            depth += 1
         
         if depth >= solution_length:
             continue
@@ -123,7 +115,7 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
                         active_rows[i] = False
                         deactivated_rows.append(i)
         
-        solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited)
+        solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth + 1)
         
         # Deselect: Backtrack
         for i in deactivated_rows:
@@ -151,7 +143,7 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     active_rows = np.ones(num_rows, dtype=np.bool_)
     solution = np.full(solution_length, -1, dtype=np.int32)
     sol_count = np.array([0], dtype=np.int32)
-    nodes_visited = np.zeros(102, dtype=np.int64)  # 0: nodes, 1: max_depth, 2-101: nodes_at_depth
+    nodes_visited = np.zeros(solution_length + 2, dtype=np.int64)  # 0: nodes, 1: max_depth, 2..: nodes_at_depth
     
     max_sols = 100000
     out_list = np.zeros(max_sols * solution_length, dtype=np.int32)
@@ -176,7 +168,8 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     print(f"[Worker {pid}] STARTING task {task_rows}")
 
     # Enter Numba JIT Core
-    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited)
+    initial_depth = len(task_rows)
+    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited, initial_depth)
     
     total = sol_count[0]
     print(f"[Worker {pid}] finished branch {task_rows}, found {total} solutions.")
