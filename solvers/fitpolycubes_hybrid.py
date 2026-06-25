@@ -357,7 +357,6 @@ def main(args):
     print("Starting solver...")
     with Timer() as t:
         if args.profile_single:
-            # Sequential execution for profiling
             import cProfile
             profiler = cProfile.Profile()
             profiler.enable()
