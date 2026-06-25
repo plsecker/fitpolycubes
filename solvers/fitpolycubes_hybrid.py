@@ -358,9 +358,15 @@ def main(args):
     with Timer() as t:
         if args.profile_single:
             # Sequential execution for profiling
+            import cProfile
+            profiler = cProfile.Profile()
+            profiler.enable()
             init_worker(out_q)
             for worker_args in args_list:
                 worker_wrapper(worker_args)
+            profiler.disable()
+            profiler.dump_stats("profile.prof")
+            print("\nProfile written to profile.prof")
         else:
             # Original multiprocessing execution
             with mp.Pool(processes=num_cores, initializer=init_worker, initargs=(out_q,)) as pool:
@@ -392,13 +398,6 @@ if __name__ == "__main__":
         mp.set_start_method("spawn", force=True)
 
     if args.profile:
-        profiler = cProfile.Profile()
-        profiler.enable()
-        main(args)
-        profiler.disable()
-        profiler.dump_stats("profile.prof")
-        print("\nProfile written to profile.prof")
-    elif args.profile_single:
         profiler = cProfile.Profile()
         profiler.enable()
         main(args)
