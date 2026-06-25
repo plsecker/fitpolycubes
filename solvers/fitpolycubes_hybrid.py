@@ -272,17 +272,7 @@ def generate_tasks_recursive(X0, placements, box_list, active_cols, active_rows,
 
 #############   Main  #############
 
-def main():
-    import argparse
-    parser = argparse.ArgumentParser(description="Polycube Exact Cover Solver (Hybrid)")
-    parser.add_argument("piece", nargs="?", default="N", help="Piece name (e.g. N, Y, L)")
-    parser.add_argument("--box", nargs="+", type=int, default=[5, 5, 5], help="Box dimensions (e.g. 5 5 5 or 4 4 5)")
-    parser.add_argument("--no-symmetry", action="store_false", dest="symmetry", help="Disable symmetry breaking")
-    parser.add_argument("--max-solutions", type=int, default=0, help="Stop after finding N solutions (0 = no limit)")
-    parser.set_defaults(symmetry=True)
-    
-    args = parser.parse_args()
-    
+def main(args):
     # Normalize input to uppercase for lookup
     piece_key = args.piece.upper()
     
@@ -373,6 +363,31 @@ def main():
     wp.join()
 
 if __name__ == "__main__":
+    import argparse
+    import cProfile
+    import pstats
+
+    parser = argparse.ArgumentParser(description="Polycube Exact Cover Solver (Hybrid)")
+    parser.add_argument("piece", nargs="?", default="N", help="Piece name (e.g. N, Y, L)")
+    parser.add_argument("--box", nargs="+", type=int, default=[5, 5, 5], help="Box dimensions (e.g. 5 5 5 or 4 4 5)")
+    parser.add_argument("--no-symmetry", action="store_false", dest="symmetry", help="Disable symmetry breaking")
+    parser.add_argument("--max-solutions", type=int, default=0, help="Stop after finding N solutions (0 = no limit)")
+    parser.add_argument("--profile", action="store_true", help="Enable profiling and save to profile.prof")
+    parser.set_defaults(symmetry=True)
+
+    # We need to parse args here to check for --profile before calling main()
+    # Note: main() also parses args, so we should pass the parsed args or re-parse
+    args = parser.parse_args()
+
     if sys.platform.startswith("win"):
         mp.set_start_method("spawn", force=True)
-    main()
+
+    if args.profile:
+        profiler = cProfile.Profile()
+        profiler.enable()
+        main(args)
+        profiler.disable()
+        profiler.dump_stats("profile.prof")
+        print("\nProfile written to profile.prof")
+    else:
+        main(args)
