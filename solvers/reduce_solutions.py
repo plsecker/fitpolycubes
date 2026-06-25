@@ -305,13 +305,16 @@ def main():
             piece_name = os.path.splitext(
                 os.path.basename(args.piece)
             )[0]
-        elif args.piece in PENTACUBES:
-            piece_name = args.piece
         else:
-            print(
-                f"Error: '{args.piece}' is not a valid file path or piece name."
-            )
-            sys.exit(1)
+            # Normalize input to uppercase for lookup
+            piece_key = args.piece.upper()
+            if piece_key in PENTACUBES:
+                piece_name = piece_key
+            else:
+                print(
+                    f"Error: '{args.piece}' is not a valid file path or piece name."
+                )
+                sys.exit(1)
 
     box_size = None
     if args.box:

@@ -283,12 +283,15 @@ def main():
     
     args = parser.parse_args()
     
-    if args.piece not in PENTACUBES:
+    # Normalize input to uppercase for lookup
+    piece_key = args.piece.upper()
+    
+    if piece_key not in PENTACUBES:
         print(f"Error: Piece '{args.piece}' not found in PENTACUBES.")
         print(f"Available pieces: {', '.join(sorted(PENTACUBES.keys()))}")
         sys.exit(1)
         
-    p = PENTACUBES[args.piece]
+    p = PENTACUBES[piece_key]
     box_size = tuple(args.box) if len(args.box) == 3 else (args.box[0], args.box[0], args.box[0])
     
     # Calculate expected number of pieces
@@ -348,7 +351,7 @@ def main():
     print(f"Generated {len(tasks)} parallel tasks (target: {target_tasks}, max depth: {max_depth}).")
 
     box_str = "x".join(map(str, box_size))
-    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_hybrid_{args.piece.lower()}_{box_str}.dat")
+    fname = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f"data/solutions_hybrid_{piece_key.lower()}_{box_str}.dat")
 
     out_q = mp.Queue()
     DONE = ("__DONE__", os.getpid())
