@@ -353,11 +353,17 @@ def main(args):
     
     print("Starting solver...")
     with Timer() as t:
-        with mp.Pool(processes=num_cores, initializer=init_worker, initargs=(out_q,)) as pool:
-            # We pass the flattened read-only numpy arrays which multiprocess handles efficiently
-            args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions) for task in tasks]
-            for _ in pool.imap_unordered(worker_wrapper, args_list, chunksize=1):
-                pass
+        if args.profile_single:
+            # Sequential execution for profiling
+            init_worker(out_q)
+            for task in tasks:
+                worker_wrapper((X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions))
+        else:
+            with mp.Pool(processes=num_cores, initializer=init_worker, initargs=(out_q,)) as pool:
+                # We pass the flattened read-only numpy arrays which multiprocess handles efficiently
+                args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions) for task in tasks]
+                for _ in pool.imap_unordered(worker_wrapper, args_list, chunksize=1):
+                    pass
 
     out_q.put(DONE)
     wp.join()
@@ -373,6 +379,7 @@ if __name__ == "__main__":
     parser.add_argument("--no-symmetry", action="store_false", dest="symmetry", help="Disable symmetry breaking")
     parser.add_argument("--max-solutions", type=int, default=0, help="Stop after finding N solutions (0 = no limit)")
     parser.add_argument("--profile", action="store_true", help="Enable profiling and save to profile.prof")
+    parser.add_argument("--profile-single", action="store_true", help="Enable sequential profiling and save to profile.prof")
     parser.set_defaults(symmetry=True)
 
     # We need to parse args here to check for --profile before calling main()
@@ -383,6 +390,13 @@ if __name__ == "__main__":
         mp.set_start_method("spawn", force=True)
 
     if args.profile:
+        profiler = cProfile.Profile()
+        profiler.enable()
+        main(args)
+        profiler.disable()
+        profiler.dump_stats("profile.prof")
+        print("\nProfile written to profile.prof")
+    elif args.profile_single:
         profiler = cProfile.Profile()
         profiler.enable()
         main(args)
