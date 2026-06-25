@@ -29,7 +29,20 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
     Using flat arrays for high performance.
     Runs without GIL allowing true multithreading or multiprocessing.
     """
+    # Calculate depth for instrumentation.
+    depth = 0
+    while depth < solution_length and solution[depth] != -1:
+        depth += 1
+
     nodes_visited[0] += 1
+
+    # Track max depth
+    if depth > nodes_visited[1]:
+        nodes_visited[1] = depth
+
+    # Track nodes per depth. Max depth 100.
+    if depth < 100:
+        nodes_visited[2 + depth] += 1
     if nodes_visited[0] % 1000000 == 0:
         print("[Worker] Branch path:", solution[0], solution[1], solution[2], solution[3], "- Visited", nodes_visited[0], "nodes, found", sol_count[0], "solutions")
 
@@ -138,7 +151,7 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     active_rows = np.ones(num_rows, dtype=np.bool_)
     solution = np.full(solution_length, -1, dtype=np.int32)
     sol_count = np.array([0], dtype=np.int32)
-    nodes_visited = np.array([0], dtype=np.int64)
+    nodes_visited = np.zeros(102, dtype=np.int64)  # 0: nodes, 1: max_depth, 2-101: nodes_at_depth
     
     max_sols = 100000
     out_list = np.zeros(max_sols * solution_length, dtype=np.int32)
@@ -166,7 +179,15 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited)
     
     total = sol_count[0]
-    print(f"[Worker {pid}] finished branch {task_rows}, found {total} solutions (visited {nodes_visited[0]} nodes)")
+    print(f"[Worker {pid}] finished branch {task_rows}, found {total} solutions.")
+    print(f"Nodes visited: {nodes_visited[0]}")
+    max_depth = nodes_visited[1]
+    print(f"Maximum depth: {max_depth}\n")
+    print("Nodes by depth:")
+    for i in range(int(max_depth) + 1):
+        if nodes_visited[2 + i] > 0:
+            print(f"{i}: {nodes_visited[2 + i]}")
+    sys.stdout.flush()
     
     if total > 0:
         # Pull solutions back to Python list to send to writer
