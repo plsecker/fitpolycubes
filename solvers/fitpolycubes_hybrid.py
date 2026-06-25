@@ -118,7 +118,7 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
                         active_rows[i] = False
                         deactivated_rows.append(i)
         
-        solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth + 1)
+        solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth + 1, profile_enabled)
         
         # Deselect: Backtrack
         for i in deactivated_rows:
