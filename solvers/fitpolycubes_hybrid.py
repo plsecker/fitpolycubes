@@ -353,7 +353,13 @@ def main(args):
     Y_indptr = np.array(Y_indptr, dtype=np.int32)
 
     # Determine initial parallel branches using recursive task generator
-    num_cores = mp.cpu_count()
+    total_cpus = mp.cpu_count()
+    num_cores = args.workers if args.workers is not None else max(1, total_cpus - 2)
+    num_cores = max(1, min(num_cores, total_cpus))
+    
+    print(f"System has {total_cpus} logical CPUs.")
+    print(f"Using {num_cores} worker processes.")
+
     target_tasks = num_cores * 16
     max_depth = 4
 
@@ -407,6 +413,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Polycube Exact Cover Solver (Hybrid)")
     parser.add_argument("piece", nargs="?", default="N", help="Piece name (e.g. N, Y, L)")
     parser.add_argument("--box", nargs="+", type=int, default=[5, 5, 5], help="Box dimensions (e.g. 5 5 5 or 4 4 5)")
+    parser.add_argument("--workers", type=int, default=None, help="Number of worker processes (default: total CPUs - 2)")
     parser.add_argument("--no-symmetry", action="store_false", dest="symmetry", help="Disable symmetry breaking")
     parser.add_argument("--max-solutions", type=int, default=0, help="Stop after finding N solutions (0 = no limit)")
     parser.add_argument("--profile", action="store_true", help="Enable profiling and save to profile.prof")
