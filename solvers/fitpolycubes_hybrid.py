@@ -382,8 +382,6 @@ def main(args):
     # Prepare args_list for both modes
     args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions, args.profile_single) for task in tasks]
 
-    print(f"Using a pool of {num_cores} workers.")
-
     print("Starting solver...")
     with Timer() as t:
         if args.profile_single:
