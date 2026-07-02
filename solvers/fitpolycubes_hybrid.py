@@ -411,7 +411,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Polycube Exact Cover Solver (Hybrid)")
     parser.add_argument("piece", nargs="?", default="N", help="Piece name (e.g. N, Y, L)")
     parser.add_argument("--box", nargs="+", type=int, default=[5, 5, 5], help="Box dimensions (e.g. 5 5 5 or 4 4 5)")
-    parser.add_argument("--workers", type=int, default=None, help="Number of worker processes (default: total CPUs - 2)")
+    parser.add_argument("--workers", type=int, default=None, help="Number of worker processes (default: CPU count minus 2)")
     parser.add_argument("--no-symmetry", action="store_false", dest="symmetry", help="Disable symmetry breaking")
     parser.add_argument("--max-solutions", type=int, default=0, help="Stop after finding N solutions (0 = no limit)")
     parser.add_argument("--profile", action="store_true", help="Enable profiling and save to profile.prof")
