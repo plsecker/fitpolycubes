@@ -79,6 +79,7 @@ SEARCHED_NO_SOLUTION = {
     # Box(5, 7, 30),
 
     Box(8, 8, 10),
+    Box(8, 10, 14),
 
 }
 
@@ -179,8 +180,11 @@ class KCatalogue(Catalogue):
         if c % 2 == 1 and (a * b) % 3 != 0:
             return "published_impossible, odd-width theorem"
 
+        if a == 8 and b == 10 and c == 14:
+            return "published_impossible"  # as 8,10,14 was searched and it is needed
+
         if box in SEARCHED_NO_SOLUTION:
-            return "published_impossible"
+            return "SEARCHED_NO_SOLUTION"
 
 
         return None
