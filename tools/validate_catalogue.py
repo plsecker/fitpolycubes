@@ -188,11 +188,12 @@ def validate_catalogue(catalogue_name):
 
     pub_failures = []
     for box in catalogue.published_solutions:
+        canonical_box = box.canonical()
         if (box.a * box.b * box.c) % 5 != 0:
             pub_failures.append((box, "Volume not divisible by 5"))
-        elif catalogue.impossible_reason(box) is not None:
-            pub_failures.append((box, f"Marked impossible: {catalogue.impossible_reason(box)}"))
-        elif box in catalogue.searched_no_solution:
+        elif catalogue.impossible_reason(canonical_box) is not None:
+            pub_failures.append((box, f"Marked impossible: {catalogue.impossible_reason(canonical_box)}"))
+        elif canonical_box in {b.canonical() for b in catalogue.searched_no_solution}:
             pub_failures.append((box, "Found in searched_no_solution"))
 
     if pub_failures:

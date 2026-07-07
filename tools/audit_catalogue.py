@@ -104,28 +104,15 @@ def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
     print("\nAUDIT D: Published solutions")
     print("-" * 30)
     
-    explained = []
-    published_only = []
+    published = list(catalogue.published_solutions)
+    print(f"Count: {len(published)}")
     
-    for box in catalogue.published_solutions:
-        # A box is "explained" if it's prime, impossible, or has a closed proof
-        node = classify(box)
-        if box in catalogue.primes or catalogue.impossible_reason(box) is not None or closes(node):
-            explained.append(box)
-        else:
-            published_only.append(box)
-            
-    print(f"Count: {len(catalogue.published_solutions)}")
-    print(f"Explained: {len(explained)}")
-    print(f"Published only: {len(published_only)}")
-    
-    if published_only:
-        print("\nPublished only boxes:")
-        display_items = published_only[:limit] if limit is not None else published_only
+    if published:
+        display_items = published[:limit] if limit is not None else published
         for box in display_items:
             print(f"  {box}")
-        if limit is not None and len(published_only) > limit:
-            print(f"  ... and {len(published_only) - limit} more")
+        if limit is not None and len(published) > limit:
+            print(f"  ... and {len(published) - limit} more")
     
     print("\n" + "=" * 50)
     print(f"Audit complete for {catalogue_name}")
