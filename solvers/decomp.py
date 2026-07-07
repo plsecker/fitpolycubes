@@ -38,6 +38,11 @@ class Prime(ProofNode):
 
 
 @dataclass
+class PublishedSolution(ProofNode):
+    box: Box
+
+
+@dataclass
 class Impossible(ProofNode):
     box: Box
     reason: str
@@ -79,6 +84,9 @@ class Generator(ProofNode):
 
 def closes(node):
     if isinstance(node, Prime):
+        return True
+
+    if isinstance(node, PublishedSolution):
         return True
 
     if isinstance(node, Impossible):
@@ -163,6 +171,10 @@ def classify(box):
     if box in catalogue.primes:
         return Prime(box)
 
+    # Check for published solutions before falling through to Unknown
+    if box in {b.canonical() for b in catalogue.published_solutions}:
+        return PublishedSolution(box)
+
     a, b, c = box.a, box.b, box.c
 
     #
@@ -239,6 +251,10 @@ def classify(box):
 
 def dump(node, indent=0):
     pad = " " * indent
+
+    if isinstance(node, PublishedSolution):
+        print(f"{pad}PUBLISHED_SOLUTION {node.box}")
+        return
 
     if isinstance(node, Prime):
         print(f"{pad}PRIME {node.box}")
