@@ -117,4 +117,5 @@ L35_CATALOGUE = L35Catalogue(
     searched_no_solution=SEARCHED_NO_SOLUTION,
     row_families=ROW_FAMILIES,
     width_splits=WIDTH_SPLITS,
+    published_solutions=set(),
 )

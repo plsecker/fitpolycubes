@@ -164,5 +164,6 @@ F_CATALOGUE = FCatalogue(
     primes={b.canonical() for b in RAW_PRIMES},
     searched_no_solution={b.canonical() for b in SEARCHED_NO_SOLUTION},
     row_families=ROW_FAMILIES,
-    width_splits=WIDTH_SPLITS
+    width_splits=WIDTH_SPLITS,
+    published_solutions=set(),
 )

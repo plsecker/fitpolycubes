@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass(frozen=True, order=True)
 class Box:
@@ -26,6 +26,7 @@ class Catalogue:
     searched_no_solution: set[Box]
     row_families: dict[tuple[int, int], Family]
     width_splits: dict[int, list[int]]
+    published_solutions: set[Box] = field(default_factory=set)
 
     def impossible_reason(self, box: Box) -> str | None:
         return None

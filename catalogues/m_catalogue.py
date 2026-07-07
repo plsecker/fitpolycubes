@@ -29,6 +29,12 @@ WIDTH_SPLITS = {
 }
 
 
+PUBLISHED_SOLUTIONS = {
+    Box(6, 8, 25),
+    Box(7, 8, 20),
+    Box(10, 10, 12),
+}
+
 class MCatalogue(Catalogue):
     def impossible_reason(self, box: Box) -> str | None:
         a, b, c = box.a, box.b, box.c
@@ -94,4 +100,5 @@ M_CATALOGUE = MCatalogue(
     searched_no_solution=SEARCHED_NO_SOLUTION,
     row_families=ROW_FAMILIES,
     width_splits=WIDTH_SPLITS,
+    published_solutions=PUBLISHED_SOLUTIONS,
 )
