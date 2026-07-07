@@ -237,7 +237,7 @@ def classify(box):
         if closes(candidate):
             return candidate
 
-    # Fallback: Check for published solutions only if no proof was found
+    # Fall back to published solutions only if no constructive proof exists.
     if box in {b.canonical() for b in catalogue.published_solutions}:
         return PublishedSolution(box)
 
