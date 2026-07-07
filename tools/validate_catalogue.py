@@ -182,6 +182,27 @@ def validate_catalogue(catalogue_name):
     else:
         print("PASSED: All RAW_PRIMES entries are canonical")
 
+    # CHECK 5: Published solutions consistency
+    print("\nCHECK 5: Published solutions consistency")
+    print("-" * 40)
+
+    pub_failures = []
+    for box in catalogue.published_solutions:
+        if (box.a * box.b * box.c) % 5 != 0:
+            pub_failures.append((box, "Volume not divisible by 5"))
+        elif catalogue.impossible_reason(box) is not None:
+            pub_failures.append((box, f"Marked impossible: {catalogue.impossible_reason(box)}"))
+        elif box in catalogue.searched_no_solution:
+            pub_failures.append((box, "Found in searched_no_solution"))
+
+    if pub_failures:
+        print(f"FAILED: {len(pub_failures)} published solutions are inconsistent:")
+        for box, reason in pub_failures:
+            print(f"  {box} -> {reason}")
+        all_passed = False
+    else:
+        print(f"PASSED: All {len(catalogue.published_solutions)} published solutions are consistent")
+
     print("\n" + "=" * 50)
     if all_passed:
         print(f"✓ Catalogue {catalogue_name} validation PASSED")
