@@ -237,7 +237,8 @@ def classify(box):
         if closes(candidate):
             return candidate
 
-    # Final fallback: use published solutions only if no constructive proof exists.
+    # Final fallback: consult published_solutions ONLY after exhausting all constructive proofs.
+    # Do not move this earlier; must not short-circuit the decomposition pipeline.
     if box in {b.canonical() for b in catalogue.published_solutions}:
         return PublishedSolution(box)
 
