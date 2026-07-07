@@ -38,7 +38,7 @@ class Prime(ProofNode):
 
 
 @dataclass
-class PublishedSolution:
+class PublishedSolution(ProofNode):
     box: Box
 
 
@@ -86,6 +86,9 @@ def closes(node):
     if isinstance(node, Prime):
         return True
 
+    # PublishedSolution is a ProofNode but does not close a proof
+    if isinstance(node, PublishedSolution):
+        return False
 
     if isinstance(node, Impossible):
         return False
