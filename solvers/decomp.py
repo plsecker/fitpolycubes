@@ -169,9 +169,6 @@ def classify(box):
     if box in catalogue.primes:
         return Prime(box)
 
-    # Check for published solutions before falling through to Unknown
-    if box in {b.canonical() for b in catalogue.published_solutions}:
-        return PublishedSolution(box)
 
     a, b, c = box.a, box.b, box.c
 
@@ -239,6 +236,10 @@ def classify(box):
         candidate = Breadth(box, left, right)
         if closes(candidate):
             return candidate
+
+    # Fallback: Check for published solutions only if no proof was found
+    if box in {b.canonical() for b in catalogue.published_solutions}:
+        return PublishedSolution(box)
 
     return Unknown(box)
 
