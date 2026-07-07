@@ -20,8 +20,8 @@ PENTACUBES = {
     "Q": np.array([[0,0,0],[1,0,0],[0,1,0],[1,1,0],[2,2,0]]),
     "K": np.array([[0,0,0],[1,0,0],[2,0,0],[2,1,0],[2,0,1],]),                  # piece 21 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.21
     "H": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 1], [2, 0, 1],]),    # piece 31 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.21
-    "A": np.array([[0, 0, 0],[1, 0, 0],[1, 0, 1],[0, 1, 0],[0, 1, 1],           # piece 24 of https://puzzlewillbeplayed.com/Shirakawa/5-24.html
-]),
+    "A": np.array([[0, 0, 0],[1, 0, 0],[1, 0, 1],[0, 1, 0],[0, 1, 1]]),           # piece 37, piece 24 of https://puzzlewillbeplayed.com/Shirakawa/5-24.html
+    "M": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [1, 1, 0], [1, 1, 1]]),       # piece 51, piece 18 of https://puzzlewillbeplayed.com/Shirakawa/5-18.html
 }
 
 def generate_placements(piece, box_size, break_symmetry=False):
