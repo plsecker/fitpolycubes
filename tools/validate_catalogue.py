@@ -206,6 +206,40 @@ def validate_catalogue(catalogue_name):
     else:
         print(f"PASSED: All {len(catalogue.published_solutions)} published solutions are consistent")
 
+    # CHECK 6: Redundant published solutions
+    print("\nCHECK 6: Redundant published solutions")
+    print("-" * 40)
+
+    redundant = []
+    original_published = catalogue.published_solutions
+    
+    try:
+        # Temporarily clear published solutions to test if decomposition can prove them
+        catalogue.published_solutions = set()
+        decomp.classify.cache_clear()
+        
+        for box in original_published:
+            proof = classify(box)
+            # A box is redundant if the decomposition engine can prove it
+            # without relying on the published_solutions fallback.
+            # We exclude Unknown and PublishedSolution nodes.
+            if not isinstance(proof, (decomp.Unknown, decomp.PublishedSolution)) and decomp.closes(proof):
+                redundant.append((box, proof))
+                
+    finally:
+        # Restore original state
+        catalogue.published_solutions = original_published
+        decomp.classify.cache_clear()
+
+    if redundant:
+        print(f"Count: {len(redundant)}")
+        for box, proof in redundant:
+            # Get the type of the root proof node
+            proof_type = proof.__class__.__name__
+            print(f"  {box} -> {proof_type}")
+    else:
+        print("None")
+
     print("\n" + "=" * 50)
     if all_passed:
         print(f"✓ Catalogue {catalogue_name} validation PASSED")
