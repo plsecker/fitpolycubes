@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
 """
-Decomposition Proof and Classifier for Polycubes
+Recursive decomposition prover for polycube box tilings.
 
-This tool proves if rectangular boxes can be tiled/packed by a given polycube
-using semigroup decompositions, slab/width splits, and known prime boxes.
+The classifier attempts to explain a rectangular box using a finite set of
+catalogued knowledge:
+
+* impossibility theorems,
+* primitive (prime) boxes,
+* semigroup decompositions (where available),
+* exhaustive straight guillotine decompositions along all three axes.
+
+If none of these yield a proof but the literature contains a published
+construction, the box is classified as PUBLISHED_SOLUTION.
+
+UNKNOWN means that no proof or published construction is currently known to
+the catalogue; it does not imply that the box is impossible.
 """
 
 import os
@@ -157,7 +168,11 @@ def semigroup_decompose(target, generators):
 # ============================================================
 # Classifier
 # ============================================================
-
+# The classifier is exhaustive over the decomposition rules represented in the
+# catalogue. It recursively explores every straight guillotine cut in all three
+# dimensions, together with any semigroup decompositions supplied by the active
+# catalogue. It is not an exhaustive tiling solver; arbitrary non-guillotine
+# decompositions and placement searches are outside its scope.
 @cache
 def classify(box):
     box = box.canonical()

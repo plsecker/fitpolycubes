@@ -14,11 +14,11 @@ PENTACUBES = {
     "X": np.array([[1, 0, 0], [0, 1, 0], [1, 1, 0], [1, 2, 0], [2, 1, 0]]),
     "Y": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [2, 1, 0]]),
     "Z": np.array([[0, 0, 0],[1, 0, 0],[1, 1, 0],[1, 2, 0],[2, 2, 0]]),
-    "J45": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [2, 1, 1]]), # piece 41 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
-    "J25": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [1, 0, 1]]), # piece 71 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
-    "L35": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [2, 0, 1]]), # piece 81 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
+    "J45": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [2, 1, 1]]),   # piece 41 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
+    "J25": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [1, 0, 1]]),   # piece 71 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
+    "K": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [2, 0, 1]]),     # piece 81 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5 https://puzzlewillbeplayed.com/Shirakawa/5-13.html
     "Q": np.array([[0,0,0],[1,0,0],[0,1,0],[1,1,0],[2,2,0]]),
-    "K": np.array([[0,0,0],[1,0,0],[2,0,0],[2,1,0],[2,0,1],]),                  # piece 21 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.21
+    "S": np.array([[0,0,0],[1,0,0],[2,0,0],[2,1,0],[2,0,1],]),                  # piece 21 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.21, https://puzzlewillbeplayed.com/Shirakawa/5-15.html
     "H": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 1], [2, 0, 1],]),    # piece 31 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.21
     "A": np.array([[0, 0, 0],[1, 0, 0],[1, 0, 1],[0, 1, 0],[0, 1, 1]]),           # piece 37, piece 24 of https://puzzlewillbeplayed.com/Shirakawa/5-24.html
     "M": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [1, 1, 0], [1, 1, 1]]),       # piece 51, piece 18 of https://puzzlewillbeplayed.com/Shirakawa/5-18.html

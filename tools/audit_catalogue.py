@@ -19,7 +19,7 @@ import solvers.decomp as decomp
 
 def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
     """Audit catalogue for surprising cases."""
-    
+
     if catalogue_name not in CATALOGUES:
         print(f"Error: No catalogue found for '{catalogue_name}'")
         return

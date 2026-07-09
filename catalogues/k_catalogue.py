@@ -1,91 +1,67 @@
-from catalogues.base import Box, Catalogue
+from catalogues.base import Box, Catalogue, Family
 
 RAW_PRIMES = {
-    Box(3, 4, 15),
-    Box(3, 5, 6),
-    Box(3, 5, 9),
-    Box(3, 7, 15),
 
-   #
+    # 2x8
+    Box(2,8,10),
+
+    # 2x9
+    Box(2,9,15),
+
+    # 2x10
+    Box(2,10,10),
+    Box(2,10,12),
+    Box(2,10,14),
+
+    # 2x11
+    Box(2,11,30),
+
+    # 2x12
+    Box(2,12,15),
+
+    # 2x13
+    Box(2,13,30),
+
+    # 2x15
+    Box(2,15,15),
+
+    # 3x4
+    Box(3,4,30),
+    Box(3,4,45),
+
+    # 3x5
+    Box(3,5,6),
+    Box(3,5,9),
+
+    # 3x7
+    Box(3,7,15),
+
+    # 3x8
+    Box(3,8,15),
+
+    # 4x4
+    Box(4,4,10),
+
     # 4x5
-    #
-    Box(4, 5, 6),
+    Box(4,5,6),
 
-    #
-    # 4x8
-    #
-    Box(4, 8, 20),
-
-    #
-    # 4x10
-    #
-    Box(4, 10, 10),
-
-    #
-    # 5x7
-    #
-    Box(5, 7, 24),
-    Box(5, 7, 24),
-    Box(5, 7, 36),
-    Box(5, 7, 42),
-
-    #
-    # 6x6
-    #
-    Box(6, 6, 15),
-    Box(6, 6, 20),
-    Box(6, 6, 25),
-
-    #
-    # 6x7
-    #
-    Box(6, 7, 10),
-    Box(6, 7, 15),
+    # 5x5
+    Box(5,5,6),
 }
 
 PRIMES = {b.canonical() for b in RAW_PRIMES}
 
 SEARCHED_NO_SOLUTION = {
-
-    # Box(3,3,5),
-
-    Box(4, 5, 7),
-
-
-    Box(5, 6, 6),
-    Box(5, 6, 7),
-    Box(5, 6, 9),
-    Box(5, 6, 10),
-    Box(5, 6, 11),
-    Box(5, 6, 13),
-    Box(5, 6, 14),
-    Box(5, 6, 15),
-
-    Box(5, 7, 12),
-    Box(5, 7, 18),
-
-    Box(6, 6, 10),
-
-    #
-    # Shirakawa corrections
-    #
-    Box(4, 9, 15),
-    Box(4, 10, 14),
-
-    #
-    # Sillke claimed solution,
-    # Shirakawa says wrong, but gives a solution
-    #
-    # Box(5, 7, 30),
-
-    Box(8, 8, 10),
-    Box(8, 10, 14),
-
 }
 
-ROW_FAMILIES = {}
+ROW_FAMILIES = {
+    # (3,5): Family(seeds=[6,9], period=6),
+    # (4,5): Family(seeds=[6], period=6),
+    # (5,5): Family(seeds=[6], period=6),
+}
 
-WIDTH_SPLITS = {}
+WIDTH_SPLITS = {
+}
 
 
 class KCatalogue(Catalogue):
@@ -95,103 +71,48 @@ class KCatalogue(Catalogue):
         if a <= 1:
             return "published_impossible"
 
+        if a == b == c:
+            return "cube"
+
         #
-        # 2xNx{2..20}
+        # Published impossible families
         #
-        if a == 2 and 2 <= b <= 20:
+
+        if a == 2 and b in {2, 3, 4, 5, 6, 7}:
             return "published_impossible"
 
-        #
-        # 3-wide boxes
-        #
-        # Sillke has a row:
-        #
-        #   3x[3-12]xN  0
-        #
-        # but this cannot mean all 3xbxc boxes with
-        # b in [3,12] are impossible because
-        #
-        #   3x4x15
-        #   3x5x6
-        #   3x5x9
-        #   3x7x15
-        #
-        # are known solutions.
-        #
-        # Interpretation unresolved.
-        #
+        # # 2 x N x {2..7}
+        # if a == 2 and c <= 7:
+        #     return "published_impossible"
 
-        if (a, b) == (3, 3):
-            return "discovered_impossible"
-
-        # Shirakawa 2014
-        # 3x13xN impossible
-        #
-        if (a, b) == (3, 13):
+        # 3 x N x 3
+        if a == 3 and b == 3:
             return "published_impossible"
 
-        #
-        # 4xNx{4,7}
-        #
-        if a == 4 and b in {4, 7}:
-            return "published_impossible"
-
-        if a == 4 and b == 8 and c in{10, 30, 50, 70, 90, 110}:
-            return "published_impossible"
-
-        if a == 4 and b == 9 and c in{10, 15, 20, 25, 30, 35, 40, 45,}:
-            return "published_impossible"
-
-        if a == 4 and b == 5 and c ==5:
-            return "published_impossible"
-
-        if a == 4 and b == 10 and c ==14:
-            return "published_impossible"
-
-        #
-        # 5xNx5
-        #
-        if a == 5 and b == 5:
-            return "published_impossible"
-
-        if a == 5 and b == 9 and c == 9:
-            return "published_impossible"
-
-        if a == 6 and b == 6 and c == 10:
-            return "published_impossible"
-
-        # #
-        # # 14x
-        # #
-        # if a == 8 and b == 10 and c == 14:
-        #     return "published_impossible, due to 4x10x14"
-        #
-        # if a == 10 and b == 14 and c == 14:
-        #     return "published_impossible, due to ?"
-
-
-        #
-        # odd-width theorem
-        #
+        # # odd width theorem:
+        # # uxpxq with u odd and pq not divisible by 3
+        # if (a % 2) == 1 and ((b * c) % 3) != 0:
+        #     return "published_impossible"
         if a % 2 == 1 and (b * c) % 3 != 0:
-            return "published_impossible, odd-width theorem"
+            return "published_impossible"
         if b % 2 == 1 and (a * c) % 3 != 0:
-            return "published_impossible, odd-width theorem"
+            return "published_impossible"
         if c % 2 == 1 and (a * b) % 3 != 0:
-            return "published_impossible, odd-width theorem"
+            return "published_impossible"
+        #
+        # Published impossible individual boxes
+        #
 
-        if a == 8 and b == 10 and c == 14:
-            return "published_impossible"  # as 8,10,14 was searched and it is needed
-
-        if box in SEARCHED_NO_SOLUTION:
-            return "SEARCHED_NO_SOLUTION"
-
+        if box in {
+            Box(3,4,15),
+        }:
+            return "published_impossible"
 
         return None
 
 
 K_CATALOGUE = KCatalogue(
-    catalogue_name="21",
+    catalogue_name="K",
     primes=PRIMES,
     searched_no_solution=SEARCHED_NO_SOLUTION,
     row_families=ROW_FAMILIES,
