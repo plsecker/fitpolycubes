@@ -12,6 +12,8 @@ import sys
 import multiprocessing as mp
 import numpy as np
 from numba import njit
+from dataclasses import dataclass
+import time
 
 # Set up path for common imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -20,15 +22,24 @@ from common.utils import Timer
 from common.polycube_utils import (generate_placements, build_exact_cover_data, 
                                    filter_and_reindex_placements, PENTACUBES)
 
+@dataclass(frozen=True)
+class TaskStats:
+    prefix: tuple[int, ...]
+    worker_pid: int
+    elapsed_seconds: float
+    nodes: int
+    solutions_found: int
+
 #############   Numba Core  #############
 
 @njit(nogil=True)
-def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth, profile_enabled):
+def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth, profile_enabled, node_counter):
     """
     Numba-optimized Algorithm X.
     Using flat arrays for high performance.
     Runs without GIL allowing true multithreading or multiprocessing.
     """
+    node_counter[0] += 1
 
     if profile_enabled:
         nodes_visited[0] += 1
@@ -118,7 +129,7 @@ def solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_row
                         active_rows[i] = False
                         deactivated_rows.append(i)
         
-        solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth + 1, profile_enabled)
+        solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_solutions, nodes_visited, depth + 1, profile_enabled, node_counter)
         
         # Deselect: Backtrack
         for i in deactivated_rows:
@@ -140,6 +151,8 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     Worker: start search with a list of chosen rows (a search state).
     """
     pid = os.getpid()
+    start_time = time.perf_counter()
+    node_counter = np.zeros(1, dtype=np.int64)
     
     # Initialize trackers for this branch
     active_cols = np.ones(num_cols, dtype=np.bool_)
@@ -171,7 +184,7 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     print(f"[Worker {pid}] STARTING task {task_rows}")
 
     # Enter Numba JIT Core
-    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited, len(task_rows), profile_enabled)
+    solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited, len(task_rows), profile_enabled, node_counter)
     
     total = sol_count[0]
     
@@ -192,6 +205,9 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
                 print(f"{i}: {nodes_visited[dead_end_offset + i]}")
         sys.stdout.flush()
     
+    elapsed = time.perf_counter() - start_time
+    stats = TaskStats(tuple(task_rows), pid, elapsed, int(node_counter[0]), int(sol_count[0]))
+    
     if total > 0:
         # Pull solutions back to Python list to send to writer
         for s_idx in range(min(total, max_sols)):
@@ -199,6 +215,8 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
             clean_sol = [idx for idx in sol if idx != -1]
             if len(clean_sol) == solution_length:
                 global_out_q.put(clean_sol)
+
+    return stats
 
 
 def worker_wrapper(args):
@@ -383,22 +401,24 @@ def main(args):
     args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions, args.profile_single) for task in tasks]
 
     print("Starting solver...")
+    stats_list = []
     with Timer() as t:
         if args.profile_single:
-            import cProfile
-            profiler = cProfile.Profile()
-            profiler.enable()
             init_worker(out_q)
             for worker_args in args_list:
-                solve_worker(*worker_args)
-            profiler.disable()
-            profiler.dump_stats("profile.prof")
-            print("\nProfile written to profile.prof")
+                stats_list.append(solve_worker(*worker_args))
         else:
-            # Original multiprocessing execution
             with mp.Pool(processes=num_cores, initializer=init_worker, initargs=(out_q,)) as pool:
-                for _ in pool.imap_unordered(worker_wrapper, args_list, chunksize=1):
-                    pass
+                stats_list = pool.map(worker_wrapper, args_list)
+
+    # Print Summary
+    print("\n" + "-"*56)
+    print("Task Summary")
+    print("-" * 56)
+    print(f"{'Prefix':<30} {'Time(s)':<10} {'Nodes':>15}")
+    for s in sorted(stats_list, key=lambda x: x.elapsed_seconds, reverse=True):
+        print(f"{str(s.prefix):<30} {s.elapsed_seconds:>8.1f} {s.nodes:>15,}")
+    print("-" * 56)
 
     out_q.put(DONE)
     wp.join()
