@@ -14,6 +14,7 @@ import numpy as np
 from numba import njit
 from dataclasses import dataclass
 import time
+import threading
 
 # Set up path for common imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -183,8 +184,34 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     # Announce start of this task so progress is visible immediately
     print(f"[Worker {pid}] STARTING task {task_rows}")
 
+    # Heartbeat monitor thread
+    stop_event = threading.Event()
+
+    def monitor():
+        last_nodes = 0
+        last_time = start_time
+        while not stop_event.is_set():
+            time.sleep(5)
+            current_nodes = int(node_counter[0])
+            current_time = time.perf_counter()
+            if current_nodes > last_nodes:
+                elapsed = current_time - start_time
+                rate = (current_nodes - last_nodes) / (current_time - last_time)
+                h, rem = divmod(int(elapsed), 3600)
+                m, s = divmod(rem, 60)
+                time_str = f"{h}h{m}m{s}s" if h > 0 else f"{m}m{s}s"
+                print(f"[Worker {pid}] {tuple(task_rows)}\n    elapsed: {time_str}\n    nodes: {current_nodes:,}\n    rate: {int(rate):,} nodes/s")
+                last_nodes = current_nodes
+                last_time = current_time
+
+    monitor_thread = threading.Thread(target=monitor, daemon=True)
+    monitor_thread.start()
+
     # Enter Numba JIT Core
     solve_numba_core(X_data, X_indptr, Y_data, Y_indptr, active_cols, active_rows, solution, sol_count, out_list, solution_length, max_sols, nodes_visited, len(task_rows), profile_enabled, node_counter)
+    
+    stop_event.set()
+    monitor_thread.join()
     
     total = sol_count[0]
     
