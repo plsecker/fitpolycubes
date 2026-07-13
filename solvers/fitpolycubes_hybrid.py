@@ -206,7 +206,6 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
         sys.stdout.flush()
     
     elapsed = time.perf_counter() - start_time
-    stats = TaskStats(tuple(task_rows), pid, elapsed, int(node_counter[0]), int(sol_count[0]))
     
     if total > 0:
         # Pull solutions back to Python list to send to writer
@@ -216,7 +215,7 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
             if len(clean_sol) == solution_length:
                 global_out_q.put(clean_sol)
 
-    return stats
+    return TaskStats(tuple(task_rows), pid, elapsed, int(node_counter[0]), int(sol_count[0]))
 
 
 def worker_wrapper(args):
@@ -414,6 +413,10 @@ def main(args):
     # Print Summary
     print("\n" + "-"*56)
     print("Task Summary")
+    total_nodes = sum(s.nodes for s in stats_list)
+    avg_time = sum(s.elapsed_seconds for s in stats_list) / len(stats_list)
+    print(f"\nTotal nodes: {total_nodes:,}")
+    print(f"Average task time: {avg_time:.1f} s")
     print("-" * 56)
     print(f"{'Prefix':<30} {'Time(s)':<10} {'Nodes':>15}")
     for s in sorted(stats_list, key=lambda x: x.elapsed_seconds, reverse=True):
