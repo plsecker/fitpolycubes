@@ -475,7 +475,7 @@ if __name__ == "__main__":
     parser.add_argument("--max-solutions", type=int, default=0, help="Stop after finding N solutions (0 = no limit)")
     parser.add_argument("--profile", action="store_true", help="Enable profiling and save to profile.prof")
     parser.add_argument("--profile-single", action="store_true", help="Enable sequential profiling and save to profile.prof")
-    parser.add_argument("--heartbeat", type=int, default=20, help="Heartbeat interval in seconds (0 to disable)")
+    parser.add_argument("--heartbeat", type=int, nargs='?', const=10, default=10, help="Heartbeat interval in seconds (0 to disable)")
     parser.set_defaults(symmetry=True)
 
     # We need to parse args here to check for --profile before calling main()
