@@ -147,7 +147,7 @@ def init_worker(q):
     global global_out_q
     global_out_q = q
 
-def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_rows, solution_length, max_solutions_global, profile_enabled):
+def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_rows, solution_length, max_solutions_global, profile_enabled, heartbeat_interval):
     """
     Worker: start search with a list of chosen rows (a search state).
     """
@@ -188,10 +188,10 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
     stop_event = threading.Event()
 
     def monitor():
+        if heartbeat_interval <= 0: return
         last_nodes = 0
         last_time = start_time
-        while not stop_event.is_set():
-            time.sleep(5)
+        while not stop_event.wait(heartbeat_interval):
             current_nodes = int(node_counter[0])
             current_time = time.perf_counter()
             if current_nodes > last_nodes:
@@ -200,7 +200,7 @@ def solve_worker(X_data, X_indptr, Y_data, Y_indptr, task_rows, num_cols, num_ro
                 h, rem = divmod(int(elapsed), 3600)
                 m, s = divmod(rem, 60)
                 time_str = f"{h}h{m}m{s}s" if h > 0 else f"{m}m{s}s"
-                print(f"[Worker {pid}] {tuple(task_rows)}\n    elapsed: {time_str}\n    nodes: {current_nodes:,}\n    rate: {int(rate):,} nodes/s")
+                print(f"[Worker {pid}] {tuple(task_rows)} {time_str} {current_nodes:,} nodes {int(rate)/1000:.0f}k nodes/s")
                 last_nodes = current_nodes
                 last_time = current_time
 
@@ -424,7 +424,7 @@ def main(args):
     wp.start()
 
     # Prepare args_list for both modes
-    args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions, args.profile_single) for task in tasks]
+    args_list = [(X_data, X_indptr, Y_data, Y_indptr, task, num_cols, num_rows, expected_pieces, args.max_solutions, args.profile_single, args.heartbeat) for task in tasks]
 
     print("Starting solver...")
     stats_list = []
@@ -475,6 +475,7 @@ if __name__ == "__main__":
     parser.add_argument("--max-solutions", type=int, default=0, help="Stop after finding N solutions (0 = no limit)")
     parser.add_argument("--profile", action="store_true", help="Enable profiling and save to profile.prof")
     parser.add_argument("--profile-single", action="store_true", help="Enable sequential profiling and save to profile.prof")
+    parser.add_argument("--heartbeat", type=int, default=20, help="Heartbeat interval in seconds (0 to disable)")
     parser.set_defaults(symmetry=True)
 
     # We need to parse args here to check for --profile before calling main()
