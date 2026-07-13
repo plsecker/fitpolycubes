@@ -411,24 +411,26 @@ def main(args):
                 stats_list = pool.map(worker_wrapper, args_list)
 
     # Print Summary
-    print("\n" + "-"*56)
-    print("Task Summary")
-    print("-" * 56)
-    print(f"{'Prefix':<30} {'Time(s)':<10} {'Nodes':>15}")
-    
-    sorted_stats = sorted(stats_list, key=lambda x: x.elapsed_seconds, reverse=True)
-    for s in sorted_stats:
-        print(f"{str(s.prefix):<30} {s.elapsed_seconds:>8.1f} {s.nodes:>15,}")
-    
-    total_nodes = sum(s.nodes for s in stats_list)
-    avg_time = sum(s.elapsed_seconds for s in stats_list) / len(stats_list)
-    longest_task = sorted_stats[0]
-    
-    print("-" * 56)
-    print(f"Total nodes: {total_nodes:,}")
-    print(f"Average task time: {avg_time:.1f} s")
-    print(f"Longest task: {longest_task.elapsed_seconds:.1f} s (Prefix: {longest_task.prefix})")
-    print("-" * 56)
+    if stats_list:
+        print("\n" + "-"*56)
+        print("Task Summary")
+        print("-" * 56)
+        print(f"{'Prefix':<30} {'Time(s)':<10} {'Nodes':>15}")
+        
+        sorted_stats = sorted(stats_list, key=lambda x: x.elapsed_seconds, reverse=True)
+        for s in sorted_stats:
+            print(f"{str(s.prefix):<30} {s.elapsed_seconds:>8.1f} {s.nodes:>15,}")
+        
+        total_nodes = sum(s.nodes for s in stats_list)
+        avg_time = sum(s.elapsed_seconds for s in stats_list) / len(stats_list)
+        longest_task = sorted_stats[0]
+        
+        print("-" * 56)
+        print(f"Total nodes: {total_nodes:,}")
+        print(f"Average task time: {avg_time:.1f} s")
+        print(f"Longest task: {longest_task.elapsed_seconds:.1f} s (Prefix: {longest_task.prefix})")
+        print(f"Total tasks: {len(stats_list)}")
+        print("-" * 56)
 
     out_q.put(DONE)
     wp.join()
