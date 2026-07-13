@@ -1,0 +1,6 @@
+Please provide:
+1) The specific task or problem you want to solve in the polycube packing repository.
+2) Which part of the codebase to focus on first (e.g., Python solver, MATLAB scripts, or catalogue constraint classes).
+3) A concrete change request or bug to address.
+
+Also, add the relevant files to this chat so I can generate precise SEARCH/REPLACE blocks.
