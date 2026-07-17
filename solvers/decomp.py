@@ -97,6 +97,8 @@ def closes(node):
     if isinstance(node, Prime):
         return True
 
+    if isinstance(node, PublishedSolution):
+        return True
 
     if isinstance(node, Impossible):
         return False
@@ -196,8 +198,8 @@ def classify(box):
         decomp = semigroup_decompose(c, family.seeds)
         if decomp and not (len(decomp) == 1 and decomp[0] == c):
             parts = []
-            for g in decomp:
-                parts.append(classify(Box(a, b, g)))
+            for seed_len in decomp:
+                parts.append(classify(Box(a, b, seed_len)))
 
             candidate = Generator(box, parts)
             if closes(candidate):

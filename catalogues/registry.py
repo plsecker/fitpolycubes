@@ -20,27 +20,33 @@ from catalogues.u_catalogue import U_CATALOGUE
 from catalogues.s_catalogue import S_CATALOGUE
 from catalogues.h_catalogue import H_CATALOGUE
 from catalogues.j_catalogue import J_CATALOGUE
+from catalogues.r_catalogue import R_CATALOGUE
 from catalogues.a_catalogue import A_CATALOGUE
+from catalogues.b_catalogue import B_CATALOGUE
 from catalogues.m_catalogue import M_CATALOGUE
 from catalogues.y_catalogue import Y_CATALOGUE
+from catalogues.e_catalogue import E_CATALOGUE
 
+# https://sicherman.net/c5nomen/index.html
 CATALOGUES = {
     "F": F_CATALOGUE,
-    "N": N_CATALOGUE,
-    "V": V_CATALOGUE,
-    "K": K_CATALOGUE,
-    "Q": Q_CATALOGUE,
     "L": L_CATALOGUE,
+    "N": N_CATALOGUE,
     "P": P_CATALOGUE,
-    "Z": Z_CATALOGUE,
-    "W": W_CATALOGUE,
     "T": T_CATALOGUE,
     "U": U_CATALOGUE,
-    "S": S_CATALOGUE,
-    "H": H_CATALOGUE,
-    "J": J_CATALOGUE,
-    "A": A_CATALOGUE,
-    "M": M_CATALOGUE,
+    "V": V_CATALOGUE,
+    "W": W_CATALOGUE,
     "Y": Y_CATALOGUE,
-
+    "Z": Z_CATALOGUE,
+    "A": A_CATALOGUE,
+    "B": B_CATALOGUE,
+    "K": K_CATALOGUE,
+    "M": M_CATALOGUE,
+    "Q": Q_CATALOGUE,
+    "E": E_CATALOGUE,
+    "S": S_CATALOGUE,
+    "J": J_CATALOGUE,
+    "R": R_CATALOGUE,
+    "H": H_CATALOGUE,
 }

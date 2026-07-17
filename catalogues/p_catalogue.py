@@ -33,7 +33,7 @@ class PCatalogue(Catalogue):
         if (a * b * c) % 5 != 0:
             return "volume_not_multiple_of_5"
 
-        if a == 3:
+        if a == 1 and b == 3:
             return "3xZ_impossible"
 
         if a == 1 and b == 5 and c % 2 == 1:
