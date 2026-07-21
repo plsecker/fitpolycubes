@@ -152,29 +152,6 @@ SEARCHED_NO_SOLUTION = {
     Box(2, 5, 13),
     Box(2, 5, 15),
     Box(2, 5, 16),
-
-    Box(2, 12, 5),
-    Box(2, 12, 10),
-    Box(2, 12, 15),
-
-    Box(3, 9, 10),
-    Box(3, 9, 15),
-
-    Box(3, 10, 10),
-    Box(3, 10, 13),
-    Box(3, 10, 14),
-    Box(3, 10, 16),
-    Box(3, 10, 17),
-
-    Box(4, 5, 6),
-    Box(4, 5, 7),
-    Box(4, 5, 9),
-
-    Box(5, 5, 5),
-    Box(5, 5, 7),
-    Box(5, 5, 9),
-
-    Box(5, 6, 6),
 }
 
 ROW_FAMILIES = {
@@ -212,7 +189,7 @@ class BCatalogue(Catalogue):
         #
         # 3 × N × {3,4,5,6,7,8,11}
         #
-        if a == 3 and b in {3, 4, 5, 6, 7, 8, 11}:
+        if a == 3 and (b in {3, 4, 5, 6, 7, 8, 11} or c in {3, 4, 5, 6, 7, 8, 11}):
             return "published_impossible"
 
         #
@@ -225,16 +202,12 @@ class BCatalogue(Catalogue):
 
             Box(2, 5, 12),
             Box(2, 10, 12),
-
-            Box(2, 12, 5),
-            Box(2, 12, 10),
             Box(2, 12, 15),
 
             Box(3, 9, 10),
             Box(3, 9, 15),
 
             Box(3, 10, 10),
-            Box(3, 10, 11),
             Box(3, 10, 13),
             Box(3, 10, 14),
             Box(3, 10, 16),

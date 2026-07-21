@@ -39,6 +39,19 @@ PRIMES = {b.canonical() for b in RAW_PRIMES}
 SEARCHED_NO_SOLUTION = {
 }
 
+PUBLISHED_SOLUTIONS = {
+    Box(6, 10, 17),
+    Box(6, 10, 18),
+    Box(6, 10, 19),
+    # Box(6, 10, 20),
+    Box(6, 10, 21),
+    Box(6, 10, 22),
+    Box(6, 10, 23),
+    Box(6, 10, 24),
+    Box(6, 10, 25),
+    Box(6, 10, 26),
+}
+
 #
 # None yet. The published infinite solution families are not known
 # to be generated from prime seeds, so leave this empty until proven.
@@ -91,5 +104,5 @@ A_CATALOGUE = ACatalogue(
     searched_no_solution=SEARCHED_NO_SOLUTION,
     row_families=ROW_FAMILIES,
     width_splits=WIDTH_SPLITS,
-    published_solutions=set(),
+    published_solutions=PUBLISHED_SOLUTIONS,
 )

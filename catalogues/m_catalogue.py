@@ -41,11 +41,6 @@ PUBLISHED_SOLUTIONS = {
     Box(4, 19, 110),
 
     #
-    # 6x8
-    #
-    Box(6, 8, 25),
-
-    #
     # 6x10
     #
     Box(6, 10, 25),
@@ -74,7 +69,7 @@ PUBLISHED_SOLUTIONS = {
     #
     # 6x11
     #
-    # Box(6, 11, 15),
+    Box(6, 11, 15),
     Box(6, 11, 20),
 
     #
@@ -89,7 +84,7 @@ PUBLISHED_SOLUTIONS = {
     #
     # 7x8
     #
-    # Box(7, 8, 20),
+    Box(7, 8, 20),
     Box(7, 8, 25),
     Box(7, 8, 30),
     Box(7, 8, 35),

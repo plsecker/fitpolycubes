@@ -3,19 +3,19 @@ from catalogues.base import Box, Catalogue, Family
 RAW_PRIMES = {
 
     # 3x10
-    Box(3,10,6),
-    Box(3,10,7),
-    Box(3,10,8),
-    Box(3,10,9),
+    Box(3,6,10),
+    Box(3,7,10),
+    Box(3,8,10),
+    Box(3,9,10),
     Box(3,10,10),
     Box(3,10,11),
 
     # 3x15
-    Box(3, 15, 6),
-    Box(3, 15, 7),
-    Box(3, 15, 8),
-    Box(3, 15, 9),
-    Box(3, 15, 11),
+    Box(3,6,15),
+    Box(3,7,15),
+    Box(3,8,15),
+    Box(3,9,15),
+    Box(3,11,15),
 
     # 4x5
     Box(4,5,10),
@@ -34,16 +34,16 @@ RAW_PRIMES = {
     Box(4,6,25),
 
     # 4x10
-    Box(4,10,7),
-    Box(4,10,8),
-    Box(4,10,9),
+    Box(4,7,10),
+    Box(4,8,10),
+    Box(4,9,10),
     Box(4,10,11),
 
     # 4x15
-    Box(4,15,6),
-    Box(4,15,7),
-    Box(4,15,8),
-    Box(4,15,9),
+    Box(4,6,15),
+    Box(4,7,15),
+    Box(4,8,15),
+    Box(4,9,15),
 
     # 5x5
     Box(5,5,8),
@@ -109,18 +109,14 @@ class FCatalogue(Catalogue):
         a, b, c = box.a, box.b, box.c
 
         if a == 1:
-            return "F requires width at least 2"
+            return "published_impossible"
 
-        # Empirically, no thickness-2 box is tileable by F.
-        # All audited 2×b×c cases are impossible.
-        if a == 2:
-            return "F cannot tile boxes of thickness 2"
+        # Historical note: An empirical rule for a == 2 ("Empirically, no thickness-2 
+        # box is tileable by F") was removed because it generalized from finite search 
+        # evidence without a formal proof or published authoritative source.
 
         if box in self.searched_no_solution:
             return "searched_no_solution"
-
-        if a == b == c:
-            return "cube"
 
         if a == 3 and b in {3, 4, 5}:
             return "published_impossible"
