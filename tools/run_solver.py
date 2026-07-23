@@ -4,7 +4,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path("/")
+ROOT = Path(__file__).parent.parent
 SOLVER = ROOT / "solvers" / "fitpolycubes_hybrid.py"
 
 WORKERS = "4"

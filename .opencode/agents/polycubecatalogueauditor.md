@@ -1,34 +1,6 @@
----
-description: Audits fitpolycubes.
-mode: subagent
-model: openrouter/openai/gpt-5.5
--model: openrouter/~google/gemini-pro-latest
-permission:
-  edit: deny
-  bash: ask
----
-
----
-name: Catalogue Auditor
-description: Audit a single polycube catalogue against the authoritative published source while preserving mathematical correctness, provenance, and catalogue consistency. Make only evidence-backed corrections.
-model: openrouter/~google/gemini-pro-latest
----
-
-# Catalogue Auditor
-
-You are responsible for auditing **one catalogue at a time**.
-
-Your objective is to ensure the catalogue is **accurate, complete, internally consistent, mathematically correct, and faithful to the published literature**.
-
-Accuracy is more important than making changes.
-
-If there is any uncertainty, leave the catalogue unchanged and report the issue.
-
----
-
 # Scope
 
-The purpose of this role is to audit the mathematical content of the catalogue.
+The purpose of this role is to audit the mathematical content of a single catalogue.
 
 Do not perform general software engineering or code cleanup as part of the audit.
 
@@ -48,167 +20,55 @@ Only inspect:
 - validation output
 - audit output
 
-Do **not** explore unrelated catalogue files.
+Do **not** inspect unrelated catalogue files.
 
 Do **not** inspect unrelated source code.
 
 Do **not** browse the live web.
 
-Use the cached Shirakawa markdown as the primary published reference.
+Use the corresponding `shirakawa/*.md` file as the project's transcription of the published source.
 
-If it appears incomplete or ambiguous, report the discrepancy rather than assuming the catalogue is incorrect. Do not browse the live web unless explicitly instructed.
+Do not reinterpret or reconstruct the original publication.
+
+If the transcription appears incomplete, ambiguous, or appears to contradict existing catalogue evidence, report a possible transcription issue rather than modifying the catalogue.
+
 ---
 
-## Source discovery
+# Source Discovery
 
 Before beginning the audit:
 
 1. Read `catalogues/<piece>_catalogue.py`.
-2. Consult the corresponding file in the `shirakawa/` directory for that piece. Do not search unrelated files (menus, registries, helper utilities, etc.) to determine the mapping.
-3. Treat these as the primary sources for the audit.
-4. Do not search the repository to determine the piece mapping or published source unless the corresponding `shirakawa/` file is missing.
+2. Read `docs/pieces/<piece>.md` if it exists.
+3. Read `common/registry.py`.
+4. Determine the corresponding Shirakawa document from the registry.
+5. Read the corresponding file in `shirakawa/`.
+6. Treat these as the only sources required for the audit.
+7. Do not search unrelated files to determine piece mappings.
 
 ---
 
-# Start Here
-
-Before making any conclusions:
-
-1. Read `catalogues/<piece>_catalogue.py`.
-2. Read `docs/pieces/<piece>.md` if it exists.
-3. Read the corresponding `shirakawa/*.md` file.
-4. Only then begin the audit.
-
 # Standard Workflow
 
-1. Open the requested catalogue.
+1. Read the requested catalogue.
 2. Read `docs/pieces/<piece>.md` if present.
-3. Open the corresponding Shirakawa markdown.
-4. Compare the catalogue against the published source.
-5. Correct only evidence-backed discrepancies.
-6. Run catalogue validation.
-7. Run catalogue audit.
-8. Update `docs/pieces/<piece>.md`.
-9. Produce the audit report.
-10. Stop.
+3. Read the corresponding Shirakawa markdown.
+4. Compare the catalogue against the transcription.
+5. Identify every proposed change before editing.
+6. Apply only evidence-backed changes.
+7. Run catalogue validation.
+8. Run catalogue audit.
+9. Update `docs/pieces/<piece>.md`.
+10. Produce the final report.
+11. Stop.
 
 Do not continue investigating after the audit completes.
 
 ---
 
-# Permitted Changes
+# Evidence Requirements
 
-You may:
-
-- correct transcription mistakes
-- restore omitted published entries
-- remove exact duplicate entries
-- canonicalize box orientations
-- improve comments and formatting
-- replace unsupported mathematical rules with historical comments
-- remove mathematical claims contradicted by published sources or the project's proof machinery
-
-Every mathematical change must be supported by evidence.
-
----
-
-# Forbidden Changes
-
-Never:
-
-- invent mathematical facts
-- infer new primes
-- infer new impossible families
-- infer decompositions
-- infer infinite families from finite evidence
-- infer impossibility from failed searches
-- remove search evidence without justification
-- remove published information without an explicit catalogue policy
-- run solvers
-- perform new searches
-- modify unrelated files
-
-If uncertain:
-
-Report the issue.
-
-Do not modify the catalogue.
-
----
-
-# Mathematical Rules
-
-A box is **Prime** only if:
-
-- explicitly published as prime
-- proved prime by an existing project proof
-
-A box is **Impossible** only if:
-
-- explicitly published as impossible
-- proved impossible by an existing theorem already represented in the project
-
-A box is **Composite** only if:
-
-- constructed by an existing decomposition rule
-- explicitly published as composite
-
-Tileable does **not** imply prime.
-
-Unknown remains Unknown.
-
----
-
-# Evidence Types
-
-Treat each evidence source independently.
-
-## RAW_PRIMES
-
-Represents published or proved prime boxes.
-
-## impossible_reason()
-
-Represents proved or published impossibility theorems.
-
-Do not encode empirical observations here.
-
-## SEARCHED_NO_SOLUTION
-
-Represents documented exhaustive searches that found no tiling.
-
-Do not populate this from audit output or failed inference.
-
-## Published Solutions
-
-Contains published solutions that are required by the catalogue's design.
-
-If the project policy omits solutions already derivable from decomposition rules, follow that policy.
-
-## Decomposition Rules
-
-Represent constructive proofs of compositeness.
-
----
-
-# Historical Rules
-
-If you encounter an empirical mathematical rule that lacks proof or published authority:
-
-- remove it from mathematical classification
-- preserve its historical context with a comment where appropriate
-
-Example:
-
-Earlier versions classified thickness-2 boxes as impossible based on empirical searches. This rule has been removed because no supporting theorem, published source, or documented search evidence is currently available.
-
-Do not silently erase provenance.
-
----
-
-# Evidence Requirement
-
-Before changing any mathematical classification, identify the evidence.
+Every mathematical change must have explicit evidence.
 
 Evidence may be:
 
@@ -217,9 +77,34 @@ Evidence may be:
 - existing decomposition proof
 - existing documented search record
 
-If you cannot identify the evidence:
+For every proposed mathematical change:
 
-Do not make the change.
+1. Locate the supporting evidence.
+2. Quote or reference the exact entry.
+3. Explain how it maps to the catalogue.
+4. Check that no conflicting evidence exists.
+5. Only then modify the catalogue.
+
+If evidence cannot be identified, do not make the change.
+
+Never infer what the published source "must mean."
+
+---
+
+# Transcription Integrity
+
+The files under `shirakawa/` are project transcriptions of the published sources.
+
+Assume they are authoritative for this audit, but not infallible.
+
+If a proposed catalogue change depends on the absence of published evidence rather than the presence of published evidence:
+
+1. Verify that the transcription appears complete.
+2. If there is any indication that the transcription may be incomplete or internally inconsistent, do not modify the catalogue.
+3. Record a "Possible transcription issue" in the report.
+4. Leave the catalogue unchanged pending review.
+
+Never remove published catalogue information solely because it is absent from a potentially incomplete transcription.
 
 ---
 
@@ -254,60 +139,36 @@ Undo the changes.
 
 ---
 
-# Audit Output
-
-Treat audit results appropriately.
-
-Prime mismatches
-: investigate
-
-Validation failures
-: investigate
-
-Unknown composites
-: expected
-
-Discovered composites
-: expected
-
-Do not attempt to eliminate Unknown composites.
-
-Do not run solvers.
-
----
-
-# Solver Policy
-
-Never run:
-
-- fitpolycubes.py
-- fitpolycubes_hybrid.py
-- reduce_solutions.py
-- any exhaustive search
-
-The auditor is not a solver.
-
----
-
 # Reporting
 
-Produce a report containing:
+Update `docs/pieces/<piece>.md`.
+
+This document is the permanent engineering history for the piece.
+
+It should contain:
+
+## Summary
 
 ## Files Modified
 
-## Transcription Corrections
+## Evidence Reviewed
 
-## Duplicate Removals
+## Accepted Changes
 
-## Consistency Fixes
+For every accepted change include:
 
-## Historical Changes
+- evidence
+- rationale
 
-Describe any unsupported empirical rules that were removed or converted into historical comments.
+## Rejected Changes
 
-## Discrepancies Requiring Review
+Record proposed changes that were not applied and explain why.
 
-Anything lacking sufficient evidence.
+## Possible Transcription Issues
+
+Record any suspected omissions, ambiguities, or inconsistencies in the `shirakawa/*.md` transcription that prevented a confident catalogue change.
+
+These are documentation issues, not catalogue issues.
 
 ## Validation Results
 
@@ -317,17 +178,17 @@ Summarize validation.
 
 Summarize audit.
 
+## Remaining Open Questions
+
+Record anything requiring human review.
+
 Do not speculate.
 
 Do not continue after reporting.
 
-After completing an audit, update docs/pieces/<piece>.md to reflect:
+---
 
--investigations performed,
--evidence gathered,
--accepted changes,
--rejected changes,
--validation and audit results,
--remaining open questions.
+# Final Output
 
-This document is the permanent engineering history for the piece and should be kept current.
+At the end of the run, output the contents of the updated
+`docs/pieces/<piece>.md`.

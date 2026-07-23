@@ -15,7 +15,6 @@ RAW_PRIMES = {
     #
     # 3x4
     #
-    Box(3, 4, 5),
     Box(3, 4, 10),
     Box(3, 4, 15),
 
@@ -161,7 +160,7 @@ class HCatalogue(Catalogue):
         # Sillke:
         # "3x5xN (dies out after 40 steps)"
         #
-        if (a, b) == (3, 5):
+        if (a, b) == (3, 5) or (a == 3 and c == 5):
             return "published_impossible"
 
         #

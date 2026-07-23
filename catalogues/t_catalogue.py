@@ -326,27 +326,28 @@ class TCatalogue(Catalogue):
         # Published finite impossibility families (Sillke)
         #
 
-        if (a, b) == (3, 10) and c in {
-            7, 8,
-            11, 12, 13,
-            15, 16, 17, 18, 19,
-            21, 22, 23,
-            25,
-            29,
-        }:
+        if a == 3 and (
+            (b == 10 and c in {7, 8, 11, 12, 13, 15, 16, 17, 18, 19, 21, 22, 23, 25, 29}) or
+            (c == 10 and b in {7, 8, 11, 12, 13, 15, 16, 17, 18, 19, 21, 22, 23, 25, 29})
+        ):
             return "published_impossible"
 
-        if (a, b) == (3, 15) and c in {
-            7, 10, 11, 13, 15,
-        }:
+        if a == 3 and (
+            (b == 15 and c in {7, 10, 11, 13, 15}) or
+            (c == 15 and b in {7, 10, 11, 13, 15})
+        ):
             return "published_impossible"
 
-        if (a, b) == (3, 20) and c in {
-            8, 11,
-        }:
+        if a == 3 and (
+            (b == 20 and c in {8, 11}) or
+            (c == 20 and b in {8, 11})
+        ):
             return "published_impossible"
 
-        if (a, b) == (3, 25) and 3 <= c <= 11:
+        if a == 3 and (
+            (b == 25 and 3 <= c <= 11) or
+            (c == 25 and 3 <= b <= 11)
+        ):
             return "published_impossible"
 
         return None

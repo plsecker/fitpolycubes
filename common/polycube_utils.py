@@ -1,32 +1,6 @@
 import numpy as np
 from common.rotmatrix import RM
-
-PENTACUBES = {
-    "F": np.array([[1,0,0],[0,1,0],[1,1,0],[1,2,0],[2,2,0]]),
-    "I": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [4, 0, 0]]),
-    "L": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [3, 1, 0]]),
-    "N": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 0, 1], [3, 0, 1]]),
-    "P": np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [1, 1, 0], [2, 0, 0]]),
-    "T": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [1, 1, 0], [1, 2, 0]]),
-    "U": np.array([[0, 0, 0], [0, 1, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0]]),
-    "V": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [0, 1, 0], [0, 2, 0]]),
-    "W": np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [2, 1, 0], [2, 2, 0]]),
-    "X": np.array([[1, 0, 0], [0, 1, 0], [1, 1, 0], [1, 2, 0], [2, 1, 0]]),
-    "Y": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [2, 1, 0]]),
-    "Z": np.array([[0, 0, 0],[1, 0, 0],[1, 1, 0],[1, 2, 0],[2, 2, 0]]),
-    "A": np.array([[0, 0, 0],[1, 0, 0],[1, 0, 1],[0, 1, 0],[0, 1, 1]]),         # piece 37, piece 24 of https://puzzlewillbeplayed.com/Shirakawa/5-24.html
-
-    "K": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [2, 0, 1]]),     # piece 81 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5 https://puzzlewillbeplayed.com/Shirakawa/5-13.html
-    "M": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [1, 1, 0], [1, 1, 1]]),     # piece 51, piece 18 of https://puzzlewillbeplayed.com/Shirakawa/5-18.html
-    "Q": np.array([[0,0,0],[1,0,0],[0,1,0],[1,1,0],[2,2,0]]),
-    "E": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [1, 0, 1]]),     # piece 71 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5 https://puzzlewillbeplayed.com/Shirakawa/5-14.html
-    "S": np.array([[0,0,0],[1,0,0],[2,0,0],[2,1,0],[2,0,1],]),                  # piece 21 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.21, https://puzzlewillbeplayed.com/Shirakawa/5-15.html
-    "J": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [2, 1, 1]]),     # piece 41 of https://www.math.uni-bielefeld.de/~sillke/PENTA/cube5
-    "R": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 0], [2, 1, 1]]),     # piece 33 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.33
-    "H": np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [2, 1, 1], [2, 0, 1],]),    # piece 31 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.21
-    "G": np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [1, 1, 1], [2, 1, 1]]),     # piece 35/36 of https://www.math.uni-bielefeld.de/~sillke/PENTA/qu5.35
-
-}
+from common.registry import PENTACUBES
 
 def generate_placements(piece, box_size, break_symmetry=False):
     """
