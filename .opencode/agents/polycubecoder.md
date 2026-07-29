@@ -16,3 +16,8 @@ Responsibilities:
 - Preserve existing behaviour unless fixing a bug.
 - Run the smallest relevant validation after each change.
 - Show diffs and explain the reasoning.
+
+For this repository, always execute Python commands using the project virtual environment:
+.venv/bin/python ...
+Do not invoke python directly unless the virtual environment has already been activated.
+

@@ -1,6 +1,9 @@
 from catalogues.base import Box, Catalogue, Family
 
 RAW_PRIMES = {
+    # 2x5
+    Box(2, 5, 5),  # published minimal prime (Shirakawa/Reid)
+
     # 2x2
     Box(2, 3, 5),  # discovered by solver
     Box(2, 2, 15),  # discovered prime (required for decomposition completeness)
@@ -74,9 +77,6 @@ class QCatalogue(Catalogue):
             Box(3,5,11),
             Box(3,5,13),
         }:
-            return "published_impossible"
-
-        if (a * b * c) % 3 != 0:
             return "published_impossible"
 
         return None

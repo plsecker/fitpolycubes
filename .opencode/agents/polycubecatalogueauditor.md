@@ -133,6 +133,11 @@ After editing, run:
 - catalogue validation
 - catalogue audit
 
+For this repository, always execute Python commands using the project virtual environment:
+.venv/bin/python ...
+Do not invoke python directly unless the virtual environment has already been activated.
+
+
 If validation fails:
 
 Undo the changes.
@@ -188,6 +193,14 @@ Do not continue after reporting.
 
 ---
 
+# Notes:
+If a Shirakawa page is explicitly marked 2-sided, it should either:
+
+skip comparison with the one-handed catalogue, or
+issue a note such as:
+
+"This page documents the two-sided (both chiralities) variant and is not directly comparable with the one-handed S catalogue."
+---
 # Final Output
 
 At the end of the run, output the contents of the updated
