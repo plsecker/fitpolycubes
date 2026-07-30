@@ -112,7 +112,7 @@ PIECES = {
         letter="Q",
         coords=np.array([[0,0,0],[1,0,0],[0,1,0],[1,1,0],[2,2,0]]),
         catalogue_module="catalogues.q_catalogue",
-        kurnell=61, shirakawa_url="https://puzzlewillbeplayed.com/Shirakawa/5-19.html", shirakawa_piece=19
+        kurnell=61, shirakawa_url="https://puzzlewillbeplayed.com/Shirakawa/5-22.html", shirakawa_piece=22
     ),
     "E": PieceInfo(
         letter="E",
@@ -148,7 +148,7 @@ PIECES = {
         letter="G",
         coords=np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [1, 1, 1], [2, 1, 1]]),
         catalogue_module=None,
-        kurnell=36, shirakawa_url="https://puzzlewillbeplayed.com/Shirakawa/5-22.html", shirakawa_piece=22
+        kurnell=36, shirakawa_url="https://puzzlewillbeplayed.com/Shirakawa/5-32.html", shirakawa_piece=22
     ),
 }
 
