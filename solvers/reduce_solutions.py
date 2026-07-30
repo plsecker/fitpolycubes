@@ -328,8 +328,9 @@ def main():
         filepaths = find_all_files(piece_name, box_size)
 
     if not filepaths:
-        print("Error: Could not locate solution files.")
-        return
+        print("Error: Could not locate solution files.\n")
+        parser.print_help()
+        sys.exit(1)
 
     # Infer box size if not provided
     if box_size is None:
