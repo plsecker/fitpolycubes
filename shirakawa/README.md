@@ -1,0 +1,1 @@
+This directory contains transcriptions of Shirakawa's catalogue pages. The primary focus of this repository is the 20 face-connected pentacube pieces with catalogue modules. Additional transcriptions are retained as reference but are outside the current project scope.
