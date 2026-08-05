@@ -15,7 +15,7 @@ The Shirakawa transcription available in `shirakawa/L.md` does not contain expli
 
 ## Files Modified
 
-- `docs/pieces/l.md` created.
+- `L.md` created.
 
 ## Evidence Reviewed
 
