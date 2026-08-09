@@ -60,3 +60,7 @@ None.
 ## Remaining Open Questions
 
 - Human review is needed to determine whether the current L-piece impossibility rules are supported by the original Shirakawa page or another accepted project source not present in `shirakawa/L.md`.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

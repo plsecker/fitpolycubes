@@ -80,6 +80,12 @@ RAW_PRIMES = {
 
 }
 
+# Smallest RAW_PRIME with all three dimensions odd.
+MINIMAL_ODD = Box(5, 5, 11)
+
+# Smallest RAW_PRIME with all three dimensions even.
+MINIMAL_EVEN = Box(4, 8, 10)
+
 SEARCHED_NO_SOLUTION = {
     Box(4,6,10)
 }

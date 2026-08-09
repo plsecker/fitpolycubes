@@ -23,6 +23,12 @@ RAW_PRIMES = {
 
 PRIMES = {b.canonical() for b in RAW_PRIMES}
 
+# Smallest RAW_PRIME with all three dimensions odd.
+MINIMAL_ODD = Box(3, 5, 7)
+
+# Smallest RAW_PRIME with all three dimensions even.
+MINIMAL_EVEN = Box(2, 10, 10)
+
 SEARCHED_NO_SOLUTION = {
     #
     # Explicitly listed impossible by Sillke

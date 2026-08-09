@@ -57,3 +57,7 @@ No audit failures were observed for U.
 ## Remaining Open Questions
 
 - Human review would be needed to fully transcribe or verify the individual 3D entries from the Shirakawa U source if catalogue-level changes are desired.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

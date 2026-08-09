@@ -147,6 +147,12 @@ RAW_PRIMES = {
 
 PRIMES = {b.canonical() for b in RAW_PRIMES}
 
+# Smallest RAW_PRIME with all three dimensions odd.
+MINIMAL_ODD = Box(5, 7, 7)
+
+# Smallest RAW_PRIME with all three dimensions even.
+MINIMAL_EVEN = Box(4, 6, 10)
+
 SEARCHED_NO_SOLUTION = {
     Box(2, 5, 10),
     Box(2, 5, 13),

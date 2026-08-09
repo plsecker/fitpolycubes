@@ -53,3 +53,7 @@ None.
 
 - The Shirakawa P page is very brief. The catalogue's 3 primes align with the transcription, but a full audit has not been run.
 - The solver-discovered prime `Box(3, 3, 5)` matches the Shirakawa-published 3D entry.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

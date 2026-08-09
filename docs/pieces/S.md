@@ -68,3 +68,7 @@ Audit complete for S (max-dim 15):
 - The page claims "4D+ Complete." — the 3D section is not claimed complete, so unknown boxes in the gaps may have undisclosed solutions/primality.
 - `5x7x30` appears as "1+ prime" (Sillke 1998) in the table but is contradicted by the page's own correction note; treated as impossible here (consistent with the page's intent).
 - If 2-sided data is ever wanted, the removed 2-sided primes (`3x4x15`, `3x5x6`, `3x5x9`, `3x7x15`, `4x4x10`, `5x5x6`) are recorded in `shirakawa/S.md`.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

@@ -81,3 +81,7 @@ Published individual impossible boxes:
 - A formal validation and audit run has not been performed on this catalogue.
 - The 3D 2-sided and 4D/5D data in the Shirakawa transcription are not reflected in the catalogue (out of scope per project convention for 2-sided; 4D/5D not yet catalogued).
 - The 5x10xN family is documented with extraordinary granularity in the Shirakawa source (individual lengths 33-71) but the catalogue only contains 3 entries (5x10x33, 5x10x36, 5x10x37). The discrepancy may indicate the catalogue is incomplete for this family, or the Shirakawa data may include non-prime entries.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

@@ -71,3 +71,7 @@ Notable output:
 ## Remaining Open Questions
 
 - Human review is needed to decide whether `shirakawa/N.md` should be expanded with the full published N prime-box table and any published impossibility information before a source-backed mathematical audit of the full catalogue can be completed.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

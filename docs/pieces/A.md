@@ -69,3 +69,7 @@ There are currently 72 unproven composites up to 15x15x15 (e.g., `6x7x10`, `6x7x
 
 ## Current Catalogue Status
 The A catalogue is fully validated and strictly adheres to published sources, including the explicit recording of non-prime published solutions.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

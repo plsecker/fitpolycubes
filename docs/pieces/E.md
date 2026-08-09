@@ -68,3 +68,7 @@ There are currently 0 unproven composites up to 15x15x15.
 
 ## Current Catalogue Status
 The E catalogue passes all validation and audit checks, but its contents cannot be fully verified against the cached `shirakawa/5-14.md` file due to a significant discrepancy in the amount of data.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

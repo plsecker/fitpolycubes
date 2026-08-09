@@ -59,6 +59,7 @@ No lossless transcription exists for 5-22 in `shirakawa/`. The live page states 
 
 ## Audit History
 
+- **2026-08-10**: Marked the notable boxes explicitly and added a "NOTABLE BOXES" section to `tools/audit_catalogue.py` that verifies them against the complete `RAW_PRIMES` set (membership, parity, canonical order, PRIME classification, minimality within the parity class). `MINIMAL_ODD = 5x5x9` is the smallest all-odd RAW_PRIME: a published prime (Sillke 1993 / Shirakawa 5-22; matches Sicherman's published minimum, volume 225). `MINIMAL_EVEN = None` because no all-even RAW_PRIME exists in the catalogue (the even-volume prime `2x2x5` has an odd third dimension); the derived composite `2x2x10` is deliberately not reported, since `MINIMAL_ODD`/`MINIMAL_EVEN` denote primitive (RAW_PRIMES) boxes only.
 - **2026-08-06**: Re-audited from scratch. Removed 13 unsupported solver-discovered primes (including `3x3x10`, `3x3x15`, `3x5x6`, `4x5x6`, `5x7x9`, and the incorrect `2x5x5`), added the missing published primes `2x2x5`, `3x7x25`, `3x9x15`, `5x7x7`, and rebuilt `impossible_reason` to the published Sillke rules. The catalogue's smallest odd box is now `5x5x9`, matching Sicherman's published minimum.
 
 ## Remaining Open Questions

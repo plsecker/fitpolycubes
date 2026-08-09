@@ -14,6 +14,12 @@ RAW_PRIMES = {
 
 PRIMES = {b.canonical() for b in RAW_PRIMES}
 
+# No RAW_PRIME with all three dimensions odd exists in the current catalogue.
+MINIMAL_ODD = None
+
+# No RAW_PRIME with all three dimensions even exists in the current catalogue.
+MINIMAL_EVEN = None
+
 SEARCHED_NO_SOLUTION = {
     #
     # Explicitly published impossible examples

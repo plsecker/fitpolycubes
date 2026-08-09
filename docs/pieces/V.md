@@ -76,3 +76,7 @@ Published individual impossible boxes:
 
 - A formal validation and audit run has not been performed on this catalogue.
 - The 3D 2-sided and 4D/5D data in the Shirakawa transcription are not reflected in the catalogue (out of scope per project convention for 2-sided; 4D/5D not yet catalogued).
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

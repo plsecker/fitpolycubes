@@ -5,6 +5,7 @@ Proof Audit Tool for Polycube Decomposition System
 Finds surprising cases and mismatches between catalogues and solver.
 """
 
+import importlib
 import os
 import sys
 
@@ -15,6 +16,87 @@ from catalogues.base import Box
 from catalogues.registry import CATALOGUES
 from solvers.decomp import classify, closes
 import solvers.decomp as decomp
+
+
+def report_notable_boxes(catalogue_name, catalogue):
+    """Report the marked minimal RAW_PRIMES and verify them.
+
+    MINIMAL_ODD / MINIMAL_EVEN denote the smallest *primitive* boxes (from
+    the catalogue module's RAW_PRIMES set) whose three dimensions are all
+    odd / all even. Each marked value is cross-checked against the complete
+    RAW_PRIMES set (membership, parity, canonical order, PRIME
+    classification, and minimality within the parity class).
+    """
+    try:
+        module = importlib.import_module(
+            f"catalogues.{catalogue_name.lower()}_catalogue")
+    except ImportError:
+        module = None
+
+    raw_primes = set(getattr(module, "RAW_PRIMES", set()) or set())
+    if not raw_primes:
+        raw_primes = set(getattr(catalogue, "primes", set()) or set())
+    raw_canonical = {box.canonical() for box in raw_primes}
+
+    def same_parity(box, want_even):
+        return all((d % 2 == 0) == want_even for d in (box.a, box.b, box.c))
+
+    def smallest_raw_prime(want_even):
+        candidates = [box for box in raw_canonical if same_parity(box, want_even)]
+        candidates.sort(
+            key=lambda box: (box.a * box.b * box.c, (box.a, box.b, box.c)))
+        return candidates[0] if candidates else None
+
+    print("\nNOTABLE BOXES")
+    print("=============")
+
+    for attr, want_even, label in (
+        ("MINIMAL_ODD", False, "Minimal odd RAW_PRIME"),
+        ("MINIMAL_EVEN", True, "Minimal even RAW_PRIME"),
+    ):
+        computed = smallest_raw_prime(want_even)
+        marked_raw = getattr(module, attr, None) if module is not None else None
+        has_marked = hasattr(module, attr) if module is not None else False
+
+        if computed is None:
+            print(f"\n{label}: none")
+        else:
+            volume = computed.a * computed.b * computed.c
+            print(f"\n{label}: {computed.a} x {computed.b} x {computed.c}   "
+                  f"(volume {volume})")
+
+        if not has_marked:
+            print("    not marked in catalogue (constant absent)")
+            continue
+
+        if marked_raw is None:
+            if computed is not None:
+                print(f"    WARN: metadata is None but RAW_PRIMES contains "
+                      f"{computed}, the smallest {label.lower()}")
+            continue
+
+        marked = marked_raw.canonical()
+        issues = []
+        if marked_raw != marked:
+            issues.append(f"not canonically ordered (canonical form {marked})")
+        if marked not in raw_canonical:
+            issues.append("not present in RAW_PRIMES")
+        if not same_parity(marked, want_even):
+            issues.append("dimensions do not have the required parity")
+        if classify(marked).__class__.__name__ != "Prime":
+            issues.append("does not classify as PRIME")
+        if computed is None:
+            issues.append(f"metadata mismatch: no {label.lower()} in RAW_PRIMES")
+        elif marked != computed:
+            issues.append(
+                f"metadata mismatch: smallest {label.lower()} in RAW_PRIMES is "
+                f"{computed} (volume {computed.a * computed.b * computed.c})")
+
+        if issues:
+            print(f"    WARN: " + "; ".join(issues))
+        else:
+            print(f"    verified: in RAW_PRIMES, parity ok, canonical order, "
+                  f"classifies as PRIME, smallest in parity class")
 
 
 def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
@@ -34,7 +116,10 @@ def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
     
     print(f"Auditing catalogue: {catalogue_name}")
     print("=" * 50)
-    
+
+    # Notable boxes report (minimal odd/even RAW_PRIMES, if marked).
+    report_notable_boxes(catalogue_name, catalogue)
+
     # Print family information
     print(f"\nFamily information:")
     print("-" * 30)

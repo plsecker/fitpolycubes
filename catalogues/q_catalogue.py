@@ -44,6 +44,18 @@ RAW_PRIMES = {
 
 PRIMES = {b.canonical() for b in RAW_PRIMES}
 
+# Smallest RAW_PRIME with all three dimensions odd.
+# 5x5x9 is a published prime (Sillke 1993 / Shirakawa 5-22, see RAW_PRIMES
+# above) and matches Sicherman's published minimum for Q.
+MINIMAL_ODD = Box(5, 5, 9)
+
+# No RAW_PRIME with all three dimensions even exists in the current
+# catalogue: the even-volume prime 2x2x5 has an odd third dimension and all
+# other primes are odd boxes. MINIMAL_ODD / MINIMAL_EVEN denote primitive
+# boxes only, so the derived composite 2x2x10 (two stacked 2x2x5 primes) is
+# deliberately not reported here.
+MINIMAL_EVEN = None
+
 # Every published impossibility is encoded in impossible_reason below, so
 # there is no separate searched-no-solution set.
 SEARCHED_NO_SOLUTION = {

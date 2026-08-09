@@ -34,3 +34,7 @@ Audit complete for K:
 
 ## Remaining Open Questions
 - Review the original Shirakawa page (https://puzzlewillbeplayed.com/Shirakawa/5-13.html) to properly transcribe the full 3D classification, including all prime boxes and impossibility theorems.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

@@ -51,6 +51,12 @@ RAW_PRIMES = {
 
 PRIMES = {b.canonical() for b in RAW_PRIMES}
 
+# Smallest RAW_PRIME with all three dimensions odd.
+MINIMAL_ODD = Box(5, 5, 5)
+
+# No RAW_PRIME with all three dimensions even exists in the current catalogue.
+MINIMAL_EVEN = None
+
 
 # ============================================================
 # Row semigroup generators

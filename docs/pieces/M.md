@@ -24,3 +24,7 @@
 ## Remaining Open Questions
 - 79 unproven composites remain in the catalogue.
 - The exact original publication link/citation for George Sicherman's `Box(10, 10, 12)` solution could be formally documented if found, though the attribution is currently preserved.
+
+## Audit History
+
+- **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.
