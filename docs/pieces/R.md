@@ -83,6 +83,12 @@ Published impossible families (Shirakawa):
 - A formal validation and audit run has not been performed on this catalogue.
 - The 3D 2-sided section in the Shirakawa transcription contains additional data not reflected in the catalogue (2-sided variants are out of scope per project convention).
 
+## Chirality
+
+Sicherman identifies **R / R′** as a chiral pair of pentacubes: this piece has a chiral counterpart, **R′**, in Sicherman's classification, and the two are mirror-image handed forms — one image cannot be repositioned to make the other. Source: George Sicherman, "Pentacube Nomenclature", https://sicherman.net/c5nomen/index.html (last revised 2024-01-19; pair table confirmed 2026-08-10). The Reconciliation table there lists exactly six mirror pairs, `EE′ SS′ JJ′ RR′ HH′ GG′`; `R′` is the primed (opposite-handedness) member of this pair and is not separately registered or documented in this repository. No other chiral pair is attributed to this piece.
+
+**Repository treatment of chirality.** All piece-orientation generation uses only the 24 orientation-preserving cube rotations (`RM`, `common/rotmatrix.py`, consumed by `generate_placements` in `common/polycube_utils.py`), so this catalogue represents a single handedness and reflections are not considered equivalent by the solver: the mirrored placement set of `R′` is never enumerated. No existing catalogue explicitly accounts for the reflected piece, and none of the primed pieces appears in `common/registry.py` (whose 23 letters match Sicherman's 23 unprimed names). The only reflection handling in the repository is solution-level (whole-solution symmetry reduction in `solvers/reduce_solutions.py`; mirror helpers in `solvers/fitypolycubes.py` / `solvers/ycubes.py`), never piece-level. This leaves the catalogue's prime/impossible classification and solution counts valid for either handedness: every axis-aligned box is invariant under reflection in its midplanes, so a box is tileable by `R` iff tileable by `R′`, with equal numbers of tilings.
+
 ## Audit History
 
 - **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

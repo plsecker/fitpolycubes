@@ -148,7 +148,7 @@ PIECES = {
         letter="G",
         coords=np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [1, 1, 1], [2, 1, 1]]),
         catalogue_module=None,
-        kurnell=36, shirakawa_url="https://puzzlewillbeplayed.com/Shirakawa/5-32.html", shirakawa_piece=22
+        kurnell=36, shirakawa_url="https://puzzlewillbeplayed.com/Shirakawa/5-28.html", shirakawa_piece=28
     ),
 }
 

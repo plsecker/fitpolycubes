@@ -1,11 +1,10 @@
-# Lossless transcription: Shirakawa 5-22 / G
+# Lossless transcription: Shirakawa 5-28 / G
 
-- Source URL: https://puzzlewillbeplayed.com/Shirakawa/5-22.html
-- Page title: `Shirakawa's Box Packing Collection : 5-22`
-- Piece heading: `Pentomino 5/22`
-- Repository identification: `common/registry.py` maps piece `G` to Shirakawa page `5-22`.
-- Transcription basis: live original Shirakawa HTML fetched from the source URL.
-- Transcription scope: every solution-list row, size-class prime/minimal marker, remark marker, note paragraph, reference line, and address/update line visible in the source HTML.
+- Source URL: https://puzzlewillbeplayed.com/Shirakawa/5-28.html
+- Page title: `Shirakawa's Box Packing Collection : 5-28`
+- Piece heading: `Pentomino 5/28`
+- Repository identification: `common/registry.py` maps piece `G` to Shirakawa page `5-28` (`shirakawa_piece=28`).
+- Transcription basis: `shirakawa/5-28.md`, re-verified against the live original Shirakawa HTML fetched from the source URL on 2026-08-10.
 
 ## Header and references
 
@@ -18,7 +17,7 @@ The box packing collection by 白川俊博 (Toshihiro Shirakawa).
     ☞ Tiling and Packing results of Torsten Sillke
     ☞ Michael Reid's box collection
 
-Pentomino 5/22
+Pentomino 5/28
 ```
 
 Reference targets:
@@ -26,61 +25,68 @@ Reference targets:
 - `白川俊博`: `../-/designer/Shirakawa.xml`
 - `Tiling and Packing results of Torsten Sillke`: `http://www.mathematik.uni-bielefeld.de/~sillke/results.html`
 - `Michael Reid's box collection`: `http://www.cflmath.com/Polyomino/boxes.html`
-- Piece image: `../Polyominoes/5/22.gif` with `alt="5/22"`, `title="5/22"`, `class="piece"`
-
-## Note before table
-
-```text
-Complete.
-```
+- Piece image: `../Polyominoes/5/28.gif` with `alt="5/28"`, `title="5/28"`, `class="piece"`
 
 ## Box entries
 
-Columns preserve the source `<td>` classes. `size_class_markers` is copied from the `class` attribute on the size cell after `size`; `remark` is copied from the remark cell text; `sols_href` is blank when the solution count is plain text rather than a link.
-
 ### 3D
 
-| nump | size | size_class_markers | sols | sols_href | remark | date | who |
-|---|---|---|---|---|---|---|---|
-| 4 | 2x2x5 | prime minimal | 2 | html/5-22-5x2x2.html | prime minimal | 1993 | Sillke |
-| 6 | 2x3x5 | prime | 10 | html/5-22-5x3x2.html | prime | 1993 | Sillke |
-| 105 | 3x7x25 | prime | 1+ | html/5-22-25x7x3.html | prime | 1993 | Sillke |
-| 81 | 3x9x15 | prime | 1+ | html/5-22-15x9x3.html | prime | 1993 | Sillke |
-| 45 | 5x5x9 | prime | 1+ | html/5-22-9x5x5.html | prime | 1993 | Sillke |
-| 49 | 5x7x7 | prime | 1+ | html/5-22-7x7x5.html | prime | 1993 | Sillke |
+All "XxYxZ" entries are 0 — the piece tiles **no 3D box** (credited to Postl 1998).
 
 ### 4D
 
-| nump | size | size_class_markers | sols | sols_href | remark | date | who |
-|---|---|---|---|---|---|---|---|
-| 27 | 3x3x3x5 | prime | 1+ | html/5-22-5x3x3x3.html | prime | 1993 | Sillke |
+The 4D minimal prime is **2x3x4x5** (3 solutions, credited to Shirakawa 2014).
+
+Other 4D boxes observed on the live page (solution counts as shown; all credited to Shirakawa 2014 unless noted):
+
+| box | sols |
+|---|---|
+| 2x2x8x10 | 1+ |
+| 2x2x8x15 | 1+ |
+| 2x2x9x10 | 1+ |
+| 2x2x9x15 | 1+ |
+| 2x2x10x10 | 1+ |
+| 2x2x10x11 | 1+ |
+| 2x2x10x12 | 1+ |
+| 2x2x10x13 | 1+ |
+| 2x2x10x14 | 1+ |
+| 2x2x10x15 | 1+ |
+| 2x2x11x15 | 1+ |
+| 2x2x12x15 | 1+ |
+| 2x2x13x15 | 1+ |
+| 2x2x14x15 | 1+ |
+| 2x2x15x15 | 1+ |
+| 2x3x4x5 | 3 |
+| 2x3x5x6 | 1+ |
+| 2x3x5x7 | 1+ |
+| 2x3x5x9 | 1+ |
+| 2x4x4x5 | 1+ |
+| 2x4x5x5 | 1+ |
+| 2x5x5x5 | 1+ |
+
+### 5D
+
+Single entry: **2x2x3x3x5** (credited to Shirakawa 2014).
+
+### *D (arbitrary dimensions)
+
+`2x...x2xN` is impossible in arbitrary dimensions (credited to Shirakawa 2014).
 
 ## Address / update line
 
 ```text
-Mar 23, 2015 by
+Feb 18, 2015 by
 k16@chiba.email.ne.jp
 ```
 
-Address source comments preserved from HTML:
+## Audit note: previous 5-22 (Q) content was a repository error
 
-```html
-<!--a href="mailto:k16@chiba.email.ne.jp"-->k16@chiba.email.ne.jp<!--/a-->
-```
+This file previously contained a verbatim copy of the **5-22 (Q)** transcription, mislabeled as G (its old header read "Lossless transcription: Shirakawa 5-22 / G"). The registry at that time also mapped `G` to `5-32.html` with `shirakawa_piece=22`. Both were incorrect: `G` is Shirakawa **5-28** (`shirakawa_piece=28`). The 5-22 (Q) data itself is correct and lives under `Q`; the 5-32 page (4D only) is unrelated to `G` and is documented in `shirakawa/5-32.md`. This replacement preserves no Q content; the historical error is recorded here for the audit trail.
 
-## Raw source row inventory
+## Notes
 
-This inventory keeps the original row order, section order, class markers, link targets, and text values.
-
-```text
-3D
-4	2x2x5	[size: prime minimal]	2	[sols href: html/5-22-5x2x2.html]	[remark: prime minimal]	1993	Sillke
-6	2x3x5	[size: prime]	10	[sols href: html/5-22-5x3x2.html]	[remark: prime]	1993	Sillke
-105	3x7x25	[size: prime]	1+	[sols href: html/5-22-25x7x3.html]	[remark: prime]	1993	Sillke
-81	3x9x15	[size: prime]	1+	[sols href: html/5-22-15x9x3.html]	[remark: prime]	1993	Sillke
-45	5x5x9	[size: prime]	1+	[sols href: html/5-22-9x5x5.html]	[remark: prime]	1993	Sillke
-49	5x7x7	[size: prime]	1+	[sols href: html/5-22-7x7x5.html]	[remark: prime]	1993	Sillke
-
-4D
-27	3x3x3x5	[size: prime]	1+	[sols href: html/5-22-5x3x3x3.html]	[remark: prime]	1993	Sillke
-```
+- The 3D section states "XxYxZ" with 0 solutions (credited to Postl 1998), meaning this piece cannot tile any 3D box.
+- The 4D minimal prime is 2x3x4x5 (3 solutions, credited to Shirakawa 2014).
+- 5D includes a single entry: 2x2x3x3x5 (credited to Shirakawa 2014).
+- The "*D" section states that 2x...x2xN is impossible in arbitrary dimensions (credited to Shirakawa 2014).
+- Author: k16@chiba.email.ne.jp
