@@ -252,7 +252,7 @@ def worker_wrapper(args):
     return solve_worker(*args)
 
 
-def writer_process(out_q, done_signal, fname, Y_dict, expected_pieces, max_solutions):
+def writer_process(out_q, done_signal, fname, Y_dict, expected_pieces, max_solutions, box_size):
     c = 0
     with open(fname, "w") as f:
         f.write(f"# Polycube solutions - Hybrid MP+Numba (Pieces: {expected_pieces})\n")
@@ -266,6 +266,30 @@ def writer_process(out_q, done_signal, fname, Y_dict, expected_pieces, max_solut
             
             sol_str = "".join([str(Y_dict[p_index]) for p_index in sol])
             f.write(f"{c}\n{sol_str}\n")
+            # Flush immediately so the solution is visible in the results file
+            # while the solver keeps running (do not rely on process exit).
+            f.flush()
+
+            if c == 1:
+                # First genuine validated solution accepted by the writer:
+                # announce it loudly and create the SOLUTION_FOUND flag file.
+                box_str = "x".join(map(str, box_size))
+                print(f"\n*** SOLUTION FOUND ***", flush=True)
+                print(f"*** Box: {box_str} | Solution #1 | Results: {fname} ***", flush=True)
+                flag_path = os.path.join(os.path.dirname(fname), "SOLUTION_FOUND")
+                flag_content = (
+                    "SOLUTION FOUND\n"
+                    f"Box: {box_str}\n"
+                    f"Solution number: {c}\n"
+                    f"Timestamp: {time.strftime('%Y-%m-%d %H:%M:%S')}\n"
+                    f"Results file: {fname}\n"
+                )
+                # Write atomically (temp file + rename) so the flag is never
+                # observed partially written or corrupted by concurrent runs.
+                tmp_flag = flag_path + ".tmp"
+                with open(tmp_flag, "w") as ff:
+                    ff.write(flag_content)
+                os.replace(tmp_flag, flag_path)
             
             if max_solutions > 0 and c >= max_solutions:
                 print(f"Reached maximum solutions limit ({max_solutions}). Stopping.")
@@ -420,7 +444,7 @@ def main(args):
     out_q = mp.Queue()
     DONE = ("__DONE__", os.getpid())
 
-    wp = mp.Process(target=writer_process, args=(out_q, DONE, fname, placements, expected_pieces, args.max_solutions))
+    wp = mp.Process(target=writer_process, args=(out_q, DONE, fname, placements, expected_pieces, args.max_solutions, box_size))
     wp.start()
 
     # Prepare args_list for both modes
