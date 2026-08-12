@@ -120,44 +120,6 @@
         "searched_no_solution": [],
         "width_generators": {}
     },
-    "L35": {
-        "size": 5,
-        "impossible_rules": {
-            "volume": true,
-            "cube": false,
-            "published": []
-        },
-        "primes": [
-            [
-                2,
-                9,
-                15
-            ],
-            [
-                2,
-                10,
-                10
-            ],
-            [
-                3,
-                4,
-                30
-            ],
-            [
-                4,
-                5,
-                6
-            ],
-            [
-                5,
-                5,
-                6
-            ]
-        ],
-        "row_generators": {},
-        "searched_no_solution": [],
-        "width_generators": {}
-    },
     "N": {
         "size": 5,
         "impossible_rules": {
