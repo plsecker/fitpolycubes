@@ -1,0 +1,19 @@
+Building S placements for 4x8x10...
+Placements: 1824
+Placement generation: 0.357 s
+Diagonal planes: 20
+Searching corrected exposed-frontier DP...
+
+[limit] memo state limit 50,000 reached
+
+Result: NO SOLUTION FOUND / LIMIT
+Calls: 50,001
+Memo states: 50,000
+Memo hits: 0
+Placements tried: 1,562,539
+Placements accepted: 50,000
+Plane shifts: 346
+Forgotten frontier cells: 131,505
+Solutions: 0
+Elapsed: 0.470 s
+Peak RSS: 46 MB

@@ -1,0 +1,102 @@
+[
+  {
+    "name": "exposed2_states_10000",
+    "command": "/home/philip/Work/fitpolycubes/.venv/bin/python solvers/s_diagonal_frontier_exposed2.py --box 4 8 10 --max-states 10000",
+    "returncode": 0,
+    "timed_out": false,
+    "wall_seconds": 0.547285009000916,
+    "metrics": {
+      "states": 10000,
+      "calls": 10001,
+      "memo_hits": 0,
+      "solutions": 0,
+      "placements": 1824,
+      "placement_tried": 350197,
+      "placement_accepted": 10000,
+      "plane_shifts": 12,
+      "forgotten": 17844,
+      "elapsed": 0.095
+    },
+    "log_dir": "experiments/20260816_181335_exposed2_states_10000"
+  },
+  {
+    "name": "exposed2_states_50000",
+    "command": "/home/philip/Work/fitpolycubes/.venv/bin/python solvers/s_diagonal_frontier_exposed2.py --box 4 8 10 --max-states 50000",
+    "returncode": 0,
+    "timed_out": false,
+    "wall_seconds": 1.0146044259890914,
+    "metrics": {
+      "states": 50000,
+      "calls": 50001,
+      "memo_hits": 0,
+      "solutions": 0,
+      "placements": 1824,
+      "placement_tried": 1562539,
+      "placement_accepted": 50000,
+      "plane_shifts": 346,
+      "forgotten": 131505,
+      "elapsed": 0.47
+    },
+    "log_dir": "experiments/20260816_181336_exposed2_states_50000"
+  },
+  {
+    "name": "exposed2_states_100000",
+    "command": "/home/philip/Work/fitpolycubes/.venv/bin/python solvers/s_diagonal_frontier_exposed2.py --box 4 8 10 --max-states 100000",
+    "returncode": 0,
+    "timed_out": false,
+    "wall_seconds": 1.4190405200060923,
+    "metrics": {
+      "states": 100000,
+      "calls": 100001,
+      "memo_hits": 0,
+      "solutions": 0,
+      "placements": 1824,
+      "placement_tried": 3916554,
+      "placement_accepted": 100000,
+      "plane_shifts": 406,
+      "forgotten": 199530,
+      "elapsed": 0.904
+    },
+    "log_dir": "experiments/20260816_181337_exposed2_states_100000"
+  },
+  {
+    "name": "exposed2_states_250000",
+    "command": "/home/philip/Work/fitpolycubes/.venv/bin/python solvers/s_diagonal_frontier_exposed2.py --box 4 8 10 --max-states 250000",
+    "returncode": 0,
+    "timed_out": false,
+    "wall_seconds": 3.1026320530072553,
+    "metrics": {
+      "states": 250000,
+      "calls": 250001,
+      "memo_hits": 0,
+      "solutions": 0,
+      "placements": 1824,
+      "placement_tried": 10725495,
+      "placement_accepted": 250000,
+      "plane_shifts": 769,
+      "forgotten": 459185,
+      "elapsed": 2.499
+    },
+    "log_dir": "experiments/20260816_181338_exposed2_states_250000"
+  },
+  {
+    "name": "exposed2_states_500000",
+    "command": "/home/philip/Work/fitpolycubes/.venv/bin/python solvers/s_diagonal_frontier_exposed2.py --box 4 8 10 --max-states 500000",
+    "returncode": 0,
+    "timed_out": false,
+    "wall_seconds": 5.296182163991034,
+    "metrics": {
+      "states": 500000,
+      "calls": 500001,
+      "memo_hits": 0,
+      "solutions": 0,
+      "placements": 1824,
+      "placement_tried": 17658610,
+      "placement_accepted": 500000,
+      "plane_shifts": 2443,
+      "forgotten": 1076372,
+      "elapsed": 4.531
+    },
+    "log_dir": "experiments/20260816_181341_exposed2_states_500000"
+  }
+]

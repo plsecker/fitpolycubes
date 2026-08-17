@@ -1,0 +1,20 @@
+{
+  "name": "exposed2_states_250000",
+  "command": "/home/philip/Work/fitpolycubes/.venv/bin/python solvers/s_diagonal_frontier_exposed2.py --box 4 8 10 --max-states 250000",
+  "returncode": 0,
+  "timed_out": false,
+  "wall_seconds": 3.1026320530072553,
+  "metrics": {
+    "states": 250000,
+    "calls": 250001,
+    "memo_hits": 0,
+    "solutions": 0,
+    "placements": 1824,
+    "placement_tried": 10725495,
+    "placement_accepted": 250000,
+    "plane_shifts": 769,
+    "forgotten": 459185,
+    "elapsed": 2.499
+  },
+  "log_dir": "experiments/20260816_181338_exposed2_states_250000"
+}

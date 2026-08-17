@@ -1,0 +1,14 @@
+name: exposed2_states_250000
+returncode: 0
+timed_out: False
+wall_seconds: 3.103
+states: 250000
+calls: 250001
+memo_hits: 0
+solutions: 0
+placements: 1824
+placement_tried: 10725495
+placement_accepted: 250000
+plane_shifts: 769
+forgotten: 459185
+elapsed: 2.499

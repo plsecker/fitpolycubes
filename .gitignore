@@ -12,5 +12,23 @@ __pycache__/
 env/
 build/
 dist/
-*.egg-info/
-.aider*
+
+# Local AI/tool state
+.antigravitycli/
+data/.antigravitycli/
+
+# Generated solver output
+data/*.dat
+data/reduce_solutions_*.txt
+data/SOLUTION_FOUND
+
+# Profiling output
+*.prof
+
+# Locally compiled solver binaries
+/solver
+/solvers/solver
+
+# Profiling artefacts
+experiments/benchmarks/gmon.out
+experiments/benchmarks/perf.data

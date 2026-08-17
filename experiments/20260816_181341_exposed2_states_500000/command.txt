@@ -1,0 +1,1 @@
+/home/philip/Work/fitpolycubes/.venv/bin/python solvers/s_diagonal_frontier_exposed2.py --box 4 8 10 --max-states 500000

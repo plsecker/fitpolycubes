@@ -1,0 +1,124 @@
+=========================================
+   UNIQUE SOLUTION 1
+=========================================
+Representative Grid Layout:
+
+Layer Z=0:
+ A  C  C  E  H  K  K  M
+ A  D  C  E  I  L  K  M
+ B  D  C  F  J  L  K  N
+ B  D  D  G  J  L  L  N
+
+Layer Z=1:
+ O  O  I  E  H  H  H  M
+ A  D  I  I  I  L  H  R
+ P  G  C  F  F  F  K  N
+ B  G  G  G  J  F  Q  Q
+
+Layer Z=2:
+ O  S  E  E  U  R  M  M
+ A  A  T  T  U  R  R  R
+ P  P  P  T  U  U  N  N
+ B  B  P  T  J  J  V  Q
+
+Layer Z=3:
+ O  S  X  X  U  c  c  c
+ O  S  Y  Z  a  c  V  V
+ S  S  W  Z  a  d  V  Q
+ W  W  W  T  b  b  V  Q
+
+Layer Z=4:
+ e  f  X  g  i  d  d  c
+ e  f  Y  g  a  d  k  k
+ e  e  Y  Z  j  d  l  k
+ W  Y  Y  h  j  b  l  k
+
+Layer Z=5:
+ e  f  X  g  i  i  i  r
+ m  m  X  a  a  p  i  r
+ n  h  o  Z  Z  b  q  q
+ n  h  h  h  j  b  l  k
+
+Layer Z=6:
+ f  f  g  g  u  v  v  r
+ o  m  t  t  u  p  p  p
+ o  o  o  t  u  u  q  p
+ n  s  s  t  j  j  l  l
+
+Layer Z=7:
+ w  m  x  x  u  v  r  r
+ w  m  y  y  y  z AB AB
+ w  w  y  z  z  z  q AB
+ n  n  s  t AA AA  q AB
+
+Layer Z=8:
+ w AD  x AF AF  v AI AI
+AC AE AE AE  y  v AH AI
+AC AE  s  z AH AH AH AI
+AC AC  s AG AG AA AJ AB
+
+Layer Z=9:
+AK AD  x AF AN AO AO AO
+AC AD  x AE AN AO AJ AJ
+AD AD AL AM AH AA AJ AI
+AL AL AL AM AG AA AJ AP
+
+Layer Z=10:
+AK AK AK AF AN AV AW AO
+AQ AQ AK AF AU AV AW AX
+AR AQ AS AT AG AP AW AW
+AL AQ AS AM AG AP AP AP
+
+Layer Z=11:
+AR AR AZ AN AN AV AW BD
+AR AT AZ BA AU AU AU AX
+AR AT AT AT BB BC AU AX
+AY AQ AS AM AM BC AX AX
+
+Layer Z=12:
+BE BE AZ BG AV AV BI BD
+AY AY BB BA BA BA BI BD
+AY BF BB BB BB BA BD BD
+AY BF AS AS BH BC BJ BJ
+
+Layer Z=13:
+BE AZ AZ BG BN BN BP BP
+BK BK BK BG BH BH BI BO
+BK BF BG BG BH BO BO BO
+BL BL BM BM BH BC BC BJ
+
+Layer Z=14:
+BE BR BR BR BN BW BP BX
+BE BR BK BT BT BW BI BI
+BF BF BS BU BU BO BV BJ
+BQ BL BS BM BV BV BV BJ
+
+Layer Z=15:
+BY BZ BZ BR BN BW BP BX
+BQ BQ BZ BT BN CA BP BX
+BQ BL BZ BM BU CA BX BX
+BQ BL BS BM BV CA CA CB
+
+Layer Z=16:
+BY BY BY CE BW BW CG CH
+CC CC BY BT BU CA CG CH
+CD CC BZ BT BU CB CG CG
+CD CC BS BS CF CB CB CB
+
+Layer Z=17:
+CI CI CJ CE CM CM CG CH
+CJ CJ CJ CE CF CF CO CO
+CK CK CE CE CF CN CN CN
+CD CC CL CL CF CN CP CP
+
+Layer Z=18:
+CI CQ CQ CQ CM CU CH CH
+CJ CQ CS CU CU CU CX CO
+CK CR CT CT CT CW CV CN
+CD CD CT CL CV CV CV CP
+
+Layer Z=19:
+CI CR CR CQ CM CW CW CO
+CI CR CS CU CM CW CX CO
+CK CR CS CL CT CW CX CP
+CK CS CS CL CV CX CX CP

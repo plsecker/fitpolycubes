@@ -1,0 +1,14 @@
+name: exposed2_4x8x10
+returncode: 0
+timed_out: False
+wall_seconds: 1.495
+states: 100000
+calls: 100001
+memo_hits: 0
+solutions: 0
+placements: 1824
+placement_tried: 3916554
+placement_accepted: 100000
+plane_shifts: 406
+forgotten: 199530
+elapsed: 0.959
