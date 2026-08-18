@@ -1,0 +1,25 @@
+product=1
+all_edges_exhaustive=True
+edge1_start=0 edge1_target=6163195513375031274 edge1_count=1 edge1_visited=815 edge1_live=15 edge1_elapsed=0.00 edge1_exhaustive=True edge1_limit_hit=False edge1_recorded_ok=True edge1_seq_matches=True
+edge2_start=6163195513375031274 edge2_target=13835058072323104239 edge2_count=1 edge2_visited=5 edge2_live=5 edge2_elapsed=0.00 edge2_exhaustive=True edge2_limit_hit=False edge2_recorded_ok=True edge2_seq_matches=True
+edge3_start=13835058072323104239 edge3_target=3993075831 edge3_count=1 edge3_visited=5 edge3_live=5 edge3_elapsed=0.00 edge3_exhaustive=True edge3_limit_hit=False edge3_recorded_ok=True edge3_seq_matches=True
+edge4_start=3993075831 edge4_target=55840897340952456 edge4_count=1 edge4_visited=26 edge4_live=9 edge4_elapsed=0.00 edge4_exhaustive=True edge4_limit_hit=False edge4_recorded_ok=True edge4_seq_matches=True
+edge5_start=55840897340952456 edge5_target=9838132153049676753 edge5_count=1 edge5_visited=10 edge5_live=9 edge5_elapsed=0.00 edge5_exhaustive=True edge5_limit_hit=False edge5_recorded_ok=True edge5_seq_matches=True
+edge6_start=9838132153049676753 edge6_target=2089671021646321023 edge6_count=1 edge6_visited=7 edge6_live=7 edge6_elapsed=0.00 edge6_exhaustive=True edge6_limit_hit=False edge6_recorded_ok=True edge6_seq_matches=True
+edge7_start=2089671021646321023 edge7_target=13523993509333176 edge7_count=1 edge7_visited=5 edge7_live=5 edge7_elapsed=0.00 edge7_exhaustive=True edge7_limit_hit=False edge7_recorded_ok=True edge7_seq_matches=True
+edge8_start=13523993509333176 edge8_target=54046496222498049 edge8_count=1 edge8_visited=9 edge8_live=7 edge8_elapsed=0.00 edge8_exhaustive=True edge8_limit_hit=False edge8_recorded_ok=True edge8_seq_matches=True
+edge9_start=54046496222498049 edge9_target=3430478137537398 edge9_count=1 edge9_visited=9 edge9_live=9 edge9_elapsed=0.00 edge9_exhaustive=True edge9_limit_hit=False edge9_recorded_ok=True edge9_seq_matches=True
+edge10_start=3430478137537398 edge10_target=2691607028413209 edge10_count=1 edge10_visited=7 edge10_live=7 edge10_elapsed=0.00 edge10_exhaustive=True edge10_limit_hit=False edge10_recorded_ok=True edge10_seq_matches=True
+edge11_start=2691607028413209 edge11_target=4934612199136503 edge11_count=1 edge11_visited=11 edge11_live=9 edge11_elapsed=0.00 edge11_exhaustive=True edge11_limit_hit=False edge11_recorded_ok=True edge11_seq_matches=True
+edge12_start=4934612199136503 edge12_target=612490719515897646 edge12_count=1 edge12_visited=7 edge12_live=7 edge12_elapsed=0.00 edge12_exhaustive=True edge12_limit_hit=False edge12_recorded_ok=True edge12_seq_matches=True
+edge13_start=612490719515897646 edge13_target=16285016559841080657 edge13_count=1 edge13_visited=7 edge13_live=7 edge13_elapsed=0.00 edge13_exhaustive=True edge13_limit_hit=False edge13_recorded_ok=True edge13_seq_matches=True
+edge14_start=16285016559841080657 edge14_target=217229141722890951 edge14_count=1 edge14_visited=7 edge14_live=7 edge14_elapsed=0.00 edge14_exhaustive=True edge14_limit_hit=False edge14_recorded_ok=True edge14_seq_matches=True
+edge15_start=217229141722890951 edge15_target=6729013160573166 edge15_count=1 edge15_visited=22 edge15_live=9 edge15_elapsed=0.00 edge15_exhaustive=True edge15_limit_hit=False edge15_recorded_ok=True edge15_seq_matches=True
+edge16_start=6729013160573166 edge16_target=2297949969 edge16_count=1 edge16_visited=5 edge16_live=5 edge16_elapsed=0.00 edge16_exhaustive=True edge16_limit_hit=False edge16_recorded_ok=True edge16_seq_matches=True
+edge17_start=2297949969 edge17_target=1224979683048584328 edge17_count=1 edge17_visited=7 edge17_live=7 edge17_elapsed=0.00 edge17_exhaustive=True edge17_limit_hit=False edge17_recorded_ok=True edge17_seq_matches=True
+edge18_start=1224979683048584328 edge18_target=17294878168733286543 edge18_count=1 edge18_visited=10 edge18_live=9 edge18_elapsed=0.00 edge18_exhaustive=True edge18_limit_hit=False edge18_recorded_ok=True edge18_seq_matches=True
+edge19_start=17294878168733286543 edge19_target=4294967295 edge19_count=1 edge19_visited=17 edge19_live=9 edge19_elapsed=0.00 edge19_exhaustive=True edge19_limit_hit=False edge19_recorded_ok=True edge19_seq_matches=True
+edge20_start=4294967295 edge20_target=0 edge20_count=1 edge20_visited=1 edge20_live=1 edge20_elapsed=0.00 edge20_exhaustive=True edge20_limit_hit=False edge20_recorded_ok=True edge20_seq_matches=True
+certificate_128_placements=PASS
+certificate_640_distinct=PASS
+certificate_matches_doc=True

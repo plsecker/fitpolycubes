@@ -1,0 +1,40 @@
+firstgen_tree_states=3162387
+firstgen_hit_cap=False
+firstgen_sources=331765
+macro_states=15000991
+macro_edges=14781970
+closure_hit_cap=True
+total_intermediate=374388610
+max_bfs_distance=85
+complete_through_19=True
+is_dag=True
+longest_path=94
+endpoints_count=8
+longest_sources_count=1
+zero_in_macro=True
+zero_distances=[19]
+firstgen_elapsed=4.7
+closure_elapsed=628.9
+dag_elapsed=29.6
+tiling_N1=False (div=False, reach=False)
+tiling_N2=False (div=False, reach=False)
+tiling_N3=False (div=False, reach=False)
+tiling_N4=False (div=False, reach=False)
+tiling_N5=False (div=True, reach=False)
+tiling_N6=False (div=False, reach=False)
+tiling_N7=False (div=False, reach=False)
+tiling_N8=False (div=False, reach=False)
+tiling_N9=False (div=False, reach=False)
+tiling_N10=False (div=True, reach=False)
+tiling_N11=False (div=False, reach=False)
+tiling_N12=False (div=False, reach=False)
+tiling_N13=False (div=False, reach=False)
+tiling_N14=False (div=False, reach=False)
+tiling_N15=False (div=True, reach=False)
+tiling_N16=False (div=False, reach=False)
+tiling_N17=False (div=False, reach=False)
+tiling_N18=False (div=False, reach=False)
+tiling_N19=False (div=False, reach=False)
+tiling_N20=True (div=True, reach=True)
+endpoints=[47854251521522430, 47888203237997310, 309676149166391184, 309678412614156192, 525850369616289348, 918827784608774004, 9819066548199716724, 10019438384180403780]
+longest_sources=[6163195513375031274]

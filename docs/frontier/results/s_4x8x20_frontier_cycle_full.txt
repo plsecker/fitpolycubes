@@ -1,0 +1,328 @@
+Building templates...
+  concrete placements=3944 target templates=488
+
+=== COMPLETE 20-LAYER PATH: 0 -> ... -> 0 ===
+Post-shift states in order (20 states):
+  step  0: 6163195513375031274  (L0=0x57ffffea L1=0x558811aa L2=0x00000000)
+  step  1: 13835058072323104239  (L0=0xf7b81def L1=0xc0000003 L2=0x00000000)
+  step  2: 3993075831  (L0=0xee018077 L1=0x00000000 L2=0x00000000)
+  step  3: 55840897340952456  (L0=0x11f24f88 L1=0x00c66300 L2=0x00000000)
+  step  4: 9838132153049676753  (L0=0x8bdffbd1 L1=0x88881111 L2=0x00000000)
+  step  5: 2089671021646321023  (L0=0xfea8157f L1=0x1d0000b8 L2=0x00000000)
+  step  6: 13523993509333176  (L0=0x1d1188b8 L1=0x00300c00 L2=0x00000000)
+  step  7: 54046496222498049  (L0=0x80b24d01 L1=0x00c00300 L2=0x00000000)
+  step  8: 3430478137537398  (L0=0x6ecc3376 L1=0x000c3000 L2=0x00000000)
+  step  9: 2691607028413209  (L0=0x98cdb319 L1=0x00099000 L2=0x00000000)
+  step 10: 4934612199136503  (L0=0xef3bdcf7 L1=0x00118800 L2=0x00000000)
+  step 11: 612490719515897646  (L0=0x74f7ef2e L1=0x08800110 L2=0x00000000)
+  step 12: 16285016559841080657  (L0=0x8aae7551 L1=0xe2000047 L2=0x00000000)
+  step 13: 217229141722890951  (L0=0xe34182c7 L1=0x0303c0c0 L2=0x00000000)
+  step 14: 6729013160573166  (L0=0x771ff8ee L1=0x0017e800 L2=0x00000000)
+  step 15: 2297949969  (L0=0x88f7ef11 L1=0x00000000 L2=0x00000000)
+  step 16: 1224979683048584328  (L0=0x112e7488 L1=0x11000088 L2=0x00000000)
+  step 17: 17294878168733286543  (L0=0xf101808f L1=0xf003c00f L2=0x00000000)
+  step 18: 4294967295  (L0=0xffffffff L1=0x00000000 L2=0x00000000)
+  step 19: 0  (L0=0x00000000 L1=0x00000000 L2=0x00000000)
+
+=== LAYER 1 (first generation) ===
+  transition: 0 -> [14 placements] -> p0 -> source
+  p0 = 0x558811aa57ffffeaffffffff
+  p0 layers: L0=0xffffffff L1=0x57ffffea L2=0x558811aa
+  p0 >> 32 == source: True
+  placements:
+     1. anchor=(0,0) cells=(0,0,0) (1,0,0) (1,0,1) (1,0,2) (1,1,2)
+     2. anchor=(2,0) cells=(2,0,0) (3,0,0) (3,0,1) (3,0,2) (3,1,2)
+     3. anchor=(0,1) cells=(0,1,0) (0,2,0) (1,2,0) (2,2,0) (2,2,1)
+     4. anchor=(1,1) cells=(1,1,0) (2,1,0) (3,1,0) (3,2,0) (1,1,1)
+     5. anchor=(0,3) cells=(0,3,0) (1,3,0) (0,3,1) (0,2,2) (0,3,2)
+     6. anchor=(2,3) cells=(2,3,0) (2,3,1) (2,4,1) (2,5,1) (3,5,1)
+     7. anchor=(3,3) cells=(3,3,0) (2,1,1) (3,1,1) (3,2,1) (3,3,1)
+     8. anchor=(0,4) cells=(0,4,0) (0,4,1) (0,5,1) (0,6,1) (1,6,1)
+     9. anchor=(1,4) cells=(1,4,0) (0,2,1) (1,2,1) (1,3,1) (1,4,1)
+    10. anchor=(2,4) cells=(2,4,0) (3,4,0) (3,4,1) (3,4,2) (3,5,2)
+    11. anchor=(0,5) cells=(0,5,0) (0,6,0) (1,6,0) (2,6,0) (2,6,1)
+    12. anchor=(1,5) cells=(1,5,0) (2,5,0) (3,5,0) (3,6,0) (1,5,1)
+    13. anchor=(0,7) cells=(0,7,0) (1,7,0) (0,7,1) (0,6,2) (0,7,2)
+    14. anchor=(2,7) cells=(2,7,0) (3,7,0) (2,7,1) (2,6,2) (2,7,2)
+
+=== LAYER 2 (macro edge) ===
+  transition: 6163195513375031274 -> [4 placements] -> p -> 13835058072323104239
+  pre-shift p = 0xc0000003f7b81defffffffff
+  p layers: L0=0xffffffff L1=0xf7b81def L2=0xc0000003
+  p >> 32 == v: True
+  placements:
+     1. anchor=(0,0) cells=(0,0,0) (0,1,0) (0,0,1) (0,0,2) (1,0,2)
+     2. anchor=(2,0) cells=(2,0,0) (2,0,1) (2,1,1) (2,2,1) (3,2,1)
+     3. anchor=(3,6) cells=(3,6,0) (3,7,0) (3,7,1) (2,7,2) (3,7,2)
+     4. anchor=(1,7) cells=(1,7,0) (0,5,1) (1,5,1) (1,6,1) (1,7,1)
+
+=== LAYER 3 (macro edge) ===
+  transition: 13835058072323104239 -> [4 placements] -> p -> 3993075831
+  pre-shift p = 0xee018077ffffffff
+  p layers: L0=0xffffffff L1=0xee018077 L2=0x00000000
+  p >> 32 == v: True
+  placements:
+     1. anchor=(0,1) cells=(0,1,0) (2,0,1) (0,1,1) (1,1,1) (2,1,1)
+     2. anchor=(1,2) cells=(1,2,0) (1,3,0) (2,3,0) (3,3,0) (3,3,1)
+     3. anchor=(0,4) cells=(0,4,0) (1,4,0) (2,4,0) (2,5,0) (0,4,1)
+     4. anchor=(3,6) cells=(3,6,0) (1,6,1) (2,6,1) (3,6,1) (1,7,1)
+
+=== LAYER 4 (macro edge) ===
+  transition: 3993075831 -> [8 placements] -> p -> 55840897340952456
+  pre-shift p = 0xc6630011f24f88ffffffff
+  p layers: L0=0xffffffff L1=0x11f24f88 L2=0x00c66300
+  p >> 32 == v: True
+  placements:
+     1. anchor=(3,0) cells=(3,0,0) (3,1,0) (2,2,0) (3,2,0) (3,0,1)
+     2. anchor=(0,2) cells=(0,2,0) (0,3,0) (0,2,1) (0,2,2) (1,2,2)
+     3. anchor=(1,2) cells=(1,2,0) (3,1,1) (1,2,1) (2,2,1) (3,2,1)
+     4. anchor=(1,3) cells=(1,3,0) (2,3,0) (2,3,1) (2,3,2) (2,4,2)
+     5. anchor=(1,4) cells=(1,4,0) (2,4,0) (1,4,1) (1,3,2) (1,4,2)
+     6. anchor=(3,4) cells=(3,4,0) (3,5,0) (3,5,1) (2,5,2) (3,5,2)
+     7. anchor=(0,5) cells=(0,5,0) (1,5,0) (0,6,0) (0,7,0) (0,7,1)
+     8. anchor=(2,5) cells=(2,5,0) (0,5,1) (1,5,1) (2,5,1) (0,6,1)
+
+=== LAYER 5 (macro edge) ===
+  transition: 55840897340952456 -> [8 placements] -> p -> 9838132153049676753
+  pre-shift p = 0x888811118bdffbd1ffffffff
+  p layers: L0=0xffffffff L1=0x8bdffbd1 L2=0x88881111
+  p >> 32 == v: True
+  placements:
+     1. anchor=(0,0) cells=(0,0,0) (1,0,0) (2,0,0) (2,1,0) (0,0,1)
+     2. anchor=(0,1) cells=(0,1,0) (1,1,0) (0,1,1) (0,0,2) (0,1,2)
+     3. anchor=(0,3) cells=(0,3,0) (1,3,0) (0,3,1) (0,2,2) (0,3,2)
+     4. anchor=(3,3) cells=(3,3,0) (2,1,1) (3,1,1) (3,2,1) (3,3,1)
+     5. anchor=(0,4) cells=(0,4,0) (0,4,1) (0,5,1) (0,6,1) (1,6,1)
+     6. anchor=(2,4) cells=(2,4,0) (3,4,0) (3,4,1) (3,4,2) (3,5,2)
+     7. anchor=(1,6) cells=(1,6,0) (1,7,0) (2,7,0) (3,7,0) (3,7,1)
+     8. anchor=(2,6) cells=(2,6,0) (3,6,0) (3,6,1) (3,6,2) (3,7,2)
+
+=== LAYER 6 (macro edge) ===
+  transition: 9838132153049676753 -> [6 placements] -> p -> 2089671021646321023
+  pre-shift p = 0x1d0000b8fea8157fffffffff
+  p layers: L0=0xffffffff L1=0xfea8157f L2=0x1d0000b8
+  p >> 32 == v: True
+  placements:
+     1. anchor=(1,0) cells=(1,0,0) (1,1,0) (1,1,1) (0,1,2) (1,1,2)
+     2. anchor=(2,0) cells=(2,0,0) (3,0,0) (3,0,1) (3,0,2) (3,1,2)
+     3. anchor=(2,2) cells=(2,2,0) (1,0,1) (2,0,1) (2,1,1) (2,2,1)
+     4. anchor=(1,5) cells=(1,5,0) (1,5,1) (1,6,1) (1,7,1) (2,7,1)
+     5. anchor=(2,6) cells=(2,6,0) (2,7,0) (2,6,1) (2,6,2) (3,6,2)
+     6. anchor=(0,7) cells=(0,7,0) (1,7,0) (0,7,1) (0,6,2) (0,7,2)
+
+=== LAYER 7 (macro edge) ===
+  transition: 2089671021646321023 -> [4 placements] -> p -> 13523993509333176
+  pre-shift p = 0x300c001d1188b8ffffffff
+  p layers: L0=0xffffffff L1=0x1d1188b8 L2=0x00300c00
+  p >> 32 == v: True
+  placements:
+     1. anchor=(3,1) cells=(3,1,0) (3,2,0) (3,2,1) (2,2,2) (3,2,2)
+     2. anchor=(1,2) cells=(1,2,0) (1,3,0) (2,3,0) (3,3,0) (3,3,1)
+     3. anchor=(0,4) cells=(0,4,0) (1,4,0) (2,4,0) (2,5,0) (0,4,1)
+     4. anchor=(0,5) cells=(0,5,0) (0,6,0) (0,5,1) (0,5,2) (1,5,2)
+
+=== LAYER 8 (macro edge) ===
+  transition: 13523993509333176 -> [6 placements] -> p -> 54046496222498049
+  pre-shift p = 0xc0030080b24d01ffffffff
+  p layers: L0=0xffffffff L1=0x80b24d01 L2=0x00c00300
+  p >> 32 == v: True
+  placements:
+     1. anchor=(0,0) cells=(0,0,0) (1,0,0) (2,0,0) (2,1,0) (0,0,1)
+     2. anchor=(0,2) cells=(0,2,0) (0,3,0) (0,2,1) (0,2,2) (1,2,2)
+     3. anchor=(1,2) cells=(1,2,0) (2,2,0) (1,3,0) (1,4,0) (1,4,1)
+     4. anchor=(2,3) cells=(2,3,0) (2,4,0) (1,5,0) (2,5,0) (2,3,1)
+     5. anchor=(3,4) cells=(3,4,0) (3,5,0) (3,5,1) (2,5,2) (3,5,2)
+     6. anchor=(1,6) cells=(1,6,0) (1,7,0) (2,7,0) (3,7,0) (3,7,1)
+
+=== LAYER 9 (macro edge) ===
+  transition: 54046496222498049 -> [8 placements] -> p -> 3430478137537398
+  pre-shift p = 0xc30006ecc3376ffffffff
+  p layers: L0=0xffffffff L1=0x6ecc3376 L2=0x000c3000
+  p >> 32 == v: True
+  placements:
+     1. anchor=(1,0) cells=(1,0,0) (2,0,0) (3,0,0) (3,1,0) (1,0,1)
+     2. anchor=(0,1) cells=(0,1,0) (2,0,1) (0,1,1) (1,1,1) (2,1,1)
+     3. anchor=(1,1) cells=(1,1,0) (2,1,0) (1,2,0) (1,3,0) (1,3,1)
+     4. anchor=(0,3) cells=(0,3,0) (0,4,0) (0,3,1) (0,3,2) (1,3,2)
+     5. anchor=(3,3) cells=(3,3,0) (3,4,0) (3,4,1) (2,4,2) (3,4,2)
+     6. anchor=(2,4) cells=(2,4,0) (2,5,0) (1,6,0) (2,6,0) (2,4,1)
+     7. anchor=(0,6) cells=(0,6,0) (0,7,0) (1,7,0) (2,7,0) (2,7,1)
+     8. anchor=(3,6) cells=(3,6,0) (1,6,1) (2,6,1) (3,6,1) (1,7,1)
+
+=== LAYER 10 (macro edge) ===
+  transition: 3430478137537398 -> [6 placements] -> p -> 2691607028413209
+  pre-shift p = 0x9900098cdb319ffffffff
+  p layers: L0=0xffffffff L1=0x98cdb319 L2=0x00099000
+  p >> 32 == v: True
+  placements:
+     1. anchor=(0,0) cells=(0,0,0) (0,0,1) (0,1,1) (0,2,1) (1,2,1)
+     2. anchor=(3,0) cells=(3,0,0) (3,1,0) (2,2,0) (3,2,0) (3,0,1)
+     3. anchor=(2,3) cells=(2,3,0) (3,3,0) (3,3,1) (3,3,2) (3,4,2)
+     4. anchor=(0,4) cells=(0,4,0) (1,4,0) (0,4,1) (0,3,2) (0,4,2)
+     5. anchor=(0,5) cells=(0,5,0) (1,5,0) (0,6,0) (0,7,0) (0,7,1)
+     6. anchor=(3,7) cells=(3,7,0) (2,5,1) (3,5,1) (3,6,1) (3,7,1)
+
+=== LAYER 11 (macro edge) ===
+  transition: 2691607028413209 -> [8 placements] -> p -> 4934612199136503
+  pre-shift p = 0x118800ef3bdcf7ffffffff
+  p layers: L0=0xffffffff L1=0xef3bdcf7 L2=0x00118800
+  p >> 32 == v: True
+  placements:
+     1. anchor=(1,0) cells=(1,0,0) (1,1,0) (2,1,0) (3,1,0) (3,1,1)
+     2. anchor=(2,0) cells=(2,0,0) (0,0,1) (1,0,1) (2,0,1) (0,1,1)
+     3. anchor=(2,2) cells=(2,2,0) (3,2,0) (3,2,1) (3,2,2) (3,3,2)
+     4. anchor=(2,3) cells=(2,3,0) (1,1,1) (2,1,1) (2,2,1) (2,3,1)
+     5. anchor=(1,4) cells=(1,4,0) (1,4,1) (1,5,1) (1,6,1) (2,6,1)
+     6. anchor=(0,5) cells=(0,5,0) (1,5,0) (0,5,1) (0,4,2) (0,5,2)
+     7. anchor=(0,6) cells=(0,6,0) (1,6,0) (2,6,0) (2,7,0) (0,6,1)
+     8. anchor=(1,7) cells=(1,7,0) (3,6,1) (1,7,1) (2,7,1) (3,7,1)
+
+=== LAYER 12 (macro edge) ===
+  transition: 4934612199136503 -> [6 placements] -> p -> 612490719515897646
+  pre-shift p = 0x880011074f7ef2effffffff
+  p layers: L0=0xffffffff L1=0x74f7ef2e L2=0x08800110
+  p >> 32 == v: True
+  placements:
+     1. anchor=(3,0) cells=(3,0,0) (1,0,1) (2,0,1) (3,0,1) (1,1,1)
+     2. anchor=(0,2) cells=(0,2,0) (1,2,0) (0,2,1) (0,1,2) (0,2,2)
+     3. anchor=(1,3) cells=(1,3,0) (1,3,1) (1,4,1) (1,5,1) (2,5,1)
+     4. anchor=(2,4) cells=(2,4,0) (1,2,1) (2,2,1) (2,3,1) (2,4,1)
+     5. anchor=(2,5) cells=(2,5,0) (3,5,0) (3,5,1) (3,5,2) (3,6,2)
+     6. anchor=(0,7) cells=(0,7,0) (2,6,1) (0,7,1) (1,7,1) (2,7,1)
+
+=== LAYER 13 (macro edge) ===
+  transition: 612490719515897646 -> [6 placements] -> p -> 16285016559841080657
+  pre-shift p = 0xe20000478aae7551ffffffff
+  p layers: L0=0xffffffff L1=0x8aae7551 L2=0xe2000047
+  p >> 32 == v: True
+  placements:
+     1. anchor=(0,0) cells=(0,0,0) (0,1,0) (0,0,1) (0,0,2) (1,0,2)
+     2. anchor=(2,1) cells=(2,1,0) (3,1,0) (2,1,1) (2,0,2) (2,1,2)
+     3. anchor=(0,3) cells=(0,3,0) (2,2,1) (0,3,1) (1,3,1) (2,3,1)
+     4. anchor=(3,4) cells=(3,4,0) (1,4,1) (2,4,1) (3,4,1) (1,5,1)
+     5. anchor=(0,6) cells=(0,6,0) (1,6,0) (1,6,1) (1,6,2) (1,7,2)
+     6. anchor=(3,6) cells=(3,6,0) (3,7,0) (3,7,1) (2,7,2) (3,7,2)
+
+=== LAYER 14 (macro edge) ===
+  transition: 16285016559841080657 -> [6 placements] -> p -> 217229141722890951
+  pre-shift p = 0x303c0c0e34182c7ffffffff
+  p layers: L0=0xffffffff L1=0xe34182c7 L2=0x0303c0c0
+  p >> 32 == v: True
+  placements:
+     1. anchor=(1,0) cells=(1,0,0) (2,0,0) (1,1,0) (1,2,0) (1,2,1)
+     2. anchor=(3,0) cells=(3,0,0) (3,1,0) (3,1,1) (2,1,2) (3,1,2)
+     3. anchor=(3,2) cells=(3,2,0) (3,3,0) (3,3,1) (2,3,2) (3,3,2)
+     4. anchor=(0,4) cells=(0,4,0) (0,5,0) (0,4,1) (0,4,2) (1,4,2)
+     5. anchor=(2,5) cells=(2,5,0) (2,6,0) (1,7,0) (2,7,0) (2,5,1)
+     6. anchor=(0,6) cells=(0,6,0) (0,7,0) (0,6,1) (0,6,2) (1,6,2)
+
+=== LAYER 15 (macro edge) ===
+  transition: 217229141722890951 -> [8 placements] -> p -> 6729013160573166
+  pre-shift p = 0x17e800771ff8eeffffffff
+  p layers: L0=0xffffffff L1=0x771ff8ee L2=0x0017e800
+  p >> 32 == v: True
+  placements:
+     1. anchor=(3,0) cells=(3,0,0) (1,0,1) (2,0,1) (3,0,1) (1,1,1)
+     2. anchor=(0,1) cells=(0,1,0) (1,1,0) (0,2,0) (0,3,0) (0,3,1)
+     3. anchor=(2,2) cells=(2,2,0) (3,2,0) (3,2,1) (3,2,2) (3,3,2)
+     4. anchor=(1,3) cells=(1,3,0) (1,4,0) (1,3,1) (1,3,2) (2,3,2)
+     5. anchor=(2,3) cells=(2,3,0) (2,4,0) (2,4,1) (1,4,2) (2,4,2)
+     6. anchor=(3,4) cells=(3,4,0) (3,5,0) (2,6,0) (3,6,0) (3,4,1)
+     7. anchor=(0,5) cells=(0,5,0) (1,5,0) (0,5,1) (0,4,2) (0,5,2)
+     8. anchor=(0,7) cells=(0,7,0) (2,6,1) (0,7,1) (1,7,1) (2,7,1)
+
+=== LAYER 16 (macro edge) ===
+  transition: 6729013160573166 -> [4 placements] -> p -> 2297949969
+  pre-shift p = 0x88f7ef11ffffffff
+  p layers: L0=0xffffffff L1=0x88f7ef11 L2=0x00000000
+  p >> 32 == v: True
+  placements:
+     1. anchor=(0,0) cells=(0,0,0) (0,0,1) (0,1,1) (0,2,1) (1,2,1)
+     2. anchor=(0,1) cells=(0,1,0) (0,2,0) (1,2,0) (2,2,0) (2,2,1)
+     3. anchor=(1,5) cells=(1,5,0) (2,5,0) (3,5,0) (3,6,0) (1,5,1)
+     4. anchor=(3,7) cells=(3,7,0) (2,5,1) (3,5,1) (3,6,1) (3,7,1)
+
+=== LAYER 17 (macro edge) ===
+  transition: 2297949969 -> [6 placements] -> p -> 1224979683048584328
+  pre-shift p = 0x11000088112e7488ffffffff
+  p layers: L0=0xffffffff L1=0x112e7488 L2=0x11000088
+  p >> 32 == v: True
+  placements:
+     1. anchor=(1,0) cells=(1,0,0) (1,1,0) (2,1,0) (3,1,0) (3,1,1)
+     2. anchor=(2,0) cells=(2,0,0) (3,0,0) (3,0,1) (3,0,2) (3,1,2)
+     3. anchor=(0,3) cells=(0,3,0) (2,2,1) (0,3,1) (1,3,1) (2,3,1)
+     4. anchor=(3,4) cells=(3,4,0) (1,4,1) (2,4,1) (3,4,1) (1,5,1)
+     5. anchor=(0,6) cells=(0,6,0) (1,6,0) (2,6,0) (2,7,0) (0,6,1)
+     6. anchor=(0,7) cells=(0,7,0) (1,7,0) (0,7,1) (0,6,2) (0,7,2)
+
+=== LAYER 18 (macro edge) ===
+  transition: 1224979683048584328 -> [8 placements] -> p -> 17294878168733286543
+  pre-shift p = 0xf003c00ff101808fffffffff
+  p layers: L0=0xffffffff L1=0xf101808f L2=0xf003c00f
+  p >> 32 == v: True
+  placements:
+     1. anchor=(0,0) cells=(0,0,0) (0,1,0) (0,0,1) (0,0,2) (1,0,2)
+     2. anchor=(1,0) cells=(1,0,0) (1,1,0) (0,2,0) (1,2,0) (1,0,1)
+     3. anchor=(2,0) cells=(2,0,0) (2,1,0) (2,0,1) (2,0,2) (3,0,2)
+     4. anchor=(3,2) cells=(3,2,0) (3,3,0) (3,3,1) (2,3,2) (3,3,2)
+     5. anchor=(0,4) cells=(0,4,0) (0,5,0) (0,4,1) (0,4,2) (1,4,2)
+     6. anchor=(2,5) cells=(2,5,0) (3,5,0) (2,6,0) (2,7,0) (2,7,1)
+     7. anchor=(1,6) cells=(1,6,0) (1,7,0) (1,7,1) (0,7,2) (1,7,2)
+     8. anchor=(3,6) cells=(3,6,0) (3,7,0) (3,7,1) (2,7,2) (3,7,2)
+
+=== LAYER 19 (macro edge) ===
+  transition: 17294878168733286543 -> [8 placements] -> p -> 4294967295
+  pre-shift p = 0xffffffffffffffff
+  p layers: L0=0xffffffff L1=0xffffffff L2=0x00000000
+  p >> 32 == v: True
+  placements:
+     1. anchor=(0,1) cells=(0,1,0) (1,1,0) (0,2,0) (0,3,0) (0,3,1)
+     2. anchor=(2,1) cells=(2,1,0) (0,1,1) (1,1,1) (2,1,1) (0,2,1)
+     3. anchor=(1,2) cells=(1,2,0) (3,1,1) (1,2,1) (2,2,1) (3,2,1)
+     4. anchor=(2,2) cells=(2,2,0) (3,2,0) (2,3,0) (2,4,0) (2,4,1)
+     5. anchor=(1,3) cells=(1,3,0) (1,4,0) (0,5,0) (1,5,0) (1,3,1)
+     6. anchor=(3,4) cells=(3,4,0) (3,5,0) (2,6,0) (3,6,0) (3,4,1)
+     7. anchor=(2,5) cells=(2,5,0) (0,5,1) (1,5,1) (2,5,1) (0,6,1)
+     8. anchor=(1,6) cells=(1,6,0) (3,5,1) (1,6,1) (2,6,1) (3,6,1)
+
+=== LAYER 20 (macro edge) ===
+  transition: 4294967295 -> [0 placements] -> p -> 0
+  pre-shift p = 0xffffffff
+  p layers: L0=0xffffffff L1=0x00000000 L2=0x00000000
+  p >> 32 == v: True
+  placements:
+
+=== TOTALS ===
+Total S placements: 128
+  layer 1 (first generation): 14
+  layers 2..20 (macro edges): 114
+Total layers completed: 20
+Final state: 0
+Final state is exactly 0: True
+
+=== VERIFICATION ===
+  first-gen: 0 -> placements -> p0 -> source: True
+  layer 2: u -> placements -> p -> v: True
+  layer 3: u -> placements -> p -> v: True
+  layer 4: u -> placements -> p -> v: True
+  layer 5: u -> placements -> p -> v: True
+  layer 6: u -> placements -> p -> v: True
+  layer 7: u -> placements -> p -> v: True
+  layer 8: u -> placements -> p -> v: True
+  layer 9: u -> placements -> p -> v: True
+  layer 10: u -> placements -> p -> v: True
+  layer 11: u -> placements -> p -> v: True
+  layer 12: u -> placements -> p -> v: True
+  layer 13: u -> placements -> p -> v: True
+  layer 14: u -> placements -> p -> v: True
+  layer 15: u -> placements -> p -> v: True
+  layer 16: u -> placements -> p -> v: True
+  layer 17: u -> placements -> p -> v: True
+  layer 18: u -> placements -> p -> v: True
+  layer 19: u -> placements -> p -> v: True
+  layer 20: u -> placements -> p -> v: True
+  final state == 0: True
+  full simulation 0 -> ... -> 0 returns exactly 0: True
+  ALL CHECKS PASSED: True
+
+Results written to /tmp/opencode/s_4x8x20_frontier_cycle_results.txt

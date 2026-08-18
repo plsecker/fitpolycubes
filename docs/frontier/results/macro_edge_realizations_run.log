@@ -1,0 +1,218 @@
+Building templates...
+  concrete placements=3944 target templates=488
+Parsing cycle file /tmp/opencode/s_4x8x20_frontier_cycle_full.txt...
+Edges built: 20 (all pre-shift targets match recorded)
+
+=== EDGE 1: 0 -> [placements] -> 0x558811aa57ffffeaffffffff -> 6163195513375031274 ===
+  start=0 (0x0)  target=6163195513375031274 (0x558811aa57ffffea)
+  target pre-shift: 0x558811aa57ffffeaffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 815  intermediate (excl. start): 814  states on valid sequences: 15
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 2: 6163195513375031274 -> [placements] -> 0xc0000003f7b81defffffffff -> 13835058072323104239 ===
+  start=6163195513375031274 (0x558811aa57ffffea)  target=13835058072323104239 (0xc0000003f7b81def)
+  target pre-shift: 0xc0000003f7b81defffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 5  intermediate (excl. start): 4  states on valid sequences: 5
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 3: 13835058072323104239 -> [placements] -> 0xee018077ffffffff -> 3993075831 ===
+  start=13835058072323104239 (0xc0000003f7b81def)  target=3993075831 (0xee018077)
+  target pre-shift: 0xee018077ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 5  intermediate (excl. start): 4  states on valid sequences: 5
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 4: 3993075831 -> [placements] -> 0xc6630011f24f88ffffffff -> 55840897340952456 ===
+  start=3993075831 (0xee018077)  target=55840897340952456 (0xc6630011f24f88)
+  target pre-shift: 0xc6630011f24f88ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 26  intermediate (excl. start): 25  states on valid sequences: 9
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 5: 55840897340952456 -> [placements] -> 0x888811118bdffbd1ffffffff -> 9838132153049676753 ===
+  start=55840897340952456 (0xc6630011f24f88)  target=9838132153049676753 (0x888811118bdffbd1)
+  target pre-shift: 0x888811118bdffbd1ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 10  intermediate (excl. start): 9  states on valid sequences: 9
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 6: 9838132153049676753 -> [placements] -> 0x1d0000b8fea8157fffffffff -> 2089671021646321023 ===
+  start=9838132153049676753 (0x888811118bdffbd1)  target=2089671021646321023 (0x1d0000b8fea8157f)
+  target pre-shift: 0x1d0000b8fea8157fffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 7  intermediate (excl. start): 6  states on valid sequences: 7
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 7: 2089671021646321023 -> [placements] -> 0x300c001d1188b8ffffffff -> 13523993509333176 ===
+  start=2089671021646321023 (0x1d0000b8fea8157f)  target=13523993509333176 (0x300c001d1188b8)
+  target pre-shift: 0x300c001d1188b8ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 5  intermediate (excl. start): 4  states on valid sequences: 5
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 8: 13523993509333176 -> [placements] -> 0xc0030080b24d01ffffffff -> 54046496222498049 ===
+  start=13523993509333176 (0x300c001d1188b8)  target=54046496222498049 (0xc0030080b24d01)
+  target pre-shift: 0xc0030080b24d01ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 9  intermediate (excl. start): 8  states on valid sequences: 7
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 9: 54046496222498049 -> [placements] -> 0xc30006ecc3376ffffffff -> 3430478137537398 ===
+  start=54046496222498049 (0xc0030080b24d01)  target=3430478137537398 (0xc30006ecc3376)
+  target pre-shift: 0xc30006ecc3376ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 9  intermediate (excl. start): 8  states on valid sequences: 9
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 10: 3430478137537398 -> [placements] -> 0x9900098cdb319ffffffff -> 2691607028413209 ===
+  start=3430478137537398 (0xc30006ecc3376)  target=2691607028413209 (0x9900098cdb319)
+  target pre-shift: 0x9900098cdb319ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 7  intermediate (excl. start): 6  states on valid sequences: 7
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 11: 2691607028413209 -> [placements] -> 0x118800ef3bdcf7ffffffff -> 4934612199136503 ===
+  start=2691607028413209 (0x9900098cdb319)  target=4934612199136503 (0x118800ef3bdcf7)
+  target pre-shift: 0x118800ef3bdcf7ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 11  intermediate (excl. start): 10  states on valid sequences: 9
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 12: 4934612199136503 -> [placements] -> 0x880011074f7ef2effffffff -> 612490719515897646 ===
+  start=4934612199136503 (0x118800ef3bdcf7)  target=612490719515897646 (0x880011074f7ef2e)
+  target pre-shift: 0x880011074f7ef2effffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 7  intermediate (excl. start): 6  states on valid sequences: 7
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 13: 612490719515897646 -> [placements] -> 0xe20000478aae7551ffffffff -> 16285016559841080657 ===
+  start=612490719515897646 (0x880011074f7ef2e)  target=16285016559841080657 (0xe20000478aae7551)
+  target pre-shift: 0xe20000478aae7551ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 7  intermediate (excl. start): 6  states on valid sequences: 7
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 14: 16285016559841080657 -> [placements] -> 0x303c0c0e34182c7ffffffff -> 217229141722890951 ===
+  start=16285016559841080657 (0xe20000478aae7551)  target=217229141722890951 (0x303c0c0e34182c7)
+  target pre-shift: 0x303c0c0e34182c7ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 7  intermediate (excl. start): 6  states on valid sequences: 7
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 15: 217229141722890951 -> [placements] -> 0x17e800771ff8eeffffffff -> 6729013160573166 ===
+  start=217229141722890951 (0x303c0c0e34182c7)  target=6729013160573166 (0x17e800771ff8ee)
+  target pre-shift: 0x17e800771ff8eeffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 22  intermediate (excl. start): 21  states on valid sequences: 9
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 16: 6729013160573166 -> [placements] -> 0x88f7ef11ffffffff -> 2297949969 ===
+  start=6729013160573166 (0x17e800771ff8ee)  target=2297949969 (0x88f7ef11)
+  target pre-shift: 0x88f7ef11ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 5  intermediate (excl. start): 4  states on valid sequences: 5
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 17: 2297949969 -> [placements] -> 0x11000088112e7488ffffffff -> 1224979683048584328 ===
+  start=2297949969 (0x88f7ef11)  target=1224979683048584328 (0x11000088112e7488)
+  target pre-shift: 0x11000088112e7488ffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 7  intermediate (excl. start): 6  states on valid sequences: 7
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 18: 1224979683048584328 -> [placements] -> 0xf003c00ff101808fffffffff -> 17294878168733286543 ===
+  start=1224979683048584328 (0x11000088112e7488)  target=17294878168733286543 (0xf003c00ff101808f)
+  target pre-shift: 0xf003c00ff101808fffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 10  intermediate (excl. start): 9  states on valid sequences: 9
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 19: 17294878168733286543 -> [placements] -> 0xffffffffffffffff -> 4294967295 ===
+  start=17294878168733286543 (0xf003c00ff101808f)  target=4294967295 (0xffffffff)
+  target pre-shift: 0xffffffffffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 17  intermediate (excl. start): 16  states on valid sequences: 9
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== EDGE 20: 4294967295 -> [placements] -> 0xffffffff -> 0 ===
+  start=4294967295 (0xffffffff)  target=0 (0x0)
+  target pre-shift: 0xffffffff
+  placement sequences: 1
+  distinct states visited (incl. start): 1  intermediate (excl. start): 0  states on valid sequences: 1
+  elapsed: 0.00s  exhaustive: True  limit hit: False
+  recorded sequence valid: True
+  unique sequence == recorded sequence: True
+
+=== SUMMARY ===
+  edge  1: count=1  visited=815  exhaustive=True  0.00s
+  edge  2: count=1  visited=5  exhaustive=True  0.00s
+  edge  3: count=1  visited=5  exhaustive=True  0.00s
+  edge  4: count=1  visited=26  exhaustive=True  0.00s
+  edge  5: count=1  visited=10  exhaustive=True  0.00s
+  edge  6: count=1  visited=7  exhaustive=True  0.00s
+  edge  7: count=1  visited=5  exhaustive=True  0.00s
+  edge  8: count=1  visited=9  exhaustive=True  0.00s
+  edge  9: count=1  visited=9  exhaustive=True  0.00s
+  edge 10: count=1  visited=7  exhaustive=True  0.00s
+  edge 11: count=1  visited=11  exhaustive=True  0.00s
+  edge 12: count=1  visited=7  exhaustive=True  0.00s
+  edge 13: count=1  visited=7  exhaustive=True  0.00s
+  edge 14: count=1  visited=7  exhaustive=True  0.00s
+  edge 15: count=1  visited=22  exhaustive=True  0.00s
+  edge 16: count=1  visited=5  exhaustive=True  0.00s
+  edge 17: count=1  visited=7  exhaustive=True  0.00s
+  edge 18: count=1  visited=10  exhaustive=True  0.00s
+  edge 19: count=1  visited=17  exhaustive=True  0.00s
+  edge 20: count=1  visited=1  exhaustive=True  0.00s
+PRODUCT of 20 edge counts: 1
+all edges exhaustive: True
+
+=== PRODUCT == 1: RECONSTRUCTING THE 128 PLACEMENTS ===
+  total placements: 128
+  distinct occupied cubes: 640
+  all cells in 4x8x20: True
+  every cube covered exactly once: True
+  CERTIFICATE: PASS
+  matches certificate doc placement sets: True
+
+Results written to /tmp/opencode/macro_edge_realizations_results.txt
