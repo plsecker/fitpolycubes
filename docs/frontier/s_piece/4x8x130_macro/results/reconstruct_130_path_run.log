@@ -1,0 +1,430 @@
+Building templates...
+Loading checkpoint succ map...
+  succ sources: 1,419,142
+  macro states: 30,000,015
+Recomputing complete succ[0]...
+  complete succ[0]: 331,765
+Running Tarjan SCC over all macro states...
+  29,999,520 SCCs in 97.2s
+  SCC containing 0: size 478
+  contains s*: True
+  contains WORD_MASK: True
+  contains entry: True
+Computing SCC-internal distances to 0...
+  distances for 478 states
+  R[entry] = [59, 129]
+Counting walks of length 129 from entry to 0 within SCC...
+  number of 129-edge walks: 2048
+  enumerated 1000 walks (cap 1000)
+Verifying every edge...
+  edge   0: 17293822637554016271 -> 941553729924603903  recorded=True ground_truth=True complete=True capped=False n_derived=2133
+  edge   1: 941553729924603903 -> 230543904  recorded=True ground_truth=True complete=True capped=False n_derived=11
+  edge   2: 230543904 -> 6125001254108143641  recorded=True ground_truth=True complete=True capped=False n_derived=96
+  edge   3: 6125001254108143641 -> 828928688112  recorded=True ground_truth=True complete=True capped=False n_derived=34
+  edge   4: 828928688112 -> 730144440522  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge   5: 730144440522 -> 17306823198616993791  recorded=True ground_truth=True complete=True capped=False n_derived=147
+  edge   6: 17306823198616993791 -> 613408745337090048  recorded=True ground_truth=True complete=True capped=False n_derived=2
+  edge   7: 613408745337090048 -> 64574966991  recorded=True ground_truth=True complete=True capped=False n_derived=22
+  edge   8: 64574966991 -> 1224979307383262271  recorded=True ground_truth=True complete=True capped=False n_derived=91
+  edge   9: 1224979307383262271 -> 864701646814409136  recorded=True ground_truth=True complete=True capped=False n_derived=345
+  edge  10: 864701646814409136 -> 38280597042891711  recorded=True ground_truth=True complete=True capped=False n_derived=27
+  edge  11: 38280597042891711 -> 8358680910312169536  recorded=True ground_truth=True complete=True capped=False n_derived=577
+  edge  12: 8358680910312169536 -> 56077072732959  recorded=True ground_truth=True complete=True capped=False n_derived=96
+  edge  13: 56077072732959 -> 15903338482628454  recorded=True ground_truth=True complete=True capped=False n_derived=28
+  edge  14: 15903338482628454 -> 1224992305958127663  recorded=True ground_truth=True complete=True capped=False n_derived=10
+  edge  15: 1224992305958127663 -> 17293825871682424695  recorded=True ground_truth=True complete=True capped=False n_derived=687
+  edge  16: 17293825871682424695 -> 9826873907416699776  recorded=True ground_truth=True complete=True capped=False n_derived=26
+  edge  17: 9826873907416699776 -> 69198939117935103  recorded=True ground_truth=True complete=True capped=False n_derived=54
+  edge  18: 69198939117935103 -> 1228356798667282449  recorded=True ground_truth=True complete=True capped=False n_derived=20
+  edge  19: 1228356798667282449 -> 2449965619849723776  recorded=True ground_truth=True complete=True capped=False n_derived=222
+  edge  20: 2449965619849723776 -> 13835058132171671295  recorded=True ground_truth=True complete=True capped=False n_derived=11
+  edge  21: 13835058132171671295 -> 216172786130235357  recorded=True ground_truth=True complete=True capped=False n_derived=3
+  edge  22: 216172786130235357 -> 54170947048198176  recorded=True ground_truth=True complete=True capped=False n_derived=6
+  edge  23: 54170947048198176 -> 13835058108984918012  recorded=True ground_truth=True complete=True capped=False n_derived=16
+  edge  24: 13835058108984918012 -> 1225823673882050574  recorded=True ground_truth=True complete=True capped=False n_derived=4
+  edge  25: 1225823673882050574 -> 38544479925302067  recorded=True ground_truth=True complete=True capped=False n_derived=140
+  edge  26: 38544479925302067 -> 9799832842988482572  recorded=True ground_truth=True complete=True capped=False n_derived=25
+  edge  27: 9799832842988482572 -> 153124728007242540  recorded=True ground_truth=True complete=True capped=False n_derived=2289
+  edge  28: 153124728007242540 -> 970774344690  recorded=True ground_truth=True complete=True capped=False n_derived=23
+  edge  29: 970774344690 -> 13835208177023519739  recorded=True ground_truth=True complete=True capped=False n_derived=36
+  edge  30: 13835208177023519739 -> 14108936678981535  recorded=True ground_truth=True complete=True capped=False n_derived=67
+  edge  31: 14108936678981535 -> 1226672621718216768  recorded=True ground_truth=True complete=True capped=False n_derived=4
+  edge  32: 1226672621718216768 -> 2450010987588681711  recorded=True ground_truth=True complete=True capped=False n_derived=91
+  edge  33: 2450010987588681711 -> 13889101254685585527  recorded=True ground_truth=True complete=True capped=False n_derived=17
+  edge  34: 13889101254685585527 -> 216210169534515912  recorded=True ground_truth=True complete=True capped=False n_derived=13
+  edge  35: 216210169534515912 -> 968671740654591  recorded=True ground_truth=True complete=True capped=False n_derived=8
+  edge  36: 968671740654591 -> 13873343327203491264  recorded=True ground_truth=True complete=True capped=False n_derived=26
+  edge  37: 13873343327203491264 -> 1224979115816781423  recorded=True ground_truth=True complete=True capped=False n_derived=4
+  edge  38: 1224979115816781423 -> 4996181123003379  recorded=True ground_truth=True complete=True capped=False n_derived=172
+  edge  39: 4996181123003379 -> 9838118645322597384  recorded=True ground_truth=True complete=True capped=False n_derived=234
+  edge  40: 9838118645322597384 -> 432377517954309327  recorded=True ground_truth=True complete=True capped=False n_derived=631
+  edge  41: 432377517954309327 -> 220958066887229247  recorded=True ground_truth=True complete=True capped=False n_derived=37
+  edge  42: 220958066887229247 -> 9579497056829616  recorded=True ground_truth=True complete=True capped=False n_derived=20
+  edge  43: 9579497056829616 -> 13889313673465757058  recorded=True ground_truth=True complete=True capped=False n_derived=66
+  edge  44: 13889313673465757058 -> 1225824111984365562  recorded=True ground_truth=True complete=True capped=False n_derived=2
+  edge  45: 1225824111984365562 -> 18691990691805  recorded=True ground_truth=True complete=True capped=False n_derived=2
+  edge  46: 18691990691805 -> 9799832817218679042  recorded=True ground_truth=True complete=True capped=False n_derived=175
+  edge  47: 9799832817218679042 -> 433192926076535343  recorded=True ground_truth=True complete=True capped=False n_derived=846
+  edge  48: 433192926076535343 -> 255262829689430715  recorded=True ground_truth=True complete=True capped=False n_derived=51
+  edge  49: 255262829689430715 -> 149587129794420  recorded=True ground_truth=True complete=True capped=False n_derived=4
+  edge  50: 149587129794420 -> 13862080625860708494  recorded=True ground_truth=True complete=True capped=False n_derived=3
+  edge  51: 13862080625860708494 -> 1283912939072877027  recorded=True ground_truth=True complete=True capped=False n_derived=17
+  edge  52: 1283912939072877027 -> 214027112276607  recorded=True ground_truth=True complete=True capped=False n_derived=3
+  edge  53: 214027112276607 -> 9799849284114370542  recorded=True ground_truth=True complete=True capped=False n_derived=8
+  edge  54: 9799849284114370542 -> 1263259710939205377  recorded=True ground_truth=True complete=True capped=False n_derived=374
+  edge  55: 1263259710939205377 -> 6917828680824385791  recorded=True ground_truth=True complete=True capped=False n_derived=82
+  edge  56: 6917828680824385791 -> 13839993835458206088  recorded=True ground_truth=True complete=True capped=False n_derived=27
+  edge  57: 13839993835458206088 -> 828662626979409783  recorded=True ground_truth=True complete=True capped=False n_derived=65
+  edge  58: 828662626979409783 -> 1224979927035613380  recorded=True ground_truth=True complete=True capped=False n_derived=3
+  edge  59: 1224979927035613380 -> 860921782210542  recorded=True ground_truth=True complete=True capped=False n_derived=52
+  edge  60: 860921782210542 -> 4837864096874241  recorded=True ground_truth=True complete=True capped=False n_derived=28
+  edge  61: 4837864096874241 -> 306320129004272895  recorded=True ground_truth=True complete=True capped=False n_derived=11
+  edge  62: 306320129004272895 -> 216210169523095176  recorded=True ground_truth=True complete=True capped=False n_derived=12
+  edge  63: 216210169523095176 -> 13510873905363729  recorded=True ground_truth=True complete=True capped=False n_derived=35
+  edge  64: 13510873905363729 -> 13838436581787329139  recorded=True ground_truth=True complete=True capped=False n_derived=27
+  edge  65: 13838436581787329139 -> 1225281468621488607  recorded=True ground_truth=True complete=True capped=False n_derived=2
+  edge  66: 1225281468621488607 -> 172860820364984160  recorded=True ground_truth=True complete=True capped=False n_derived=30
+  edge  67: 172860820364984160 -> 9799832805197144067  recorded=True ground_truth=True complete=True capped=False n_derived=2
+  edge  68: 9799832805197144067 -> 6917542298150571027  recorded=True ground_truth=True complete=True capped=False n_derived=138
+  edge  69: 6917542298150571027 -> 67557879074172921  recorded=True ground_truth=True complete=True capped=False n_derived=177
+  edge  70: 67557879074172921 -> 13835111126061307884  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge  71: 13835111126061307884 -> 1225190222041445991  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge  72: 1225190222041445991 -> 617275448855101431  recorded=True ground_truth=True complete=True capped=False n_derived=8
+  edge  73: 617275448855101431 -> 13900360252177055982  recorded=True ground_truth=True complete=True capped=False n_derived=27
+  edge  74: 13900360252177055982 -> 1244272245584201985  recorded=True ground_truth=True complete=True capped=False n_derived=141
+  edge  75: 1244272245584201985 -> 13258672654949810175  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge  76: 13258672654949810175 -> 4953959594276701320  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge  77: 4953959594276701320 -> 115897395847069713  recorded=True ground_truth=True complete=True capped=False n_derived=455
+  edge  78: 115897395847069713 -> 15087082118964051795  recorded=True ground_truth=True complete=True capped=False n_derived=182
+  edge  79: 15087082118964051795 -> 2449959026216171511  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge  80: 2449959026216171511 -> 844425501575406  recorded=True ground_truth=True complete=True capped=False n_derived=7
+  edge  81: 844425501575406 -> 13835076763354599681  recorded=True ground_truth=True complete=True capped=False n_derived=112
+  edge  82: 13835076763354599681 -> 3510706031379913215  recorded=True ground_truth=True complete=True capped=False n_derived=249
+  edge  83: 3510706031379913215 -> 864697729769524872  recorded=True ground_truth=True complete=True capped=False n_derived=32
+  edge  84: 864697729769524872 -> 76564565432790801  recorded=True ground_truth=True complete=True capped=False n_derived=58
+  edge  85: 76564565432790801 -> 6738234141805868883  recorded=True ground_truth=True complete=True capped=False n_derived=115
+  edge  86: 6738234141805868883 -> 13889313185971037943  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge  87: 13889313185971037943 -> 38283898601926638  recorded=True ground_truth=True complete=True capped=False n_derived=2
+  edge  88: 38283898601926638 -> 1224979111959557889  recorded=True ground_truth=True complete=True capped=False n_derived=33
+  edge  89: 1224979111959557889 -> 54254889959719167  recorded=True ground_truth=True complete=True capped=False n_derived=47
+  edge  90: 54254889959719167 -> 20003415057629064  recorded=True ground_truth=True complete=True capped=False n_derived=55
+  edge  91: 20003415057629064 -> 13510873833738513  recorded=True ground_truth=True complete=True capped=False n_derived=5
+  edge  92: 13510873833738513 -> 150119994919065  recorded=True ground_truth=True complete=True capped=False n_derived=269
+  edge  93: 150119994919065 -> 1225278191862652878  recorded=True ground_truth=True complete=True capped=False n_derived=1163
+  edge  94: 1225278191862652878 -> 433541850058317039  recorded=True ground_truth=True complete=True capped=False n_derived=408
+  edge  95: 433541850058317039 -> 881808426562323  recorded=True ground_truth=True complete=True capped=False n_derived=7
+  edge  96: 881808426562323 -> 13889101838161014504  recorded=True ground_truth=True complete=True capped=False n_derived=17
+  edge  97: 13889101838161014504 -> 3765009292587988383  recorded=True ground_truth=True complete=True capped=False n_derived=29
+  edge  98: 3765009292587988383 -> 27022011120012384  recorded=True ground_truth=True complete=True capped=False n_derived=28
+  edge  99: 27022011120012384 -> 4899917221359286263  recorded=True ground_truth=True complete=True capped=False n_derived=18
+  edge 100: 4899917221359286263 -> 48061855709167854  recorded=True ground_truth=True complete=True capped=False n_derived=8
+  edge 101: 48061855709167854 -> 3458783219476856577  recorded=True ground_truth=True complete=True capped=False n_derived=68
+  edge 102: 3458783219476856577 -> 4899916980573704703  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge 103: 4899916980573704703 -> 2453784502049159304  recorded=True ground_truth=True complete=True capped=False n_derived=399
+  edge 104: 2453784502049159304 -> 73585760529  recorded=True ground_truth=True complete=True capped=False n_derived=25
+  edge 105: 73585760529 -> 216173366255775897  recorded=True ground_truth=True complete=True capped=False n_derived=1047
+  edge 106: 216173366255775897 -> 10106077593871585230  recorded=True ground_truth=True complete=True capped=False n_derived=483
+  edge 107: 10106077593871585230 -> 2392554187423983  recorded=True ground_truth=True complete=True capped=False n_derived=78
+  edge 108: 2392554187423983 -> 272108305905531255  recorded=True ground_truth=True complete=True capped=False n_derived=40
+  edge 109: 272108305905531255 -> 9800680379475558384  recorded=True ground_truth=True complete=True capped=False n_derived=3
+  edge 110: 9800680379475558384 -> 4785807032028906  recorded=True ground_truth=True complete=True capped=False n_derived=2
+  edge 111: 4785807032028906 -> 1837468661354822895  recorded=True ground_truth=True complete=True capped=False n_derived=12
+  edge 112: 1837468661354822895 -> 3378870527459703  recorded=True ground_truth=True complete=True capped=False n_derived=14
+  edge 113: 3378870527459703 -> 153421454743961496  recorded=True ground_truth=True complete=True capped=False n_derived=750
+  edge 114: 153421454743961496 -> 201795375342  recorded=True ground_truth=True complete=True capped=False n_derived=14
+  edge 115: 201795375342 -> 211106304882495  recorded=True ground_truth=True complete=True capped=False n_derived=74
+  edge 116: 211106304882495 -> 878202223639195200  recorded=True ground_truth=True complete=True capped=False n_derived=44
+  edge 117: 878202223639195200 -> 76561206771938151  recorded=True ground_truth=True complete=True capped=False n_derived=2
+  edge 118: 76561206771938151 -> 6124895494619758719  recorded=True ground_truth=True complete=True capped=False n_derived=28
+  edge 119: 6124895494619758719 -> 3409589852444928  recorded=True ground_truth=True complete=True capped=False n_derived=6
+  edge 120: 3409589852444928 -> 12016193213743098  recorded=True ground_truth=True complete=True capped=False n_derived=59
+  edge 121: 12016193213743098 -> 17293822573196345343  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge 122: 17293822573196345343 -> 306244778754834432  recorded=True ground_truth=True complete=True capped=False n_derived=2
+  edge 123: 306244778754834432 -> 77159394294362127  recorded=True ground_truth=True complete=True capped=False n_derived=8804
+  edge 124: 77159394294362127 -> 4258407471  recorded=True ground_truth=True complete=True capped=False n_derived=16
+  edge 125: 4258407471 -> 27083926332145392  recorded=True ground_truth=True complete=True capped=False n_derived=73
+  edge 126: 27083926332145392 -> 6124896224978780154  recorded=True ground_truth=True complete=True capped=False n_derived=22
+  edge 127: 6124896224978780154 -> 4294967295  recorded=True ground_truth=True complete=True capped=False n_derived=1
+  edge 128: 4294967295 -> 0  recorded=True ground_truth=True complete=True capped=False n_derived=1
+Analyzing path structure...
+
+=== RECONSTRUCTED 129-EDGE MACRO PATH ===
+  M  0 = 17293822637554016271  (0xf000000ff004200f)
+  M  1 = 941553729924603903  (0xd111220f9199fff)
+  M  2 = 230543904  (0xdbdd220)
+  M  3 = 6125001254108143641  (0x550060305ff02019)
+  M  4 = 828928688112  (0xc0fffffff0)
+  M  5 = 730144440522  (0xaa000000ca)
+  M  6 = 17306823198616993791  (0xf02e3000f00e3fff)
+  M  7 = 613408745337090048  (0x8834400ffef7000)
+  M  8 = 64574966991  (0xf08f7cccf)
+  M  9 = 1224979307383262271  (0x1100003099c88c3f)
+  M 10 = 864701646814409136  (0xc000990ff1171b0)
+  M 11 = 38280597042891711  (0x8800000c880bbf)
+  M 12 = 8358680910312169536  (0x7400000071fee040)
+  M 13 = 56077072732959  (0x33007600131f)
+  M 14 = 15903338482628454  (0x38800088fff766)
+  M 15 = 1224992305958127663  (0x11000c031138882f)
+  M 16 = 17293825871682424695  (0xf0000300f1174f77)
+  M 17 = 9826873907416699776  (0x886011c0f8209380)
+  M 18 = 69198939117935103  (0xf5d81188f559ff)
+  M 19 = 1228356798667282449  (0x110c000011ffd811)
+  M 20 = 2449965619849723776  (0x220006c0330fff80)
+  M 21 = 13835058132171671295  (0xc0000011e6f8c6ff)
+  M 22 = 216172786130235357  (0x3000000ef662fdd)
+  M 23 = 54170947048198176  (0xc0743077f45020)
+  M 24 = 13835058108984918012  (0xc000000c80eefffc)
+  M 25 = 1225823673882050574  (0x11030022ff01000e)
+  M 26 = 38544479925302067  (0x88f00011fff333)
+  M 27 = 9799832842988482572  (0x8800000c8888f00c)
+  M 28 = 153124728007242540  (0x2200220fb33332c)
+  M 29 = 970774344690  (0xe206a8f3f2)
+  M 30 = 13835208177023519739  (0xc0008888f1110bfb)
+  M 31 = 14108936678981535  (0x322000cee8bf9f)
+  M 32 = 1226672621718216768  (0x1106044011362040)
+  M 33 = 2450010987588681711  (0x220030033306ffef)
+  M 34 = 13889101254685585527  (0xc0c00000e6f77077)
+  M 35 = 216210169534515912  (0x3002200efee8ac8)
+  M 36 = 968671740654591  (0x37100770173ff)
+  M 37 = 13873343327203491264  (0xc088044080fffdc0)
+  M 38 = 1224979115816781423  (0x11000003ff88066f)
+  M 39 = 4996181123003379  (0x11c0001111f3f3)
+  M 40 = 9838118645322597384  (0x888804c88899c408)
+  M 41 = 432377517954309327  (0x6001d0fce881ccf)
+  M 42 = 220958066887229247  (0x3110030ef11ff3f)
+  M 43 = 9579497056829616  (0x220880773300b0)
+  M 44 = 13889313673465757058  (0xc0c0c13280e6fd82)
+  M 45 = 1225824111984365562  (0x11030088ffefcffa)
+  M 46 = 18691990691805  (0x110011771fdd)
+  M 47 = 9799832817218679042  (0x880000068888f102)
+  M 48 = 433192926076535343  (0x60302abce01022f)
+  M 49 = 255262829689430715  (0x38ae030efffe2bb)
+  M 50 = 149587129794420  (0x880c77bbff74)
+  M 51 = 13862080625860708494  (0xc06000e28040888e)
+  M 52 = 1283912939072877027  (0x11d16003fff771e3)
+  M 53 = 214027112276607  (0xc2a811ffe27f)
+  M 54 = 9799849284114370542  (0x88000f008800cfee)
+  M 55 = 1263259710939205377  (0x1188000399980f01)
+  M 56 = 6917828680824385791  (0x60011088718bf0ff)
+  M 57 = 13839993835458206088  (0xc0118910e0151988)
+  M 58 = 828662626979409783  (0xb800044cfbfef77)
+  M 59 = 1224979927035613380  (0x110000c0dff110c4)
+  M 60 = 860921782210542  (0x30f00f9020fee)
+  M 61 = 4837864096874241  (0x11300302f73f01)
+  M 62 = 306320129004272895  (0x4404488ccd9fcff)
+  M 63 = 216210169523095176  (0x3002200ef404688)
+  M 64 = 13510873905363729  (0x30001177bbfb11)
+  M 65 = 13838436581787329139  (0xc00c00c080346273)
+  M 66 = 1225281468621488607  (0x11011300ff0d81df)
+  M 67 = 172860820364984160  (0x2662000116fff60)
+  M 68 = 9799832805197144067  (0x88000003bbfee003)
+  M 69 = 6917542298150571027  (0x60000c11c8010c13)
+  M 70 = 67557879074172921  (0xf0038877feaff9)
+  M 71 = 13835111126061307884  (0xc000304480f057ec)
+  M 72 = 1225190222041445991  (0x1100c003ff0ff667)
+  M 73 = 617275448855101431  (0x89100c01193fff7)
+  M 74 = 13900360252177055982  (0xc0e8000088f900ee)
+  M 75 = 1244272245584201985  (0x11448b03d1ec8901)
+  M 76 = 13258672654949810175  (0xb80044883f77ffff)
+  M 77 = 4953959594276701320  (0x44c00000f8804488)
+  M 78 = 115897395847069713  (0x19bc01145db8011)
+  M 79 = 15087082118964051795  (0xd16015409dffff53)
+  M 80 = 2449959026216171511  (0x220000c0ffe077f7)
+  M 81 = 844425501575406  (0x30000220f88ee)
+  M 82 = 13835076763354599681  (0xc0001103d0031101)
+  M 83 = 3510706031379913215  (0x30b88888f73899ff)
+  M 84 = 864697729769524872  (0xc000600fcffce88)
+  M 85 = 76564565432790801  (0x11003110d00ef11)
+  M 86 = 6738234141805868883  (0x5d83044053bf7753)
+  M 87 = 13889313185971037943  (0xc0c0c0c0fff3e6f7)
+  M 88 = 38283898601926638  (0x880300c0c8efee)
+  M 89 = 1224979111959557889  (0x11000003199f7701)
+  M 90 = 54254889959719167  (0xc0c088f36080ff)
+  M 91 = 20003415057629064  (0x47110000cdff88)
+  M 92 = 13510873833738513  (0x30001173771111)
+  M 93 = 150119994919065  (0x888888f88899)
+  M 94 = 1225278191862652878  (0x1101100611019fce)
+  M 95 = 433541850058317039  (0x6044003fffddcef)
+  M 96 = 881808426562323  (0x3220006067313)
+  M 97 = 13889101838161014504  (0xc0c00088c0cfeee8)
+  M 98 = 3765009292587988383  (0x34400000f4c0759f)
+  M 99 = 27022011120012384  (0x6000603deccc60)
+  M100 = 4899917221359286263  (0x440000c07ff077f7)
+  M101 = 48061855709167854  (0xaac000ccca80ee)
+  M102 = 3458783219476856577  (0x300011033fffff01)
+  M103 = 4899916980573704703  (0x44000088700011ff)
+  M104 = 2453784502049159304  (0x220d9800ffffb888)
+  M105 = 73585760529  (0x11220d9911)
+  M106 = 216173366255775897  (0x300008801937099)
+  M107 = 10106077593871585230  (0x8c400006ff400fce)
+  M108 = 2392554187423983  (0x88003ee7280ef)
+  M109 = 272108305905531255  (0x3c6b91001eeb977)
+  M110 = 9800680379475558384  (0x880302e0ffc7fff0)
+  M111 = 4785807032028906  (0x1100aa881b8eea)
+  M112 = 1837468661354822895  (0x198000031df77cef)
+  M113 = 3378870527459703  (0xc011099880177)
+  M114 = 153421454743961496  (0x22110000eefff98)
+  M115 = 201795375342  (0x2efbf110ee)
+  M116 = 211106304882495  (0xc000044ff73f)
+  M117 = 878202223639195200  (0xc300044fcf8ee40)
+  M118 = 76561206771938151  (0x11000030d377367)
+  M119 = 6124895494619758719  (0x550000005333807f)
+  M120 = 3409589852444928  (0xc1d00fffc1900)
+  M121 = 12016193213743098  (0x2ab0aa000ebffa)
+  M122 = 17293822573196345343  (0xf0000000f3ffffff)
+  M123 = 306244778754834432  (0x4400000f4000000)
+  M124 = 77159394294362127  (0x112200f6ffff00f)
+  M125 = 4258407471  (0xfdd2242f)
+  M126 = 27083926332145392  (0x6038b000267ef0)
+  M127 = 6124896224978780154  (0x550000aa5ffdbffa)
+  M128 = 4294967295  (0xffffffff)
+  M129 = 0  (0x0)
+
+=== EDGE VERIFICATION ===
+  all 129 edges recorded: True
+  all 129 edges ground-truth: True
+  all recorded succ complete (no cap truncation): True
+  any cap hit during re-derivation: False
+  VERIFICATION: PASS
+
+=== PATH STRUCTURE INSIDE SCC ===
+  all path states in SCC: True
+  repeated states: 0
+  greedy decomposition:
+    suffix [  0..130] length 130
+  known 20-cycle does NOT occur as a contiguous subpath
+
+  distance profile (R[u] along the path):
+    M  0 17293822637554016271  R=[59, 129]
+    M  1 941553729924603903  R=[58, 128]
+    M  2 230543904  R=[57, 127]
+    M  3 6125001254108143641  R=[56, 126]
+    M  4 828928688112  R=[55, 125]
+    M  5 730144440522  R=[54, 124]
+    M  6 17306823198616993791  R=[53, 123]
+    M  7 613408745337090048  R=[52, 122]
+    M  8 64574966991  R=[51, 121]
+    M  9 1224979307383262271  R=[50, 120]
+    M 10 864701646814409136  R=[49, 119, 129]
+    M 11 38280597042891711  R=[48, 118, 128]
+    M 12 8358680910312169536  R=[47, 117, 127]
+    M 13 56077072732959  R=[46, 116, 126]
+    M 14 15903338482628454  R=[45, 115, 125]
+    M 15 1224992305958127663  R=[44, 114, 124]
+    M 16 17293825871682424695  R=[43, 113, 123]
+    M 17 9826873907416699776  R=[42, 112, 122]
+    M 18 69198939117935103  R=[41, 111, 121]
+    M 19 1228356798667282449  R=[40, 110, 120]
+    M 20 2449965619849723776  R=[39, 109, 119]
+    M 21 13835058132171671295  R=[38, 108, 118]
+    M 22 216172786130235357  R=[37, 107, 117]
+    M 23 54170947048198176  R=[36, 106, 116]
+    M 24 13835058108984918012  R=[35, 105, 115]
+    M 25 1225823673882050574  R=[34, 104, 114]
+    M 26 38544479925302067  R=[103]
+    M 27 9799832842988482572  R=[102]
+    M 28 153124728007242540  R=[101]
+    M 29 970774344690  R=[100]
+    M 30 13835208177023519739  R=[99]
+    M 31 14108936678981535  R=[98]
+    M 32 1226672621718216768  R=[97]
+    M 33 2450010987588681711  R=[96]
+    M 34 13889101254685585527  R=[95]
+    M 35 216210169534515912  R=[94]
+    M 36 968671740654591  R=[93]
+    M 37 13873343327203491264  R=[92]
+    M 38 1224979115816781423  R=[91]
+    M 39 4996181123003379  R=[90]
+    M 40 9838118645322597384  R=[89]
+    M 41 432377517954309327  R=[88]
+    M 42 220958066887229247  R=[87]
+    M 43 9579497056829616  R=[86]
+    M 44 13889313673465757058  R=[85]
+    M 45 1225824111984365562  R=[84]
+    M 46 18691990691805  R=[83]
+    M 47 9799832817218679042  R=[82]
+    M 48 433192926076535343  R=[81]
+    M 49 255262829689430715  R=[80]
+    M 50 149587129794420  R=[79]
+    M 51 13862080625860708494  R=[78]
+    M 52 1283912939072877027  R=[77]
+    M 53 214027112276607  R=[76]
+    M 54 9799849284114370542  R=[75]
+    M 55 1263259710939205377  R=[74]
+    M 56 6917828680824385791  R=[73]
+    M 57 13839993835458206088  R=[72]
+    M 58 828662626979409783  R=[71]
+    M 59 1224979927035613380  R=[70]
+    M 60 860921782210542  R=[69]
+    M 61 4837864096874241  R=[68]
+    M 62 306320129004272895  R=[67]
+    M 63 216210169523095176  R=[66]
+    M 64 13510873905363729  R=[65]
+    M 65 13838436581787329139  R=[64]
+    M 66 1225281468621488607  R=[63]
+    M 67 172860820364984160  R=[62]
+    M 68 9799832805197144067  R=[61]
+    M 69 6917542298150571027  R=[60]
+    M 70 67557879074172921  R=[59]
+    M 71 13835111126061307884  R=[58]
+    M 72 1225190222041445991  R=[57]
+    M 73 617275448855101431  R=[56]
+    M 74 13900360252177055982  R=[55]
+    M 75 1244272245584201985  R=[54]
+    M 76 13258672654949810175  R=[53]
+    M 77 4953959594276701320  R=[52]
+    M 78 115897395847069713  R=[51]
+    M 79 15087082118964051795  R=[50]
+    M 80 2449959026216171511  R=[49, 129]
+    M 81 844425501575406  R=[48, 128]
+    M 82 13835076763354599681  R=[47, 127]
+    M 83 3510706031379913215  R=[46, 126]
+    M 84 864697729769524872  R=[45, 125]
+    M 85 76564565432790801  R=[44, 124]
+    M 86 6738234141805868883  R=[43, 123]
+    M 87 13889313185971037943  R=[42, 122]
+    M 88 38283898601926638  R=[41, 121]
+    M 89 1224979111959557889  R=[40, 120]
+    M 90 54254889959719167  R=[39, 119]
+    M 91 20003415057629064  R=[38, 118]
+    M 92 13510873833738513  R=[37, 117]
+    M 93 150119994919065  R=[36, 116]
+    M 94 1225278191862652878  R=[35, 115]
+    M 95 433541850058317039  R=[34, 114]
+    M 96 881808426562323  R=[33, 113]
+    M 97 13889101838161014504  R=[32, 112]
+    M 98 3765009292587988383  R=[31, 111]
+    M 99 27022011120012384  R=[30, 110]
+    M100 4899917221359286263  R=[29, 109]
+    M101 48061855709167854  R=[28, 108]
+    M102 3458783219476856577  R=[27, 107]
+    M103 4899916980573704703  R=[26, 106]
+    M104 2453784502049159304  R=[25, 105]
+    M105 73585760529  R=[24, 104]
+    M106 216173366255775897  R=[23, 103]
+    M107 10106077593871585230  R=[22, 102]
+    M108 2392554187423983  R=[21, 101]
+    M109 272108305905531255  R=[20, 100]
+    M110 9800680379475558384  R=[19, 99]
+    M111 4785807032028906  R=[18, 98]
+    M112 1837468661354822895  R=[17, 97]
+    M113 3378870527459703  R=[16, 96]
+    M114 153421454743961496  R=[15, 95]
+    M115 201795375342  R=[14, 94]
+    M116 211106304882495  R=[13, 93]
+    M117 878202223639195200  R=[12, 92]
+    M118 76561206771938151  R=[11, 91]
+    M119 6124895494619758719  R=[10, 90]
+    M120 3409589852444928  R=[9]
+    M121 12016193213743098  R=[8]
+    M122 17293822573196345343  R=[7]
+    M123 306244778754834432  R=[6]
+    M124 77159394294362127  R=[5]
+    M125 4258407471  R=[4]
+    M126 27083926332145392  R=[3]
+    M127 6124896224978780154  R=[2]
+    M128 4294967295  R=[1]
+    M129 0  R=[0]
+
+Results written to /tmp/opencode/reconstruct_130_path_results.txt
+Total elapsed: 114.8s

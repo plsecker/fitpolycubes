@@ -1,0 +1,27 @@
+Loading persisted SCC data...
+  SCC states: 478
+  SCC edges: 514
+  20-cycle states in SCC: 20/20
+Computing walk-count DP...
+  walks of length 129: 2048
+Enumerating all walks...
+  enumerated: 2048
+Verifying every walk...
+  walks with invalid edges: 0
+Analysing walk family...
+  simple paths (no repeated states): 2048/2048
+  walks by number of repeated states: {0: 2048}
+  walks containing the 20-cycle as subpath: 0/2048
+  distinct states used across all walks: 292
+  top states by walk usage: [(0, 2048), (17293822637554016271, 2048), (4294967295, 2048), (6124896224978780154, 2048), (613408745337090048, 1024), (13835208177023519739, 1024), (13835058108984918012, 1024), (13258672654949810175, 1024), (4899916980573704703, 1024), (17306823198616993791, 1024)]
+  distinct edges across all walks: 316
+
+=== SUMMARY ===
+  walks: 2048
+  simple paths: 2048
+  walks with 20-cycle subpath: 0
+  distinct states used: 292
+  distinct edges: 316
+  walks saved to /tmp/opencode/walks_130.txt
+  results written to /tmp/opencode/analyze_130_walks_results.txt
+  elapsed: 0.3s

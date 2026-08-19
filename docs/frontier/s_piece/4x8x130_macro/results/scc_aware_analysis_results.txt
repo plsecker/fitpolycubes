@@ -1,0 +1,11 @@
+macro_states=30000015
+num_sccs=29999520
+num_nontrivial_sccs=3
+scc_0_size=478
+scc_0_contains_s_star=True
+first_gen_sources=331765
+sources_in_scc=4
+entry_points=4
+target_distance=129
+achievable=True
+num_achievable_combinations=1
