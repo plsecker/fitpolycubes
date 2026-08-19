@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import resource
 import sys
 import tempfile
 import time
@@ -249,13 +250,19 @@ def load_checkpoint(checkpoint_dir):
                 elif key == 'elapsed':
                     counters[key] = float(value)
         
+        # Add default values for new counters (backward compatibility)
+        if 'source_expansions' not in counters:
+            counters['source_expansions'] = 0
+        if 'max_bfs_distance' not in counters:
+            counters['max_bfs_distance'] = 0
+        
         return macro_seen, queue, succ, dist, counters
     except Exception as e:
         print(f"  ERROR loading checkpoint: {e}", flush=True)
         return None
 
 
-def macro_closure(sources, templates, max_closure_states, checkpoint_dir=None, checkpoint_every=1_000_000):
+def macro_closure(sources, templates, max_closure_states, checkpoint_dir=None, checkpoint_every=1_000_000, progress_every=250_000):
     """
     Build macro closure with checkpoint/restart support.
     
@@ -265,6 +272,7 @@ def macro_closure(sources, templates, max_closure_states, checkpoint_dir=None, c
         max_closure_states: maximum number of macro states to discover
         checkpoint_dir: directory for checkpoints (None to disable)
         checkpoint_every: checkpoint interval (number of newly discovered states)
+        progress_every: progress report interval (number of newly discovered states, 0 to disable)
     
     Returns:
         (macro_seen, succ, counters)
@@ -293,16 +301,22 @@ def macro_closure(sources, templates, max_closure_states, checkpoint_dir=None, c
             'total_intermediate': 0,
             'edge_count': 0,
             'elapsed': 0.0,
+            'source_expansions': 0,
+            'max_bfs_distance': 0,
         }
     
     start_time = time.perf_counter()
     last_checkpoint_count = len(macro_seen)
+    last_progress_count = len(macro_seen)
     
     while queue:
         if len(macro_seen) >= max_closure_states:
             break
         
         src = queue.popleft()
+        current_bfs_distance = dist.get(src, 0)
+        counters['source_expansions'] += 1
+        
         successors = explore_source(src, templates)
         
         if successors:
@@ -312,7 +326,10 @@ def macro_closure(sources, templates, max_closure_states, checkpoint_dir=None, c
         for s in successors:
             if s not in macro_seen:
                 macro_seen.add(s)
-                dist[s] = dist[src] + 1
+                new_dist = dist[src] + 1
+                dist[s] = new_dist
+                if new_dist > counters['max_bfs_distance']:
+                    counters['max_bfs_distance'] = new_dist
                 queue.append(s)
         
         # Check if we should checkpoint
@@ -325,6 +342,27 @@ def macro_closure(sources, templates, max_closure_states, checkpoint_dir=None, c
             
             save_checkpoint(checkpoint_dir, macro_seen, queue, succ, dist, counters, elapsed)
             last_checkpoint_count = len(macro_seen)
+        
+        # Check if we should report progress
+        if progress_every > 0 and len(macro_seen) - last_progress_count >= progress_every:
+            elapsed = time.perf_counter() - start_time + counters['elapsed']
+            states_per_sec = len(macro_seen) / elapsed if elapsed > 0 else 0
+            edges_per_sec = counters['edge_count'] / elapsed if elapsed > 0 else 0
+            rss_mb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0
+            
+            print(f"\n  progress:", flush=True)
+            print(f"    macro states = {len(macro_seen):,}", flush=True)
+            print(f"    macro edges = {counters['edge_count']:,}", flush=True)
+            print(f"    queue size = {len(queue):,}", flush=True)
+            print(f"    elapsed = {elapsed:.1f}s", flush=True)
+            print(f"    states/sec = {states_per_sec:,.0f}", flush=True)
+            print(f"    edges/sec = {edges_per_sec:,.0f}", flush=True)
+            print(f"    memory RSS = {rss_mb:,.0f} MB", flush=True)
+            print(f"    current BFS distance = {current_bfs_distance}", flush=True)
+            print(f"    max BFS distance seen = {counters['max_bfs_distance']}", flush=True)
+            print(f"    source expansions = {counters['source_expansions']:,}", flush=True)
+            
+            last_progress_count = len(macro_seen)
     
     # Final checkpoint
     if checkpoint_dir and len(macro_seen) > last_checkpoint_count:
@@ -471,6 +509,8 @@ def main() -> int:
                         help="Directory for checkpoints (default: None, disabled)")
     parser.add_argument("--checkpoint-every", type=int, default=1_000_000,
                         help="Checkpoint interval in newly discovered states (default: 1M)")
+    parser.add_argument("--progress-every", type=int, default=250_000,
+                        help="Progress report interval in newly discovered states (default: 250K, 0 to disable)")
     args = parser.parse_args()
     
     print("Building templates...", flush=True)
@@ -490,6 +530,7 @@ def main() -> int:
         max_closure_states=args.max_closure_states,
         checkpoint_dir=args.checkpoint_dir,
         checkpoint_every=args.checkpoint_every,
+        progress_every=args.progress_every,
     )
     t3 = time.perf_counter()
     print(f"  macro states: {len(macro_states):,} ({t3 - t2:.1f}s)", flush=True)
