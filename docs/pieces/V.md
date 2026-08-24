@@ -23,7 +23,7 @@ Organised by box family:
 
 - **3x5**: 3x5x6, 3x5x8
 - **4x5**: 4x5x6, 4x5x7, 4x5x8, 4x5x9, 4x5x10, 4x5x11
-- **5x5**: 5x5x6, 5x5x9, 5x5x10, 5x5x11, 5x5x13, 5x5x14
+- **5x5**: 5x5x6 ✓VERIFIED, 5x5x9 ✓VERIFIED, 5x5x10, 5x5x11, 5x5x13, 5x5x14
 - **5x7**: 5x7x7, 5x7x9
 - **3x10**: 3x10x9, 3x10x10, 3x10x11, 3x10x13
 - **3x15**: 3x15x9, 3x15x11, 3x15x13
@@ -31,6 +31,10 @@ Organised by box family:
 - **3x25**: 3x25x7
 - **3x30**: 3x30x7
 - **3x35**: 3x35x7
+
+**Verified/resolved boxes:**
+- **5×5×6** (2026-08-25): Exhaustive Algorithm X enumeration → 144 raw solutions, 9 symmetry orbits (|G|=16). Certificate in `data/v_5x5x6_certificate.json`. See `docs/frontier/v_5x5x6_complete_verification.md`.
+- **5×5×9** (2026-08-18): Exhaustive Algorithm X enumeration → 1,120 raw solutions, 280 V4 classes, 70 G16 orbits. See `docs/frontier/v_5x5x9_complete_symmetry_analysis.md`.
 
 Note: Several entries are commented out in the source with notes like "have 4,5,6" indicating they are canonical duplicates of existing entries.
 
@@ -74,9 +78,10 @@ Published individual impossible boxes:
 
 ## Remaining Open Questions
 
-- A formal validation and audit run has not been performed on this catalogue.
 - The 3D 2-sided and 4D/5D data in the Shirakawa transcription are not reflected in the catalogue (out of scope per project convention for 2-sided; 4D/5D not yet catalogued).
 
 ## Audit History
 
+- **2026-08-25**: V 5×5×6 exhaustive verification completed. 144 raw solutions, 9 symmetry orbits, published "9 tilings" confirmed as symmetry orbits. Algorithm X + Numba cross-validation. Certificate produced. See `docs/frontier/v_5x5x6_complete_verification.md`.
+- **2026-08-18**: V 5×5×9 exhaustive verification completed. 1,120 raw solutions, 280 V4 classes, 70 G16 orbits. Macro technique validated for tiling reconstruction, then superseded by Algorithm X. See `docs/frontier/v_5x5x9_complete_symmetry_analysis.md`.
 - **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.
