@@ -22,6 +22,118 @@ node-for-node.
 > flags-off or `--symmetry` results reported here. See
 > `docs/frontier/cpp_solver_repo_checkpoint.md` for the full provenance.
 
+> **POST-CHECKPOINT CORRECTION (2026-09-03).** The original centre-pair
+> implementation had a **remaining unsound generic single-row canonical
+> filter**. This section documents the bug, how it was found, the evidence,
+> the exact fix, and which previously reported numbers must be revalidated.
+> The historical results in §3–§5 are **not** rewritten; they describe the
+> pre-fix behaviour and are flagged below where they are affected.
+
+## 0. Post-checkpoint correction: unsound generic single-row filter
+
+**Date**: 2026-09-03 (after checkpoint `ebd28c4`)
+
+### 0.1 The bug
+
+The centre-pair scheme as originally implemented (and committed at
+`ebd28c4`) was **not fully sound**. After the centre-pair block computed the
+tuple-canonical static filter and the static over-approximation, control
+**fell through** to the generic single-row canonical filter ("Canonical
+restriction on placements covering the anchor cell"). That generic filter
+canonicalises each placement covering `anchor_cell` (= `cell_neg`) against
+`g_sym.maps` — the **full** preservation-checked group (the `else` branch
+that restricts to the fixing subgroup `g0` is not taken in `pair_mode`).
+
+The generic filter is **unsound** for the centre-pair scheme: group elements
+may **swap the two anchor cells** (`cell_neg` ↔ `cell_pos`). For a placement
+`r` covering `cell_neg`, its orbit-minimum image (over the full group) can
+cover `cell_pos` instead. The generic filter compares `sigs[r]` (the
+placement's own signature) against the orbit-minimum `best`; if the
+orbit-minimum image covers `cell_pos`, then `best` is a *different*
+placement's signature, so `sigs[r] != best` and the filter deletes `r` —
+even though `r` is part of a canonical tuple. This destroys whole solution
+orbits.
+
+### 0.2 How the bug was found
+
+The bug was discovered by testing the centre-pair scheme on a **chiral H
+5×5×6** box, where the symmetry group genuinely swaps the two anchor cells.
+The old code lost a measurable fraction of solution orbits (see §0.3).
+
+### 0.3 H 5×5×6 orbit-loss evidence
+
+Ground truth (raw, flags-off, exhaustive): **205,668 solutions**, **25,902
+solution orbits** under the chiral-safe group (|G| = 16).
+
+| code | solutions | orbits represented | orbits lost |
+|---|---|---|---|
+| old (checkpoint `ebd28c4`) | 21,315 | 20,248 / 25,902 | **5,654 (21.8 %)** |
+| fixed (current) | 27,459 | 25,902 / 25,902 | **0 (0 %)** |
+
+The old code lost **21.8 % of solution orbits**; the fixed code loses
+**0**. Validation via `validate_sym.py` (orbit-recovery over all group
+images): old = **INCOMPLETE**, fixed = **PASS (valid + complete over
+orbits)**.
+
+### 0.4 The exact fix
+
+In `setup_symmetry()`, immediately after the centre-pair block sets
+`g_sym.maps`, `g_sym.active`, and `g_sym.anchor_cell`, an early return is
+added:
+
+```cpp
+if (g_sym.pair_mode) {
+    return static_cast<int>(g_sym.pair_pruned_rows);
+}
+```
+
+This returns from `setup_symmetry` **before** the generic single-row
+canonical filter runs, so the generic filter is no longer applied in
+`pair_mode`. The tuple-canonical static filter plus the runtime joint check
+(unchanged) are the complete, sound restriction. The fix is **23 insertions,
+0 deletions** versus `ebd28c4`, confined to `setup_symmetry`. `SYM_DEBUG`
+diagnostic output was also added (env-gated, inert by default).
+
+### 0.5 Validation of the fix (2026-09-03)
+
+| test | old (checkpoint) | fixed (current) | verdict |
+|---|---|---|---|
+| H 5×5×6 orbit-loss | 21,315 sols, 20,248/25,902 orbits (21.8 % lost) | 27,459 sols, 25,902/25,902 orbits (0 lost) | **fix validated** |
+| P 1×4×5 pair | 19 nodes / 3 sols | 19 nodes / 3 sols | identical |
+| V 5×5×6 pair | 77,287 nodes / 18 sols (9/9 orbits) | 93,440 nodes / 18 sols (9/9 orbits) | both sound |
+| flags-off V 5×5×9 (1M cap) | 1,000,031 nodes / 0 sols | 1,000,031 nodes / 0 sols | identical |
+| flags-off V 5×5×6 | 366,907 nodes / 144 sols | 366,907 nodes / 144 sols | identical |
+| non-pair sym V 5×5×9 | 7,816,207 nodes / 140 sols | 7,816,207 nodes / 140 sols | identical |
+| corner-anchor Z 6×6×10 | 100,045 nodes / 0 sols | 100,045 nodes / 0 sols | identical |
+| colour/region V 5×5×9 | 100,030 nodes / 0 sols | 100,030 nodes / 0 sols | identical |
+| CLI | identical | identical | identical |
+
+The fix does **not** alter the colour/region-pruning code, the CLI, the
+non-pair symmetry paths (centre anchor for all-odd, corner/G₀ for even-dim),
+or the runtime pair joint-check logic. Flags-off behaviour is unchanged
+node-for-node.
+
+### 0.6 Which previously reported numbers must be revalidated
+
+The fix changes the `--symmetry` path for **centre-pair cases** (exactly one
+even dimension). The following historical numbers were produced with the
+pre-fix code and **must be revalidated** against the fixed code:
+
+* **Z 4×11×15 `--symmetry` centre-pair (200M cap)** — §4: 200,000,064 nodes
+  / 0 sols / depth 107/132 / 556 s. The generic filter may have been
+  removing placements for this case; the fixed code may change the node
+  count and depth. **Re-run required.**
+* **P 1×4×5 `--symmetry` centre-pair** — §3: 19 nodes / 3 sols. Re-verified
+  here: **unchanged** (19 / 3) — the flat achiral P's full group fixes
+  `cell_neg`, so the generic filter was sound for this case. **No re-run
+  needed.**
+* **V 5×5×6 `--symmetry` centre-pair** — not in the original report, but
+  re-verified here: both old and new give 18 sols / 9 orbits (sound), though
+  node counts differ (77,287 vs 93,440). **No orbit loss either way.**
+
+The **flags-off** results (§3) and the **all-odd** V 5×5×9 `--symmetry`
+result (§3) are **unaffected** (re-verified identical here).
+
 ## 1. Design
 
 Let `S` be the **centre anchor set**: the product over axes of
@@ -95,6 +207,12 @@ single-cell anchor the sound group remains the cell's fixing subgroup
 (the corner scheme keeps `G₀`).
 
 ## 3. Validation
+
+> **Note (2026-09-03).** The centre-pair results in this section were
+> produced with the **pre-fix** code (which still applied the unsound
+> generic single-row filter). See §0 for the post-checkpoint correction and
+> which numbers must be revalidated. The flags-off and all-odd results below
+> are unaffected.
 
 **Flags-off equivalence** (current binary vs the pre-change phase2
 binary, identical placement files):

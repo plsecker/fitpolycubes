@@ -840,7 +840,20 @@ static int setup_symmetry(const std::vector<Placement>& placements,
                 (g_sym.covers_pos[r] && !pos_ok[r])) {
                 active_rows[r] = 0;
                 ++removed;
+                if (getenv("SYM_DEBUG")) {
+                    std::cout << "SYM-REMOVED " << r << "\n";
+                }
             }
+        }
+        if (getenv("SYM_DEBUG")) {
+            std::cout << "SYM-KEPT";
+            for (int r = 0; r < num_rows; ++r) {
+                if ((g_sym.covers_neg[r] || g_sym.covers_pos[r]) &&
+                    active_rows[r]) {
+                    std::cout << " " << r;
+                }
+            }
+            std::cout << "\n";
         }
         g_sym.pair_pruned_rows = removed;
         g_sym.anchor_total = static_cast<int>(rows_neg.size() +
@@ -861,6 +874,16 @@ static int setup_symmetry(const std::vector<Placement>& placements,
     g_sym.maps = std::move(maps);
     g_sym.active = !g_sym.maps.empty();
     g_sym.anchor_cell = anchor;
+
+    // Centre-pair scheme: the tuple-canonical static filter above is the
+    // complete restriction. The generic single-row canonical filter below
+    // is NOT sound here: group elements may swap the two anchor cells, so
+    // a row's orbit-minimum image can cover the OTHER pair cell, and
+    // deleting the row on that basis destroys whole solution orbits
+    // (observed on chiral H 5x5x6: 21.8% of solution orbits lost).
+    if (g_sym.pair_mode) {
+        return static_cast<int>(g_sym.pair_pruned_rows);
+    }
 
     // Canonical restriction on placements covering the anchor cell.
     int removed = 0;
