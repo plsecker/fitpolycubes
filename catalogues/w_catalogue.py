@@ -221,6 +221,12 @@ SEARCHED_NO_SOLUTION = {
 
     Box(5, 7, 7),
     Box(5, 7, 8),
+
+    # 5x5x17: no tiling -- exhaustive parallel C++ search (frontier backend,
+    # symmetry + propagation enabled), 26,421,672 nodes, 0 solutions,
+    # node counts reproduced to within +/-35 across 1/2/4-worker runs.
+    # 2026-09-03. See reports/parallel-sat-decision-2026-09-04.md (Part A).
+    Box(5, 5, 17),
 }
 
 ROW_FAMILIES = {
@@ -293,6 +299,15 @@ class WCatalogue(Catalogue):
 
         if (a, b) == (3, 7) and c in {5, 10, 15}:
             return "published_impossible"
+
+        #
+        # Exhaustively searched, no solution (complete searches with
+        # independently verified evidence; consumed by solvers/decomp.py
+        # the same way as the F/Y catalogues).
+        #
+        if box in {b.canonical() for b in SEARCHED_NO_SOLUTION}:
+            return "SEARCHED_NO_SOLUTION"
+
         return None
 
 
@@ -302,5 +317,5 @@ W_CATALOGUE = WCatalogue(
     searched_no_solution=SEARCHED_NO_SOLUTION,
     row_families=ROW_FAMILIES,
     width_splits=WIDTH_SPLITS,
-    published_solutions=set(),
+    published_solutions={Box(5, 7, 9)},
 )
