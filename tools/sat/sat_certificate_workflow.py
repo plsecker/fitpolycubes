@@ -188,11 +188,18 @@ def cmd_prepare(args):
         with open(os.path.join(pkg, ".gitignore"), "w") as f:
             f.write("*.drat\n*.lrat\n")
 
+    if args.expect == "SAT":
+        claim = (f"SAT expected: the {a}x{b}x{c} box is tileable by "
+                 f"{args.piece} polycubes")
+    elif args.expect == "UNSAT":
+        claim = (f"UNSAT: the {a}x{b}x{c} box cannot be tiled by "
+                 f"{args.piece} polycubes")
+    else:
+        claim = (f"OPEN QUESTION: decide tileability of the {a}x{b}x{c} "
+                 f"box by {args.piece} polycubes")
+
     meta = {
-        "claim": (f"UNSAT: the {a}x{b}x{c} box cannot be tiled by "
-                  f"{args.piece} polycubes") if args.expect != "SAT" else
-                 (f"SAT expected: the {a}x{b}x{c} box is tileable by "
-                  f"{args.piece} polycubes"),
+        "claim": claim,
         "date": time.strftime("%Y-%m-%d"),
         "piece": {"name": args.piece,
                   "cells": [list(q) for q in piece_cells],
@@ -495,6 +502,84 @@ def cmd_status(args):
     return 0
 
 
+def cmd_readme(args):
+    """Write/refresh the package README from metadata + chain state."""
+    pkg = args.pkg
+    meta = load_meta(pkg)
+    a, b, c = meta["box"]["w"], meta["box"]["h"], meta["box"]["nz"]
+    piece = meta["piece"]["name"]
+    chain = meta.get("chain", {})
+    stem = meta["cnf_file"][:-4]
+    solve_rec = meta["runs"][0] if meta.get("runs") else None
+    verdicts = {"prepare": "canonical deduplicated CNF, plain ALO+AMO, "
+                           "no symmetry breaking"}
+    lines = [
+        f"# {piece} {a}x{b}x{c} Certificate Package",
+        "",
+        f"**Claim:** {meta['claim']}",
+        "",
+        "**Encoding:** " + meta["encoding"],
+        "",
+        "| fact | value |",
+        "|---|---|",
+        f"| placements / variables | {meta['placement_count']} |",
+        f"| clauses (deduplicated) | {meta['clause_count']} |",
+        f"| box cells / pieces | {meta['cell_count']} / "
+        f"{meta['piece_count']} |",
+        f"| generator cross-check | "
+        f"{meta['generator']['cross_check']} (repo vs independent "
+        f"regeneration) |",
+        f"| CNF sha256 | {meta['sha256']['cnf'][:16]}... |",
+        "",
+        "## Evidence chain",
+        "",
+    ]
+    labels = {"prepare": "prepare (CNF build + cross-check)",
+              "audit": "semantic audit (verify_encoding.py)",
+              "solve": "native CaDiCaL solve",
+              "verify": "drat-trim verification",
+              "witness": "C++ witness validation"}
+    for k, label in labels.items():
+        v = chain.get(k)
+        lines.append(f"- {label}: **{v if v else 'NOT RUN'}**")
+    if solve_rec:
+        lines += ["",
+                  f"Solve record: {solve_rec.get('result')} in "
+                  f"{solve_rec.get('wall_seconds')} s "
+                  f"({solve_rec.get('conflicts', '?')} conflicts). "
+                  f"See metadata.json for all runs."]
+    lines += ["",
+              "## Contents",
+              "",
+              f"- `{meta['cnf_file']}` — the canonical encoding",
+              "- `placement_set.json`, `var_map.json` — encoding provenance",
+              "- `metadata.json` — full run history + sha256 pins",
+              "- `verify_encoding.py` — standalone semantic audit "
+              "(no repo imports)",
+              "- `hashes.txt` — integrity pins (write after runs conclude)",
+              "",
+              "## Status",
+              ""]
+    if chain.get("solve") == "UNSAT" and chain.get("verify") == "VERIFIED":
+        lines.append("**VERIFIED UNSAT** — do not close the catalogue entry "
+                     "before this line says so.")
+    elif chain.get("solve") == "SAT":
+        lines.append("**SAT** — witness tiling in "
+                     f"`{stem}_witness.json` (C++-validated: "
+                     f"{chain.get('witness')}).")
+    elif chain.get("solve") == "TIMEOUT":
+        lines.append("**UNKNOWN — solver time cap reached without a "
+                     "verdict.** The encoding is audited; the instance "
+                     "exceeds the budget. This package documents the "
+                     "attempt; it is NOT a decision.")
+    else:
+        lines.append(f"Chain state: {chain}.")
+    with open(os.path.join(pkg, "README.md"), "w") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"README written: {os.path.join(pkg, 'README.md')}")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -537,6 +622,10 @@ def main():
     p = sub.add_parser("status")
     p.add_argument("--pkg", required=True)
     p.set_defaults(func=cmd_status)
+
+    p = sub.add_parser("readme")
+    p.add_argument("--pkg", required=True)
+    p.set_defaults(func=cmd_readme)
 
     args = ap.parse_args()
     sys.exit(args.func(args))

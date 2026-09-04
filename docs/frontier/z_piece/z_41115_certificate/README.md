@@ -25,7 +25,7 @@ Claim status: **VERIFIED — solver UNSAT + independent checker `s VERIFIED`
 | verify_encoding.py | 984a74c731478f00...be69 | standalone semantic audit (no repo imports) |
 | solve_command.py | see hashes.txt | exact certified commands |
 
-z_4x11x15_native2.drat is .gitignore'd inside this directory (3.61 GB);
+z_4x11x15_native2.drat and z_4x11x15.lrat are .gitignore'd inside this directory (3.61 GB + 6.52 GB);
 its sha256 is pinned here and in metadata.json for transfer/re-verification.
 
 ## Problem semantics (what the CNF encodes)
@@ -48,8 +48,14 @@ pentacubes, and UNSAT <=> no tiling exists.
 | step | engine | command | result | runtime |
 |---|---|---|---|---|
 | solve | native CaDiCaL 1.5.3 | `cadical z_4x11x15.cnf z_4x11x15_native2.drat` | `s UNSATISFIABLE` (exit 20) | 2117.5 s |
-| check | drat-trim (same build as the certified 6x6x10 package) | `drat-trim z_4x11x15.cnf z_4x11x15_native2.drat` | **`s VERIFIED`** — 258,206/265,000 clauses in core; 4,859,533/11,822,097 lemmas in core; 0 RAT lemmas; 647,547,908 resolution steps | 2458.2 s |
+| check (binary DRAT) | drat-trim (same build as the certified 6x6x10 package) | `drat-trim z_4x11x15.cnf z_4x11x15_native2.drat` | **`s VERIFIED`** — 258,206/265,000 clauses in core; 4,859,533/11,822,097 lemmas in core; 0 RAT lemmas; 647,547,908 resolution steps | 2458.2 s |
+| check (LRAT emission) | drat-trim -L | `drat-trim z_4x11x15.cnf z_4x11x15_native2.drat -L z_4x11x15.lrat` | **`s VERIFIED`** (identical core; LRAT = 6.52 GB, gitignored locally, sha256 pinned) | 3072.2 s |
+| check (LRAT) | lrat-check | `lrat-check z_4x11x15.cnf z_4x11x15.lrat` | **`c VERIFIED`** — 5,124,533 added clauses, max live 444,545 | 85.0 s |
 | semantic audit | standalone Python | `python3 verify_encoding.py .` | **ALL CHECKS PASSED** | ~1 min |
+
+Three independent checker verdicts (two checker programs, two proof
+formats) — same dual-checker standard as the certified 6x6x10 package, with
+the binary-DRAT check on top.  All checker logs are in this package.
 
 metadata.json also records the earlier, superseded runs on the
 non-deduplicated 356,020-clause encoding (native CaDiCaL UNSAT 2349.6 s;
@@ -71,15 +77,23 @@ Expected final line: ENCODING AUDIT: ALL CHECKS PASSED.
     ./drat-trim z_4x11x15.cnf z_4x11x15_native2.drat
     #    expected output: s VERIFIED   (~41 min, ~3 GB RAM)
 
-### Step 3 — optional independent re-decision with any complete SAT solver
+### Step 3 — verify the LRAT certificate (fast, if you have z_4x11x15.lrat)
+
+    make lrat-check              # (builds with -DLONGTYPE)
+    ./lrat-check z_4x11x15.cnf z_4x11x15.lrat
+    #    expected output: c VERIFIED   (~85 s)
+
+### Step 4 — optional independent re-decision with any complete SAT solver
 
     kissat z_4x11x15.cnf            # expect: s UNSATISFIABLE
 
 ### Step 4 — provenance check
 
-    sha256sum -c hashes.txt         # (the .drat line must be added back if
-                                    #  the proof was fetched separately)
-    cat z_4x11x15_native2.drat.sha256
+    sha256sum -c hashes.txt         # (the .drat/.lrat lines must be added
+                                    #  back if the proofs were fetched
+                                    #  separately; their pinned hashes are
+                                    #  in *.sha256 files and metadata.json)
+    cat z_4x11x15_native2.drat.sha256 z_4x11x15.lrat.sha256
 
 ## Notes
 
