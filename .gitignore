@@ -32,3 +32,6 @@ data/SOLUTION_FOUND
 # Profiling artefacts
 experiments/benchmarks/gmon.out
 experiments/benchmarks/perf.data
+
+# Compiled SAT workflow validator binary
+tools/sat/tiling_validator
