@@ -1,0 +1,142 @@
+{
+  "program": "V-pentacube Macro port",
+  "date": "2026-08-26",
+  "claim_levels_used": ["GLOBAL THEOREM", "GLOBAL CYCLICITY", "SCC-LOCAL", "VERIFIED CYCLE", "CATALOGUE FACT", "HYPOTHESIS"],
+
+  "piece": {
+    "name": "V",
+    "canonical_coords": [[0,0,0],[1,0,0],[2,0,0],[0,1,0],[0,2,0]],
+    "orientations_proper": 12,
+    "chiral": false,
+    "z_span_distribution": {"1": 4, "3": 8},
+    "layer_occupancy_profiles": {"[5,0,0]": 4, "[3,1,1]": 4, "[1,1,3]": 4},
+    "middle_heavy_profiles_present": false,
+    "orientation_table": "data/frontier/v_piece/v_orientation_table.json"
+  },
+
+  "macro_state_depth": {
+    "required_layers": 3,
+    "justification": "measured max z-span = 3 over all 12 orientations",
+    "assumed_from_S_or_T": false
+  },
+
+  "faithfulness": {
+    "theorem": "a*b*z tileable by V iff a*b macro graph has closed walk length z from 0",
+    "direction_A_empirical": {
+      "box": [5,5,6],
+      "raw_solutions_replayed": 144,
+      "all_valid_and_induce_legal_walks": true,
+      "distinct_induced_walks": 80,
+      "realizations_per_walk_max": 2,
+      "conclusion": "tiling->walk is many-to-one; historical 'Macro misses tilings' interpretation refuted"
+    },
+    "gate_structure_3x5": {
+      "predecessor_count": 5,
+      "classic_gate_present": true,
+      "flat_partial_predecessors": 4,
+      "partial_l0_popcount": 10,
+      "classification": "MIXED (new; S=gate-only, T=partial-only on tested sections)"
+    },
+    "document": "docs/frontier/v_piece/v_macro_faithfulness.md"
+  },
+
+  "first_cross_section": {"a": 3, "b": 5, "area": 15},
+
+  "closure_3x5": {
+    "complete": true,
+    "first_gen_sources": 220,
+    "first_gen_tree_states": 1126,
+    "macro_states": 4543,
+    "macro_edges": 5494,
+    "total_intermediate": 58243,
+    "closure_seconds": 0.28,
+    "sccs_total": 4241,
+    "cyclic_sccs": 13,
+    "cyclic_scc_sizes_top": [243, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+    "transient_states": 4228,
+    "sink_states": 3186,
+    "scc0_size": 243,
+    "scc0_internal_edges": 362,
+    "scc0_out_degree_distribution": {"1": 178, "2": 44, "4": 16, "6": 4, "8": 1}
+  },
+
+  "period_3x5": {
+    "period_bfs_delta": 2,
+    "shortest_simple_cycle": 6,
+    "primitive_cycle_lengths": [6, 8],
+    "simple_cycles_through_zero_enumerated": 2008968,
+    "exact_achievable_up_to_240": "{6,8} ∪ {even z >= 12}",
+    "semigroup_gaps_among_evens": [10],
+    "conductor_for_period_multiples": 11,
+    "period_lt_shortest_cycle": true,
+    "status": "GLOBAL THEOREM (3×5 family)",
+    "catalogue_agreement": {
+      "prime_3x5x6": "CATALOGUE FACT re-proven",
+      "prime_3x5x8": "CATALOGUE FACT re-proven",
+      "impossible_odd": "published rule now theorem",
+      "impossible_4": "published fact now theorem",
+      "impossible_10": "published fact now theorem"
+    },
+    "data": "data/frontier/v_piece/v_3x5_exact_walk_lengths.json"
+  },
+
+  "witnesses": {
+    "placement_files_reclassified": "placements_V_5x5x6.txt / placements_V_5x5x9.txt are complete placement catalogues (696/1164), NOT witness tilings",
+    "exhaustive_5x5x6": {
+      "witness_tilings": 144,
+      "distinct_induced_walks": 80,
+      "walk_length_spectrum": {"6": 80}
+    },
+    "new_direction_B_realizations": [
+      {"box": "3x5x6", "pieces": 18,
+       "certificate": "data/frontier/v_piece/v_3x5x6_macro_cycle_certificate.json",
+       "layer_A": "VALID",
+       "terminal_class": "flat-completion (remaining=5)"},
+      {"box": "3x5x8", "pieces": 24,
+       "certificate": "data/frontier/v_piece/v_3x5x8_macro_cycle_certificate.json",
+       "layer_A": "VALID",
+       "terminal_class": "classic gate (remaining=0)"}
+    ]
+  },
+
+  "certificates": {
+    "format": "fitpolycubes.macro-walk v1 (semantics-1)",
+    "layer_a_valid": ["v_3x5x6_macro_cycle_certificate.json", "v_3x5x8_macro_cycle_certificate.json"],
+    "claim_verifier": "tools/frontier/v_piece/v_claim_verifier.py",
+    "negative_tests": "tools/frontier/v_piece/test_v_certificate_rejection.py",
+    "negative_test_results": "6 mutations/overclaims rejected; unjustified GLOBAL cannot survive"
+  },
+
+  "complexity_benchmark": {
+    "selector_s_area_calibrated": {
+      "strategy_prediction": "full_closure (correct)",
+      "predicted_sources": 1500, "actual_sources": 220,
+      "predicted_states": 1500, "actual_states": 4543,
+      "predicted_scc": 11, "actual_scc0": 243
+    },
+    "selector_t_family": "unknown for V (no calibration coverage)",
+    "verdict": "strategy transferred; state-count model did not; area alone is not portable across pieces; model generalization needed (HYPOTHESIS: template density + flat fraction + standing-footprint class)",
+    "tuned_to_v": false
+  },
+
+  "v_specific_discoveries_ranked": [
+    {"rank": 1, "finding": "mixed gate structure (classic gate AND flat partial predecessors)", "status": "measured on 3×5"},
+    {"rank": 2, "finding": "twelve escape-basin 6-cycle SCCs beside main component at minimal area; 70% sink rate", "status": "measured"},
+    {"rank": 3, "finding": "no middle-heavy standing orientation ([1,3,1]-free)", "status": "geometric fact"},
+    {"rank": 4, "finding": "semigroup ⟨6,8⟩ with isolated gap at 10 carrying a published impossibility", "status": "proven (3×5)"}
+  ],
+
+  "side_results": {
+    "T_3x8_closure_completed": {
+      "previous_status": "bounded at 200K states, period inferred",
+      "now": "complete at 916153 states; achievable includes odd lengths (15,...); period = 5 PROVEN; period < shortest cycle (15)"
+    }
+  },
+
+  "tests": {
+    "v_suite": "tools/frontier/test_v_macro.py — 17/17 PASS",
+    "rejection_suite": "8/8 PASS (2 controls + 6 mutations)"
+  },
+
+  "next_targets": ["V 5×5 (predict period 1 from published odd prime 9)", "V 4×5 (six consecutive published primes)", "preflight feature generalization"]
+}

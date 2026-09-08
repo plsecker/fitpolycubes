@@ -1,0 +1,46 @@
+{
+  "cross_section": "4\u00d710",
+  "a": 4,
+  "b": 10,
+  "source_box": "4x10x6",
+  "extracted_cycle_length": 6,
+  "gate_index": 5,
+  "states": [
+    0,
+    645636050762385244264767,
+    221374440270699986193,
+    14167099659783048770544,
+    401511858717235303444170,
+    1099511627775,
+    0
+  ],
+  "generators": [
+    6
+  ],
+  "semigroup": "<6>",
+  "family": [
+    {
+      "z": 6,
+      "valid": true,
+      "pieces": 48,
+      "cells": 240
+    },
+    {
+      "z": 12,
+      "valid": true,
+      "pieces": 96,
+      "cells": 480
+    },
+    {
+      "z": 18,
+      "valid": true,
+      "pieces": 144,
+      "cells": 720
+    }
+  ],
+  "all_family_valid": true,
+  "provenance": {
+    "source_solution": "solutions_s_4x10x6.dat",
+    "cycle_file": "_4x10_concrete_cycles.json"
+  }
+}

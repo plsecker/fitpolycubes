@@ -1,0 +1,199 @@
+{
+ "title": "T 3xN Cyclicity Criterion",
+ "date": "2026-08-26",
+ "revision": 2,
+ "supersedes": "2026-08-26 revision 1 (same filename), which contained false acyclicity claims for 3x11 and 3x12",
+ "status_labels": {
+  "THEOREM": "deductively proved from the Macro model definition",
+  "PROVED_COMPUTATION": "completed uncapped deterministic computation, or stored construction re-validated edge-by-edge against the repository transition code",
+  "EMPIRICAL_OBSERVATION": "observed under possibly capped/ambiguous search; not relied upon",
+  "CONJECTURE": "plausible, unproven",
+  "REFUTED_CLAIM": "shown false with cited counterexample"
+ },
+ "model_notes": {
+  "nodes": "post-shift states only; every node has L2 = empty",
+  "edge": "fill slot 0 to full via first-empty branching over bottom-anchored templates, then shift",
+  "monotonicity": "fill never removes cells"
+ },
+ "gate_theorem": {
+  "statement": "A state P is a predecessor of state 0 iff P has L1 = L2 = empty AND the complement of P.L0 (a*b - |P.L0| cells) is exactly coverable by flat T orientations (z-span = 1).",
+  "necessity_proof_sketch": "Monotonicity forces P.L1 empty; every template used must avoid slots 1 and 2; T orientation profiles are {(5,0,0)x4, (1,3,1)x4, (3,1,1)x2, (1,1,3)x2}, so every non-flat placement meets slot 1; hence only flat orientations were used and they exactly cover the complement.",
+  "sufficiency_proof_sketch": "First-empty branching is complete for exact cover; a flat cover of the complement fills to (FULL, empty, empty), whose shift is 0.",
+  "degenerate_cases": "P.L0 full: empty cover, direct shift edge to 0. P = 0: requires whole-layer rectangle tiling by T pentominoes (none exists at tested sizes).",
+  "status": "THEOREM"
+ },
+ "divisibility": {
+  "necessity": {
+   "statement": "Every predecessor P of 0 satisfies 5 | (a*b - |P.L0|).",
+   "status": "THEOREM"
+  },
+  "sufficiency": {
+   "claim": "5 | (a*b - |P.L0|) together with L1 = L2 = empty implies P -> 0.",
+   "status": "REFUTED_CLAIM",
+   "counterexample": {
+    "cross_section": "2x5",
+    "NCELLS": 10,
+    "detail": "No flat T placement fits (flat bounding boxes are 3x3); no subset of size divisible by 5 is flat-coverable; complete closure finds no predecessor of 0 (graph has no complete fill at all), yet P = 0 is reachable with 5 | (10 - 0)."
+   },
+   "correct_condition": "exact coverability of comp(P.L0) by flat T orientations"
+  }
+ },
+ "reachability_structure": {
+  "first_generation_sufficiency_for_finding_predecessors_of_zero": {
+   "claim": "First-generation BFS suffices to find all predecessors of 0.",
+   "status": "REFUTED_CLAIM",
+   "why_false": "Macro nodes are post-shift states (X, Y, empty). A fill from a parent with Y non-empty that avoids the parent's slot 2 (span <= 2 pieces) yields a child (X', empty, empty). Hence L1=L2=empty nodes occur behind ancestors with non-empty L1 at unbounded depth.",
+   "demonstration": "On 3x7, all 204 generation-1 sources have Y non-empty (zero L1=L2=empty depth-1 nodes), yet the completed closure contains two predecessors of 0 (both |L0|=11): both sit at depth >= 2.",
+   "consequence": "Acyclic conclusions require full closure; no fixed-depth truncation decides the question."
+  }
+ },
+ "cyclicity_criterion": {
+  "statement": "The T axb Macro graph admits a closed walk through state 0 iff some reachable node P has L1 = L2 = empty and comp(P.L0) exactly coverable by flat T orientations.",
+  "derived_from": "gate theorem + definition of closed walk",
+  "status": "THEOREM",
+  "decision_procedure": "Breadth-first Macro closure from state 0 with early constructive exit on a gate-satisfying node; ACYCLIC only on uncapped completion.",
+  "cost_note": "Same order as full closure; there is no known cheaper complete test. First-generation cost tables are not evidence of completeness."
+ },
+ "results": {
+  "3x7": {
+   "cyclic": true,
+   "status": "PROVED_COMPUTATION",
+   "evidence": [
+    "complete closure: 6163 states (independent audit + repository agree)",
+    "pred(0) = two nodes, both |L0|=11, both L1=L2=empty, both at depth >= 2",
+    "SCC(0) = 39 states, cycle set {20} (repository completed closure)",
+    "constructive tiling witness data/frontier/t_piece/t_3x7x20_cpsat_tiling.json (catalogue prime)"
+   ],
+   "period_note": "cycle length 20 consistent with sole catalogue prime 20"
+  },
+  "3x8": {
+   "cyclic": true,
+   "cyclicity_status": "PROVED_COMPUTATION",
+   "evidence": [
+    "constructive tiling witness data/frontier/t_piece/t_3x8x15_cpsat_tiling.json (catalogue prime 15)",
+    "catalogue primes 15, 35, 40 agree via faithfulness theorem"
+   ],
+   "caveat": "Full-closure period/gcd figures remain EMPIRICAL_OBSERVATION: no uncapped independent reproduction; tools/frontier/test_t_macro.py::test_macro_closure_3x8 runs capped at 500000 states without asserting the cap flag."
+  },
+  "3x9": {
+   "cyclic": false,
+   "status": "PROVED_COMPUTATION",
+   "evidence": [
+    "independent complete closure: 6908 states, uncapped, no predecessor of 0",
+    "reachable L1=L2=empty nodes have |L0| in {9, 11, 14}; complements 18, 16, 13; none divisible by 5 (gate necessity suffices for exclusion)"
+   ],
+   "consistency": "Sillke 1993 '3x9xN = 0'; t_catalogue impossible_reason publishes the whole 3x9 family impossible (re-verified by full closure reproduction 2026-08-27: 6908 states, no predecessor of 0, reachable L1=L2=empty |L0| values {9,11,14})"
+  },
+  "3x10": {
+   "cyclic": true,
+   "cyclicity_status": "PROVED_COMPUTATION",
+   "evidence": [
+    "constructive tiling witness data/frontier/t_piece/t_3x10x14_cpsat_tiling.json (catalogue prime 14)"
+   ],
+   "caveat": "'period 1' / 'minimal returns {10, 27}' statements downgraded to EMPIRICAL_OBSERVATION: closure incomplete and unreproduced; SCC-internal cycle lengths were conflated with closed walks through 0. Audit correction (2026-08-27): the previously cited 'searched-no-solution status' of Box(3,10,10) does not exist in t_catalogue.py (RAW_PRIMES contains Box(3,10,10) since creation; never in SEARCHED_NO_SOLUTION), so the former conclusion that those returns 'cannot be closed walks through 0' is withdrawn as unsupported; a published prime 3x10x10 is consistent with a length-10 closed walk through 0 under the faithfulness theorem. The EMPIRICAL downgrade stands."
+  },
+  "3x11": {
+   "cyclic": true,
+   "status": "PROVED_COMPUTATION",
+   "evidence": [
+    "constructive tiling witness data/frontier/t_piece/t_3x11x30_cpsat_tiling.json (catalogue prime 30); induced walk length 30 closes at 0, all edges legal under repository transition; final predecessor |L0|=28, remaining 5 flat-covered",
+    "catalogue primes 30..55 agree via faithfulness theorem"
+   ],
+   "refuted_prior_claims": [
+    "ACYCLIC verdict",
+    "pred_of_0_count = 0",
+    "reachable L1=L2=empty L0 values = {5}",
+    "'CONFIRMED (state 0 not reachable, closure complete)' label"
+   ]
+  },
+  "3x12": {
+   "cyclic": true,
+   "status": "PROVED_COMPUTATION",
+   "evidence": [
+    "constructive tiling witness data/frontier/t_piece/t_3x12x15_cpsat_tiling.json (catalogue prime 15); induced walk length 15 closes at 0, all edges legal under repository transition; final predecessor |L0|=21, remaining 15 flat-covered",
+    "catalogue primes 15, 20, 25 agree via faithfulness theorem"
+   ],
+   "refuted_prior_claims": [
+    "ACYCLIC verdict",
+    "pred_of_0_count = 0",
+    "reachable L1=L2=empty L0 values = {5}"
+   ]
+  },
+  "5x5": {
+   "cyclic": true,
+   "cyclicity_status": "PROVED_COMPUTATION",
+   "evidence": [
+    "repository closure completes (54434 states) with 0 reachable",
+    "catalogue prime 5x5x12 consistent"
+   ]
+  }
+ },
+ "witnesses": {
+  "validator": "tools/frontier/validate_t_macro_walk.py",
+  "solver": "OR-Tools CP-SAT 9.15.6755",
+  "date": "2026-08-26",
+  "files": [
+   {
+    "box": "3x7x20",
+    "file": "t_3x7x20_cpsat_tiling.json",
+    "final_pred_L0": 11,
+    "remaining": 10
+   },
+   {
+    "box": "3x8x15",
+    "file": "t_3x8x15_cpsat_tiling.json",
+    "final_pred_L0": 14,
+    "remaining": 10
+   },
+   {
+    "box": "3x10x14",
+    "file": "t_3x10x14_cpsat_tiling.json",
+    "final_pred_L0": 15,
+    "remaining": 15
+   },
+   {
+    "box": "3x11x30",
+    "file": "t_3x11x30_cpsat_tiling.json",
+    "final_pred_L0": 28,
+    "remaining": 5
+   },
+   {
+    "box": "3x12x15",
+    "file": "t_3x12x15_cpsat_tiling.json",
+    "final_pred_L0": 21,
+    "remaining": 15
+   }
+  ],
+  "validation_checks_per_witness": [
+   "piece count and volume",
+   "cell bounds",
+   "placement shapes against proper-rotation orientation set",
+   "exact disjoint cover",
+   "walk starts at 0 and closes at 0 after z edges",
+   "every walk edge legal under tools.frontier.piece_utils fill+shift transition",
+   "final predecessor has L1=L2=empty and its complement constructively exact-flat-covered"
+  ],
+  "format": "v2 (embeds conventions, explicit walk states, per-edge fill placements)",
+  "independent_checker": "tools/frontier/check_macro_certificate_independent.py (stdlib-only, no repository imports)"
+ },
+ "reconciliation": [
+  "t_catalogue RAW_PRIMES 3x11x{30..55}, 3x12x{15,20,25} imply CYCLIC under the faithfulness theorem; superseded ACYCLIC claims contradicted the catalogue and are withdrawn.",
+  "t_3xn_structural_analysis.md section 2.2 records closures 'Not done' for N=9,11 and 'Incomplete' for N=12; the superseded JSON's 'closure complete' labels for 3x9/3x11 were unsupported.",
+  "t_macro_faithfulness.md section 6.1 already listed 3x12 as cyclic; that row was correct.",
+  "t_macro_faithfulness.md sections 5.2/5.3 omit the exact-flat-coverability clause from pred(0); flagged, precise statement lives in the revised document.",
+  "Period/gcd semantics across documents conflate SCC-internal cycle lengths with closed walks through state 0; only the latter witness box tilings."
+ ],
+ "cheap_test_investigation": {
+  "sound_witness_rule": "Any reachable node found during bounded search satisfying the gate theorem constructively proves CYCLIC. Cheap, incomplete.",
+  "per_node_filter": "Divisibility failure excludes a single node as predecessor. Necessary-only.",
+  "no_cheap_complete_test": "Concluding ACYCLIC requires exhaustive closure; predecessors occur at unbounded depth; no proved invariant currently bounds it.",
+  "open_conjecture": "Some congruence/residual-set invariant may prune 3-wide strip searches substantially; unproved, not assumed."
+ },
+ "scope_note": "This revision repairs mathematical analysis only. Catalogue truth tables, RAW_PRIMES, impossible rules, and published-solution statuses were not modified.",
+ "audit_notes": [
+  {
+   "date": "2026-08-27",
+   "scope": "caveat citation fix for 3x10 (catalogue never listed Box(3,10,10) as searched-no-solution); 3x9 consistency source corrected to impossible_reason; no truth tables changed"
+  }
+ ]
+}

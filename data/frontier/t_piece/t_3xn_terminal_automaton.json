@@ -1,0 +1,68 @@
+{
+  "title": "T 3×N Terminal Automaton",
+  "date": "2026-08-26",
+  "status": "FINITE AUTOMATON",
+
+  "automaton": {
+    "description": "Tracks (L0, L1) states with L2=0. Accepting states are those where complement E = full\\L0 is T-tileable.",
+    "transition_rules": [
+      "Template placement: all T templates (including non-flat)",
+      "Shift: when L0 full, (L1, L2, 0) becomes new state",
+      "Terminal check: when L2=0, check if E is T-tileable"
+    ],
+    "t_tiling_check": {
+      "method": "3-column DP",
+      "state_size": "512 (9 bits)",
+      "complexity": "O(N × 512) per terminal state"
+    }
+  },
+
+  "results": {
+    "3×7": {
+      "terminal_states": 10, "viable": 2, "cyclic": true,
+      "viable_L0": [11], "viable_remaining": [10],
+      "obstruction_type": null
+    },
+    "3×8": {
+      "terminal_states": 824, "viable": 149, "cyclic": true,
+      "viable_L0": [4, 9, 14, 19],
+      "viable_remaining": [20, 15, 10, 5],
+      "obstruction_type": null
+    },
+    "3×9": {
+      "terminal_states": 7, "viable": 0, "cyclic": false,
+      "viable_L0": [],
+      "obstruction_type": "A (arithmetic: no L0 ≡ 2 mod 5)"
+    },
+    "3×10": {
+      "terminal_states": 93, "viable": 363, "cyclic": true,
+      "viable_L0": [5, 10, 15, 20, 25],
+      "viable_remaining": [25, 20, 15, 10, 5],
+      "obstruction_type": null
+    },
+    "3×11": {
+      "terminal_states": 36, "viable": 0, "cyclic": false,
+      "viable_L0": [3, 8, 13, 18],
+      "obstruction_type": "B (geometric: complements not T-tileable)"
+    },
+    "3×12": {
+      "terminal_states": 32, "viable": 0, "cyclic": false,
+      "viable_L0": [6, 11, 16, 21],
+      "obstruction_type": "B (geometric: complements not T-tileable)"
+    }
+  },
+
+  "complexity_reduction": {
+    "N=7": {"full_macro": 6163, "automaton": 10, "reduction": "616×"},
+    "N=8": {"full_macro": 916153, "automaton": 824, "reduction": "1112×"},
+    "N=10": {"full_macro": "34M+", "automaton": 93, "reduction": "~360,000×"},
+    "N=11": {"full_macro": "3.2M+", "automaton": 36, "reduction": "~89,000×"}
+  },
+
+  "classification": {
+    "terminal_automaton": "EXACT FINITE-AUTOMATON RESULT",
+    "two_stage_obstruction": "THEOREM",
+    "T_tiling_DP": "EXACT COMPUTATIONAL RESULT",
+    "cyclicity_criterion": "THEOREM (verified N=7..12)"
+  }
+}

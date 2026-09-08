@@ -1,0 +1,39 @@
+{
+  "title": "Flat-T 3×N Tiling Automaton",
+  "date": "2026-08-26",
+  "status": "THEOREM",
+
+  "flat_t_shapes": {
+    "description": "4 flat T orientations in 3×3 bounding box",
+    "shapes": {
+      "O0": {"col0": [0,1,2], "col1": [1], "col2": [1], "grid": ["X..", "XXX", "X.."]},
+      "O2": {"col0": [2], "col1": [0,1,2], "col2": [2], "grid": [".X.", "XXX", ".X."]},
+      "O4": {"col0": [0], "col1": [0,1,2], "col2": [0], "grid": ["XXX", ".X.", ".X."]},
+      "O6": {"col0": [1], "col1": [1], "col2": [0,1,2], "grid": ["..X", "XXX", "..X"]}
+    }
+  },
+
+  "automaton": {
+    "state_size_bits": 6,
+    "total_possible_states": 64,
+    "reachable_states": 9,
+    "reachable_state_values": [0, 1, 2, 4, 7, 15, 18, 39, 58],
+    "state_representation": "bits 0..2 = overhang in column y, bits 3..5 = overhang in column y+1",
+    "transition_function": "next_states(state, t0, t1, t2, is_last) -> set of next_states",
+    "verification": "Confirmed against 512-state DP for all 3×N subsets with N=1..5 (37,448 subsets, 0 mismatches)"
+  },
+
+  "complexity_reduction": {
+    "full_backtracking": "2^(3N) worst-case",
+    "dp_512_state": "O(N × 512)",
+    "automaton_9_state": "O(N × 9)",
+    "reduction_factor": "57×"
+  },
+
+  "classification": {
+    "flat_t_geometry": "EXACT",
+    "9_state_automaton": "THEOREM",
+    "transition_function": "THEOREM",
+    "verification_against_dp": "EXACT COMPUTATIONAL RESULT"
+  }
+}

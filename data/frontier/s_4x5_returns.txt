@@ -1,0 +1,6 @@
+Positive return lengths from 0 to 0: [6]
+Shortest positive return: 6
+Total distinct return lengths: 1
+GCD of return lengths: 6
+
+Tileable N: [6]

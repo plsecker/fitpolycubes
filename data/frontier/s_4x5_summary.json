@@ -1,0 +1,36 @@
+{
+  "a": 4,
+  "b": 5,
+  "NCELLS": 20,
+  "state_size_bits": 60,
+  "concrete_placements": 2156,
+  "target_templates": 266,
+  "first_gen_sources": 997,
+  "first_gen_tree_states": 10765,
+  "total_states": 1538,
+  "total_edges": 1545,
+  "total_intermediate": 26492,
+  "max_out_degree": 997,
+  "max_in_degree": 2,
+  "zero_out_degree_count": 1402,
+  "zero_in_degree_count": 0,
+  "scc_count": 1528,
+  "nontrivial_scc_count": 1,
+  "trivial_scc_count": 1527,
+  "scc0_id": 0,
+  "scc0_size": 11,
+  "scc0_internal_edges": 12,
+  "cycle_count": 2,
+  "cycle_lengths": [
+    6
+  ],
+  "positive_returns": [
+    6
+  ],
+  "shortest_return": 6,
+  "tileable_N": [
+    6
+  ],
+  "max_depth": 6,
+  "elapsed": 0.4596698460081825
+}

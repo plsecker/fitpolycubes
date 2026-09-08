@@ -1,0 +1,121 @@
+{
+ "piece": "Z pentacube (5/11)",
+ "box": [
+  6,
+  6,
+  10
+ ],
+ "claim": "UNSAT: the 6x6x10 box cannot be tiled by Z pentacubes",
+ "placement_count": 2176,
+ "cell_count": 360,
+ "clause_count": 195976,
+ "clause_families": {
+  "coverage_ge1": 360,
+  "no_overlap_amo": 195616
+ },
+ "amo_unique_pairs": 146296,
+ "variable_count": 2176,
+ "solver": {
+  "engine": "CaDiCaL (as bundled in python-sat)",
+  "python_sat_version": "1.9.dev15",
+  "interface": "pysat.solvers.Cadical153(bootstrap_with=cnf, with_proof=True)",
+  "options": "defaults; no var tuning; 3-worker irrelevant (SAT layer single-process)"
+ },
+ "runs": [
+  {
+   "date": "2026-08-28",
+   "config": "plain, no proof logging",
+   "wall_seconds": 287.1,
+   "result": "UNSAT"
+  },
+  {
+   "date": "2026-08-28",
+   "config": "with_proof=True (DRAT logging)",
+   "wall_seconds": 414.7,
+   "result": "UNSAT",
+   "proof_lines": 7425174
+  },
+  {
+   "date": "2026-08-28",
+   "config": "axis-permuted box 10x6x6 (same CNF family)",
+   "wall_seconds": 306.4,
+   "result": "UNSAT"
+  },
+  {
+   "date": "2026-08-29",
+   "config": "drat-trim verification of the DRAT proof",
+   "checker": "drat-trim commit 2e3b2dc0ecf938addbd779d42877b6ed69d9a985 (zig cc 0.16.0, -std=c99 -D_DEFAULT_SOURCE -O2)",
+   "result": "s VERIFIED",
+   "wall_seconds": 455.2,
+   "peak_rss_kbytes": 1244592
+  },
+  {
+   "date": "2026-08-29",
+   "config": "drat-trim -L (LRAT emission)",
+   "checker": "same binary",
+   "result": "s VERIFIED",
+   "wall_seconds": 496.4,
+   "peak_rss_kbytes": 2922596
+  },
+  {
+   "date": "2026-08-29",
+   "config": "lrat-check verification of the LRAT certificate",
+   "checker": "lrat-check commit 2e3b2dc0 (zig cc 0.16.0, -std=c99 -D_DEFAULT_SOURCE -DLONGTYPE -O2)",
+   "result": "c VERIFIED",
+   "wall_seconds": 25.2
+  }
+ ],
+ "sha256": {
+  "cnf": "034899621ba6f091a6ee1f80df88934d0b812bc9bda1023df6b8d66c9c3d719d",
+  "drat": "a208875f62747d3dead8e4e297d2c4c563c103ca074f95dfe39dd1bb15fa4239",
+  "placement_set.json": "a21aec07b4f43bdff08b46ddbc6b11f2e213484fdb9eb47ca88b571ea486dbb7",
+  "var_map.json": "f9975e371cd25312c9565b8bb984f508c8489716500424d8ff2bb66a4e18dee2",
+  "README.md": "5be5a55d13168df0393f8d9cba2cd744a9f71d8f34d1ec32653c86e55b752221",
+  "z_6610_verify_encoding.py": "1f2c2e8b4927e6470992c1ac34ed15afa7ce29270796494a0807a0ef2b2417f6",
+  "solve_command.py": "201f5f5e55fb115f26662f1c5e5aefb7dea6dd6a28e9b24e7ccdcb355d907168",
+  "z_6610.lrat": "f0f70f6cc3d921a87a227294c702ebb241759325085857fe437c80cca610481a"
+ },
+ "encoding_provenance": {
+  "placement_generator": "tools/frontier/z_piece prototypes /tmp/opencode/z_layer_dp.py gen(); verified set-identical to common/polycube_utils.generate_placements (2176=2176, frozenset equality, 0 differences)",
+  "piece_cells": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0
+   ],
+   [
+    1,
+    2,
+    0
+   ],
+   [
+    2,
+    2,
+    0
+   ]
+  ],
+  "piece_provenance": "common/polycube_utils.py PENTACUBES['Z']",
+  "clause_construction": "per cell: >=1 over covering placements; per shared-cell pair: -xi -xj; no other clauses; 0 mixed-polarity",
+  "audit_json": "z_6610_encoding_audit.json (see certification doc)",
+  "canonicalization": "literals sorted within clauses and clauses sorted (drat-trim is order-insensitive; the DRAT proof was generated against the same clause SET)"
+ },
+ "pipeline_validation": {
+  "known_UNSAT_controls": [
+   "5x5x5 (rule 5x{5,6,7}; CaDiCaL+Minisat22+Glucose4 agree; planar-DP agrees)",
+   "6x6x5 (rule 5x{5,6,7}; CaDiCaL+Minisat22+Glucose4 agree)"
+  ],
+  "known_SAT_validation": "published 6x10x10 tilings (Shindo 1997 / ISHINO 2000, 4 machine-readable layer grids on puzzlewillbeplayed.com/Pentominoes/Z-10x10x6.html): 4/4 solutions geometrically valid; 480/480 published placements present in the audited placement set; forced-assumption solve reproduces the published tiling exactly",
+  "axis_permutation_crosscheck": "10x6x6 UNSAT in 306.4s (independent orientation)"
+ },
+ "lrat_line_count": 3099087
+}

@@ -1,0 +1,38 @@
+{
+  "boxes": [
+    {
+      "z": 6,
+      "realized": true,
+      "validation_errors": [],
+      "pieces": 18,
+      "certificate": "data/frontier/v_piece/v_3x5x6_macro_cycle_certificate.json",
+      "cycle_states_hex": [
+        "0x0",
+        "0x31e0624",
+        "0x1863f",
+        "0x6d80c3",
+        "0x37f86ff",
+        "0x6ff",
+        "0x0"
+      ]
+    },
+    {
+      "z": 8,
+      "realized": true,
+      "validation_errors": [],
+      "pieces": 24,
+      "certificate": "data/frontier/v_piece/v_3x5x8_macro_cycle_certificate.json",
+      "cycle_states_hex": [
+        "0x0",
+        "0x9231246",
+        "0x3007f24f",
+        "0x18603f",
+        "0x6d80c30",
+        "0xfdb1fb6",
+        "0x3fffffff",
+        "0x7fff",
+        "0x0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+ "certificate_version": "1.0",
+ "theorem_type": "global",
+ "cross_section": {
+  "a": 5,
+  "b": 6
+ },
+ "source_enumeration": {
+  "complete": true,
+  "total_sources": 183555,
+  "dead_end_sources": 183548,
+  "recurrent_sources": 7,
+  "scc_id": "SCC(0)",
+  "scc_size": 1606
+ },
+ "scc_period": {
+  "computed": true,
+  "period": 1,
+  "states_in_bfs": 1606,
+  "edges_checked": 1734,
+  "gcd_of_deltas": 0,
+  "period_classes": 1
+ },
+ "primitive_cycles": [
+  {
+   "length": 4,
+   "source": "Numba solver",
+   "certified": true
+  },
+  {
+   "length": 29,
+   "source": "Shirakawa 2014",
+   "certified": true
+  },
+  {
+   "length": 46,
+   "source": "Shirakawa 2014",
+   "certified": true
+  },
+  {
+   "length": 47,
+   "source": "Shirakawa 2014",
+   "certified": true
+  }
+ ],
+ "semigroup": {
+  "generators": [
+   4,
+   29,
+   46,
+   47
+  ],
+  "gcd": 1,
+  "scaled_generators": [
+   4,
+   29,
+   46,
+   47
+  ],
+  "frobenius": 43,
+  "conductor": 44,
+  "representable_up_to": [
+   0,
+   4,
+   8,
+   12,
+   16,
+   20,
+   24,
+   28,
+   29,
+   32,
+   33,
+   36,
+   37,
+   40,
+   41,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58
+  ]
+ },
+ "tileability_claim": "All z >= 44 tileable; z in <4,29,46,47>"
+}

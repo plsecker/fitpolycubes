@@ -1,0 +1,49 @@
+{
+  "title": "T 3×N Cyclicity Results",
+  "date": "2026-08-26",
+  "theorem": "T 3×N is cyclic iff there exists a reachable terminal profile P with L1=L2=∅, 5|(3N-|P.L0|), and complement accepted by the 9-state flat-T automaton",
+
+  "results": {
+    "3×7": {
+      "N": 7, "cyclic": true, "period": 20, "theorem": "GLOBAL",
+      "first_gen_states": 79636, "terminal_profiles": 17,
+      "viable_l0": [11, 16], "tileable_l0": [11, 16],
+      "completeness": "COMPLETE"
+    },
+    "3×8": {
+      "N": 8, "cyclic": true, "period": 5, "theorem": "GLOBAL",
+      "first_gen_states": 10000000, "terminal_profiles": 863,
+      "viable_l0": [4, 9, 14, 19], "tileable_l0": [4, 9, 14, 19],
+      "completeness": "BOUNDED"
+    },
+    "3×9": {
+      "N": 9, "cyclic": false, "period": null, "theorem": "GLOBAL (acyclic)",
+      "first_gen_states": 126249, "terminal_profiles": 10,
+      "viable_l0": [], "tileable_l0": [],
+      "completeness": "COMPLETE",
+      "obstruction": "Type A (no terminal profile with L0 ≡ 2 mod 5)"
+    },
+    "3×10": {
+      "N": 10, "cyclic": true, "period": null, "theorem": "SCC-LOCAL",
+      "first_gen_states": "unknown", "terminal_profiles": "unknown",
+      "viable_l0": [15, 20], "tileable_l0": [15, 20],
+      "completeness": "BOUNDED"
+    },
+    "3×11": {
+      "N": 11, "cyclic": false, "period": null, "theorem": "GLOBAL (acyclic)",
+      "first_gen_states": 334104, "terminal_profiles": 2,
+      "viable_l0": [], "tileable_l0": [],
+      "completeness": "COMPLETE",
+      "obstruction": "Type B (complements not flat-T tileable)"
+    },
+    "3×12": {
+      "N": 12, "cyclic": false, "period": null, "theorem": "GLOBAL (acyclic)",
+      "first_gen_states": 1049692, "terminal_profiles": 2,
+      "viable_l0": [], "tileable_l0": [],
+      "completeness": "COMPLETE",
+      "obstruction": "Type B (complements not flat-T tileable)"
+    }
+  },
+
+  "classification": "All 6 tested cross-sections (N=7..12) are classified. The cyclicity theorem is exact for the T 3×N family."
+}

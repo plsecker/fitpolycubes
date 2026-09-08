@@ -1,0 +1,30 @@
+{
+  "piece": "V",
+  "box": {
+    "a": 5,
+    "b": 5,
+    "z": 6
+  },
+  "solutions_file": "data/v_5x5x6_complete_solutions.json",
+  "raw_solutions": 144,
+  "valid_tilings_independently_revalidated": 144,
+  "direction_A_constructive_replay_ok": 144,
+  "direction_A_graph_membership_ok": 144,
+  "distinct_induced_macro_walks": 80,
+  "tilings_per_walk_distribution_top10": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "walk_length": 6,
+  "elapsed_seconds": 18.54,
+  "failures_first5": [],
+  "interpretation": "Tiling->walk is many-to-one: distinct raw tilings sharing one state-sequence differ only in HOW layers are filled, which the macro graph intentionally abstracts away."
+}

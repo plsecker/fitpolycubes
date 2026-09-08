@@ -1,0 +1,82 @@
+{
+ "certificate_version": "1.0",
+ "theorem_type": "global",
+ "cross_section": {
+  "a": 4,
+  "b": 8
+ },
+ "source_enumeration": {
+  "complete": true,
+  "total_sources": 331765,
+  "dead_end_sources": 331761,
+  "recurrent_sources": 4,
+  "scc_id": "SCC(0)",
+  "scc_size": 478
+ },
+ "scc_period": {
+  "computed": true,
+  "period": 10,
+  "states_in_bfs": 478,
+  "edges_checked": 514,
+  "gcd_of_deltas": 10,
+  "period_classes": 10
+ },
+ "primitive_cycles": [
+  {
+   "length": 20,
+   "source": "Postl 1998",
+   "certified": true
+  },
+  {
+   "length": 130,
+   "source": "Shirakawa 2014",
+   "certified": true
+  }
+ ],
+ "semigroup": {
+  "generators": [
+   20,
+   130
+  ],
+  "gcd": 10,
+  "scaled_generators": [
+   2,
+   13
+  ],
+  "frobenius": 110,
+  "conductor": 120,
+  "representable_up_to": [
+   0,
+   20,
+   40,
+   60,
+   80,
+   100,
+   120,
+   130,
+   140,
+   150,
+   160,
+   170,
+   180,
+   190,
+   200,
+   210,
+   220,
+   230,
+   240,
+   250,
+   260,
+   270,
+   280,
+   290,
+   300,
+   310,
+   320,
+   330,
+   340,
+   350
+  ]
+ },
+ "tileability_claim": "z in <20,130> exactly; Frobenius 110, conductor 120"
+}

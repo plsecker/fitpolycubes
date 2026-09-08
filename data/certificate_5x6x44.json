@@ -1,0 +1,56 @@
+{
+  "theorem": "5x6 Infinite Family Theorem",
+  "cross_section": "5\u00d76",
+  "thickness": 44,
+  "volume": 1320,
+  "pieces": 264,
+  "generators": [
+    4,
+    29,
+    46,
+    47
+  ],
+  "semigroup": "<4, 29, 46, 47>",
+  "decomposition": "11\u00d74",
+  "decomposition_counts": {
+    "4": 11
+  },
+  "construction": {
+    "method": "macro_cycle_concatenation",
+    "cycles_used": [
+      4
+    ],
+    "total_repetitions": 11,
+    "placements_generated": 264
+  },
+  "validation": {
+    "valid": true,
+    "a": 5,
+    "b": 6,
+    "z": 44,
+    "expected_cells": 1320,
+    "expected_pieces": 264,
+    "actual_pieces": 264,
+    "actual_cells": 1320,
+    "errors": [],
+    "warnings": [],
+    "invalid_shapes": 0,
+    "out_of_bounds": 0,
+    "overlaps": 0,
+    "missing_cells": 0,
+    "extra_cells": 0
+  },
+  "provenance": {
+    "macro_graph": "complete_5x6_macro_graph",
+    "scc_size": 1606,
+    "verified_cycle_lengths": [
+      4,
+      29,
+      46,
+      47
+    ],
+    "frobenius_number": 43,
+    "conductor": 44,
+    "construction_date": "2026-08-23"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "theorem_type": "global",
+  "cross_section": {
+    "a": 3,
+    "b": 8
+  },
+  "piece": "T",
+  "theorem_statement": "A box of dimensions 3x8xz is tileable by T-pentacubes iff z is a multiple of 5 and z is not in {5, 10, 20, 25}. All multiples of 5 >= 30 are tileable.",
+  "source_enumeration": {
+    "complete": true,
+    "total_sources": 689,
+    "dead_end_sources": 685,
+    "recurrent_sources": 4,
+    "method": "complete_bfs_exhaustion",
+    "queue_exhausted": true,
+    "cap_hit": false
+  },
+  "scc_period": {
+    "computed": true,
+    "period": 5,
+    "method": "distance_difference_gcd",
+    "scc_size": 2939,
+    "scc_edges": 3288,
+    "total_macro_states": 916153,
+    "total_macro_edges": 958474,
+    "recurrent_scc_count": 1,
+    "transient_state_count": 913214
+  },
+  "semigroup": {
+    "generators": [
+      15,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      105,
+      110,
+      115,
+      120,
+      130,
+      135
+    ],
+    "gcd": 5,
+    "frobenius": 25,
+    "conductor": 30,
+    "description": "All multiples of 5 >= 30 are tileable. Exceptions: 5, 10, 20, 25."
+  },
+  "primitive_cycles": [
+    {
+      "length": 15
+    },
+    {
+      "length": 30
+    },
+    {
+      "length": 40
+    },
+    {
+      "length": 50
+    },
+    {
+      "length": 75
+    }
+  ],
+  "provenance": {
+    "method": "macro_closure",
+    "extraction_date": "2026-08-26",
+    "macro_graph": "complete_3x8_macro_graph",
+    "verification": "independent_transition_check"
+  }
+}

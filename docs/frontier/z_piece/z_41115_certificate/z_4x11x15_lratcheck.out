@@ -1,0 +1,7 @@
+c parsed a formula with 4096 variables and 265000 clauses
+c topTable reallocation from 1024 to 1536
+c increasing the number of buckets from 1024 to 1536
+c VERIFIED
+c allocated 1536 20374975 40960
+c Added clauses = 5124533.  Deleted clauses = 5124092.  Max live clauses = 444545
+c verification time = 85.00 secs

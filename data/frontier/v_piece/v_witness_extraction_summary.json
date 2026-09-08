@@ -1,0 +1,56 @@
+{
+  "part_A_witness_extraction": {
+    "source": "data/v_5x5x6_complete_solutions.json",
+    "provenance_note": "placements_V_5x5x6.txt / placements_V_5x5x9.txt are complete placement CATALOGUES (all legal placements: 696 / 1164), not witnesses; the exhaustive solution sets are the witnesses.",
+    "witness_tilings": 144,
+    "invalid_tilings": 0,
+    "distinct_induced_walks": 80,
+    "walk_length_spectrum": {
+      "6": 80
+    },
+    "walks_passing_through_classic_gate_state": 0,
+    "sample_walk_first_states_hex": [
+      "0x0",
+      "0x3b09ec7180103",
+      "0x70001dbcf63"
+    ]
+  },
+  "part_B_realization": {
+    "boxes": [
+      {
+        "z": 6,
+        "realized": true,
+        "validation_errors": [],
+        "pieces": 18,
+        "certificate": "data/frontier/v_piece/v_3x5x6_macro_cycle_certificate.json",
+        "cycle_states_hex": [
+          "0x0",
+          "0x31e0624",
+          "0x1863f",
+          "0x6d80c3",
+          "0x37f86ff",
+          "0x6ff",
+          "0x0"
+        ]
+      },
+      {
+        "z": 8,
+        "realized": true,
+        "validation_errors": [],
+        "pieces": 24,
+        "certificate": "data/frontier/v_piece/v_3x5x8_macro_cycle_certificate.json",
+        "cycle_states_hex": [
+          "0x0",
+          "0x9231246",
+          "0x3007f24f",
+          "0x18603f",
+          "0x6d80c30",
+          "0xfdb1fb6",
+          "0x3fffffff",
+          "0x7fff",
+          "0x0"
+        ]
+      }
+    ]
+  }
+}

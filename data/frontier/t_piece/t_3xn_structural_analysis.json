@@ -1,0 +1,246 @@
+{
+  "title": "T 3\u00d7N Structural Analysis Data",
+  "date": "2026-08-26",
+  "status": "COMPLETE",
+  "template_data": {
+    "3\u00d75": {
+      "N": 5,
+      "area": 15,
+      "mod5": 0,
+      "placements": 1248,
+      "templates": 144
+    },
+    "3\u00d76": {
+      "N": 6,
+      "area": 18,
+      "mod5": 3,
+      "placements": 1616,
+      "templates": 188
+    },
+    "3\u00d77": {
+      "N": 7,
+      "area": 21,
+      "mod5": 1,
+      "placements": 1984,
+      "templates": 232
+    },
+    "3\u00d78": {
+      "N": 8,
+      "area": 24,
+      "mod5": 4,
+      "placements": 2352,
+      "templates": 276
+    },
+    "3\u00d79": {
+      "N": 9,
+      "area": 27,
+      "mod5": 2,
+      "placements": 2720,
+      "templates": 320
+    },
+    "3\u00d710": {
+      "N": 10,
+      "area": 30,
+      "mod5": 0,
+      "placements": 3088,
+      "templates": 364
+    },
+    "3\u00d711": {
+      "N": 11,
+      "area": 33,
+      "mod5": 3,
+      "placements": 3456,
+      "templates": 408
+    },
+    "3\u00d712": {
+      "N": 12,
+      "area": 36,
+      "mod5": 1,
+      "placements": 3824,
+      "templates": 452
+    }
+  },
+  "template_growth": {
+    "per_plus_1_N": {
+      "placements": 368,
+      "templates": 44
+    },
+    "embeddable_fraction": 0.68,
+    "growth_formula": "placements = 1248 + (N-5) \u00d7 368; templates = 144 + (N-5) \u00d7 44"
+  },
+  "macro_data": {
+    "3\u00d75": {
+      "sources": null,
+      "scc0_size": null,
+      "period": null,
+      "shortest": null,
+      "complete": false,
+      "theorem": null
+    },
+    "3\u00d76": {
+      "sources": null,
+      "scc0_size": null,
+      "period": null,
+      "shortest": null,
+      "complete": false,
+      "theorem": null
+    },
+    "3\u00d77": {
+      "sources": 204,
+      "scc0_size": 39,
+      "period": 20,
+      "shortest": 20,
+      "complete": true,
+      "theorem": "GLOBAL"
+    },
+    "3\u00d78": {
+      "sources": 689,
+      "scc0_size": 2939,
+      "period": 5,
+      "shortest": 15,
+      "complete": true,
+      "theorem": "GLOBAL"
+    },
+    "3\u00d79": {
+      "sources": 2284,
+      "scc0_size": 1,
+      "period": null,
+      "shortest": null,
+      "complete": true,
+      "theorem": "GLOBAL (acyclic)",
+      "acyclic": true,
+      "cycles_exist": false,
+      "gate_predecessors": 0,
+      "explanation": "No reachable state with L1=L2=0 has remaining L0 cells that are a multiple of 5."
+    },
+    "3\u00d710": {
+      "sources": 6927,
+      "scc0_size": 134363,
+      "period": 1,
+      "shortest": 10,
+      "complete": false,
+      "theorem": "SCC-LOCAL"
+    },
+    "3\u00d711": {
+      "sources": null,
+      "scc0_size": null,
+      "period": null,
+      "shortest": null,
+      "complete": false,
+      "theorem": null
+    },
+    "3\u00d712": {
+      "sources": 2014,
+      "scc0_size": null,
+      "period": null,
+      "shortest": null,
+      "complete": false,
+      "theorem": null
+    }
+  },
+  "period_analysis": {
+    "piece_count_divisor": {
+      "theorem": "If 5 \u2224 3N then period is a multiple of 5",
+      "proof": "Volume = 3\u00d7N\u00d7z must be divisible by 5. Since each T piece occupies 5 cells, z must be divisible by 5 when 5 \u2224 3N.",
+      "applicable_to": [
+        "3\u00d76",
+        "3\u00d77",
+        "3\u00d78",
+        "3\u00d79",
+        "3\u00d711",
+        "3\u00d712"
+      ],
+      "not_applicable_to": [
+        "3\u00d75",
+        "3\u00d710"
+      ]
+    },
+    "observed_periods": {
+      "3\u00d77": {
+        "period": 20,
+        "piece_count_factor": 5,
+        "scc_factor": 4,
+        "explanation": "SCC(0) has only one return length (20)"
+      },
+      "3\u00d78": {
+        "period": 5,
+        "piece_count_factor": 5,
+        "scc_factor": 1,
+        "explanation": "SCC(0) has multiple return lengths, gcd = 5"
+      },
+      "3\u00d710": {
+        "period": 1,
+        "piece_count_factor": 1,
+        "scc_factor": 1,
+        "explanation": "No piece-count constraint, returns 10 and 27 give gcd 1"
+      },
+      "3\u00d79": {
+        "period": null,
+        "piece_count_factor": 5,
+        "scc_factor": null,
+        "explanation": "Graph is acyclic. No cycles exist. Period is undefined."
+      }
+    },
+    "hypothesis": {
+      "statement": "The cyclic/acyclic status of 3\u00d7N depends on whether the reachable state space contains a state with L1=L2=\u2205 whose remaining L0 cells are a multiple of 5. For N=7,8,10 (cyclic), the remaining cells are 10, {5,10}, and {10,15} respectively. For N=9 (acyclic), the remaining cells are {13,16,18}, none of which are multiples of 5. For N \u2265 8 (excluding N=9), the SCC factor appears to be 1.",
+      "predictions": {
+        "3\u00d79": null,
+        "3\u00d711": 5,
+        "3\u00d712": 5
+      },
+      "basis": "Monotonicity: period(3\u00d7N) is non-increasing as N increases. Period(3\u00d77)=20, period(3\u00d78)=5, period(3\u00d710)=1."
+    }
+  },
+  "catalogue_primes": {
+    "3\u00d77": [
+      20
+    ],
+    "3\u00d78": [
+      15,
+      35,
+      40
+    ],
+    "3\u00d710": [
+      10,
+      14,
+      26,
+      27,
+      31,
+      32,
+      33,
+      35,
+      39
+    ],
+    "3\u00d711": [
+      30,
+      35,
+      40,
+      45,
+      50,
+      55
+    ],
+    "3\u00d712": [
+      15,
+      20,
+      25
+    ],
+    "3\u00d713": [
+      20,
+      25,
+      30,
+      35
+    ],
+    "3\u00d714": [
+      15
+    ],
+    "3\u00d715": [
+      17,
+      18,
+      19,
+      21,
+      23
+    ]
+  },
+  "classification": "hybrid",
+  "hybrid_description": "Structural necessity (piece-count integrality) + finite computational verification (N \u2264 8) + SCC-local evidence (N = 10). Full closure is not fundamentally necessary for the T 3\u00d7N family."
+}

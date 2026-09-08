@@ -1,0 +1,269 @@
+{
+ "format": "fitpolycubes.macro-walk",
+ "format_version": 1,
+ "piece": {
+  "name": "I",
+  "geometry": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    0
+   ],
+   [
+    3,
+    0,
+    0
+   ],
+   [
+    4,
+    0,
+    0
+   ]
+  ],
+  "cell_count": 5
+ },
+ "conventions": {
+  "cell_id": "x + a*y, 0 <= x < a, 0 <= y < b",
+  "state_packing": "state = l0 | (l1 << NCELLS); slot 2 always empty (nodes are post-shift states)",
+  "rotations": "proper only (signed permutation matrices, det=+1)",
+  "window_coords": "edge k fill pieces relative to layer k: (x,y,dz), dz in {0,1,2}; absolute cell = (x,y,k+dz)",
+  "edge_legality_definition": "pieces of edge k must each be congruent to piece.geometry under proper rotation, be pairwise disjoint, avoid all cells occupied by state s_k, complete slot 0 of s_k, and shift(s_k + pieces) == s_{k+1}",
+  "semantics_id": "fitpolycubes.macro-walk/semantics-1",
+  "semantics_note": "machine-pinned identifier; the prose fields below are human-readable restatements of the same pinned semantics and are not parsed by checkers"
+ },
+ "box": {
+  "a": 1,
+  "b": 5,
+  "z": 3
+ },
+ "walk": [
+  {
+   "step": 0,
+   "l0": 0,
+   "l1": 0,
+   "hex": "0x0"
+  },
+  {
+   "step": 1,
+   "l0": 0,
+   "l1": 0,
+   "hex": "0x0"
+  },
+  {
+   "step": 2,
+   "l0": 0,
+   "l1": 0,
+   "hex": "0x0"
+  },
+  {
+   "step": 3,
+   "l0": 0,
+   "l1": 0,
+   "hex": "0x0"
+  }
+ ],
+ "edge_fills": [
+  [
+   [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     2,
+     0
+    ],
+    [
+     0,
+     3,
+     0
+    ],
+    [
+     0,
+     4,
+     0
+    ]
+   ]
+  ],
+  [
+   [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     2,
+     0
+    ],
+    [
+     0,
+     3,
+     0
+    ],
+    [
+     0,
+     4,
+     0
+    ]
+   ]
+  ],
+  [
+   [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     2,
+     0
+    ],
+    [
+     0,
+     3,
+     0
+    ],
+    [
+     0,
+     4,
+     0
+    ]
+   ]
+  ]
+ ],
+ "box_tiling": [
+  [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    2,
+    0
+   ],
+   [
+    0,
+    3,
+    0
+   ],
+   [
+    0,
+    4,
+    0
+   ]
+  ],
+  [
+   [
+    0,
+    0,
+    1
+   ],
+   [
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    2,
+    1
+   ],
+   [
+    0,
+    3,
+    1
+   ],
+   [
+    0,
+    4,
+    1
+   ]
+  ],
+  [
+   [
+    0,
+    0,
+    2
+   ],
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    0,
+    2,
+    2
+   ],
+   [
+    0,
+    3,
+    2
+   ],
+   [
+    0,
+    4,
+    2
+   ]
+  ]
+ ],
+ "terminal": {
+  "predecessor_state_index": 2,
+  "l0_popcount": 0,
+  "remaining_cells": 5,
+  "final_edge_all_slot0": true,
+  "final_edge_covers_complement": true
+ },
+ "provenance": {
+  "source_tiling": "hand-built synthetic; trivial self-loop walk of the I pentacube in a 1x5 cross-section (one upright-free flat piece per layer); smoke test for degenerate cases only, not research evidence",
+  "date": "2026-08-26"
+ },
+ "claims": [
+  {
+   "id": "I-selfloop",
+   "statement": "The I-pentacube Macro graph on cross-section 1x5 has the self-loop 0 -> 0 (cycle length 1): each layer is completed by a single piece lying wholly in slot 0.",
+   "status": "PROVED COMPUTATION",
+   "evidence": [
+    "this file (self-contained)"
+   ],
+   "checked_by": "tools/frontier/macro_certificate_generic_checker.py"
+  }
+ ]
+}

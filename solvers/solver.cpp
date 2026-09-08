@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <array>
+#include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <cstring>
@@ -9,6 +10,7 @@
 #include <set>
 #include <stdexcept>
 #include <string>
+#include <thread>
 #include <vector>
 
 constexpr int CELLS_PER_PLACEMENT = 5;
@@ -37,13 +39,14 @@ static bool g_prune_colour_global = false;
 static bool g_prune_colour_comp = false;
 static bool g_prune_propagate = false;    // unit propagation on deg-1 cells
 static long g_research_every = 0;
+static int g_parallel_workers = 0;        // 0/1 = single-thread (unchanged path)
 
 static bool g_colour_strong = false;      // all placements have |B-W| == 1
 static int g_colour_maxdiff = 0;
 static std::vector<uint8_t> g_cell_parity; // (x+y+z) & 1 per cell id
 static long long g_rem_colors[2] = {0, 0}; // active cells per parity
 static long long g_expected_pieces = 0;    // total pieces in a full tiling
-static std::vector<int> g_deg;             // per-cell active placement degree
+static thread_local std::vector<int> g_deg;             // per-cell active placement degree
 static std::string g_dump_file;    // --dump=FILE: one solution per line
 
 struct Placement {
@@ -362,7 +365,7 @@ struct Connectivity {
     }
 };
 
-static Connectivity g_conn;
+static thread_local Connectivity g_conn;
 
 // ============================================================
 // Unit propagation on forced placements (research prototype).
@@ -464,7 +467,7 @@ struct Propagator {
     }
 };
 
-static Propagator g_prop;
+static thread_local Propagator g_prop;
 
 // ============================================================
 // Chiral-safe symmetry breaking (v2, soundness-hardened)
@@ -555,8 +558,8 @@ struct Symmetry {
     long long pair_candidates = 0;
     long long pair_canonical = 0;
     long long pair_pruned_rows = 0;
-    long long pair_checks = 0;      // runtime: joint checks performed
-    long long pair_pruned = 0;      // runtime: branches cut by the joint check
+    std::atomic<long long> pair_checks{0};   // runtime: joint checks performed
+    std::atomic<long long> pair_pruned{0};   // runtime: branches cut by the joint check
 };
 
 static Symmetry g_sym;
@@ -1067,7 +1070,7 @@ void search(
     }
 
     int min_rows = 999999;
-    static std::vector<int> prop_forced;
+    static thread_local std::vector<int> prop_forced;
     prop_forced.clear();
     const int best_col = choose_best_column(
         X,
@@ -1182,7 +1185,7 @@ void search(
 
             active_cols[c] = 0;
             deactivated_cols.push_back(c);
-            if (!g_cell_parity.empty()) {
+            if (g_prune_colour_global) {
                 --g_rem_colors[g_cell_parity[c]];
             }
 
@@ -1252,10 +1255,166 @@ void search(
 
         for (int c : deactivated_cols) {
             active_cols[c] = 1;
-            if (!g_cell_parity.empty()) {
+            if (g_prune_colour_global) {
                 ++g_rem_colors[g_cell_parity[c]];
             }
         }
+    }
+}
+
+// ============================================================
+// Parallel task splitting (research prototype, --parallel[=W]).
+//
+// The single-threaded search is split at shallow depths exactly the
+// way the hybrid solver does it: a recursive MRV descent emits task
+// prefixes; each worker applies its prefix to a private copy of the
+// masked state and runs the unchanged search() from there. Work is
+// handed out dynamically through an atomic index (no static chunks),
+// which removes the load-imbalance pathology of the Numba pool.
+//
+// Soundness: task prefixes partition the search tree, and the
+// generator replicates the search's anchor tracking + centre-pair
+// partner check, so every pruning rule applies identically.
+// ============================================================
+struct Task {
+    std::vector<int> rows;
+    int anch_neg = -1;
+    int anch_pos = -1;
+};
+
+static void gen_tasks_rec(
+    const CSR& X, const CSR& Y,
+    std::vector<uint8_t>& ac, std::vector<uint8_t>& ar,
+    int num_cols, int depth, int max_depth, int target,
+    Task& cur, std::vector<Task>& tasks)
+{
+    if (static_cast<int>(tasks.size()) >= target || depth >= max_depth) {
+        tasks.push_back(cur);
+        return;
+    }
+    int best = -1;
+    int minr = 1 << 30;
+    for (int c = 0; c < num_cols; ++c) {
+        if (!ac[c]) {
+            continue;
+        }
+        int cnt = 0;
+        for (int k = X.indptr[c]; k < X.indptr[c + 1]; ++k) {
+            if (ar[X.data[k]]) {
+                ++cnt;
+            }
+        }
+        if (cnt < minr) {
+            minr = cnt;
+            best = c;
+            if (cnt == 0) {
+                break;
+            }
+        }
+    }
+    if (best == -1 || minr == 0) {
+        return;  // dead prefix: nothing to search below it
+    }
+    for (int k = X.indptr[best]; k < X.indptr[best + 1]; ++k) {
+        const int r = X.data[k];
+        if (!ar[r]) {
+            continue;
+        }
+        std::vector<int> dc;
+        std::vector<int> dr;
+        for (int j = Y.indptr[r]; j < Y.indptr[r + 1]; ++j) {
+            const int e = Y.data[j];
+            if (ac[e]) {
+                ac[e] = 0;
+                dc.push_back(e);
+                for (int q = X.indptr[e]; q < X.indptr[e + 1]; ++q) {
+                    const int other = X.data[q];
+                    if (ar[other]) {
+                        ar[other] = 0;
+                        dr.push_back(other);
+                    }
+                }
+            }
+        }
+        const int save_neg = cur.anch_neg;
+        const int save_pos = cur.anch_pos;
+        bool ok = true;
+        if (g_sym.pair_mode) {
+            if (g_sym.covers_neg[r]) {
+                cur.anch_neg = r;
+            }
+            if (g_sym.covers_pos[r]) {
+                cur.anch_pos = r;
+            }
+            if (cur.anch_neg >= 0 && cur.anch_pos >= 0 &&
+                (cur.anch_neg != save_neg || cur.anch_pos != save_pos)) {
+                const std::vector<int>& ps = g_sym.partners[cur.anch_neg];
+                if (!std::binary_search(ps.begin(), ps.end(), cur.anch_pos)) {
+                    ok = false;
+                }
+            }
+        }
+        cur.rows.push_back(r);
+        if (ok) {
+            gen_tasks_rec(X, Y, ac, ar, num_cols, depth + 1, max_depth,
+                          target, cur, tasks);
+        }
+        cur.rows.pop_back();
+        cur.anch_neg = save_neg;
+        cur.anch_pos = save_pos;
+        for (int q : dr) {
+            ar[q] = 1;
+        }
+        for (int c : dc) {
+            ac[c] = 1;
+        }
+    }
+}
+
+static void parallel_worker(
+    const CSR& X, const CSR& Y, int num_cols, int num_rows,
+    int a, int b, int c,
+    const std::vector<uint8_t>& ac0, const std::vector<uint8_t>& ar0,
+    const std::vector<Task>& tasks,
+    std::atomic<size_t>& next,
+    std::vector<SearchStats>& out,
+    int wid)
+{
+    out[wid] = SearchStats{};
+    out[wid].new_rej_depth_hist.assign(
+        static_cast<size_t>(out[wid].hist_buckets), 0);
+    out[wid].start_time = std::chrono::steady_clock::now();
+    if (g_prune_propagate) {
+        g_deg.assign(static_cast<size_t>(num_cols), 0);
+        g_prop.init(num_cols, num_rows);
+    }
+    g_conn.init(a, b, c);
+    auto ac = ac0;
+    auto ar = ar0;
+    std::vector<int> solution;
+    solution.reserve(static_cast<size_t>(num_cols / CELLS_PER_PLACEMENT) + 1);
+    while (true) {
+        const size_t i = next.fetch_add(1);
+        if (i >= tasks.size()) {
+            break;
+        }
+        const Task& t = tasks[i];
+        ac = ac0;
+        ar = ar0;
+        solution.clear();
+        for (const int r : t.rows) {
+            for (int j = Y.indptr[r]; j < Y.indptr[r + 1]; ++j) {
+                const int e = Y.data[j];
+                ac[e] = 0;
+                for (int q = X.indptr[e]; q < X.indptr[e + 1]; ++q) {
+                    ar[X.data[q]] = 0;
+                }
+            }
+            solution.push_back(r);
+        }
+        search(X, Y, ac, ar, num_cols,
+               static_cast<int>(t.rows.size()), out[wid], solution,
+               t.anch_neg, t.anch_pos);
     }
 }
 
@@ -1277,7 +1436,10 @@ int main(int argc, char* argv[]) {
         std::cerr << "    --region-prune=propagate      unit propagation on forced (degree-1)\n";
         std::cerr << "                        placements; rejects provably dead states early\n";
         std::cerr << "    --research-deadends=K         sample every K-th MRV dead end and\n";
-        std::cout << "    dump component structure to stdout\n";
+        std::cerr << "                        dump component structure to stdout\n";
+        std::cerr << "    --parallel[=W]      split the search into task prefixes and run\n";
+        std::cerr << "                        W workers (default: all cores) with dynamic\n";
+        std::cerr << "                        work stealing\n";
         return 1;
     }
 
@@ -1295,6 +1457,19 @@ int main(int argc, char* argv[]) {
                 g_symmetry = true;
             } else if (s.rfind("--dump=", 0) == 0) {
                 g_dump_file = s.substr(7);
+            } else if (s.rfind("--parallel", 0) == 0) {
+                if (s.size() > 10 && s[10] == '=') {
+                    g_parallel_workers = std::stoi(s.substr(11));
+                } else {
+                    g_parallel_workers = static_cast<int>(
+                        std::thread::hardware_concurrency());
+                    if (g_parallel_workers <= 0) {
+                        g_parallel_workers = 4;
+                    }
+                }
+                if (g_parallel_workers < 1) {
+                    g_parallel_workers = 1;
+                }
             } else if (s.rfind("--region-prune=", 0) == 0) {
                 const std::string mode = s.substr(15);
                 if (mode == "colour-global") {
@@ -1482,7 +1657,7 @@ int main(int argc, char* argv[]) {
         }
 
         SearchStats stats;
-        stats.max_nodes = max_nodes;
+        stats.max_nodes = g_parallel_workers > 1 ? 0 : max_nodes;
         stats.start_time = std::chrono::steady_clock::now();
         stats.new_rej_depth_hist.assign(
             static_cast<size_t>(stats.hist_buckets), 0);
@@ -1492,15 +1667,90 @@ int main(int argc, char* argv[]) {
 
         const auto start = std::chrono::steady_clock::now();
 
-        search(
-            X,
-            Y,
-            active_cols,
-            active_rows,
-            num_cols,
-            0,
-            stats,
-            solution);
+        if (g_parallel_workers > 1) {
+            if (max_nodes > 0) {
+                std::cout << "Note: max_nodes is ignored in --parallel mode\n";
+            }
+            if (g_prune_colour_global) {
+                std::cout << "Note: --region-prune=colour-global is not "
+                             "parallel-safe; disabled\n";
+                g_prune_colour_global = false;
+            }
+            // Generate task prefixes (recursive MRV descent, hybrid-style).
+            const int target = g_parallel_workers * 16;
+            const int max_depth = 4;
+            std::vector<Task> tasks;
+            {
+                Task root;
+                std::vector<uint8_t> tac = active_cols;
+                std::vector<uint8_t> tar = active_rows;
+                gen_tasks_rec(X, Y, tac, tar, num_cols, 0, max_depth,
+                              target, root, tasks);
+            }
+            std::cout
+                << "Parallel mode: " << g_parallel_workers << " workers, "
+                << tasks.size() << " tasks (target " << target
+                << ", max depth 4)\n";
+            if (tasks.empty()) {
+                search(X, Y, active_cols, active_rows, num_cols, 0,
+                       stats, solution);
+            } else {
+                std::atomic<size_t> next{0};
+                std::vector<SearchStats> wstats(
+                    static_cast<size_t>(g_parallel_workers));
+                std::vector<std::thread> threads;
+                threads.reserve(static_cast<size_t>(g_parallel_workers) - 1);
+                for (int w = 1; w < g_parallel_workers; ++w) {
+                    threads.emplace_back(
+                        parallel_worker,
+                        std::cref(X), std::cref(Y), num_cols, num_rows,
+                        Xdim, Ydim, Zdim,
+                        std::cref(active_cols), std::cref(active_rows),
+                        std::cref(tasks), std::ref(next),
+                        std::ref(wstats), w);
+                }
+                parallel_worker(X, Y, num_cols, num_rows, Xdim, Ydim, Zdim,
+                                active_cols, active_rows, tasks, next,
+                                wstats, 0);
+                for (auto& t : threads) {
+                    t.join();
+                }
+                // merge worker stats
+                for (const auto& ws : wstats) {
+                    stats.nodes += ws.nodes;
+                    stats.solutions += ws.solutions;
+                    stats.dead_ends += ws.dead_ends;
+                    stats.conn_checks += ws.conn_checks;
+                    stats.conn_pruned += ws.conn_pruned;
+                    stats.rej_colour_global += ws.rej_colour_global;
+                    stats.rej_colour_global_mrv += ws.rej_colour_global_mrv;
+                    stats.rej_colour_comp += ws.rej_colour_comp;
+                    stats.rej_colour_comp_mrv += ws.rej_colour_comp_mrv;
+                    stats.rej_propagate += ws.rej_propagate;
+                    stats.propagate_forced_total += ws.propagate_forced_total;
+                    stats.max_depth = std::max(stats.max_depth, ws.max_depth);
+                    for (int i = 0; i < stats.hist_buckets; ++i) {
+                        stats.new_rej_depth_hist[static_cast<size_t>(i)] +=
+                            ws.new_rej_depth_hist[static_cast<size_t>(i)];
+                    }
+                }
+                std::cout << "Per-worker nodes:";
+                for (const auto& ws : wstats) {
+                    std::cout << ' ' << ws.nodes;
+                }
+                std::cout << '\n';
+            }
+        } else {
+            search(
+                X,
+                Y,
+                active_cols,
+                active_rows,
+                num_cols,
+                0,
+                stats,
+                solution);
+        }
 
         const auto end = std::chrono::steady_clock::now();
 

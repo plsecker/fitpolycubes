@@ -1,0 +1,104 @@
+{
+  "claim": "The 4x11x15 box cannot be tiled by the Z pentacube (piece 5/11). UNSAT.",
+  "date": "2026-09-04",
+  "encoding": "plain ALO+AMO exact cover (one variable per legal placement), canonical deduplicated clause set (sorted literals, no duplicate clauses, sorted sequence), no symmetry-breaking predicates",
+  "placements": 4096,
+  "variables": 4096,
+  "clauses": 265000,
+  "placement_count": 4096,
+  "variable_count": 4096,
+  "clause_count": 265000,
+  "runs": [
+    {
+      "date": "2026-09-03",
+      "config": "pysat Cadical153 proof-less (356020-clause non-deduped encoding)",
+      "wall_seconds": 1865.2,
+      "result": "UNSAT"
+    },
+    {
+      "date": "2026-09-04",
+      "config": "native CaDiCaL 1.5.3 on the 356020-clause encoding, binary DRAT (z_4x11x15_native.drat, 3670843452 bytes — archived outside this package)",
+      "wall_seconds": 2349.6,
+      "result": "UNSAT",
+      "verifiable": true
+    },
+    {
+      "date": "2026-09-04",
+      "config": "drat-trim verification of that 356020-clause encoding's proof",
+      "checker": "drat-trim (same build as the 6x6x10 package)",
+      "result": "s VERIFIED",
+      "wall_seconds": 2591.0,
+      "core": "258799/356020 clauses; 5053932/12086232 lemmas; 683881489 resolution steps; 0 RAT lemmas",
+      "note": "recorded for completeness; that encoding/proof pair is NOT this package"
+    },
+    {
+      "date": "2026-09-04",
+      "config": "native CaDiCaL 1.5.3 on the CANONICAL DEDUPED 265000-clause encoding (this package), binary DRAT",
+      "wall_seconds": 2117.5,
+      "result": "UNSAT",
+      "conflicts": 8771150,
+      "decisions": 19726489,
+      "propagations": 1898823341,
+      "peak_rss_mb": 389.81,
+      "exit_code": 20,
+      "solver_log": "z_4x11x15_cadical.out",
+      "verifiable": true
+    },
+    {
+      "date": "2026-09-04",
+      "config": "drat-trim verification of this package's proof (z_4x11x15_native2.drat) against this package's CNF",
+      "checker": "drat-trim (same build as the 6x6x10 package)",
+      "result": "s VERIFIED",
+      "wall_seconds": 2458.2,
+      "checker_log": "z_4x11x15_drattrim.out",
+      "core": "258206/265000 clauses; 4859533/11822097 lemmas; 647547908 resolution steps; 0 RAT lemmas",
+      "verifiable": true
+    },
+    {
+      "date": "2026-09-04",
+      "config": "drat-trim -L: LRAT emission from this package's proof (dual-checker upgrade, same standard as the 6x6x10 package)",
+      "checker": "drat-trim (same build)",
+      "result": "s VERIFIED",
+      "wall_seconds": 3072.2,
+      "checker_log": "z_4x11x15_drattrim_lrat.out",
+      "core": "258206/265000 clauses; 4859533/11822097 lemmas; 647547908 resolution steps (identical to the binary-DRAT check)",
+      "lrat_file": "z_4x11x15.lrat",
+      "lrat_bytes": 6519491606,
+      "verifiable": true
+    },
+    {
+      "date": "2026-09-04",
+      "config": "lrat-check verification of the emitted LRAT certificate (third independent verdict)",
+      "checker": "lrat-check (same drat-trim repo build, -DLONGTYPE)",
+      "result": "c VERIFIED",
+      "wall_seconds": 85.0,
+      "checker_log": "z_4x11x15_lratcheck.out",
+      "core": "5124533 added clauses; 5124092 deleted; max live 444545",
+      "verifiable": true
+    }
+  ],
+  "proof": {
+    "file": "z_4x11x15_native2.drat",
+    "format": "binary DRAT (CaDiCaL 1.5.3 native output)",
+    "sha256_file": "z_4x11x15_native2.drat.sha256",
+    "bytes": 3611617342,
+    "gitignored_locally": true
+  },
+  "sha256": {
+    "cnf": "ecb549acd394ce9d931301aaac8139c3a32c0ba9f98b19dba3b55fc435044c16",
+    "proof": "64c7bef652f67f1983c130f8a7bcf6e733b515ff3a374131c1667108225d3ea2",
+    "var_map": "c362b89ac8a3f03fd82fd75db95ed8ea9186155178d7ebded358b012547361e0",
+    "placement_set": "f13eda45b40ed1582e973c6c0c3546f3993c81d52c0333f8c780e2ecf1db8729",
+    "note": "cnf and proof are the verification-critical artefacts; var_map/placement_set hashes pin the encoding provenance"
+  },
+  "semantic_audit": {
+    "script": "verify_encoding.py",
+    "standard": "canonical (deduplicated clause set)",
+    "result": "ALL CHECKS PASSED (2026-09-04, generic tools/sat audit; identical checks passed 2026-09-04 01:47 with the box-specific script)"
+  },
+  "checker_verdicts": [
+    "drat-trim (binary DRAT): s VERIFIED",
+    "drat-trim -L (LRAT emission re-check): s VERIFIED",
+    "lrat-check (LRAT): c VERIFIED"
+  ]
+}

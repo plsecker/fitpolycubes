@@ -1,0 +1,45 @@
+{
+ "certificate_version": "1.0",
+ "theorem_type": "cycle-only",
+ "cross_section": {
+  "a": 4,
+  "b": 9
+ },
+ "source_enumeration": {
+  "complete": false,
+  "note": "Bounded (10M cap) - not globally complete"
+ },
+ "primitive_cycles": [
+  {
+   "length": 60,
+   "source": "Shirakawa SVG 2014",
+   "certified": true
+  },
+  {
+   "length": 75,
+   "source": "Shirakawa SVG 2014",
+   "certified": true
+  },
+  {
+   "length": 90,
+   "source": "Shirakawa SVG 2014",
+   "certified": true
+  },
+  {
+   "length": 105,
+   "source": "Shirakawa SVG 2014",
+   "certified": true
+  }
+ ],
+ "semigroup": {
+  "generators": [
+   60,
+   75,
+   90,
+   105
+  ],
+  "gcd": 15,
+  "note": "\u27e860,75,90,105\u27e9: Frobenius 45, Conductor 60. VERIFIED RECOVERED CYCLES ONLY - not a global theorem"
+ },
+ "tileability_claim": "RECOVERED CYCLES ONLY: 4 cycles extracted from Shirakawa SVG; no SCC analysis performed"
+}

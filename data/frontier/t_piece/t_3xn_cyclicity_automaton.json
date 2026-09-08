@@ -1,0 +1,29 @@
+{
+  "title": "T 3×N Cyclicity Automaton",
+  "date": "2026-08-26",
+  "status": "THEOREM",
+
+  "cyclicity_theorem": {
+    "statement": "T 3×N Macro graph is cyclic iff there exists a reachable state P with L1=L2=∅, 5|(3N-|P.L0|), and complement E accepted by the 9-state flat-T automaton.",
+    "stage_1": "Terminal-profile reachability via first-gen BFS",
+    "stage_2": "9-state flat-T tiling automaton",
+    "status": "THEOREM"
+  },
+
+  "classification": {
+    "3×7": {"cyclic": true, "type": null, "theorem": "GLOBAL"},
+    "3×8": {"cyclic": true, "type": null, "theorem": "GLOBAL"},
+    "3×9": {"cyclic": false, "type": "A", "reason": "No terminal profile with L0 ≡ 2 mod 5"},
+    "3×10": {"cyclic": true, "type": null, "theorem": "SCC-LOCAL"},
+    "3×11": {"cyclic": false, "type": "B", "reason": "Complements not flat-T tileable"},
+    "3×12": {"cyclic": false, "type": "B", "reason": "Complements not flat-T tileable"}
+  },
+
+  "complexity": {
+    "full_macro_closure": "2^(9N) worst-case",
+    "first_gen_bfs_plus_9_state": "O(N × first_gen_states(N))",
+    "first_gen_states_N7": "43,952",
+    "first_gen_states_N8": "523,093",
+    "first_gen_states_N9": "126,249"
+  }
+}
