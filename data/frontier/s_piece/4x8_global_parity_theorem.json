@@ -1,0 +1,47 @@
+{
+ "analysis_date": "2026-08-25",
+ "cross_section": "4\u00d78",
+ "scc_size": 478,
+ "scc_edges": 514,
+ "result": "The even-cycle property is SCC-LOCAL. No simple state-level bipartition explains it.",
+ "conclusion": "z \u2261 0 (mod 5) is a GLOBAL theorem. z even is SCC-LOCAL. The combined z \u2261 0 (mod 10) cannot be proved globally from current invariants.",
+ "bipartition_search": {
+  "candidates_tested": [
+   "L0",
+   "L1",
+   "L2",
+   "L0+L1",
+   "L0+L1+L2",
+   "L0-L1",
+   "(L0+L1)/2"
+  ],
+  "weighted_coefficient_range": [
+   0,
+   4
+  ],
+  "perfect_bipartition_found": false,
+  "best_candidate": "L0 mod 2 (58.8% same-parity edges)"
+ },
+ "known_invariants": {
+  "L1_even": {
+   "status": "THEOREM",
+   "proved": true
+  },
+  "piece_count_mod5": {
+   "status": "THEOREM",
+   "proved": true
+  },
+  "gate_structure": {
+   "status": "THEOREM",
+   "proved": true
+  },
+  "mod3_conservation": {
+   "status": "FAILS for 4\u00d78",
+   "reason": "area=32 \u2261 2 mod 3"
+  },
+  "even_cycles": {
+   "status": "SCC-LOCAL",
+   "proved_globally": false
+  }
+ }
+}

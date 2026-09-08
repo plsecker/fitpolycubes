@@ -1,0 +1,94 @@
+{
+ "metadata": {
+  "date": "2026-08-25",
+  "status": "COMPLETE",
+  "question": "Can F1=F2 be proven for closed S-pentacube Macro walks?",
+  "answer": "NO \u2014 F1=F2 is a strong empirical constraint but not a theorem"
+ },
+ "theorems": {
+  "algebraic_identity": "F1 - F2 = (L0 - L1 - F3) / 3",
+  "proof": "Direct from orientation layer profiles",
+  "verified_for": "all 422 edges across all 12 cycles"
+ },
+ "exact_facts": {
+  "cycles_with_F1_eq_F2": 10,
+  "cycles_with_F1_neq_F2": 2,
+  "imbalanced_cycles": {
+   "5\u00d79\u00d712": 5,
+   "5\u00d79\u00d721": -5
+  },
+  "total_F1": 993,
+  "total_F2": 993,
+  "total_F3": 1184,
+  "within_cross_section_balance": "Each cross-section group has F1=F2 exactly"
+ },
+ "failed_proofs": [
+  {
+   "method": "telescoping sum",
+   "result": "tautology",
+   "explanation": "All derived sums reduce to 3*(F1-F2) = 3*(F1-F2)"
+  },
+  {
+   "method": "conserved potential",
+   "result": "does not exist",
+   "explanation": "dF is not determined by frontier state alone (41/69 states multi-valued)"
+  },
+  {
+   "method": "modular invariant",
+   "result": "none found",
+   "explanation": "Exhaustive search over moduli 2-20 and coefficients |c|<=5 found no nontrivial invariant"
+  },
+  {
+   "method": "geometric symmetry",
+   "result": "no F1\u2194F2 mapping",
+   "explanation": "S piece is chiral; no rotation/reflection maps F1 to F2"
+  }
+ ],
+ "statistical_significance": {
+  "P(F1=F2 in 10/12 cycles by chance)": "< 10^-10",
+  "null_model_type": "uniform multinomial (1/3 per family)",
+  "sample_sizes_tested": [
+   24,
+   48,
+   108,
+   135,
+   189,
+   432,
+   756
+  ]
+ },
+ "template_analysis": {
+  "4x9": {
+   "F1_templates": 296,
+   "F2_templates": 74,
+   "F3_templates": 192,
+   "ratio": 4.0
+  },
+  "5x9": {
+   "F1_templates": 416,
+   "F2_templates": 104,
+   "F3_templates": 256,
+   "ratio": 4.0
+  },
+  "4x10": {
+   "F1_templates": 336,
+   "F2_templates": 84,
+   "F3_templates": 216,
+   "ratio": 4.0
+  },
+  "5x8": {
+   "F1_templates": 360,
+   "F2_templates": 90,
+   "F3_templates": 224,
+   "ratio": 4.0
+  },
+  "5x6": {
+   "F1_templates": 248,
+   "F2_templates": 62,
+   "F3_templates": 160,
+   "ratio": 4.0
+  },
+  "observation": "F1 has 4x more templates than F2, but each F1 placement fills 4x more L0 cells \u2014 these biases cancel"
+ },
+ "conclusion": "F1=F2 is NOT a theorem. The algebraic equations are tautologies. No invariant, potential, or symmetry transformation proves the balance. The observed balance is a strong empirical constraint (< 10^-10 significance) that likely arises from the ergodic structure of the Macro transition system, but this cannot be proven from the current data alone."
+}

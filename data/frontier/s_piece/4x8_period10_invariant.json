@@ -1,0 +1,64 @@
+{
+ "piece_count_integrality": {
+  "explanation": "Every complete cycle must use area*z/5 pieces, which must be integer",
+  "condition": "For area mod 5 = r \u2260 0, z must be divisible by 5/gcd(r,5)",
+  "cross_sections": {
+   "4\u00d75": {
+    "area": 20,
+    "area_mod_5": 0,
+    "z_must_be_0_mod": "none"
+   },
+   "4\u00d76": {
+    "area": 24,
+    "area_mod_5": 4,
+    "z_must_be_0_mod": 5
+   },
+   "4\u00d78": {
+    "area": 32,
+    "area_mod_5": 2,
+    "z_must_be_0_mod": 5
+   },
+   "4\u00d79": {
+    "area": 36,
+    "area_mod_5": 1,
+    "z_must_be_0_mod": 5
+   },
+   "4\u00d710": {
+    "area": 40,
+    "area_mod_5": 0,
+    "z_must_be_0_mod": "none"
+   },
+   "5\u00d76": {
+    "area": 30,
+    "area_mod_5": 0,
+    "z_must_be_0_mod": "none"
+   },
+   "5\u00d77": {
+    "area": 35,
+    "area_mod_5": 0,
+    "z_must_be_0_mod": "none"
+   },
+   "5\u00d78": {
+    "area": 40,
+    "area_mod_5": 0,
+    "z_must_be_0_mod": "none"
+   },
+   "5\u00d79": {
+    "area": 45,
+    "area_mod_5": 0,
+    "z_must_be_0_mod": "none"
+   },
+   "5\u00d710": {
+    "area": 50,
+    "area_mod_5": 0,
+    "z_must_be_0_mod": "none"
+   }
+  }
+ },
+ "gcd_explanation": {
+  "4\u00d78": "gcd=10: factor 5 from piece-count integrality (area=32, gcd(32,5)=1), factor 2 from SCC structure (shortest cycle=20)",
+  "5\u00d76": "gcd=1: no piece-count restriction (area=30\u22610 mod 5), SCC structure gives gcd=1",
+  "4\u00d76": "gcd=5: factor 5 from piece-count integrality (area=24, gcd(24,5)=1), factor 1 from SCC (shortest cycle=5)"
+ },
+ "conclusion": "The factor-5 component of the gcd is explained by piece-count integrality. The remaining factor is SCC-structure-dependent."
+}

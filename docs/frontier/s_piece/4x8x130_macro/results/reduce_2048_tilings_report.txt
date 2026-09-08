@@ -1,0 +1,51 @@
+# S 4x8x130 Macro tilings: symmetry reduction report
+
+Date: 2026-08-20
+Input: 2048 tilings reconstructed from the 129-edge Macro walks
+       (walks_130.txt + edge_realizations_130.txt, one unique low-level
+       realization per macro edge; no new search performed)
+
+## Files
+- solutions_s_4x8x130_macro.dat          input tilings, reducer-compatible format
+                                         (2048 solutions x 832 placements, 4160 cells each,
+                                         validated: exact 4x8x130 coverage)
+- reduce_solutions_s_4x8x130_macro_4x8x130.txt   reducer output (528 representatives,
+                                         grid layouts, subbox analysis)
+
+## Reducer run
+    .venv/bin/python solvers/reduce_solutions.py solutions_s_4x8x130_macro.dat --reflections
+- Sanity check: passed (all 48 symmetries collapse to a single key)
+- Total solutions processed: 2048
+- Fundamental unique solutions: 528
+
+## Symmetry group used
+- Reducer mode: 48 symmetries (6 axis permutations x 8 sign patterns,
+  rotations + reflections, translation-normalized to origin).
+- The fixed 4x8x130 box (distinct dimensions) has true symmetry group
+  Z2^3 of order 8: midplane reflections x->3-x, y->7-y, z->129-z.
+- The 48-group is a superset, but box-external transforms map a 4x8x130
+  tiling to a tiling of a different box (e.g. 8x4x130), which cannot
+  coincide with any other 4x8x130 tiling. Hence the classes induced on
+  the 2048 tilings are exactly the 8-element box-symmetry orbits.
+- Verified empirically: the 8-group orbit partition and the 48-group
+  class partition on the 2048 tilings are identical (528 classes each).
+
+## Class / stabilizer statistics
+- 528 equivalence classes total
+- Orbit sizes: 32 orbits of size 2, 496 orbits of size 4
+  (32*2 + 496*4 = 2048)
+- Stabilizers (|Stab| = 8 / orbit size):
+  - 64 tilings have stabilizer of order 4 (orbit size 2)
+  - 1984 tilings have stabilizer of order 2 (orbit size 4)
+  - 0 tilings have trivial stabilizer (no orbit of size 8)
+- Every tiling is symmetric under at least one nontrivial box symmetry.
+
+## Cross-checks
+- 8-group orbits: 528 == reducer fundamental count: 528
+- 48-group replica classes: 528, class-size distribution {2: 32, 4: 496}
+  identical to 8-group orbit-size distribution
+- Partition equality (8-group vs 48-group): True
+
+## Note
+- The reducer's subbox analysis found no valid rectangular decomposition
+  for any of the 528 representatives (no further reduction applies).

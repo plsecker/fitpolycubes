@@ -1,0 +1,313 @@
+{
+ "metadata": {
+  "date": "2026-08-25"
+ },
+ "cross_sections": {
+  "4\u00d75": {
+   "a": 4,
+   "b": 5,
+   "area": 20,
+   "first_gen_sources": 1538,
+   "first_gen_source_density": 1538.0,
+   "macro_states": 1538,
+   "macro_edges": 1545,
+   "queue_empty": true,
+   "max_bfs_depth": null,
+   "scc_size": 11,
+   "scc_closure_ratio": 0.007152145643693108,
+   "closure_complete": true,
+   "period": 6,
+   "cycles": [
+    6
+   ],
+   "tractability": "SMALL",
+   "source_first_gen_was_capped": false,
+   "concrete_placements": 2156,
+   "total_templates": 266,
+   "template_types": {
+    "(1,4,0)": 34,
+    "(2,1,2)": 96,
+    "(4,1,0)": 136
+   },
+   "l2_template_fraction": 0.3609022556390977,
+   "perimeter": 18,
+   "aspect_ratio": 1.25,
+   "boundary_cells": 18
+  },
+  "5\u00d76": {
+   "a": 5,
+   "b": 6,
+   "area": 30,
+   "first_gen_sources": 183555,
+   "first_gen_source_density": null,
+   "macro_states": 7916335,
+   "macro_edges": 8005581,
+   "queue_empty": true,
+   "max_bfs_depth": null,
+   "scc_size": 1606,
+   "scc_closure_ratio": 0.00020287165714942583,
+   "closure_complete": true,
+   "period": 1,
+   "cycles": [
+    4,
+    29,
+    46,
+    47
+   ],
+   "tractability": "MEDIUM",
+   "note": "7.9M states, complete closure. Largest complete case.",
+   "source_first_gen_was_capped": false,
+   "concrete_placements": 3796,
+   "total_templates": 470,
+   "template_types": {
+    "(1,4,0)": 62,
+    "(2,1,2)": 160,
+    "(4,1,0)": 248
+   },
+   "l2_template_fraction": 0.3404255319148936,
+   "perimeter": 22,
+   "aspect_ratio": 1.2,
+   "boundary_cells": 22
+  },
+  "4\u00d78": {
+   "a": 4,
+   "b": 8,
+   "area": 32,
+   "first_gen_sources": 331765,
+   "first_gen_source_density": 331765.0,
+   "macro_states": 30000015,
+   "macro_edges": 30000015,
+   "queue_empty": false,
+   "max_bfs_depth": 85,
+   "scc_size": 478,
+   "scc_closure_ratio": 1.593332536667065e-05,
+   "closure_complete": false,
+   "scc_verified_complete": true,
+   "period": 10,
+   "cycles": [
+    20,
+    130
+   ],
+   "tractability": "LARGE",
+   "note": "30M cap hit, but sources complete and SCC(0) is all recurrent states",
+   "source_first_gen_was_capped": false,
+   "concrete_placements": 3944,
+   "total_templates": 488,
+   "template_types": {
+    "(1,4,0)": 64,
+    "(2,1,2)": 168,
+    "(4,1,0)": 256
+   },
+   "l2_template_fraction": 0.3442622950819672,
+   "perimeter": 24,
+   "aspect_ratio": 2.0,
+   "boundary_cells": 24
+  },
+  "4\u00d79": {
+   "a": 4,
+   "b": 9,
+   "area": 36,
+   "first_gen_sources": 71143,
+   "first_gen_source_density": 0.0071143,
+   "macro_states": 65062809,
+   "macro_edges": 65447160,
+   "queue_empty": false,
+   "max_bfs_depth": 51,
+   "scc_size": null,
+   "scc_closure_ratio": null,
+   "closure_complete": false,
+   "period": 15,
+   "cycles": [
+    60,
+    75,
+    90,
+    105
+   ],
+   "tractability": "INTRACTABLE",
+   "note": "65M states, queue still 8.4M. Widening at all depths explored.",
+   "source_first_gen_was_capped": true,
+   "first_gen_cap": 10000000,
+   "concrete_placements": 4540,
+   "total_templates": 562,
+   "template_types": {
+    "(1,4,0)": 74,
+    "(2,1,2)": 192,
+    "(4,1,0)": 296
+   },
+   "l2_template_fraction": 0.3416370106761566,
+   "perimeter": 26,
+   "aspect_ratio": 2.25,
+   "boundary_cells": 26
+  },
+  "4\u00d710": {
+   "a": 4,
+   "b": 10,
+   "area": 40,
+   "first_gen_sources": 14368835,
+   "first_gen_source_density": null,
+   "macro_states": 89000,
+   "macro_edges": 90000,
+   "queue_empty": false,
+   "max_bfs_depth": null,
+   "scc_size": null,
+   "scc_closure_ratio": null,
+   "closure_complete": false,
+   "period": 2,
+   "cycles": [
+    6,
+    10
+   ],
+   "tractability": "MEDIUM",
+   "note": "14M first-gen sources, but only ~89K macro states. Small macro graph despite large first-gen tree.",
+   "source_first_gen_was_capped": true,
+   "first_gen_cap": 15000000,
+   "concrete_placements": 5136,
+   "total_templates": 636,
+   "template_types": {
+    "(1,4,0)": 84,
+    "(2,1,2)": 216,
+    "(4,1,0)": 336
+   },
+   "l2_template_fraction": 0.33962264150943394,
+   "perimeter": 28,
+   "aspect_ratio": 2.5,
+   "boundary_cells": 28
+  },
+  "5\u00d77": {
+   "a": 5,
+   "b": 7,
+   "area": 35,
+   "first_gen_sources": 58,
+   "first_gen_source_density": 1.9333333333333333e-05,
+   "macro_states": 715,
+   "macro_edges": 669,
+   "queue_empty": true,
+   "max_bfs_depth": null,
+   "scc_size": null,
+   "scc_closure_ratio": null,
+   "closure_complete": false,
+   "period": 6,
+   "cycles": [
+    24,
+    36,
+    42
+   ],
+   "tractability": "MEDIUM",
+   "note": "Very low source density (0.002%). Only 58 sources found in 3M states. Macro closure completed (715 states).",
+   "source_first_gen_was_capped": true,
+   "first_gen_cap": 3000000,
+   "concrete_placements": 4616,
+   "total_templates": 572,
+   "template_types": {
+    "(1,4,0)": 76,
+    "(2,1,2)": 192,
+    "(4,1,0)": 304
+   },
+   "l2_template_fraction": 0.3356643356643357,
+   "perimeter": 24,
+   "aspect_ratio": 1.4,
+   "boundary_cells": 24
+  },
+  "5\u00d78": {
+   "a": 5,
+   "b": 8,
+   "area": 40,
+   "first_gen_sources": 480,
+   "first_gen_source_density": 1.6e-05,
+   "macro_states": 24552,
+   "macro_edges": 25024,
+   "queue_empty": true,
+   "max_bfs_depth": 4,
+   "scc_size": null,
+   "scc_closure_ratio": null,
+   "closure_complete": false,
+   "period": 6,
+   "cycles": [
+    6
+   ],
+   "tractability": "MEDIUM",
+   "note": "Extremely sparse (0.0016% density). Only 480 sources in 30M states. Macro closure complete from found sources (24K states).",
+   "source_first_gen_was_capped": true,
+   "first_gen_cap": 30000000,
+   "concrete_placements": 5436,
+   "total_templates": 674,
+   "template_types": {
+    "(1,4,0)": 90,
+    "(2,1,2)": 224,
+    "(4,1,0)": 360
+   },
+   "l2_template_fraction": 0.3323442136498516,
+   "perimeter": 26,
+   "aspect_ratio": 1.6,
+   "boundary_cells": 26
+  },
+  "5\u00d79": {
+   "a": 5,
+   "b": 9,
+   "area": 45,
+   "first_gen_sources": 0,
+   "first_gen_source_density": 0.0,
+   "macro_states": 25000000,
+   "macro_edges": null,
+   "queue_empty": false,
+   "max_bfs_depth": null,
+   "scc_size": null,
+   "scc_closure_ratio": null,
+   "closure_complete": false,
+   "period": 3,
+   "cycles": [
+    12,
+    15,
+    18,
+    21
+   ],
+   "tractability": "INTRACTABLE",
+   "note": "0 sources after 25M first-gen states. No SCC reached. SVG extraction was the only viable method.",
+   "source_first_gen_was_capped": true,
+   "first_gen_cap": 25000000,
+   "concrete_placements": 6256,
+   "total_templates": 776,
+   "template_types": {
+    "(1,4,0)": 104,
+    "(2,1,2)": 256,
+    "(4,1,0)": 416
+   },
+   "l2_template_fraction": 0.32989690721649484,
+   "perimeter": 28,
+   "aspect_ratio": 1.8,
+   "boundary_cells": 28
+  },
+  "5\u00d710": {
+   "a": 5,
+   "b": 10,
+   "area": 50,
+   "first_gen_sources": null,
+   "first_gen_source_density": null,
+   "macro_states": null,
+   "macro_edges": null,
+   "queue_empty": null,
+   "max_bfs_depth": null,
+   "scc_size": null,
+   "scc_closure_ratio": null,
+   "closure_complete": false,
+   "period": 18,
+   "cycles": [
+    18
+   ],
+   "tractability": "UNKNOWN",
+   "note": "No Macro closure attempted. Cycles extracted from SVG.",
+   "source_first_gen_was_capped": null,
+   "concrete_placements": 7076,
+   "total_templates": 878,
+   "template_types": {
+    "(1,4,0)": 118,
+    "(2,1,2)": 288,
+    "(4,1,0)": 472
+   },
+   "l2_template_fraction": 0.32801822323462415,
+   "perimeter": 30,
+   "aspect_ratio": 2.0,
+   "boundary_cells": 30
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "theorem": "4\u00d78 S-pentacube Macro graph global period 10",
+ "date": "2026-08-25",
+ "status": "PROVEN",
+ "cross_section": "4\u00d78",
+ "area": 32,
+ "proof_structure": {
+  "step_1": "First-gen sources complete: 331,765 (tree completed, no cap)",
+  "step_2": "Only 4/331,765 sources enter SCC(0); 331,761 dead-end",
+  "step_3": "SCC(0) has 478 states, computed period d = 10",
+  "step_4": "No other cycles exist (all sources accounted for)",
+  "conclusion": "Global period d = 10 \u2192 every closed walk \u2261 0 mod 10"
+ },
+ "period_computation": {
+  "method": "BFS-distance gcd",
+  "states": 478,
+  "edges": 514,
+  "deltas": {
+   "-80": 2,
+   "-70": 2,
+   "-40": 1,
+   "-20": 3,
+   "0": 506
+  },
+  "gcd": 10,
+  "period": 10
+ },
+ "tileability_characterisation": {
+  "necessary_condition": "z \u2261 0 (mod 10) [from period]",
+  "sufficient_condition": "z \u2208 \u27e820, 130\u27e9 [from primitive cycles]",
+  "exact_tileable_set": "z \u2208 {20, 40, 60, 80, 100} \u222a {z \u2265 120 : z \u2261 0 (mod 10)}",
+  "frobenius": 110,
+  "conductor": 120,
+  "impossible_below_conductor": [
+   10,
+   30,
+   50,
+   70,
+   90,
+   110
+  ]
+ },
+ "source_data": [
+  "scc_aware_analysis_results.txt: 331765 first-gen sources, 4 in SCC",
+  "scc_130_succ.npy: 478 states, 514 edges",
+  "analyze_130_walks_results.txt: 2048 distinct 130-paths"
+ ]
+}

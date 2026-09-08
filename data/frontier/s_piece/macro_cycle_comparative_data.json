@@ -1,0 +1,978 @@
+{
+ "5\u00d76\u00d74": {
+  "cross_section": "5\u00d76",
+  "area": 30,
+  "length": 4,
+  "num_states": 5,
+  "distinct_macro_states": 3,
+  "gate_index": 3,
+  "edge_pieces": [
+   10,
+   6,
+   8,
+   0
+  ],
+  "total_pieces": 24,
+  "frontier_sequence": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    16,
+    4,
+    0
+   ],
+   [
+    16,
+    4,
+    0
+   ],
+   [
+    30,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ],
+  "num_orientations": 12,
+  "orient_freqs": {
+   "0": 1,
+   "1": 2,
+   "2": 3,
+   "3": 2,
+   "4": 3,
+   "5": 1,
+   "6": 3,
+   "7": 2,
+   "8": 1,
+   "9": 3,
+   "10": 1,
+   "11": 2
+  },
+  "z_spans": {
+   "2": 20,
+   "3": 4
+  },
+  "layer_occupancy": {
+   "0": 58,
+   "1": 54,
+   "2": 8
+  },
+  "irreducible": true,
+  "avg_pieces_per_edge": 6.0,
+  "min_pieces_per_edge": 0,
+  "max_pieces_per_edge": 10,
+  "orientation_entropy": 0.9649049094185497,
+  "gate_frontier": [
+   30,
+   0,
+   0
+  ],
+  "source": "numba"
+ },
+ "5\u00d78\u00d76": {
+  "cross_section": "5\u00d78",
+  "area": 40,
+  "length": 6,
+  "num_states": 7,
+  "distinct_macro_states": 5,
+  "gate_index": 5,
+  "edge_pieces": [
+   12,
+   12,
+   4,
+   12,
+   8,
+   0
+  ],
+  "total_pieces": 48,
+  "frontier_sequence": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    12,
+    8,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    12,
+    8,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    40,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ],
+  "num_orientations": 12,
+  "orient_freqs": {
+   "0": 4,
+   "1": 2,
+   "2": 6,
+   "3": 2,
+   "4": 6,
+   "5": 4,
+   "6": 6,
+   "7": 2,
+   "8": 4,
+   "9": 6,
+   "10": 4,
+   "11": 2
+  },
+  "z_spans": {
+   "2": 32,
+   "3": 16
+  },
+  "layer_occupancy": {
+   "0": 112,
+   "1": 96,
+   "2": 32
+  },
+  "irreducible": true,
+  "avg_pieces_per_edge": 8.0,
+  "min_pieces_per_edge": 0,
+  "max_pieces_per_edge": 12,
+  "orientation_entropy": 0.9649049094185497,
+  "gate_frontier": [
+   40,
+   0,
+   0
+  ],
+  "source": "numba"
+ },
+ "4\u00d710\u00d76": {
+  "cross_section": "4\u00d710",
+  "area": 40,
+  "length": 6,
+  "num_states": 7,
+  "distinct_macro_states": 5,
+  "gate_index": 5,
+  "edge_pieces": [
+   16,
+   4,
+   10,
+   8,
+   10,
+   0
+  ],
+  "total_pieces": 48,
+  "frontier_sequence": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    28,
+    12,
+    0
+   ],
+   [
+    16,
+    4,
+    0
+   ],
+   [
+    26,
+    4,
+    0
+   ],
+   [
+    18,
+    12,
+    0
+   ],
+   [
+    40,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ],
+  "num_orientations": 12,
+  "orient_freqs": {
+   "0": 4,
+   "1": 2,
+   "2": 2,
+   "3": 6,
+   "4": 2,
+   "5": 4,
+   "6": 6,
+   "7": 2,
+   "8": 4,
+   "9": 6,
+   "10": 4,
+   "11": 6
+  },
+  "z_spans": {
+   "2": 32,
+   "3": 16
+  },
+  "layer_occupancy": {
+   "0": 112,
+   "1": 96,
+   "2": 32
+  },
+  "irreducible": true,
+  "avg_pieces_per_edge": 8.0,
+  "min_pieces_per_edge": 0,
+  "max_pieces_per_edge": 16,
+  "orientation_entropy": 0.9649049094185497,
+  "gate_frontier": [
+   40,
+   0,
+   0
+  ],
+  "source": "numba"
+ },
+ "4\u00d710\u00d710": {
+  "cross_section": "4\u00d710",
+  "area": 40,
+  "length": 10,
+  "num_states": 11,
+  "distinct_macro_states": 9,
+  "gate_index": 9,
+  "edge_pieces": [
+   14,
+   6,
+   12,
+   6,
+   4,
+   12,
+   8,
+   6,
+   12,
+   0
+  ],
+  "total_pieces": 80,
+  "frontier_sequence": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    26,
+    4,
+    0
+   ],
+   [
+    16,
+    4,
+    0
+   ],
+   [
+    28,
+    12,
+    0
+   ],
+   [
+    30,
+    0,
+    0
+   ],
+   [
+    10,
+    0,
+    0
+   ],
+   [
+    18,
+    12,
+    0
+   ],
+   [
+    26,
+    4,
+    0
+   ],
+   [
+    16,
+    4,
+    0
+   ],
+   [
+    40,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ],
+  "num_orientations": 12,
+  "orient_freqs": {
+   "0": 5,
+   "1": 9,
+   "2": 6,
+   "3": 9,
+   "4": 6,
+   "5": 5,
+   "6": 6,
+   "7": 9,
+   "8": 5,
+   "9": 6,
+   "10": 5,
+   "11": 9
+  },
+  "z_spans": {
+   "2": 60,
+   "3": 20
+  },
+  "layer_occupancy": {
+   "0": 190,
+   "1": 170,
+   "2": 40
+  },
+  "irreducible": true,
+  "avg_pieces_per_edge": 8.0,
+  "min_pieces_per_edge": 0,
+  "max_pieces_per_edge": 14,
+  "orientation_entropy": 0.9873160652553896,
+  "gate_frontier": [
+   40,
+   0,
+   0
+  ],
+  "source": "numba"
+ },
+ "5\u00d79\u00d712": {
+  "cross_section": "5\u00d79",
+  "area": 45,
+  "length": 12,
+  "num_states": 13,
+  "distinct_macro_states": 11,
+  "gate_index": 11,
+  "edge_pieces": [
+   17,
+   6,
+   10,
+   9,
+   11,
+   5,
+   12,
+   7,
+   10,
+   9,
+   12,
+   0
+  ],
+  "total_pieces": 108,
+  "frontier_sequence": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    17,
+    8,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    16,
+    4,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    23,
+    2,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    18,
+    12,
+    0
+   ],
+   [
+    45,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ],
+  "num_orientations": 12,
+  "orient_freqs": {
+   "0": 12,
+   "1": 13,
+   "2": 7,
+   "3": 7,
+   "4": 10,
+   "5": 9,
+   "6": 7,
+   "7": 11,
+   "8": 6,
+   "9": 7,
+   "10": 10,
+   "11": 9
+  },
+  "z_spans": {
+   "2": 73,
+   "3": 35
+  },
+  "layer_occupancy": {
+   "0": 260,
+   "1": 210,
+   "2": 70
+  },
+  "irreducible": true,
+  "avg_pieces_per_edge": 9.0,
+  "min_pieces_per_edge": 0,
+  "max_pieces_per_edge": 17,
+  "orientation_entropy": 0.9885322455114162,
+  "gate_frontier": [
+   45,
+   0,
+   0
+  ],
+  "source": "svg"
+ },
+ "5\u00d79\u00d715": {
+  "cross_section": "5\u00d79",
+  "area": 45,
+  "length": 15,
+  "num_states": 16,
+  "distinct_macro_states": 14,
+  "gate_index": 14,
+  "edge_pieces": [
+   16,
+   9,
+   9,
+   8,
+   8,
+   11,
+   8,
+   9,
+   9,
+   8,
+   11,
+   9,
+   8,
+   12,
+   0
+  ],
+  "total_pieces": 135,
+  "frontier_sequence": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    31,
+    4,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    23,
+    2,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    17,
+    8,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    45,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ],
+  "num_orientations": 12,
+  "orient_freqs": {
+   "0": 16,
+   "1": 15,
+   "2": 10,
+   "3": 10,
+   "4": 7,
+   "5": 13,
+   "6": 10,
+   "7": 12,
+   "8": 12,
+   "9": 9,
+   "10": 9,
+   "11": 12
+  },
+  "z_spans": {
+   "2": 88,
+   "3": 47
+  },
+  "layer_occupancy": {
+   "0": 314,
+   "1": 267,
+   "2": 94
+  },
+  "irreducible": true,
+  "avg_pieces_per_edge": 9.0,
+  "min_pieces_per_edge": 0,
+  "max_pieces_per_edge": 16,
+  "orientation_entropy": 0.9902152298097016,
+  "gate_frontier": [
+   45,
+   0,
+   0
+  ],
+  "source": "svg"
+ },
+ "5\u00d79\u00d718": {
+  "cross_section": "5\u00d79",
+  "area": 45,
+  "length": 18,
+  "num_states": 19,
+  "distinct_macro_states": 17,
+  "gate_index": 17,
+  "edge_pieces": [
+   15,
+   9,
+   11,
+   8,
+   9,
+   7,
+   9,
+   9,
+   12,
+   6,
+   12,
+   8,
+   9,
+   7,
+   10,
+   9,
+   12,
+   0
+  ],
+  "total_pieces": 162,
+  "frontier_sequence": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    17,
+    8,
+    0
+   ],
+   [
+    23,
+    2,
+    0
+   ],
+   [
+    17,
+    8,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    23,
+    2,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    17,
+    8,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    45,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ],
+  "num_orientations": 12,
+  "orient_freqs": {
+   "0": 11,
+   "1": 15,
+   "2": 15,
+   "3": 11,
+   "4": 9,
+   "5": 13,
+   "6": 15,
+   "7": 9,
+   "8": 18,
+   "9": 15,
+   "10": 18,
+   "11": 13
+  },
+  "z_spans": {
+   "2": 104,
+   "3": 58
+  },
+  "layer_occupancy": {
+   "0": 376,
+   "1": 318,
+   "2": 116
+  },
+  "irreducible": true,
+  "avg_pieces_per_edge": 9.0,
+  "min_pieces_per_edge": 0,
+  "max_pieces_per_edge": 15,
+  "orientation_entropy": 0.9903290502341839,
+  "gate_frontier": [
+   45,
+   0,
+   0
+  ],
+  "source": "svg"
+ },
+ "5\u00d79\u00d721": {
+  "cross_section": "5\u00d79",
+  "area": 45,
+  "length": 21,
+  "num_states": 22,
+  "distinct_macro_states": 20,
+  "gate_index": 20,
+  "edge_pieces": [
+   16,
+   10,
+   7,
+   11,
+   5,
+   12,
+   9,
+   8,
+   9,
+   11,
+   6,
+   10,
+   9,
+   9,
+   10,
+   8,
+   9,
+   11,
+   7,
+   12,
+   0
+  ],
+  "total_pieces": 189,
+  "frontier_sequence": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    19,
+    16,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    16,
+    4,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    31,
+    4,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    17,
+    8,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    25,
+    10,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    18,
+    12,
+    0
+   ],
+   [
+    32,
+    8,
+    0
+   ],
+   [
+    24,
+    6,
+    0
+   ],
+   [
+    45,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ],
+  "num_orientations": 12,
+  "orient_freqs": {
+   "0": 13,
+   "1": 14,
+   "2": 13,
+   "3": 18,
+   "4": 10,
+   "5": 19,
+   "6": 19,
+   "7": 15,
+   "8": 23,
+   "9": 13,
+   "10": 18,
+   "11": 14
+  },
+  "z_spans": {
+   "2": 117,
+   "3": 72
+  },
+  "layer_occupancy": {
+   "0": 429,
+   "1": 372,
+   "2": 144
+  },
+  "irreducible": true,
+  "avg_pieces_per_edge": 9.0,
+  "min_pieces_per_edge": 0,
+  "max_pieces_per_edge": 16,
+  "orientation_entropy": 0.990229186914865,
+  "gate_frontier": [
+   45,
+   0,
+   0
+  ],
+  "source": "svg"
+ }
+}

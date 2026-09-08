@@ -1,0 +1,1051 @@
+{
+ "metadata": {
+  "date": "2026-08-25",
+  "description": "Consolidated S-pentacube Macro results",
+  "status": "FINAL"
+ },
+ "cross_sections": {
+  "4\u00d75": {
+   "dimensions": "4\u00d75",
+   "area": 20,
+   "catalogue_primes": [
+    6
+   ],
+   "catalogue_impossible": [],
+   "recovered_cycle_lengths": [
+    6
+   ],
+   "certified_cycle_lengths": [
+    6
+   ],
+   "cycle_sources": {
+    "6": "Hamlyn 1993 (catalogue prime)"
+   },
+   "cycle_data_file": null,
+   "note": "Only 4\u00d75\u00d76 is tileable; 6 is fundamental",
+   "generator_completeness": "PROVEN (complete Macro closure, SCC analysis)",
+   "semigroup": {
+    "generators": [
+     6
+    ],
+    "gcd": 6,
+    "scaled_generators": [
+     1
+    ],
+    "scaled_min": 1,
+    "scaled_frobenius": null,
+    "scaled_conductor": 0,
+    "frobenius": null,
+    "conductor": 0,
+    "apery_set": {
+     "0": 0
+    },
+    "minimal_generators": [
+     6
+    ],
+    "representable_up_to_60_scaled": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ],
+    "representable_up_to_60_original": [
+     0,
+     6,
+     12,
+     18,
+     24,
+     30,
+     36,
+     42,
+     48,
+     54,
+     60
+    ]
+   }
+  },
+  "5\u00d76": {
+   "dimensions": "5\u00d76",
+   "area": 30,
+   "catalogue_primes": [
+    29,
+    46,
+    47
+   ],
+   "catalogue_impossible": [
+    6,
+    7,
+    9,
+    10,
+    11,
+    13,
+    14,
+    15,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23,
+    25,
+    26,
+    27,
+    28,
+    30,
+    31,
+    34,
+    35,
+    38,
+    39,
+    42,
+    43
+   ],
+   "recovered_cycle_lengths": [
+    4,
+    29,
+    46,
+    47
+   ],
+   "certified_cycle_lengths": [
+    4,
+    29,
+    46,
+    47
+   ],
+   "cycle_sources": {
+    "4": "Numba solver (new discovery)",
+    "29": "Shirakawa 2014",
+    "46": "Shirakawa 2014",
+    "47": "Shirakawa 2014"
+   },
+   "cycle_data_file": "tools/frontier/_5x6_concrete_cycles.json",
+   "note": "4-cycle is a new discovery beyond catalogue primes; 28 corrected from impossible to tileable",
+   "generator_completeness": "PROVEN (complete Macro closure, 7.9M states, 1606-state SCC)",
+   "semigroup": {
+    "generators": [
+     4,
+     29,
+     46,
+     47
+    ],
+    "gcd": 1,
+    "scaled_generators": [
+     4,
+     29,
+     46,
+     47
+    ],
+    "scaled_min": 4,
+    "scaled_frobenius": 43,
+    "scaled_conductor": 44,
+    "frobenius": 43,
+    "conductor": 44,
+    "apery_set": {
+     "0": 0,
+     "1": 29,
+     "2": 46,
+     "3": 47
+    },
+    "minimal_generators": [
+     4,
+     29,
+     46,
+     47
+    ],
+    "representable_up_to_60_scaled": [
+     0,
+     4,
+     8,
+     12,
+     16,
+     20,
+     24,
+     28,
+     29,
+     32,
+     33,
+     36,
+     37,
+     40,
+     41,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ],
+    "representable_up_to_60_original": [
+     0,
+     4,
+     8,
+     12,
+     16,
+     20,
+     24,
+     28,
+     29,
+     32,
+     33,
+     36,
+     37,
+     40,
+     41,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  "4\u00d78": {
+   "dimensions": "4\u00d78",
+   "area": 32,
+   "catalogue_primes": [
+    20,
+    130
+   ],
+   "catalogue_impossible": [
+    10,
+    30,
+    50,
+    70,
+    90,
+    110
+   ],
+   "recovered_cycle_lengths": [
+    20,
+    130
+   ],
+   "certified_cycle_lengths": [
+    20,
+    130
+   ],
+   "cycle_sources": {
+    "20": "Postl 1998",
+    "130": "Shirakawa 2014"
+   },
+   "cycle_data_file": null,
+   "note": "Cycles verified via SCC analysis; 478-state recurrent SCC",
+   "generator_completeness": "NOT PROVEN (bounded closure, 30M states)",
+   "semigroup": {
+    "generators": [
+     20,
+     130
+    ],
+    "gcd": 10,
+    "scaled_generators": [
+     2,
+     13
+    ],
+    "scaled_min": 2,
+    "scaled_frobenius": 11,
+    "scaled_conductor": 12,
+    "frobenius": 110,
+    "conductor": 120,
+    "apery_set": {
+     "0": 0,
+     "1": 13
+    },
+    "minimal_generators": [
+     20,
+     130
+    ],
+    "representable_up_to_60_scaled": [
+     0,
+     2,
+     4,
+     6,
+     8,
+     10,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ],
+    "representable_up_to_60_original": [
+     0,
+     20,
+     40,
+     60
+    ]
+   }
+  },
+  "5\u00d78": {
+   "dimensions": "5\u00d78",
+   "area": 40,
+   "catalogue_primes": [],
+   "catalogue_impossible": [],
+   "recovered_cycle_lengths": [
+    6
+   ],
+   "certified_cycle_lengths": [
+    6
+   ],
+   "cycle_sources": {
+    "6": "Numba solver (new discovery)"
+   },
+   "cycle_data_file": "tools/frontier/_5x8_concrete_cycles.json",
+   "note": "No catalogue entries exist; 6-cycle is a new discovery",
+   "generator_completeness": "NOT PROVEN (no catalogue data to verify against)",
+   "semigroup": {
+    "generators": [
+     6
+    ],
+    "gcd": 6,
+    "scaled_generators": [
+     1
+    ],
+    "scaled_min": 1,
+    "scaled_frobenius": null,
+    "scaled_conductor": 0,
+    "frobenius": null,
+    "conductor": 0,
+    "apery_set": {
+     "0": 0
+    },
+    "minimal_generators": [
+     6
+    ],
+    "representable_up_to_60_scaled": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ],
+    "representable_up_to_60_original": [
+     0,
+     6,
+     12,
+     18,
+     24,
+     30,
+     36,
+     42,
+     48,
+     54,
+     60
+    ]
+   }
+  },
+  "4\u00d79": {
+   "dimensions": "4\u00d79",
+   "area": 36,
+   "catalogue_primes": [
+    60,
+    75,
+    90,
+    105
+   ],
+   "catalogue_impossible": [
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45
+   ],
+   "recovered_cycle_lengths": [
+    60,
+    75,
+    90,
+    105
+   ],
+   "certified_cycle_lengths": [
+    60,
+    75,
+    90,
+    105
+   ],
+   "cycle_sources": {
+    "60": "Shirakawa SVG 2014",
+    "75": "Shirakawa SVG 2014",
+    "90": "Shirakawa SVG 2014",
+    "105": "Shirakawa SVG 2014"
+   },
+   "cycle_data_file": "tools/frontier/_4x9_concrete_cycles.json",
+   "note": "All four cycles extracted from Shirakawa SVG solutions",
+   "generator_completeness": "NOT PROVEN (bounded closure, 65M states)",
+   "semigroup": {
+    "generators": [
+     60,
+     75,
+     90,
+     105
+    ],
+    "gcd": 15,
+    "scaled_generators": [
+     4,
+     5,
+     6,
+     7
+    ],
+    "scaled_min": 4,
+    "scaled_frobenius": 3,
+    "scaled_conductor": 4,
+    "frobenius": 45,
+    "conductor": 60,
+    "apery_set": {
+     "0": 0,
+     "1": 5,
+     "2": 6,
+     "3": 7
+    },
+    "minimal_generators": [
+     60,
+     75,
+     90,
+     105
+    ],
+    "representable_up_to_60_scaled": [
+     0,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ],
+    "representable_up_to_60_original": [
+     0,
+     60
+    ]
+   }
+  },
+  "4\u00d710": {
+   "dimensions": "4\u00d710",
+   "area": 40,
+   "catalogue_primes": [
+    10
+   ],
+   "catalogue_impossible": [
+    14
+   ],
+   "recovered_cycle_lengths": [
+    6,
+    10
+   ],
+   "certified_cycle_lengths": [
+    6,
+    10
+   ],
+   "cycle_sources": {
+    "6": "Numba solver (new discovery)",
+    "10": "Postl 1998 (catalogue prime)"
+   },
+   "cycle_data_file": "tools/frontier/_4x10_concrete_cycles.json",
+   "note": "6-cycle is a new discovery; 14 is absent (consistent with catalogue correction)",
+   "generator_completeness": "NOT PROVEN (bounded closure)",
+   "semigroup": {
+    "generators": [
+     6,
+     10
+    ],
+    "gcd": 2,
+    "scaled_generators": [
+     3,
+     5
+    ],
+    "scaled_min": 3,
+    "scaled_frobenius": 7,
+    "scaled_conductor": 8,
+    "frobenius": 14,
+    "conductor": 16,
+    "apery_set": {
+     "0": 0,
+     "1": 10,
+     "2": 5
+    },
+    "minimal_generators": [
+     6,
+     10
+    ],
+    "representable_up_to_60_scaled": [
+     0,
+     3,
+     5,
+     6,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ],
+    "representable_up_to_60_original": [
+     0,
+     6,
+     10,
+     12,
+     16,
+     18,
+     20,
+     22,
+     24,
+     26,
+     28,
+     30,
+     32,
+     34,
+     36,
+     38,
+     40,
+     42,
+     44,
+     46,
+     48,
+     50,
+     52,
+     54,
+     56,
+     58,
+     60
+    ]
+   }
+  },
+  "5\u00d79": {
+   "dimensions": "5\u00d79",
+   "area": 45,
+   "catalogue_primes": [
+    12,
+    15,
+    18,
+    21
+   ],
+   "catalogue_impossible": [
+    9
+   ],
+   "recovered_cycle_lengths": [
+    12,
+    15,
+    18,
+    21
+   ],
+   "certified_cycle_lengths": [
+    12,
+    15,
+    18,
+    21
+   ],
+   "cycle_sources": {
+    "12": "Shirakawa SVG 2014",
+    "15": "Shirakawa SVG 2014",
+    "18": "Shirakawa SVG 2014",
+    "21": "Shirakawa SVG 2014"
+   },
+   "cycle_data_file": "tools/frontier/_5x9_concrete_cycles.json",
+   "note": "All four cycles extracted from Shirakawa SVG solutions",
+   "generator_completeness": "NOT PROVEN (bounded closure)",
+   "semigroup": {
+    "generators": [
+     12,
+     15,
+     18,
+     21
+    ],
+    "gcd": 3,
+    "scaled_generators": [
+     4,
+     5,
+     6,
+     7
+    ],
+    "scaled_min": 4,
+    "scaled_frobenius": 3,
+    "scaled_conductor": 4,
+    "frobenius": 9,
+    "conductor": 12,
+    "apery_set": {
+     "0": 0,
+     "1": 5,
+     "2": 6,
+     "3": 7
+    },
+    "minimal_generators": [
+     12,
+     15,
+     18,
+     21
+    ],
+    "representable_up_to_60_scaled": [
+     0,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ],
+    "representable_up_to_60_original": [
+     0,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30,
+     33,
+     36,
+     39,
+     42,
+     45,
+     48,
+     51,
+     54,
+     57,
+     60
+    ]
+   }
+  },
+  "5\u00d77": {
+   "dimensions": "5\u00d77",
+   "area": 35,
+   "catalogue_primes": [
+    24,
+    36,
+    42
+   ],
+   "catalogue_impossible": [
+    12,
+    18,
+    30
+   ],
+   "recovered_cycle_lengths": [
+    24,
+    36,
+    42
+   ],
+   "certified_cycle_lengths": [
+    24,
+    36,
+    42
+   ],
+   "cycle_sources": {
+    "24": "Sillke SVG 1998",
+    "36": "Sillke SVG 1998",
+    "42": "Sillke SVG 1998"
+   },
+   "cycle_data_file": "tools/frontier/_5x7_concrete_cycles.json",
+   "note": "All three cycles extracted from Sillke SVG solutions",
+   "generator_completeness": "NOT PROVEN (bounded closure)",
+   "semigroup": {
+    "generators": [
+     24,
+     36,
+     42
+    ],
+    "gcd": 6,
+    "scaled_generators": [
+     4,
+     6,
+     7
+    ],
+    "scaled_min": 4,
+    "scaled_frobenius": 9,
+    "scaled_conductor": 10,
+    "frobenius": 54,
+    "conductor": 60,
+    "minimal_generators": [
+     24,
+     36,
+     42
+    ],
+    "apery_set": {
+     "0": 0,
+     "1": 78,
+     "2": 36,
+     "3": 42
+    },
+    "representable_up_to_60_original": [
+     0,
+     24,
+     36,
+     42,
+     48,
+     60
+    ]
+   }
+  },
+  "5\u00d710": {
+   "dimensions": "5\u00d710",
+   "area": 50,
+   "catalogue_primes": [
+    18
+   ],
+   "catalogue_impossible": [],
+   "recovered_cycle_lengths": [
+    18
+   ],
+   "certified_cycle_lengths": [
+    18
+   ],
+   "cycle_sources": {
+    "18": "Shirakawa SVG 2014"
+   },
+   "cycle_data_file": "tools/frontier/_5x10_concrete_cycles.json",
+   "note": "Single generator; no shorter cycles proven for z=3,4,5",
+   "generator_completeness": "NOT PROVEN (bounded closure only)",
+   "semigroup": {
+    "generators": [
+     18
+    ],
+    "gcd": 18,
+    "scaled_generators": [
+     1
+    ],
+    "scaled_min": 1,
+    "scaled_frobenius": null,
+    "scaled_conductor": 1,
+    "frobenius": null,
+    "conductor": 18,
+    "minimal_generators": [
+     18
+    ],
+    "apery_set": {
+     "0": 0
+    },
+    "representable_up_to_60_original": [
+     0,
+     18,
+     36,
+     54
+    ]
+   }
+  }
+ }
+}

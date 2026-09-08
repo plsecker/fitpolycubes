@@ -1,0 +1,412 @@
+{
+ "metadata": {
+  "date": "2026-08-25",
+  "description": "Cross-section scaling analysis for S-pentacube Macro cycles",
+  "status": "COMPLETE"
+ },
+ "pairs": [
+  {
+   "cross_sections": [
+    "4\u00d79",
+    "5\u00d79"
+   ],
+   "cycles": [
+    "4\u00d79\u00d760",
+    "5\u00d79\u00d712"
+   ],
+   "cycle_lengths": [
+    60,
+    12
+   ],
+   "ratio_cycle_length": 5.0,
+   "total_pieces": [
+    432,
+    108
+   ],
+   "ratio_pieces": 4.0,
+   "non_shift_edges": [
+    58,
+    11
+   ],
+   "ratio_non_shift_edges": 5.27,
+   "distinct_frontier_weights": [
+    40,
+    11
+   ],
+   "ratio_frontier_weights": 3.64,
+   "z_span_2": [
+    276,
+    73
+   ],
+   "z_span_3": [
+    156,
+    35
+   ],
+   "layer_0": [
+    1002,
+    260
+   ],
+   "layer_1": [
+    846,
+    210
+   ],
+   "layer_2": [
+    312,
+    70
+   ],
+   "orientation_cosine_similarity": 0.9694,
+   "edge_pieces_grouped": {
+    "4x9_grouped_by_5": [
+     44,
+     33,
+     37,
+     35,
+     37,
+     35,
+     36,
+     36,
+     46,
+     32,
+     36
+    ],
+    "5x9_edges": [
+     17,
+     6,
+     10,
+     9,
+     11,
+     5,
+     12,
+     7,
+     10,
+     9,
+     12
+    ],
+    "exact_matches": 0
+   },
+   "common_frontier_weights": [
+    "(0,0,0)",
+    "(17,8,0)",
+    "(23,2,0)",
+    "(24,6,0)",
+    "(25,10,0)",
+    "(32,8,0)"
+   ],
+   "scaled_semigroup": "<4,5,6,7>"
+  },
+  {
+   "cross_sections": [
+    "4\u00d79",
+    "5\u00d79"
+   ],
+   "cycles": [
+    "4\u00d79\u00d775",
+    "5\u00d79\u00d715"
+   ],
+   "orientation_cosine_similarity": 0.9665,
+   "edge_pieces_grouped": {
+    "4x9_grouped_by_5": [
+     42,
+     35,
+     37,
+     35,
+     35,
+     38,
+     37,
+     37,
+     35,
+     33,
+     38,
+     36,
+     34,
+     38
+    ],
+    "5x9_edges": [
+     16,
+     9,
+     9,
+     8,
+     8,
+     11,
+     8,
+     9,
+     9,
+     8,
+     11,
+     9,
+     8,
+     12
+    ],
+    "exact_matches": 0
+   }
+  },
+  {
+   "cross_sections": [
+    "4\u00d79",
+    "5\u00d79"
+   ],
+   "cycles": [
+    "4\u00d79\u00d790",
+    "5\u00d79\u00d718"
+   ],
+   "orientation_cosine_similarity": 0.9692,
+   "edge_pieces_grouped": {
+    "4x9_grouped_by_5": [
+     42,
+     35,
+     37,
+     35,
+     35,
+     37,
+     35,
+     36,
+     41,
+     32,
+     35,
+     36,
+     36,
+     38,
+     36,
+     34,
+     38
+    ],
+    "5x9_edges": [
+     15,
+     9,
+     11,
+     8,
+     9,
+     7,
+     9,
+     9,
+     12,
+     6,
+     12,
+     8,
+     9,
+     7,
+     10,
+     9,
+     12
+    ],
+    "exact_matches": 0
+   }
+  },
+  {
+   "cross_sections": [
+    "4\u00d79",
+    "5\u00d79"
+   ],
+   "cycles": [
+    "4\u00d79\u00d7105",
+    "5\u00d79\u00d721"
+   ],
+   "orientation_cosine_similarity": 0.9835,
+   "edge_pieces_grouped": {
+    "4x9_grouped_by_5": [
+     42,
+     35,
+     34,
+     37,
+     37,
+     37,
+     36,
+     35,
+     38,
+     34,
+     35,
+     40,
+     32,
+     38,
+     35,
+     36,
+     35,
+     36,
+     36,
+     38
+    ],
+    "5x9_edges": [
+     16,
+     10,
+     7,
+     11,
+     5,
+     12,
+     9,
+     8,
+     9,
+     11,
+     6,
+     10,
+     9,
+     9,
+     10,
+     8,
+     9,
+     11,
+     7,
+     12
+    ],
+    "exact_matches": 0
+   }
+  },
+  {
+   "cross_sections": [
+    "4\u00d710",
+    "5\u00d78"
+   ],
+   "cycles": [
+    "4\u00d710\u00d76",
+    "5\u00d78\u00d76"
+   ],
+   "cycle_lengths": [
+    6,
+    6
+   ],
+   "ratio_cycle_length": 1.0,
+   "z_span_2": [
+    32,
+    32
+   ],
+   "z_span_3": [
+    16,
+    16
+   ],
+   "layer_0": [
+    112,
+    112
+   ],
+   "layer_1": [
+    96,
+    96
+   ],
+   "layer_2": [
+    32,
+    32
+   ],
+   "orientation_cosine_similarity": 0.8571,
+   "edge_pieces": [
+    [
+     16,
+     4,
+     10,
+     8,
+     10,
+     0
+    ],
+    [
+     12,
+     12,
+     4,
+     12,
+     8,
+     0
+    ]
+   ],
+   "frontier_weights_4x10": [
+    "(0,0)",
+    "(28,12)",
+    "(16,4)",
+    "(26,4)",
+    "(18,12)",
+    "(40,0)"
+   ],
+   "frontier_weights_5x8": [
+    "(0,0)",
+    "(12,8)",
+    "(32,8)",
+    "(12,8)",
+    "(32,8)",
+    "(40,0)"
+   ],
+   "note": "z-span and layer occupancy identical (geometric constraint), but orientation distributions differ significantly"
+  }
+ ],
+ "cross_section_summary": [
+  {
+   "cross_section": "4\u00d75",
+   "area": 20,
+   "generators": [
+    6
+   ],
+   "gcd": 6
+  },
+  {
+   "cross_section": "5\u00d76",
+   "area": 30,
+   "generators": [
+    4,
+    29,
+    46,
+    47
+   ],
+   "gcd": 1
+  },
+  {
+   "cross_section": "4\u00d78",
+   "area": 32,
+   "generators": [
+    20,
+    130
+   ],
+   "gcd": 10
+  },
+  {
+   "cross_section": "4\u00d79",
+   "area": 36,
+   "generators": [
+    60,
+    75,
+    90,
+    105
+   ],
+   "gcd": 15
+  },
+  {
+   "cross_section": "4\u00d710",
+   "area": 40,
+   "generators": [
+    6,
+    10
+   ],
+   "gcd": 2
+  },
+  {
+   "cross_section": "5\u00d78",
+   "area": 40,
+   "generators": [
+    6
+   ],
+   "gcd": 6
+  },
+  {
+   "cross_section": "5\u00d79",
+   "area": 45,
+   "generators": [
+    12,
+    15,
+    18,
+    21
+   ],
+   "gcd": 3
+  }
+ ],
+ "conclusions": {
+  "fivefold_scaling": {
+   "status": "REFUTED",
+   "explanation": "Only cycle length scales by 5. No state/transition correspondence exists. The grouped edge sums do not match."
+  },
+  "same_scaled_semigroup": {
+   "status": "COINCIDENCE",
+   "explanation": "Both have 4 equally-spaced catalogue primes. The spacing equals the GCD. The scaled semigroup <4,5,6,7> is the semigroup generated by 4 consecutive integers."
+  },
+  "orientation_similarity": {
+   "status": "VERIFIED FACT",
+   "explanation": "All cyclic cross-sections have broadly similar orientation distributions (cosine sim 0.83-0.99). This is a general property, not specific to 4\u00d79/5\u00d79."
+  },
+  "area_40_relationship": {
+   "status": "GEOMETRIC CONSTRAINT",
+   "explanation": "z-span and layer occupancy are forced by 40-cell cross-section. Orientation distributions differ significantly (cosine sim 0.857)."
+  }
+ }
+}

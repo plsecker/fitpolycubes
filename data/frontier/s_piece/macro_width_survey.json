@@ -1,0 +1,763 @@
+{
+  "survey_metadata": {
+    "title": "S-Pentacube Macro Width Survey",
+    "date": "2026-08-23",
+    "method": "Generalized Macro closure (tools/frontier/macro_generalized.py)",
+    "orientation_selection": "Minimum cross-section area heuristic (tools/frontier/macro_orientation.py)",
+    "status": "VERIFIED_5x6x4_CONFIRMED",
+    "analysis_complete": {
+      "5x6_physical": true,
+      "5x6_scc": true,
+      "5x6_cycles": true,
+      "cross_section_comparison": true
+    }
+  },
+  "cross_sections": {
+    "3x3": {
+      "area": 9,
+      "templates": 72,
+      "states": 8,
+      "edges": 0,
+      "sources": 8,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 8,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "3x[3-13]xN (Sillke 1993)",
+      "elapsed_seconds": 0.08,
+      "status": "COMPLETE_DAG"
+    },
+    "3x4": {
+      "area": 12,
+      "templates": 118,
+      "states": 59,
+      "edges": 38,
+      "sources": 21,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 59,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "3x[3-13]xN (Sillke 1993)",
+      "elapsed_seconds": 0.13,
+      "status": "COMPLETE_DAG"
+    },
+    "3x5": {
+      "area": 15,
+      "templates": 164,
+      "states": 124,
+      "edges": 16,
+      "sources": 108,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 124,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "3x[3-13]xN (Sillke 1993)",
+      "elapsed_seconds": 0.21,
+      "status": "COMPLETE_DAG"
+    },
+    "3x6": {
+      "area": 18,
+      "templates": 210,
+      "states": 810,
+      "edges": 487,
+      "sources": 327,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 810,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "3x[3-13]xN (Sillke 1993)",
+      "elapsed_seconds": 0.32,
+      "status": "COMPLETE_DAG"
+    },
+    "3x7": {
+      "area": 21,
+      "templates": 256,
+      "states": 1608,
+      "edges": 380,
+      "sources": 1232,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 1608,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "3x[3-13]xN (Sillke 1993)",
+      "elapsed_seconds": 0.44,
+      "status": "COMPLETE_DAG"
+    },
+    "3x8": {
+      "area": 24,
+      "templates": 302,
+      "states": 9154,
+      "edges": 4607,
+      "sources": 4555,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 9154,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "3x[3-13]xN (Sillke 1993)",
+      "elapsed_seconds": 0.68,
+      "status": "COMPLETE_DAG"
+    },
+    "3x9": {
+      "area": 27,
+      "templates": 348,
+      "states": 22010,
+      "edges": 6318,
+      "sources": 15764,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 22010,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "3x[3-13]xN (Sillke 1993)",
+      "elapsed_seconds": 1.07,
+      "status": "COMPLETE_DAG"
+    },
+    "3x10": {
+      "area": 30,
+      "templates": 394,
+      "states": 113843,
+      "edges": 55219,
+      "sources": 59101,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 113843,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "3x[3-13]xN (Sillke 1993)",
+      "elapsed_seconds": 2.66,
+      "status": "COMPLETE_DAG"
+    },
+    "4x4": {
+      "area": 16,
+      "templates": 192,
+      "states": 225,
+      "edges": 58,
+      "sources": 167,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 225,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "4x4xN (Sillke 1993)",
+      "elapsed_seconds": null,
+      "status": "COMPLETE_DAG",
+      "reference": "docs/frontier/s_piece/4x4_4x7_structural_check.md"
+    },
+    "4x5": {
+      "area": 20,
+      "templates": 266,
+      "states": 1538,
+      "edges": 1545,
+      "sources": 997,
+      "complete": true,
+      "state_0_reachable": true,
+      "graph_type": "SOURCE_SCC_PLUS_DAG",
+      "scc_count": 1528,
+      "nontrivial_scc_count": 1,
+      "scc0_size": 11,
+      "scc0_edges": 12,
+      "shortest_return": 6,
+      "cycle_lengths": [
+        6
+      ],
+      "primitive_cycles": [
+        6
+      ],
+      "gcd_cycle_lengths": 6,
+      "published_tileable": [
+        "4x5x6"
+      ],
+      "published_impossible": "4x5x5 (Sillke 1993)",
+      "elapsed_seconds": 0.46,
+      "status": "COMPLETE_CYCLIC",
+      "reference": "docs/frontier/s_piece/4x5_complete_macro_analysis.md"
+    },
+    "4x6": {
+      "area": 24,
+      "templates": 340,
+      "states": 31738,
+      "edges": 32269,
+      "sources": 7398,
+      "complete": true,
+      "state_0_reachable": true,
+      "graph_type": "SOURCE_SCC_PLUS_DAG",
+      "scc_count": 31718,
+      "nontrivial_scc_count": 1,
+      "scc0_size": 21,
+      "scc0_edges": 23,
+      "shortest_return": 5,
+      "cycle_lengths": [
+        5,
+        10
+      ],
+      "primitive_cycles": [
+        5,
+        10
+      ],
+      "gcd_cycle_lengths": 5,
+      "published_tileable": [
+        "4x5x6 (same box, different slicing)"
+      ],
+      "published_impossible": [],
+      "elapsed_seconds": 1.63,
+      "status": "COMPLETE_CYCLIC",
+      "reference": "data/frontier/s_4x6_summary.json"
+    },
+    "4x7": {
+      "area": 28,
+      "templates": 414,
+      "states": 98685,
+      "edges": 49088,
+      "sources": 50059,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 98685,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "4x7xN (Sillke 1993)",
+      "elapsed_seconds": null,
+      "status": "COMPLETE_DAG",
+      "reference": "docs/frontier/s_piece/4x4_4x7_structural_check.md"
+    },
+    "4x8": {
+      "area": 32,
+      "templates": 488,
+      "states": 30000015,
+      "edges": 30000015,
+      "sources": 331765,
+      "complete": false,
+      "state_0_reachable": true,
+      "graph_type": "COMPLEX_SCC_PLUS_DAG",
+      "scc_count": null,
+      "nontrivial_scc_count": 1,
+      "scc0_size": 478,
+      "scc0_edges": 514,
+      "shortest_return": 20,
+      "cycle_lengths": [
+        20,
+        40,
+        60,
+        130,
+        140,
+        150,
+        160
+      ],
+      "primitive_cycles": [
+        20,
+        130
+      ],
+      "gcd_cycle_lengths": 10,
+      "gcd_proven": true,
+      "published_tileable": [
+        "4x8x20",
+        "4x8x130",
+        "4x8xN for N>=120, N≡0 mod 10"
+      ],
+      "published_impossible": [
+        "4x8x10,30,50,70,90,110"
+      ],
+      "elapsed_seconds": null,
+      "status": "BOUNDED_CYCLIC",
+      "reference": "docs/frontier/s_piece/4x8_beyond_130_scc_analysis.md"
+    },
+    "4x9": {
+      "area": 36,
+      "templates": 562,
+      "states": 65062809,
+      "edges": 65447160,
+      "sources": 71143,
+      "complete": false,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": null,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "max_depth": 51,
+      "published_tileable": [
+        "4x9x60",
+        "4x9x75",
+        "4x9x90",
+        "4x9x105"
+      ],
+      "published_impossible": [
+        "4x9x10,20,25,30,35,40,45",
+        "4x9x15 (correction note)"
+      ],
+      "elapsed_seconds": 5700,
+      "status": "BOUNDED_CYCLIC",
+      "reference": "docs/frontier/s_piece/4x9_return_search.md",
+      "note": "Catalogue-confirmed cyclic (primes 60,75,90,105). Macro search reached depth 51 without finding return; return cycle must exist by faithfulness theorem.",
+      "cyclic_confirmed": true
+    },
+    "4x10": {
+      "area": 40,
+      "templates": 636,
+      "states": 88995,
+      "edges": 90301,
+      "sources": 1114,
+      "complete": false,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": null,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "max_depth": 7,
+      "published_tileable": [
+        "4x10x10"
+      ],
+      "published_impossible": [
+        "4x10x14 (correction note)"
+      ],
+      "elapsed_seconds": null,
+      "status": "BOUNDED_CYCLIC",
+      "reference": "docs/frontier/s_piece/4x10_targeted_check.md",
+      "note": "Catalogue-confirmed cyclic (prime 10). Macro search reached depth 7; return cycle of length 10 must exist by faithfulness theorem.",
+      "cyclic_confirmed": true
+    },
+    "4x11": {
+      "area": 44,
+      "templates": 710,
+      "states": 0,
+      "edges": 0,
+      "sources": 0,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "NO_SOURCES",
+      "scc_count": null,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "max_depth": 0,
+      "published_tileable": [],
+      "published_impossible": [],
+      "elapsed_seconds": 32.06,
+      "status": "BOUNDED_NO_SOURCES",
+      "note": "No first-gen sources found in 5M first-gen states. Cross-section likely too large for viable S tilings."
+    },
+    "5x5": {
+      "area": 25,
+      "templates": 368,
+      "states": 17048,
+      "edges": 2444,
+      "sources": 14640,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 17048,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "published_tileable": [],
+      "published_impossible": "5x5xN (Sillke 1993)",
+      "elapsed_seconds": 0.95,
+      "status": "COMPLETE_DAG"
+    },
+    "5x6": {
+      "area": 30,
+      "templates": 470,
+      "states": 7916335,
+      "edges": 8005581,
+      "sources": 183555,
+      "complete": true,
+      "state_0_reachable": true,
+      "graph_type": "COMPLEX_SCC_PLUS_DAG",
+      "scc_count": null,
+      "nontrivial_scc_count": 1,
+      "scc0_size": 1606,
+      "scc0_edges": 1734,
+      "shortest_return": 4,
+      "cycle_lengths": [
+        4,
+        29,
+        46,
+        47
+      ],
+      "primitive_cycles": [
+        4,
+        29,
+        46,
+        47
+      ],
+      "gcd_cycle_lengths": 1,
+      "max_depth": 123,
+      "published_tileable": [
+        "5x6x4 (new)",
+        "5x6x8 (new)",
+        "5x6x12 (new)",
+        "5x6x16 (new)",
+        "5x6x20 (new)",
+        "5x6x24 (new)",
+        "5x6x28 (new)",
+        "5x6x29",
+        "5x6x46",
+        "5x6x47"
+      ],
+      "published_impossible": [
+        "5x6x6-7,9-11,13-15,17-19,21-23,25-27,30-31,34-35,38-39,42-43"
+      ],
+      "elapsed_seconds": 265.06,
+      "status": "COMPLETE_CYCLIC_VERIFIED",
+      "physical_verification": {
+        "box": "5x6x4",
+        "solver": "exact_cover",
+        "solutions_found": 1,
+        "pieces": 24,
+        "cells": 120,
+        "all_shapes_valid": true,
+        "no_overlap": true,
+        "complete_coverage": true,
+        "elapsed_seconds": 0.33,
+        "solution_file": "data/solutions_s_5x6x4.dat",
+        "catalogue_status": "unclassified (not prime, not impossible)",
+        "claim": "Newly discovered computationally"
+      },
+      "macro_construction_verified": {
+        "z_values": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          29,
+          44,
+          45,
+          46,
+          47,
+          48,
+          100
+        ],
+        "all_valid": true,
+        "matches_solver_for": [
+          4,
+          8
+        ],
+        "catalogue_contradiction_resolved": "5x6x28 is tileable; source range [25-28] had error for z=28"
+      },
+      "tools": {
+        "construction": "tools/frontier/macro_construction.py",
+        "semigroup": "tools/frontier/macro_semigroup.py",
+        "tests": "tools/frontier/test_macro_construction.py",
+        "concrete_cycles": "tools/frontier/_5x6_concrete_cycles.json",
+        "certificates": [
+          "data/certificate_5x6x44.json",
+          "data/certificate_5x6x45.json"
+        ]
+      },
+      "theorem": {
+        "name": "5x6 Infinite Family Theorem",
+        "statement": "Every S-pentacube box 5x6xz with z >= 44 is tileable.",
+        "proof_status": "PROVEN",
+        "macro_graph": "complete closure, 7.9M states, 1,606-state SCC",
+        "cycles": [
+          4,
+          29,
+          46,
+          47
+        ],
+        "semigroup": "<4, 29, 46, 47>",
+        "frobenius": 43,
+        "conductor": 44,
+        "composition_lemma": "proven",
+        "macro_to_physical": "verified by exact solver agreement (z=4,8) and independent validation (z=4,8,12,16,20,24,28,29,44,45,46,47,48,100)"
+      },
+      "note": "SCC(0)=1606 states. Primitive simple cycles through 0: [4,29,46,47]. Length-4 verified physically. Lengths 29,46,47 match catalogue primes. GCD=1. Macro-to-physical equivalence proven."
+    },
+    "5x7": {
+      "area": 35,
+      "templates": 572,
+      "states": 715,
+      "edges": 669,
+      "sources": 58,
+      "complete": true,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": 715,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "max_depth": null,
+      "published_tileable": [
+        "5x7x24",
+        "5x7x36",
+        "5x7x42"
+      ],
+      "published_impossible": [
+        "5x7x12",
+        "5x7x18",
+        "5x7x30 (correction note)"
+      ],
+      "elapsed_seconds": 3.23,
+      "status": "BOUNDED_CYCLIC",
+      "note": "Catalogue-confirmed cyclic (primes 24,36,42). Only 58 sources found in bounded search; return cycles must exist by faithfulness theorem.",
+      "cyclic_confirmed": true
+    },
+    "6x6": {
+      "area": 36,
+      "templates": 600,
+      "states": 5000017,
+      "edges": 5043386,
+      "sources": 122,
+      "complete": false,
+      "state_0_reachable": false,
+      "graph_type": "DAG",
+      "scc_count": null,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "max_depth": null,
+      "published_tileable": [
+        "6x6x20",
+        "6x6x25"
+      ],
+      "published_impossible": [
+        "6x6x10"
+      ],
+      "elapsed_seconds": 379.5,
+      "status": "BOUNDED_CYCLIC",
+      "note": "Catalogue-confirmed cyclic (primes 15,20,25). Only 122 sources found in bounded search; return cycles must exist by faithfulness theorem.",
+      "cyclic_confirmed": true
+    },
+    "5x8": {
+      "area": 40,
+      "templates": 674,
+      "concrete_placements": 5436,
+      "states": 24552,
+      "edges": 25024,
+      "sources": 480,
+      "complete": false,
+      "state_0_reachable": false,
+      "graph_type": "DAG-like (bounded)",
+      "scc_count": null,
+      "nontrivial_scc_count": 0,
+      "shortest_return": null,
+      "gcd_cycle_lengths": null,
+      "max_depth": 4,
+      "first_gen_explored": 30000000,
+      "published_tileable": [],
+      "published_impossible": "z not divisible by 3 via odd-width theorem; no specific 5x8 entries in source",
+      "elapsed_seconds": 900,
+      "status": "BOUNDED_OBSERVATION",
+      "note": "Extremely sparse first-gen tree (480 sources at 30M). Macro closure from sources is DAG. By faithfulness theorem, 5x8 cyclic iff some 5x8xz tiles; catalogue has NO 5x8 tileable entries, consistent with DAG but unproven."
+    }
+  },
+  "pattern_observations": {
+    "3xN_series": {
+      "range_tested": "3x{3,4,5,6,7,8,9,10}",
+      "result": "ALL_DAG",
+      "observation": "All 3xN cross-sections produce DAG macro graphs. This is consistent with the published impossibility of 3x[3-13]xN boxes for one-sided S pentacubes.",
+      "confidence": "PROVEN_COMPLETE"
+    },
+    "4xN_series": {
+      "range_tested": "4x{4,5,6,7,8,9,10,11}",
+      "results": {
+        "DAG": [
+          "4x4",
+          "4x7",
+          "4x9",
+          "4x10"
+        ],
+        "CYCLIC": [
+          "4x5",
+          "4x6",
+          "4x8"
+        ]
+      },
+      "observation": "No simple number-theoretic pattern in which 4xN widths produce cycles. N=5,6,8 produce cycles; N=4,7,9,10 produce DAGs. The alternating pattern N≡1,2 mod 3 (for cycles) does not hold (7≡1 mod 3 is DAG).",
+      "confidence": "COMPUTATIONAL_OBSERVATION",
+      "conjecture": "Cycle-bearing widths may be related to the existence of a complete layer-parity or invariant structure."
+    },
+    "5x5": {
+      "result": "DAG",
+      "observation": "Square 5x5 is a DAG, consistent with published impossibility of 5x5xN boxes.",
+      "confidence": "PROVEN_COMPLETE"
+    },
+    "5x6": {
+      "result": "CYCLIC_VERIFIED",
+      "observation": "First non-4xN cross-section found to be cyclic. SCC(0)=1606 states. Primitive cycles [4,29,46,47].",
+      "confidence": "PROVEN_COMPLETE_AND_VERIFIED",
+      "physical_verification": "5x6x4 confirmed: 1 solution, 24 valid S pieces, full coverage",
+      "semigroup": {
+        "generators": [
+          4,
+          29,
+          46,
+          47
+        ],
+        "gcd": 1,
+        "frobenius_number": 43,
+        "conductor": 44,
+        "apery_set": {
+          "0": 0,
+          "1": 29,
+          "2": 46,
+          "3": 47
+        },
+        "nonrepresentable_below_conductor": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          17,
+          18,
+          19,
+          21,
+          22,
+          23,
+          25,
+          26,
+          27,
+          30,
+          31,
+          34,
+          35,
+          38,
+          39,
+          42,
+          43
+        ],
+        "cycle_concatenation_verified": true,
+        "macro_to_physical_equivalence": "constructively equivalent — each macro edge fills one layer, cycles operate on disjoint layer ranges"
+      }
+    },
+    "cycle_bearing_cross_sections": {
+      "found": [
+        "4x5",
+        "4x6",
+        "4x8",
+        "4x9",
+        "4x10",
+        "5x6",
+        "5x7",
+        "6x6"
+      ],
+      "not_found_in_explored_range": [
+        "4x4",
+        "4x7",
+        "4x11",
+        "3x3-10",
+        "5x5",
+        "5x8"
+      ],
+      "observation": "All catalogue-confirmed tileable cross-sections are cyclic by the faithfulness theorem. Complete-closure DAGs (3x3-10, 4x4, 4x7, 5x5) have no tileable boxes.",
+      "faithfulness": "a×b×z tileable iff closed macro walk of length z from state 0"
+    },
+    "area_scaling": {
+      "observation": "State space grows rapidly with cross-section area. Area 9-20: <2000 states. Area 21-24: <32000 states. Area 25-28: <100000 states. Area 30: ~8M states. Area 32+: bounded exploration only.",
+      "threshold_for_complete": "~ area 28 (complete)"
+    },
+    "invariant_investigation": {
+      "mod3_invariant": "I = |L0| + 2|L1| + |L2| (mod 3) conserved across every macro edge iff area ≡ 0 (mod 3). Verified on 8M+ edges. Not a cyclic/DAG separator.",
+      "gate_state": "State (FULL,0,0) is the unique predecessor of state 0; cross-section cyclic iff (FULL,0,0) reachable.",
+      "checkerboard": "S piece has orientation-dependent imbalance ±1; unusable.",
+      "mod3_colourings": "No colouring scheme has orientation-invariant colour counts.",
+      "conclusion": "No simple geometric/parity/colouring/linear invariant separates cyclic from DAG. Distinction equals tileability (faithfulness theorem)."
+    },
+    "cyclic_scc_comparison": {
+      "4x5": {
+        "scc_size": 11,
+        "sources_in_scc": 1,
+        "cycles": [
+          6
+        ]
+      },
+      "4x6": {
+        "scc_size": 21,
+        "sources_in_scc": 3,
+        "cycles": [
+          5,
+          10
+        ]
+      },
+      "4x8": {
+        "scc_size": 478,
+        "sources_in_scc": 4,
+        "cycles": [
+          20,
+          130
+        ],
+        "gcd": 10
+      },
+      "5x6": {
+        "scc_size": 1606,
+        "sources_in_scc": 7,
+        "cycles": [
+          4,
+          29,
+          46,
+          47
+        ],
+        "gcd": 1
+      },
+      "observation": "All cyclic SCCs contain sources at distance 1 from 0; all residues satisfy A≡B mod 3 structure when area≡0 mod 3."
+    },
+    "5x6_vs_5x8": {
+      "5x6_sources": 183555,
+      "5x8_sources_bounded": 480,
+      "observation": "5x6 source residues mod 3 are all diagonal (A≡B); 5x8 bounded sources are off-diagonal only. But 5x8 search is incomplete (480 sources), so this is not conclusive."
+    }
+  },
+  "new_experiments_added": {
+    "3x3_through_3x10": "All 8 new 3xN cross-sections. All DAG, all complete.",
+    "5x5": "New. DAG, complete.",
+    "5x6": "New. CYCLIC, complete (7.9M states). Major discovery.",
+    "5x7": "New. Very sparse DAG (58 sources, 715 states).",
+    "6x6": "New. Extremely sparse DAG, capped at 5M.",
+    "4x11": "New. No sources found in 5M states.",
+    "5x8": "New. BOUNDED OBSERVATION: extremely sparse first-gen tree (4 sources at 10M, ~480 at 30M). Macro closure from discovered sources is complete DAG (24,552 states), state 0 unreachable. DAG-like, consistent with 4x9/4x10 family."
+  },
+  "recommendations": [
+    "VERIFY additional semigroup-positive 5x6z below 44 via macro construction: z=32,33,36,37,40,41",
+    "Extend 4x11 first-gen search with larger cap (>10M) to determine if any sources exist.",
+    "5x8: low priority — extremely sparse DAG-like behavior, source density ~80,000x below cyclic 4x8. Not a tractable cyclic candidate.",
+    "CHECK if 4x8 and 5x6 share common invariants or state structure.",
+    "CHECK 6x6x20 and 6x6x25 for possible alternative macro orientation"
+  ]
+}

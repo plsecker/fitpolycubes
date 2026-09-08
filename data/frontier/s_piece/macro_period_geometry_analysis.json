@@ -1,0 +1,105 @@
+{
+ "metadata": {
+  "date": "2026-08-25",
+  "description": "Macro period vs geometry analysis"
+ },
+ "cross_sections": [
+  {
+   "name": "4\u00d75",
+   "area": 20,
+   "period": 6,
+   "piece_count_factor": 1,
+   "graph_structure_factor": 6,
+   "completeness": "GLOBAL THEOREM"
+  },
+  {
+   "name": "5\u00d76",
+   "area": 30,
+   "period": 1,
+   "piece_count_factor": 1,
+   "graph_structure_factor": 1,
+   "completeness": "GLOBAL THEOREM"
+  },
+  {
+   "name": "4\u00d78",
+   "area": 32,
+   "period": 10,
+   "piece_count_factor": 5,
+   "graph_structure_factor": 2,
+   "completeness": "GLOBAL THEOREM"
+  },
+  {
+   "name": "5\u00d78",
+   "area": 40,
+   "period": 6,
+   "piece_count_factor": 1,
+   "graph_structure_factor": 6,
+   "completeness": "VERIFIED CYCLE"
+  },
+  {
+   "name": "4\u00d79",
+   "area": 36,
+   "period": 15,
+   "piece_count_factor": 5,
+   "graph_structure_factor": 3,
+   "completeness": "VERIFIED CYCLE"
+  },
+  {
+   "name": "4\u00d710",
+   "area": 40,
+   "period": 2,
+   "piece_count_factor": 1,
+   "graph_structure_factor": 2,
+   "completeness": "VERIFIED CYCLE"
+  },
+  {
+   "name": "5\u00d77",
+   "area": 35,
+   "period": 6,
+   "piece_count_factor": 1,
+   "graph_structure_factor": 6,
+   "completeness": "VERIFIED CYCLE"
+  },
+  {
+   "name": "5\u00d79",
+   "area": 45,
+   "period": 3,
+   "piece_count_factor": 1,
+   "graph_structure_factor": 3,
+   "completeness": "VERIFIED CYCLE"
+  },
+  {
+   "name": "5\u00d710",
+   "area": 50,
+   "period": 18,
+   "piece_count_factor": 1,
+   "graph_structure_factor": 18,
+   "completeness": "VERIFIED CYCLE"
+  }
+ ],
+ "conclusion": "The graph period CANNOT be predicted from cross-section geometry alone. Only the piece-count integrality factor can be predicted.",
+ "arithmetic_factors": {
+  "piece_count": {
+   "explanation": "AREA \u00d7 z / 5 must be integer",
+   "condition": "When area \u2224 5, z \u2261 0 mod (5/gcd(area,5))"
+  }
+ },
+ "graph_factors": {
+  "explanation": "The remaining period factors depend on the Macro SCC structure and cannot be determined without analyzing the transition system"
+ },
+ "pairwise_comparisons": [
+  {
+   "pair": "4\u00d710 vs 5\u00d78",
+   "observation": "Same area (40), different periods (2 vs 6)"
+  },
+  {
+   "pair": "5\u00d76 vs 5\u00d78",
+   "observation": "Same width (5), different periods (1 vs 6)"
+  },
+  {
+   "pair": "4\u00d78 vs 4\u00d79",
+   "observation": "Same height (4), different periods (10 vs 15)"
+  }
+ ],
+ "negative_result": "No dimension-only formula for the Macro graph period exists. The period is determined by the detailed transition system."
+}

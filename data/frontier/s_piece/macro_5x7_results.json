@@ -1,0 +1,76 @@
+{
+ "semigroup": {
+  "generators": [
+   24,
+   36,
+   42
+  ],
+  "gcd": 6,
+  "scaled_generators": [
+   4,
+   6,
+   7
+  ],
+  "frobenius": 54,
+  "conductor": 60,
+  "minimal_generators": [
+   24,
+   36,
+   42
+  ],
+  "representable_up_to_60": [
+   0,
+   24,
+   36,
+   42,
+   48,
+   60
+  ]
+ },
+ "catalogue_coverage": {
+  "primes_covered": [
+   24,
+   36,
+   42
+  ],
+  "primes_missing": [],
+  "extra_representable": [
+   48,
+   60
+  ]
+ },
+ "comparison": {
+  "5\u00d76": {
+   "generators": [
+    4,
+    29,
+    46,
+    47
+   ],
+   "gcd": 1,
+   "frobenius": 43,
+   "conductor": 44,
+   "l2_states": "some (in SCC)"
+  },
+  "5\u00d77": {
+   "generators": [
+    24,
+    36,
+    42
+   ],
+   "gcd": 6,
+   "frobenius": 6,
+   "conductor": 12,
+   "l2_states": "none"
+  },
+  "5\u00d78": {
+   "generators": [
+    6
+   ],
+   "gcd": 6,
+   "frobenius": null,
+   "conductor": 6,
+   "l2_states": "none"
+  }
+ }
+}

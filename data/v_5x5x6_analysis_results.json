@@ -1,0 +1,208 @@
+{
+  "piece": "V",
+  "box": [
+    5,
+    5,
+    6
+  ],
+  "box_str": "5x5x6",
+  "solver": "fitpolycubes_fast.py (Algorithm X)",
+  "total_raw_solutions": 144,
+  "valid_solutions": 144,
+  "unique_tilings": 144,
+  "full_box_symmetry_orbits": 9,
+  "v4_equivalence_classes": 36,
+  "published_tilings": 9,
+  "published_source": "Sillke 1993",
+  "published_interpretation": "symmetry_orbits_under_full_box_symmetry",
+  "macro_raw_tilings_claim": 80,
+  "macro_orbits_claim": 9,
+  "discrepancy_note": "Macro technique undercounts by 80 vs 144 (factor 1.8x). Algorithm X is authoritative.",
+  "orbit_structure": [
+    {
+      "orbit_index": 1,
+      "raw_member_count": 16,
+      "full_orbit_size": 16,
+      "stabilizer_size": 1,
+      "stabilizer_elements": [
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "orbit_index": 2,
+      "raw_member_count": 16,
+      "full_orbit_size": 16,
+      "stabilizer_size": 1,
+      "stabilizer_elements": [
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "orbit_index": 3,
+      "raw_member_count": 16,
+      "full_orbit_size": 16,
+      "stabilizer_size": 1,
+      "stabilizer_elements": [
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "orbit_index": 4,
+      "raw_member_count": 16,
+      "full_orbit_size": 16,
+      "stabilizer_size": 1,
+      "stabilizer_elements": [
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "orbit_index": 5,
+      "raw_member_count": 16,
+      "full_orbit_size": 16,
+      "stabilizer_size": 1,
+      "stabilizer_elements": [
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "orbit_index": 6,
+      "raw_member_count": 16,
+      "full_orbit_size": 16,
+      "stabilizer_size": 1,
+      "stabilizer_elements": [
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "orbit_index": 7,
+      "raw_member_count": 16,
+      "full_orbit_size": 16,
+      "stabilizer_size": 1,
+      "stabilizer_elements": [
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "orbit_index": 8,
+      "raw_member_count": 16,
+      "full_orbit_size": 16,
+      "stabilizer_size": 1,
+      "stabilizer_elements": [
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "orbit_index": 9,
+      "raw_member_count": 16,
+      "full_orbit_size": 16,
+      "stabilizer_size": 1,
+      "stabilizer_elements": [
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      ]
+    }
+  ],
+  "stabilizer_summary": {
+    "trivial_count": 9,
+    "nontrivial_count": 0,
+    "all_trivial": true
+  }
+}

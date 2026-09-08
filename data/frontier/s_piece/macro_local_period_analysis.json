@@ -1,0 +1,138 @@
+{
+ "metadata": {
+  "date": "2026-08-25",
+  "method": "template-level period analysis"
+ },
+ "conclusion": "Only the piece-count integrality divisor can be proved from template analysis. All other period factors require SCC graph analysis.",
+ "cross_sections": {
+  "4\u00d75": {
+   "piece_count_divisor": 1,
+   "provable_divisors": {},
+   "template_stats": {
+    "concrete_placements": 2156,
+    "total_templates": 266
+   },
+   "conclusion": "For 4\u00d75: piece-count integrality proves 1 | period. No additional divisor can be proved from template-level analysis alone. The remaining period factors depend on the Macro SCC structure.",
+   "known_period": 6,
+   "remaining_factor": 6,
+   "remaining_provable_from_templates": false,
+   "why_not_provable": "The remaining factor 6 requires SCC graph analysis. No local invariant from template structure alone can prove this factor."
+  },
+  "5\u00d76": {
+   "piece_count_divisor": 1,
+   "provable_divisors": {},
+   "template_stats": {
+    "concrete_placements": 3796,
+    "total_templates": 470
+   },
+   "conclusion": "For 5\u00d76: piece-count integrality proves 1 | period. No additional divisor can be proved from template-level analysis alone. The remaining period factors depend on the Macro SCC structure.",
+   "known_period": 1,
+   "remaining_factor": 1,
+   "remaining_provable_from_templates": false,
+   "why_not_provable": "The remaining factor 1 requires SCC graph analysis. No local invariant from template structure alone can prove this factor."
+  },
+  "4\u00d78": {
+   "piece_count_divisor": 5,
+   "provable_divisors": {
+    "5": {
+     "type": "THEOREM",
+     "source": "piece-count integrality",
+     "proof": "AREA=32, AREA%5=2, 5/gcd(AREA,5)=5"
+    }
+   },
+   "template_stats": {
+    "concrete_placements": 3944,
+    "total_templates": 488
+   },
+   "conclusion": "For 4\u00d78: piece-count integrality proves 5 | period. No additional divisor can be proved from template-level analysis alone. The remaining period factors depend on the Macro SCC structure.",
+   "known_period": 10,
+   "remaining_factor": 2,
+   "remaining_provable_from_templates": false,
+   "why_not_provable": "The remaining factor 2 requires SCC graph analysis. No local invariant from template structure alone can prove this factor."
+  },
+  "5\u00d78": {
+   "piece_count_divisor": 1,
+   "provable_divisors": {},
+   "template_stats": {
+    "concrete_placements": 5436,
+    "total_templates": 674
+   },
+   "conclusion": "For 5\u00d78: piece-count integrality proves 1 | period. No additional divisor can be proved from template-level analysis alone. The remaining period factors depend on the Macro SCC structure.",
+   "known_period": 6,
+   "remaining_factor": 6,
+   "remaining_provable_from_templates": false,
+   "why_not_provable": "The remaining factor 6 requires SCC graph analysis. No local invariant from template structure alone can prove this factor."
+  },
+  "4\u00d79": {
+   "piece_count_divisor": 5,
+   "provable_divisors": {
+    "5": {
+     "type": "THEOREM",
+     "source": "piece-count integrality",
+     "proof": "AREA=36, AREA%5=1, 5/gcd(AREA,5)=5"
+    }
+   },
+   "template_stats": {
+    "concrete_placements": 4540,
+    "total_templates": 562
+   },
+   "conclusion": "For 4\u00d79: piece-count integrality proves 5 | period. No additional divisor can be proved from template-level analysis alone. The remaining period factors depend on the Macro SCC structure.",
+   "known_period": 15,
+   "remaining_factor": 3,
+   "remaining_provable_from_templates": false,
+   "why_not_provable": "The remaining factor 3 requires SCC graph analysis. No local invariant from template structure alone can prove this factor."
+  },
+  "4\u00d710": {
+   "piece_count_divisor": 1,
+   "provable_divisors": {},
+   "template_stats": {
+    "concrete_placements": 5136,
+    "total_templates": 636
+   },
+   "conclusion": "For 4\u00d710: piece-count integrality proves 1 | period. No additional divisor can be proved from template-level analysis alone. The remaining period factors depend on the Macro SCC structure.",
+   "known_period": 2,
+   "remaining_factor": 2,
+   "remaining_provable_from_templates": false,
+   "why_not_provable": "The remaining factor 2 requires SCC graph analysis. No local invariant from template structure alone can prove this factor."
+  },
+  "5\u00d77": {
+   "piece_count_divisor": 1,
+   "provable_divisors": {},
+   "template_stats": {
+    "concrete_placements": 4616,
+    "total_templates": 572
+   },
+   "conclusion": "For 5\u00d77: piece-count integrality proves 1 | period. No additional divisor can be proved from template-level analysis alone. The remaining period factors depend on the Macro SCC structure.",
+   "known_period": 6,
+   "remaining_factor": 6,
+   "remaining_provable_from_templates": false,
+   "why_not_provable": "The remaining factor 6 requires SCC graph analysis. No local invariant from template structure alone can prove this factor."
+  },
+  "5\u00d79": {
+   "piece_count_divisor": 1,
+   "provable_divisors": {},
+   "template_stats": {
+    "concrete_placements": 6256,
+    "total_templates": 776
+   },
+   "conclusion": "For 5\u00d79: piece-count integrality proves 1 | period. No additional divisor can be proved from template-level analysis alone. The remaining period factors depend on the Macro SCC structure.",
+   "known_period": 3,
+   "remaining_factor": 3,
+   "remaining_provable_from_templates": false,
+   "why_not_provable": "The remaining factor 3 requires SCC graph analysis. No local invariant from template structure alone can prove this factor."
+  },
+  "5\u00d710": {
+   "piece_count_divisor": 1,
+   "provable_divisors": {},
+   "template_stats": {
+    "concrete_placements": 7076,
+    "total_templates": 878
+   },
+   "conclusion": "For 5\u00d710: piece-count integrality proves 1 | period. No additional divisor can be proved from template-level analysis alone. The remaining period factors depend on the Macro SCC structure.",
+   "known_period": 18,
+   "remaining_factor": 18,
+   "remaining_provable_from_templates": false,
+   "why_not_provable": "The remaining factor 18 requires SCC graph analysis. No local invariant from template structure alone can prove this factor."
+  }
+ }
+}

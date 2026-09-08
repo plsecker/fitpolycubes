@@ -1,0 +1,132 @@
+{
+ "cross_sections": {
+  "4\u00d75": {
+   "scc_size": 11,
+   "period": 6,
+   "primitive_cycles": [
+    6
+   ],
+   "cycle_gcd": 6,
+   "period_matches_gcd": true,
+   "complete_closure": true,
+   "period_source": "primitive_cycles"
+  },
+  "5\u00d76": {
+   "scc_size": 1606,
+   "period": 1,
+   "primitive_cycles": [
+    4,
+    29,
+    46,
+    47
+   ],
+   "cycle_gcd": 1,
+   "period_matches_gcd": true,
+   "complete_closure": true,
+   "period_source": "primitive_cycles"
+  },
+  "4\u00d78": {
+   "scc_size": 478,
+   "period": 10,
+   "primitive_cycles": [
+    20,
+    130
+   ],
+   "cycle_gcd": 10,
+   "period_matches_gcd": true,
+   "complete_closure": false,
+   "period_source": "graph"
+  },
+  "5\u00d78": {
+   "scc_size": null,
+   "period": 6,
+   "primitive_cycles": [
+    6
+   ],
+   "cycle_gcd": 6,
+   "period_matches_gcd": true,
+   "complete_closure": false,
+   "period_source": "primitive_cycles"
+  },
+  "4\u00d79": {
+   "scc_size": null,
+   "period": 15,
+   "primitive_cycles": [
+    60,
+    75,
+    90,
+    105
+   ],
+   "cycle_gcd": 15,
+   "period_matches_gcd": true,
+   "complete_closure": false,
+   "period_source": "primitive_cycles"
+  },
+  "4\u00d710": {
+   "scc_size": null,
+   "period": 2,
+   "primitive_cycles": [
+    6,
+    10
+   ],
+   "cycle_gcd": 2,
+   "period_matches_gcd": true,
+   "complete_closure": false,
+   "period_source": "primitive_cycles"
+  },
+  "5\u00d77": {
+   "scc_size": null,
+   "period": 6,
+   "primitive_cycles": [
+    24,
+    36,
+    42
+   ],
+   "cycle_gcd": 6,
+   "period_matches_gcd": true,
+   "complete_closure": false,
+   "period_source": "primitive_cycles"
+  },
+  "5\u00d79": {
+   "scc_size": null,
+   "period": 3,
+   "primitive_cycles": [
+    12,
+    15,
+    18,
+    21
+   ],
+   "cycle_gcd": 3,
+   "period_matches_gcd": true,
+   "complete_closure": false,
+   "period_source": "primitive_cycles"
+  },
+  "5\u00d710": {
+   "scc_size": null,
+   "period": 18,
+   "primitive_cycles": [
+    18
+   ],
+   "cycle_gcd": 18,
+   "period_matches_gcd": true,
+   "complete_closure": false,
+   "period_source": "primitive_cycles"
+  }
+ },
+ "four_eight": {
+  "graph_period": 10,
+  "period_classes": {
+   "C0": 42,
+   "C1": 51,
+   "C2": 48,
+   "C3": 46,
+   "C4": 52,
+   "C5": 52,
+   "C6": 46,
+   "C7": 48,
+   "C8": 51,
+   "C9": 42
+  },
+  "note": "The period d=10 means all closed walks have length divisible by 10. This explains the even-cycle property: period 10 is even."
+ }
+}
