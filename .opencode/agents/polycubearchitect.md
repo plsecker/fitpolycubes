@@ -1,8 +1,7 @@
 ---
 description: Designs algorithms and mathematical proofs for fitpolycubes.
 mode: subagent
-model: openrouter/openai/gpt-5.5
--model: openrouter/~google/gemini-flash-latest
+model: openrouter/stealth/ox-alpha
 permission:
   edit: deny
   bash: ask

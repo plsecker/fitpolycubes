@@ -35,3 +35,50 @@ experiments/benchmarks/perf.data
 
 # Compiled SAT workflow validator binary
 tools/sat/tiling_validator
+
+# OpenWork local chat state (attachments, session scratch)
+.opencode/openwork/
+
+# Multi-GB frontier state dumps (regenerable from the search; documented in
+# docs/frontier/repo_untracked_inventory.md and docs/frontier/s_piece/4x9_return_search.md)
+4x9_checkpoint_backup/
+4x9_live_backup/
+frontier_compact_pure_268m/
+
+# Live CK6 Stage 5L run + generated intermediates (evidence is committed
+# separately; the rest of data/ck6_reuse/ stays visible for review)
+data/ck6_reuse/run/
+data/ck6_reuse/renders/
+data/ck6_reuse/sicherman_cache/
+
+# Regenerable parallel-search task partitions (solutions/ already committed)
+data/v_5x5x9_search/tasks/
+
+# Stale CK6 stage run logs and smoke outputs (v35/v45/v35_reaudit result
+# dirs stay visible -- they hold COMPLETE stage reports, C3 candidates)
+data/ck6_v25_smoke/
+data/ck6_v25_smoke2/
+data/ck6_v25_smoke3/
+data/ck6_v25_summary.json
+data/ck6_v35_run.log
+data/ck6_v35_reaudit.log
+data/ck6_v45_run.log
+data/ck6_v45_count.log
+data/ck6_v55_smoke/
+data/ck6_v55_smoke35/
+data/ck6_v55_feas/
+
+# Generated placement dumps + scratch at repo root (regenerable)
+/placements_*.txt
+/temp.txt
+/scc_aware_analysis_results.txt
+
+# Run logs
+/logs/
+
+# Regenerable SAT encodings -- hash-pinned in each certificate's hashes.txt;
+# the DRAT/LRAT proofs (already ignored per-certificate) are the evidence
+docs/frontier/z_piece/*_certificate/*.cnf
+
+# 103 MB generated solution dump (small results files stay tracked)
+docs/frontier/s_piece/4x8x130_macro/results/solutions_s_4x8x130_macro.dat
