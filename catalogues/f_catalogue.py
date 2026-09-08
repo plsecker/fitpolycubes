@@ -121,6 +121,18 @@ class FCatalogue(Catalogue):
         # box is tileable by F") was removed because it generalized from finite search 
         # evidence without a formal proof or published authoritative source.
 
+        # Theorem (derived): the F pentacube does not fit 2x2xN:
+        # spans {1,3,3} require two box dimensions >= 3.
+        if a == 2 and b == 2:
+            return "published_impossible"
+
+        # Theorem (derived): every F placement in 2xNxN lies flat
+        # (span-1 axis forced onto the thickness), so a tiling would
+        # induce an N x N square tiling by the free F pentomino.
+        # Sillke qu5-f publishes "NxN" as impossible.
+        if a == 2 and b == c:
+            return "published_impossible"
+
         if box in self.searched_no_solution:
             return "searched_no_solution"
 

@@ -158,7 +158,7 @@ def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
             unproven_composites.append((box, node))
         
         # Audit C: Solver discovers closed proof for unlisted box
-        if not is_prime and closes(node) and node_type in ['Generator', 'Slab', 'Width']:
+        if not is_prime and closes(node) and node_type in ['Generator', 'Slab', 'Width', 'Breadth']:
             discovered_composites.append((box, node))
     
     # Report results

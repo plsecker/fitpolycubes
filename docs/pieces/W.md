@@ -59,7 +59,7 @@ Empty.
 
 ### Published Solutions
 
-None.
+- **5×7×9**: 1+ (Shirakawa 2014) — exhaustive enumeration finds **40 physical tilings** in **5 D2h symmetry orbits** (C++ Algorithm X, 2026-08-25). See `docs/frontier/w_5x7x9_exhaustive_report.md`.
 
 ## Impossibility Rules
 
@@ -91,9 +91,9 @@ Published individual impossible boxes:
 
 ## Remaining Open Questions
 
-- A formal validation and audit run has not been performed on this catalogue.
-- The 3D 2-sided data in the Shirakawa transcription is not reflected in the catalogue (out of scope per project convention).
+- The remaining RAW_PRIMES in the W catalogue have not been exhaustively enumerated.
 
 ## Audit History
 
+- **2026-08-25**: W 5×7×9 exhaustively enumerated (C++ Algorithm X). 40 physical tilings, 5 D2h symmetry orbits, all stabilisers trivial. Published Shirakawa solution confirmed in Orbit 4. Certificate and independent validator produced. See `docs/frontier/w_5x7x9_exhaustive_report.md`.
 - **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.

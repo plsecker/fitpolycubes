@@ -308,3 +308,17 @@ depends only on the post-shift window, not on how the layer was filled.
   lengths were found.
 - The exclusion test counts macro paths, not tilings; placement-level
   uniqueness was established separately (product of per-edge counts = 1).
+
+## 11. Orientation Selection
+
+The Macro technique can be applied with any of the three box dimensions
+as the longitudinal (thickness) direction. The choice dramatically
+affects the state-space size.
+
+**Heuristic**: Choose the orientation with the smallest cross-section area.
+This is an empirical rule supported by measurements on the S-pentacube
+4×5×6 box, where the three orientations produced state spaces differing
+by 3,000×.
+
+See `docs/frontier/s_piece/macro_orientation_heuristic.md` for details
+and `tools/frontier/macro_orientation.py` for the implementation.

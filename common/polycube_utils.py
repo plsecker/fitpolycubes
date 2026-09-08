@@ -60,46 +60,89 @@ def generate_placements(piece, box_size, break_symmetry=False):
                     if rpl_tuple not in placements.values():
                         placements[count] = rpl_tuple
                         count += 1
-    if break_symmetry and box_dims[0] == box_dims[1] == box_dims[2]:
-        # if break_symmetry:
-        # Symmetry breaking for a cube:
-        # 1. Identify all placements that cover (0,0,0).
-        # 2. Group them into orbits under the 3 rotations that fix (0,0,0).
-        # 3. Only keep one representative from each orbit for the *first* column.
-        
+    if break_symmetry:
+        # Identify all placements that cover (0,0,0).
         p_000 = [p for p in placements.values() if (0,0,0) in p]
         
-        # Rotations that fix (0,0,0) and the 5x5x5 box:
-        # These are rotations that permute the axes x, y, z.
-        # There are 3 such rotations (including identity):
-        # (x,y,z) -> (x,y,z)
-        # (x,y,z) -> (y,z,x)
-        # (x,y,z) -> (z,x,y)
-        
-        canonical_p_000 = []
-        seen_orbits = set()
-        
-        for p in p_000:
-            # Generate the orbit of this placement under the 3 rotations
-            orbit = []
-            p_pts = set(p)
-            # Rotation 1: (x,y,z) -> (y,z,x)
-            p_rot1 = tuple(sorted([(pt[1], pt[2], pt[0]) for pt in p_pts]))
-            # Rotation 2: (x,y,z) -> (z,x,y)
-            p_rot2 = tuple(sorted([(pt[2], pt[0], pt[1]) for pt in p_pts]))
+        if box_dims[0] == box_dims[1] == box_dims[2]:
+            # Cube case: use 3 cyclic rotations that fix (0,0,0)
+            # Rotations that fix (0,0,0) and the box:
+            # (x,y,z) -> (x,y,z), (y,z,x), (z,x,y)
             
-            p_tuple = tuple(sorted(p))
-            orbit = sorted([p_tuple, p_rot1, p_rot2])
-            canonical_rep = orbit[0]
+            canonical_p_000 = []
+            seen_orbits = set()
             
-            if canonical_rep not in seen_orbits:
-                seen_orbits.add(canonical_rep)
-                canonical_p_000.append(canonical_rep)
+            for p in p_000:
+                p_pts = set(p)
+                p_rot1 = tuple(sorted([(pt[1], pt[2], pt[0]) for pt in p_pts]))
+                p_rot2 = tuple(sorted([(pt[2], pt[0], pt[1]) for pt in p_pts]))
+                
+                p_tuple = tuple(sorted(p))
+                orbit = sorted([p_tuple, p_rot1, p_rot2])
+                canonical_rep = orbit[0]
+                
+                if canonical_rep not in seen_orbits:
+                    seen_orbits.add(canonical_rep)
+                    canonical_p_000.append(canonical_rep)
+            
+            return placements, canonical_p_000
         
-        # Now we need to tell the solver to only use canonical_p_000 for (0,0,0).
-        # We can return this information.
-        return placements, canonical_p_000
-
+        else:
+            # General rectangular box: use D2h group with axis permutations
+            # where dimensions match.
+            # Build the list of valid permutations (those that map dims to matching dims)
+            from itertools import permutations as iter_permutations
+            
+            dims = list(box_dims)
+            valid_perms = []
+            for p in iter_permutations(range(3)):
+                if all(dims[i] == dims[p[i]] for i in range(3)):
+                    valid_perms.append(p)
+            
+            def apply_symmetry(placement, perm, signs, box):
+                """Apply symmetry element to a placement."""
+                bx, by, bz = box
+                result = []
+                for x, y, z in placement:
+                    coords = [x, y, z]
+                    nx = coords[perm[0]]
+                    ny = coords[perm[1]]
+                    nz = coords[perm[2]]
+                    if signs[0] == -1:
+                        nx = bx - 1 - nx
+                    if signs[1] == -1:
+                        ny = by - 1 - ny
+                    if signs[2] == -1:
+                        nz = bz - 1 - nz
+                    result.append((nx, ny, nz))
+                return tuple(sorted(result))
+            
+            canonical_p_000 = []
+            seen_orbits = set()
+            
+            for p in p_000:
+                p_tuple = tuple(sorted(p))
+                if p_tuple in seen_orbits:
+                    continue
+                
+                # Generate orbit under the full box symmetry group
+                orbit = set()
+                for perm in valid_perms:
+                    for sx in (1, -1):
+                        for sy in (1, -1):
+                            for sz in (1, -1):
+                                transformed = apply_symmetry(p, perm, (sx, sy, sz), box_dims)
+                                orbit.add(transformed)
+                
+                # Canonical representative: lexicographically smallest
+                canonical_rep = min(orbit)
+                
+                if canonical_rep not in seen_orbits:
+                    seen_orbits.add(canonical_rep)
+                    canonical_p_000.append(canonical_rep)
+            
+            return placements, canonical_p_000
+    
     return placements, None
 
 def filter_and_reindex_placements(placements, canonical_p_000):

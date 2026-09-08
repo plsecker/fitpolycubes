@@ -56,6 +56,9 @@ Published impossible families:
 - `a == 4, 4 <= b <= 9` (`4x[4-9]xN`): impossible
 - `(a, b) == (4, 10), 10 <= c <= 45` (`4x10x[10-45]`): impossible
 - `a == 5, b in {5, 6, 7}` (`5x{5,6,7}xN`): impossible
+- `(a, b) == (5, 10), 10 <= c <= 18` (`5x10x[10-18]`): impossible — explicit
+  zero block, Shirakawa 2013 (page row `5x10x[10-18]`, sols cell `0`,
+  unlinked; no semigroup interpretation required).
 - `a == 7, b == 7` (`7x7xN`): impossible
 
 Published individual impossible boxes:
@@ -64,6 +67,18 @@ Published individual impossible boxes:
 - `4x11x25`
 - `5x8x{10,15,25,30}`
 - `5x9x{10,20}`
+- `3x23x50` — per-box `s:0` (semigroup zero; 690 pieces, self-consistent
+  with `3·23·50 = 5·690`), Shirakawa 2013. The only per-box zero row of the
+  page not previously encoded.
+
+### SEARCHED_NO_SOLUTION
+
+- `6x6x10` — no tiling. Complete SAT decision (CaDiCaL, UNSAT in 287 s over
+  the audited 2,176-placement encoding) with an **independently verified
+  DRAT proof**: drat-trim `s VERIFIED` (455.2 s, upstream commit
+  `2e3b2dc0`) and lrat-check `c VERIFIED` (25.2 s) on the emitted LRAT.
+  Full certificate package and verification record:
+  `docs/frontier/z_piece/z_6610_unsat_certificate.md`.
 
 ## Shirakawa Transcription Notes
 
@@ -85,3 +100,16 @@ Published individual impossible boxes:
 ## Audit History
 
 - **2026-08-10**: Added `MINIMAL_ODD` and `MINIMAL_EVEN` metadata identifying the smallest RAW_PRIME in each parity class, or `None` where no such RAW_PRIME exists. Metadata only; `RAW_PRIMES` and mathematical rules unchanged.
+- **2026-08-27**: Frontier decomposition audit (`docs/frontier/z_piece/z_frontier_decomposition_audit.md`). Established the UNKNOWN frontier programmatically (331 boxes at dim<=20; 10580 at dim<=60); confirmed `WIDTH_SPLITS`/`ROW_FAMILIES` have always been empty for Z and verified the consumption mechanism separately; demonstrated 102 additional closures via runtime injection of the source page's published composite ("1+") entries — including frontier members `5x15x20` and `11x15x20`; catalogued a report-only proposal to transcribe those entries into `PUBLISHED_SOLUTIONS` plus an `s:0` convention decision resolving 103 further boxes as impossible. Truth tables unchanged by the audit itself; see report §5 for the proposed patch and tests in `tools/frontier/z_piece/test_z_frontier_closures.py`.
+- **2026-08-28 (promotion)**: Applied the approved 77-row `PUBLISHED_SOLUTIONS` patch (Shirakawa `1+` non-prime rows; evidence: `docs/frontier/z_piece/z_catalogue_promotion_patch.md`, `z_promotion_evidence_package.md`, `z_promotion_semantics_audit.md`). Verified: validate PASSED, Audit B 331→329, C 69→70, D 0→77, Unknown dim<=60 10580→10478, 102 promotions, 0 regressions, 0 Impossible changes.
+- **2026-08-29 (6x6x10 UNSAT promotion)**: `6x6x10` promoted to
+  `SEARCHED_NO_SOLUTION` on the basis of a fully independently verified
+  DRAT/LRAT UNSAT certificate (complete SAT decision over the audited
+  2,176-placement encoding; drat-trim `s VERIFIED`; lrat-check `c VERIFIED`
+  on the emitted LRAT; encoding pipeline additionally validated against the
+  four published machine-readable 6x10x10 tilings). Certificate package:
+  `docs/frontier/z_piece/z_6610_certificate/`; certification record:
+  `docs/frontier/z_piece/z_6610_unsat_certification.md`. Measured effect:
+  Audit B 320 -> 319; Unknown dim<=60 10468 -> 10467; exactly one
+  classification change; all other truth tables unchanged.
+- **2026-08-28 (explicit impossibilities)**: Transcribed the two explicit source zero rows into `impossible_reason`: the `5x10x[10-18]` explicit zero block (Shirakawa 2013, sols `0`) and the per-box `3x23x50` `s:0` row (Shirakawa 2013, 690 pieces). Evidence and pre-apply verification: `docs/frontier/z_piece/z_next_step_6x6x10.md` (Part A/C). Measured effect: exactly 10 `Unknown→Impossible`, zero other classification changes; Unknown dim<=60 10478→10468. No other `s:0`/family rows were encoded (103-box semigroup layer remains a separate policy question).

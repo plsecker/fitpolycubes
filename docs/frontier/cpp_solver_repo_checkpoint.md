@@ -134,6 +134,12 @@ the intended benchmark solver's behaviour.
   files). These are intentionally **not** committed here.
 - The preserved `/tmp/opencode` binaries and logs (kept, not deleted).
 
+> **Full untracked-file inventory:** see
+> [`repo_untracked_inventory.md`](repo_untracked_inventory.md) for the
+> complete audit of the 5,174 untracked files (mostly a `.gitignore`
+> regression exposing generated artifacts) and the recommended
+> commit/ignore/delete actions.
+
 ---
 
 ## 7. Rebuild commands for the intended benchmark solver

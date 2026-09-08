@@ -110,7 +110,14 @@ PIECES = {
     ),
     "Q": PieceInfo(
         letter="Q",
-        coords=np.array([[0,0,0],[1,0,0],[0,1,0],[1,1,0],[2,2,0]]),
+        # Corrected 2026-09-01 (geometry-integrity audit,
+        # docs/frontier/q_piece/q_geometry_integrity_audit.md): the
+        # previous coordinates [[0,0,0],[1,0,0],[0,1,0],[1,1,0],[2,2,0]]
+        # were face-disconnected and could not fit the catalogue's
+        # published 2x2x5 prime.  The corrected shape is Sillke qu5.61
+        # (Shirakawa 5-22): a 2x2 square with one cube stacked on a
+        # corner, i.e. the 2x2x2 block minus an L-triomino.
+        coords=np.array([[0,0,0],[1,0,0],[0,1,0],[1,1,0],[0,0,1]]),
         catalogue_module="catalogues.q_catalogue",
         kurnell=61, shirakawa_url="https://puzzlewillbeplayed.com/Shirakawa/5-22.html", shirakawa_piece=22
     ),

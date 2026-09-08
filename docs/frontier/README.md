@@ -134,3 +134,44 @@ exact conclusions about the packing problem
 ```
 
 The following documentation describes the method in progressively more detail, including the state representation, transitions, correctness, and performance. The S-piece and z-direction sections provide concrete case studies showing how the general ideas appear in actual searches.
+
+---
+
+## V 5×5×9 Complete Enumeration
+
+The V pentacube in a 5×5×9 box has been exhaustively enumerated.
+
+### Expected results
+
+| Quantity | Value |
+|----------|-------|
+| Raw solutions | **1,120** |
+| V4 classes (180° rotations, order 4) | **280** |
+| G8 classes (proper rotations, order 8) | **140** |
+| G16 classes (full symmetry, order 16) | **70** |
+
+All classes have trivial stabilizer. No V4-symmetric tiling exists (proved by parity: 45 odd, every placement in a 2-cycle under Rz/Rx/Ry).
+
+### Verification
+
+Raw solutions:
+```
+1,120 = 280 × 4 = 140 × 8 = 70 × 16
+```
+
+### Reproduction
+
+```bash
+# Run solver
+python3 solvers/fitpolycubes_fast.py V --box 5 5 9 --no-symmetry
+
+# Validate and classify
+python3 solvers/v_5x5x9_complete_analysis.py
+```
+
+### Data files
+
+| File | Description |
+|------|-------------|
+| `data/solutions_v_5x5x9_complete.dat` | Complete enumeration (1,120 solutions) |
+| `data/archive/solutions_v_5x5x9_partial_282.dat` | Historical partial run (282 solutions) |

@@ -204,7 +204,26 @@ class YCatalogue(Catalogue):
         if a <= 0:
             return "published_impossible"
 
+        # Preserve explicit SEARCHED_NO_SOLUTION evidence (f_catalogue
+        # pattern): searched boxes keep their label.  Required because
+        # solvers.decomp.classify consults impossible_reason before all
+        # other classification stages.
+        if box in self.searched_no_solution:
+            return "searched_no_solution"
+
         if a == 1 and b <= 4:
+            return "published_impossible"
+
+        # Theorem (derived): thickness-1 boxes reduce exactly to
+        # Y-pentomino rectangles (all placements flat, all 8 free
+        # orientations realized).  Sillke qu5-y publishes:
+        #   5xk impossible unless k = 0 (mod 10)
+        #   6xk, 8xk impossible for all k
+        if a == 1 and b == 5 and c % 10 != 0:
+            return "published_impossible"
+        if a == 1 and b == 6:
+            return "published_impossible"
+        if a == 1 and b == 8:
             return "published_impossible"
 
         if (a, b, c) == (2, 5, 4):
