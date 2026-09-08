@@ -1,0 +1,94 @@
+{
+ "claim": "OPEN QUESTION: decide tileability of the 4x12x15 box by Z polycubes",
+ "date": "2026-09-04",
+ "piece": {
+  "name": "Z",
+  "cells": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0
+   ],
+   [
+    1,
+    2,
+    0
+   ],
+   [
+    2,
+    2,
+    0
+   ]
+  ],
+  "size": 5,
+  "provenance": "common/registry.py PENTACUBES['Z']"
+ },
+ "box": {
+  "w": 4,
+  "h": 12,
+  "nz": 15
+ },
+ "box_list": [
+  4,
+  12,
+  15
+ ],
+ "volume": 720,
+ "piece_count": 144,
+ "orientation_count": 12,
+ "placement_count": 4528,
+ "cell_count": 720,
+ "variable_count": 4528,
+ "clause_count": 295852,
+ "clause_families": {
+  "coverage_ge1": 720,
+  "no_overlap_amo_distinct": 295132
+ },
+ "naive_clause_count_before_dedup": 397192,
+ "encoding": "plain ALO + pairwise AMO exact cover, canonical deduplicated, NO symmetry-breaking predicates",
+ "generator": {
+  "repo": "common.polycube_utils.generate_placements",
+  "repo_seconds": 1.4,
+  "independent_regeneration": "set-identical",
+  "cross_check": "PASS"
+ },
+ "cnf_file": "z_4x12x15.cnf",
+ "sha256": {
+  "cnf": "9b9ea841e364142b02943531987f9d278e318083b56c5c9768d21e9e9ef7a82e",
+  "proof": null,
+  "var_map": "adbac090ddc7b53114492d8c9cc4de970fcb40bd57f6c6636768816fa54e11ae",
+  "placement_set": "2ee322d8505cf526dbe2df2f7a779615fe4c784cdf1a578da492d0a5bb105046"
+ },
+ "runs": [
+  {
+   "date": "2026-09-04",
+   "config": "native CaDiCaL (cadical), binary DRAT proof, time cap 10800s",
+   "wall_seconds": 10800.8,
+   "result": "TIMEOUT",
+   "exit_code": 0,
+   "solver_log": "z_4x12x15_cadical.out",
+   "conflicts": 20392885,
+   "decisions": 45438151,
+   "propagations": 4323311699,
+   "peak_rss_mb": 738.1,
+   "cause": "CaDiCaL -t cap reached with no verdict; partial proof discarded"
+  }
+ ],
+ "chain": {
+  "prepare": "DONE",
+  "solve": "TIMEOUT",
+  "verify": null,
+  "audit": "PASS",
+  "witness": null
+ }
+}

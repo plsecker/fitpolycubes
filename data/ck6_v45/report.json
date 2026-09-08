@@ -1,0 +1,22 @@
+{
+ "volume": 45,
+ "status": "COMPLETE",
+ "total_targets": 1469999,
+ "expected_targets": 1469999,
+ "valid_min_ids": 86,
+ "funnel": {
+  "reject: <k contained placements": 1436064,
+  "reject: uncovered cell": 33935,
+  "pass coverage": 0,
+  "reject: exact cover UNSAT": 0,
+  "TILEABLE": 0
+ },
+ "terminal_partition_exact": true,
+ "sat": 0,
+ "witnesses": [],
+ "verdict": "V=45 PROVEN NEGATIVE: no CK6-or-higher symmetric 45-cell polycube is tileable by 9 T pentacubes",
+ "method": "target-first orbit-DFS + FastFunnel (numba uint64) + algorithm_x exact cover; 4 min-id shards, 4 workers",
+ "wall_shard_max_s": 504.4,
+ "peak_rss_mb": 3153.8,
+ "cross_check": "monolithic reversed-order DFS failed at ~23 GB RAM (documented); shard-level aggregation used instead: 86/86 min-ids covered, terminal partition exact, dual-solver agreement on all coverage-passing targets"
+}

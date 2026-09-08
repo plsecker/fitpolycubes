@@ -1,0 +1,26 @@
+{
+ "volume": 45,
+ "shard": 2,
+ "min_ids": [
+  3654,
+  3659,
+  3661,
+  3664,
+  3666,
+  3668,
+  3669,
+  3670,
+  3672,
+  3916
+ ],
+ "funnel": {
+  "reject: <k contained placements": 162337
+ },
+ "targets": 162337,
+ "sat": 0,
+ "unsat": 0,
+ "witnesses": [],
+ "status": "complete",
+ "elapsed_s": 275.2,
+ "peak_rss_mb": 3153.8
+}

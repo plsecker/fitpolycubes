@@ -1,0 +1,96 @@
+{
+ "claim": "OPEN QUESTION: decide tileability of the 6x6x15 box by Z polycubes",
+ "date": "2026-09-04",
+ "piece": {
+  "name": "Z",
+  "cells": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0
+   ],
+   [
+    1,
+    2,
+    0
+   ],
+   [
+    2,
+    2,
+    0
+   ]
+  ],
+  "size": 5,
+  "provenance": "common/registry.py PENTACUBES['Z']"
+ },
+ "box": {
+  "w": 6,
+  "h": 6,
+  "nz": 15
+ },
+ "box_list": [
+  6,
+  6,
+  15
+ ],
+ "volume": 540,
+ "piece_count": 108,
+ "orientation_count": 12,
+ "placement_count": 3456,
+ "cell_count": 540,
+ "variable_count": 3456,
+ "clause_count": 242736,
+ "clause_families": {
+  "coverage_ge1": 540,
+  "no_overlap_amo_distinct": 242196
+ },
+ "naive_clause_count_before_dedup": 323436,
+ "encoding": "plain ALO + pairwise AMO exact cover, canonical deduplicated, NO symmetry-breaking predicates",
+ "generator": {
+  "repo": "common.polycube_utils.generate_placements",
+  "repo_seconds": 1.0,
+  "independent_regeneration": "set-identical",
+  "cross_check": "PASS"
+ },
+ "cnf_file": "z_6x6x15.cnf",
+ "sha256": {
+  "cnf": "080d9db8c146322a9fd0a9346044195c7f42cee4c7c753305a1d701d675d7acb",
+  "proof": null,
+  "var_map": "d9ae1aec2bd2cf2b0ecdb397bb28dd17bb9c89ec442261903231ad8ad883693b",
+  "placement_set": "bed9fcc20e34c108947c8e342463d860866cb98ac768d49993c0256e13937b67"
+ },
+ "runs": [
+  {
+   "date": "2026-09-04",
+   "config": "native CaDiCaL (cadical), binary DRAT proof, time cap 7200s",
+   "wall_seconds": 7200.2,
+   "result": "TIMEOUT",
+   "exit_code": 0,
+   "solver_log": "z_6x6x15_cadical.out",
+   "conflicts": 22075813,
+   "decisions": 45458477,
+   "propagations": 4197338093,
+   "peak_rss_mb": 491.7,
+   "cause": "CaDiCaL -t 7200 cap; log retains final progress line",
+   "conflicts_at_cap": 20100484,
+   "note": "CaDiCaL -t cap reached with no verdict; conflict counts from the solver's own shutdown statistics"
+  }
+ ],
+ "chain": {
+  "prepare": "DONE",
+  "solve": "TIMEOUT",
+  "verify": null,
+  "audit": "PASS",
+  "witness": null
+ }
+}

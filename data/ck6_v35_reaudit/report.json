@@ -1,0 +1,18 @@
+{
+ "volume": 35,
+ "status": "COMPLETE",
+ "total_targets": 15289669,
+ "expected_targets": 15289669,
+ "funnel": {
+  "reject: <k contained placements": 9003562,
+  "reject: uncovered cell": 6229218,
+  "pass coverage": 56889,
+  "reject: exact cover UNSAT": 56889
+ },
+ "sat": 0,
+ "unsat": 0,
+ "witnesses": [],
+ "elapsed_shard_max_s": 8465.4,
+ "peak_rss_mb": 7423.1,
+ "verdict": "V=35 PROVEN NEGATIVE: no CK6-or-higher symmetric 35-cell polycube is tileable by 7 T pentacubes"
+}

@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "fitpolycubes/macro-walk-certificate-v1",
+  "title": "Pentacube Macro closed-walk certificate (revision 2026-08-26a)",
+  "type": "object",
+  "required": ["format", "format_version", "piece", "conventions", "box", "walk", "edge_fills"],
+  "additionalProperties": true,
+  "properties": {
+    "format": {"const": "fitpolycubes.macro-walk"},
+    "format_version": {"const": 1},
+    "piece": {
+      "type": "object",
+      "required": ["geometry", "cell_count"],
+      "additionalProperties": true,
+      "properties": {
+        "name": {"type": "string", "description": "label only; checkers must not trust it; piece identity is its geometry"},
+        "geometry": {
+          "type": "array", "minItems": 5, "maxItems": 5,
+          "items": {"type": "array", "items": {"type": "integer"}, "minItems": 3, "maxItems": 3},
+          "description": "authoritative piece shape; checkers must additionally verify distinctness and face-connectivity"
+        },
+        "cell_count": {"const": 5},
+        "chiral": {"type": "boolean", "description": "informational; checkers must derive handedness from geometry, never from this flag"},
+        "chirality_note": {"type": "string"}
+      }
+    },
+    "conventions": {
+      "type": "object",
+      "required": ["semantics_id", "cell_id", "state_packing", "rotations", "window_coords", "edge_legality_definition"],
+      "additionalProperties": true,
+      "properties": {
+        "semantics_id": {
+          "const": "fitpolycubes.macro-walk/semantics-1",
+          "description": "pins the exact semantics a checker must implement; prose fields are human-readable restatements and are not parsed"
+        },
+        "cell_id": {"type": "string"},
+        "state_packing": {"type": "string"},
+        "rotations": {"type": "string"},
+        "window_coords": {"type": "string"},
+        "edge_legality_definition": {"type": "string"}
+      }
+    },
+    "box": {
+      "type": "object",
+      "required": ["a", "b", "z"],
+      "additionalProperties": false,
+      "properties": {
+        "a": {"type": "integer", "minimum": 1},
+        "b": {"type": "integer", "minimum": 1},
+        "z": {"type": "integer", "minimum": 1}
+      }
+    },
+    "walk": {
+      "type": "array",
+      "description": "z+1 states; walk[0] and walk[z] must be the zero state; step labels, if present, must equal array positions",
+      "items": {
+        "type": "object",
+        "required": ["l0", "l1"],
+        "additionalProperties": true,
+        "properties": {
+          "step": {"type": "integer", "minimum": 0},
+          "l0": {"type": "integer", "minimum": 0},
+          "l1": {"type": "integer", "minimum": 0},
+          "hex": {"type": "string"}
+        }
+      }
+    },
+    "edge_fills": {
+      "type": "array",
+      "description": "exactly z entries; edge k lists the pieces placed with bottom layer k, window coords (x,y,dz), dz in {0,1,2}, all within bounds",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "array", "minItems": 5, "maxItems": 5,
+          "items": {"type": "array", "items": {"type": "integer"}, "minItems": 3, "maxItems": 3}
+        }
+      }
+    },
+    "box_tiling": {"$ref": "#/definitions/tiling"},
+    "placements": {"$ref": "#/definitions/tiling"},
+    "terminal": {
+      "description": "OPTIONAL generic structural facts about the terminal predecessor (state z-1). Checkers cross-check these against computed facts; interpretation is layer B/C.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "predecessor_state_index": {"type": "integer"},
+        "l0_popcount": {"type": "integer", "minimum": 0},
+        "remaining_cells": {"type": "integer", "minimum": 0},
+        "final_edge_all_slot0": {"type": "boolean"},
+        "final_edge_covers_complement": {"type": "boolean"}
+      }
+    },
+    "provenance": {"type": "object", "description": "unverified metadata"},
+    "claims": {
+      "type": "array",
+      "description": "Layer C mathematical claims; never evaluated by generic checkers",
+      "items": {
+        "type": "object",
+        "required": ["id", "statement", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "statement": {"type": "string"},
+          "status": {"enum": ["THEOREM", "PROVED COMPUTATION", "EMPIRICAL OBSERVATION", "CONJECTURE", "REFUTED CLAIM"]},
+          "evidence": {"type": "array", "items": {"type": "string"}},
+          "checked_by": {"type": ["string", "null"]}
+        }
+      }
+    }
+  },
+  "definitions": {
+    "tiling": {
+      "type": "array",
+      "description": "absolute-coordinate tiling; if both box_tiling and placements are present they must be identical",
+      "items": {
+        "type": "array", "minItems": 5, "maxItems": 5,
+        "items": {"type": "array", "items": {"type": "integer"}, "minItems": 3, "maxItems": 3}
+      }
+    }
+  },
+  "notes": [
+    "At least one of box_tiling / placements MUST be present (checker-enforced; not expressible as plain JSON Schema 'required' because they are alternatives).",
+    "Layer A verifies C0-C7g as specified in docs/frontier/macro_certificate_format.md; all other fields are informational or convenience data."
+  ]
+}
