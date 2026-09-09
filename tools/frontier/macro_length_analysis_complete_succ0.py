@@ -25,7 +25,7 @@ import time
 from collections import deque
 from pathlib import Path
 
-REPO_ROOT = Path("/home/philip/Work/fitpolycubes")
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
@@ -402,7 +402,7 @@ def main() -> int:
         print(f"Sources reaching 0 at distance {target_d} (N={target_d+1}): {len(sources_at_d)}")
 
     # ---- Dump machine-readable results ----
-    out = Path("/tmp/opencode/macro_length_analysis_complete_succ0_results.txt")
+    out = REPO_ROOT / "data" / "frontier" / "macro_length_analysis_complete_succ0_results.txt"
     lines = [
         f"firstgen_tree_states={tree_states}",
         f"firstgen_hit_cap={fg_hit}",

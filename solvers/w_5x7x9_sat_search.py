@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """SAT search for second W 5x7x9 tiling."""
 import sys, re, time
+from pathlib import Path
 from itertools import permutations, product, combinations
-sys.path.insert(0, '/home/philip/Work/fitpolycubes')
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common.polycube_utils import PENTACUBES, generate_placements
 from pysat.solvers import Glucose4
 
@@ -39,7 +40,7 @@ def ap(t,s,b):
 def cid(x,y,z): return x+y*5+z*35
 
 print("Loading...", flush=True)
-known = parse("/home/philip/Work/fitpolycubes/data/solutions_w_5x7x9_shirakawa.dat")
+known = parse(str(Path(__file__).resolve().parent.parent / "data" / "solutions_w_5x7x9_shirakawa.dat"))
 print(f"Known: {len(known)} pieces", flush=True)
 
 raw,_ = generate_placements(PENTACUBES['W'], (5,7,9), break_symmetry=False)

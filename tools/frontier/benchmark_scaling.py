@@ -116,7 +116,7 @@ def main():
                 print(f"{label:<30} {states:>12,} {edges:>12,} {elapsed:>10.2f} {states_per_sec:>12,.0f} {rss_parent:>10.0f}MB {rss_children:>10.0f}MB  ({speedup:.2f}x)")
     
     # Write results to file
-    output_file = Path("/tmp/opencode/benchmark_results.txt")
+    output_file = Path(__file__).resolve().parent.parent.parent / "data" / "frontier" / "benchmark_results.txt"
     with open(output_file, 'w') as f:
         f.write("Benchmark Results\n")
         f.write("="*100 + "\n\n")

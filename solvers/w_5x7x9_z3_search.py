@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """W 5x7x9 deviation search using z3 SAT solver."""
 import sys, re, time
-sys.path.insert(0, '/home/philip/Work/fitpolycubes')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from z3 import *
 from common.polycube_utils import PENTACUBES, generate_placements
 
@@ -10,7 +11,7 @@ def parse(fp):
     m = re.findall(r'\((\d+),(\d+),(\d+)\)', pl)
     return [tuple(sorted((int(m[i][0]),int(m[i][1]),int(m[i][2])) for i in range(j,j+5))) for j in range(0,len(m),5)]
 
-known = parse("/home/philip/Work/fitpolycubes/data/solutions_w_5x7x9_shirakawa.dat")
+known = parse(str(Path(__file__).resolve().parent.parent / "data" / "solutions_w_5x7x9_shirakawa.dat"))
 print(f"Known: {len(known)} pieces", flush=True)
 
 raw,_ = generate_placements(PENTACUBES['W'], (5,7,9), break_symmetry=False)

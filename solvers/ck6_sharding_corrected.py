@@ -48,10 +48,11 @@ import argparse
 import json
 import sys
 import time
+from pathlib import Path
 from collections import Counter, deque
 
-sys.path.insert(0, "/home/philip/Work/fitpolycubes")
-sys.path.insert(0, "/home/philip/Work/fitpolycubes/solvers")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from t_ck6_oddity_v35_search import build_universe, iter_targets_seeded, \
     funnel_and_cover
@@ -61,7 +62,7 @@ from common.oddity import enumerate_connected_ck6_targets, \
 from common.registry import PENTACUBES
 from common.symmetry import ck6_affine_maps
 
-REUSE = "/home/philip/Work/fitpolycubes/data/ck6_reuse"
+REUSE = str(Path(__file__).resolve().parent.parent / "data" / "ck6_reuse")
 
 GEORGE_B9_CORPUS_FRAME = [
     (-2, 1, -1), (-2, 1, 0), (-2, 2, -1), (-2, 2, 0), (-2, 2, 1),

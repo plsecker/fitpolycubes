@@ -19,7 +19,7 @@ import sys
 from collections import deque
 from pathlib import Path
 
-REPO_ROOT = Path("/home/philip/Work/fitpolycubes")
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
@@ -287,7 +287,7 @@ def main() -> int:
     print(f"  ALL CHECKS PASSED: {ok}")
 
     # ---- Dump machine-readable results ----
-    out = Path("/tmp/opencode/s_4x8x20_frontier_cycle_results.txt")
+    out = REPO_ROOT / "data" / "frontier" / "s_4x8x20_frontier_cycle_results.txt"
     lines = [
         f"path_states={PATH_STATES}",
         f"p0={P0}",

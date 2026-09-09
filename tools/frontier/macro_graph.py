@@ -31,7 +31,7 @@ import time
 from collections import Counter, deque
 from pathlib import Path
 
-REPO_ROOT = Path("/home/philip/Work/fitpolycubes")
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
@@ -379,7 +379,7 @@ def main() -> int:
         print("Calibration check PASSED (first 30 sources match)", flush=True)
 
     # Dump machine-readable summary for the doc writer.
-    out = Path("/tmp/opencode/macro_graph_results.txt")
+    out = REPO_ROOT / "data" / "frontier" / "macro_graph_results.txt"
     lines = [
         f"sources={len(sources)}",
         f"macro_states={len(nodes)}",

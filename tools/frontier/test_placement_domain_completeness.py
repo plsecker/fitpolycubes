@@ -22,10 +22,11 @@ Tests (repo-M and repo-P):
      old one (superset on a mixed region).
 """
 import sys
+from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, "/home/philip/Work/fitpolycubes")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
 from common.oddity import placements_in_region, unique_orientations
 from common.registry import PENTACUBES

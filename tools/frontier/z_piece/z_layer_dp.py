@@ -17,9 +17,10 @@ lowest empty cell branches over flat pieces (in-layer) and vertical pieces
 starting at this layer. Memoize failed boundary states (z, L0, L1).
 """
 import sys, time
+from pathlib import Path
 from collections import Counter
 
-sys.path.insert(0, "/home/philip/Work/fitpolycubes")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent.parent))
 from common.rotmatrix import RM
 
 PIECE = [(0,0,0),(1,0,0),(1,1,0),(1,2,0),(2,2,0)]

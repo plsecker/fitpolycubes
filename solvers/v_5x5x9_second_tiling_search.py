@@ -281,7 +281,7 @@ def main():
     
     # Load known solution
     print("Loading known 5×5×9 V tiling...")
-    solution_file = Path("/home/philip/Work/fitpolycubes/data/solutions_fast_v_5x5x9.dat")
+    solution_file = Path(__file__).resolve().parent.parent / "data" / "solutions_fast_v_5x5x9.dat"
     known_placements = parse_solution_file(solution_file)
     print(f"  Loaded {len(known_placements)} placements")
     print()

@@ -32,7 +32,7 @@ from pathlib import Path
 
 import numpy as np
 
-REPO_ROOT = Path("/home/philip/Work/fitpolycubes")
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
@@ -675,7 +675,7 @@ def main() -> int:
     print(f"Achievable combinations for distance {TARGET_DISTANCE}: {len(achievable_combinations)}", flush=True)
 
     # Write results
-    out = Path("/tmp/opencode/scc_aware_analysis_results.txt")
+    out = REPO_ROOT / "data" / "frontier" / "scc_aware_analysis_results.txt"
     lines = [
         f"macro_states={len(macro_states)}",
         f"num_sccs={len(sccs)}",

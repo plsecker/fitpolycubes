@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Deviation search: forbid each known placement one at a time, solve."""
 import sys, re, time
-sys.path.insert(0, '/home/philip/Work/fitpolycubes')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common.polycube_utils import PENTACUBES, generate_placements, build_exact_cover_data
 from common.algorithm_x_fast import solve
 
@@ -14,7 +15,7 @@ def parse(fp):
 def can(t):
     return tuple(sorted(tuple(sorted(p)) for p in t))
 
-known = parse("/home/philip/Work/fitpolycubes/data/solutions_w_5x7x9_shirakawa.dat")
+known = parse(str(Path(__file__).resolve().parent.parent / "data" / "solutions_w_5x7x9_shirakawa.dat"))
 print(f"Known: {len(known)} pieces", flush=True)
 
 raw,_ = generate_placements(PENTACUBES['W'], (5,7,9), break_symmetry=False)

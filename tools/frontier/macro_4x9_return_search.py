@@ -321,7 +321,7 @@ def main():
     print(f"  Total: {len(depth_map):,}")
 
     # Save stats
-    out = Path("/tmp/opencode/4x9_return_search_results.txt")
+    out = REPO_ROOT / "data" / "frontier" / "4x9_return_search_results.txt"
     lines = [
         f"sources={len(sources)}",
         f"macro_states={len(seen_macro)}",

@@ -47,7 +47,7 @@ import sys
 import time
 from pathlib import Path
 
-REPO_ROOT = Path("/home/philip/Work/fitpolycubes")
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
@@ -90,7 +90,7 @@ PATH = [
 assert len(PATH) == 20
 assert PATH[18] == WORD_MASK and PATH[19] == 0
 
-CYCLE_FILE = Path("/tmp/opencode/s_4x8x20_frontier_cycle_full.txt")
+CYCLE_FILE = REPO_ROOT / "docs" / "frontier" / "results" / "s_4x8x20_frontier_cycle_full.txt"
 
 
 class LimitError(Exception):
@@ -478,7 +478,7 @@ def main() -> int:
         match = None
 
     # ---- dump ----
-    out = Path("/tmp/opencode/macro_edge_realizations_results.txt")
+    out = REPO_ROOT / "data" / "frontier" / "macro_edge_realizations_results.txt"
     lines = [
         "product=" + str(product),
         "all_edges_exhaustive=" + str(all_exhaustive),

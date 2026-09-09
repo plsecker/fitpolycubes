@@ -38,12 +38,13 @@ import argparse
 import json
 import sys
 import time
+from pathlib import Path
 from collections import deque
 
 import numpy as np
 
-sys.path.insert(0, "/home/philip/Work/fitpolycubes")
-sys.path.insert(0, "/home/philip/Work/fitpolycubes/solvers")
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "solvers"))
 
 from t_ck6_oddity_v35_search import build_universe, iter_targets_seeded
 from common.oddity import (enumerate_connected_ck6_targets,

@@ -19,7 +19,7 @@ import time
 from collections import deque
 from pathlib import Path
 
-REPO_ROOT = Path("/home/philip/Work/fitpolycubes")
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
@@ -418,7 +418,7 @@ def main() -> int:
         print(f"      need path of length 9, 29, 49, ... but max is {max_lp}", flush=True)
 
     # ---- Dump results ----
-    out = Path("/tmp/opencode/macro_scc_analysis_results.txt")
+    out = REPO_ROOT / "data" / "frontier" / "macro_scc_analysis_results.txt"
     lines = [
         f"macro_states={macro_state_count}",
         f"macro_edges={edge_count}",
