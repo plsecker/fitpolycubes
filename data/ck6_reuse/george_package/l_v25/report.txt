@@ -1,0 +1,106 @@
+L-V25-S1 - evidence report (Stage 5P follow-up package)
+================================================================
+
+1. Construction
+----------------------------------------------------------------
+   piece              : L pentacube (5 cubes,
+     canonical cells  :   ( 0, 0, 0) ( 1, 0, 0) ( 2, 0, 0) ( 3, 0, 0) ( 3, 1, 0))
+   copies             : 5
+   volume             : 25 cubes
+   bounding box       : min (0, 0, 0), max (4, 6, 6) (dims 5x7x7)
+   tiling count       : 4 exact covers (recomputed and confirmed)
+
+2. Verification (from stored coordinates, independent recheck)
+----------------------------------------------------------------
+   [x] volume = 25 = 5 x 5, all cubes distinct
+   [x] face-connected (L1 adjacency)
+   [x] complete CK6 subgroup present (4 affine symmetries):
+       identity     matrix [[1, 0, 0], [0, 1, 0], [0, 0, 1]] translation (0, 0, 0)
+       inversion    matrix [[-1, 0, 0], [0, -1, 0], [0, 0, -1]] translation (4, 6, 6)
+       c2_diag      matrix [[-1, 0, 0], [0, 0, 1], [0, 1, 0]] translation (4, 0, 0)
+       mirror_diag  matrix [[1, 0, 0], [0, 0, -1], [0, -1, 0]] translation (0, 6, 6)
+   [x] exact symmetry order = 4 (no stronger symmetry;
+       Lunnon class CK6; kinds ['c2_diag', 'identity', 'inversion', 'mirror_diag'])
+   [x] exact number of tilings = 4 (per-target exact-cover recount)
+   [x] every placement is a proper rotation+translation of the
+       L pentacube
+   [x] each tiling's copies are pairwise disjoint and their
+       union is exactly the target
+   [x] rendered cube count = 15/25 as appropriate; every
+       rendered cube is one exported coordinate
+
+3. Target coordinates
+----------------------------------------------------------------
+   ( 0, 0, 2)
+   ( 0, 1, 2)
+   ( 0, 2, 2)
+   ( 0, 3, 2)
+   ( 0, 3, 3)
+   ( 0, 4, 3)
+   ( 0, 4, 4)
+   ( 0, 4, 5)
+   ( 0, 4, 6)
+   ( 1, 3, 2)
+   ( 1, 3, 3)
+   ( 1, 4, 3)
+   ( 2, 3, 3)
+   ( 3, 2, 3)
+   ( 3, 3, 3)
+   ( 3, 3, 4)
+   ( 4, 2, 0)
+   ( 4, 2, 1)
+   ( 4, 2, 2)
+   ( 4, 2, 3)
+   ( 4, 3, 3)
+   ( 4, 3, 4)
+   ( 4, 4, 4)
+   ( 4, 5, 4)
+   ( 4, 6, 4)
+
+4. Explicit placements (all verified tilings)
+----------------------------------------------------------------
+   Tiling 1:
+     L copy 1: ( 4, 2, 0) ( 4, 2, 1) ( 4, 2, 2) ( 4, 2, 3) ( 4, 3, 3)
+     L copy 2: ( 3, 3, 4) ( 4, 3, 4) ( 4, 4, 4) ( 4, 5, 4) ( 4, 6, 4)
+     L copy 3: ( 0, 0, 2) ( 0, 1, 2) ( 0, 2, 2) ( 0, 3, 2) ( 1, 3, 2)
+     L copy 4: ( 0, 3, 3) ( 1, 3, 3) ( 2, 3, 3) ( 3, 2, 3) ( 3, 3, 3)
+     L copy 5: ( 0, 4, 3) ( 0, 4, 4) ( 0, 4, 5) ( 0, 4, 6) ( 1, 4, 3)
+   Tiling 2:
+     L copy 1: ( 3, 2, 3) ( 4, 2, 0) ( 4, 2, 1) ( 4, 2, 2) ( 4, 2, 3)
+     L copy 2: ( 0, 4, 3) ( 0, 4, 4) ( 0, 4, 5) ( 0, 4, 6) ( 1, 4, 3)
+     L copy 3: ( 0, 0, 2) ( 0, 1, 2) ( 0, 2, 2) ( 0, 3, 2) ( 1, 3, 2)
+     L copy 4: ( 0, 3, 3) ( 1, 3, 3) ( 2, 3, 3) ( 3, 3, 3) ( 3, 3, 4)
+     L copy 5: ( 4, 3, 3) ( 4, 3, 4) ( 4, 4, 4) ( 4, 5, 4) ( 4, 6, 4)
+   Tiling 3:
+     L copy 1: ( 3, 2, 3) ( 4, 2, 0) ( 4, 2, 1) ( 4, 2, 2) ( 4, 2, 3)
+     L copy 2: ( 0, 4, 3) ( 0, 4, 4) ( 0, 4, 5) ( 0, 4, 6) ( 1, 4, 3)
+     L copy 3: ( 1, 3, 2) ( 1, 3, 3) ( 2, 3, 3) ( 3, 3, 3) ( 4, 3, 3)
+     L copy 4: ( 3, 3, 4) ( 4, 3, 4) ( 4, 4, 4) ( 4, 5, 4) ( 4, 6, 4)
+     L copy 5: ( 0, 0, 2) ( 0, 1, 2) ( 0, 2, 2) ( 0, 3, 2) ( 0, 3, 3)
+   Tiling 4:
+     L copy 1: ( 3, 2, 3) ( 4, 2, 0) ( 4, 2, 1) ( 4, 2, 2) ( 4, 2, 3)
+     L copy 2: ( 1, 3, 3) ( 1, 4, 3) ( 2, 3, 3) ( 3, 3, 3) ( 4, 3, 3)
+     L copy 3: ( 3, 3, 4) ( 4, 3, 4) ( 4, 4, 4) ( 4, 5, 4) ( 4, 6, 4)
+     L copy 4: ( 0, 0, 2) ( 0, 1, 2) ( 0, 2, 2) ( 0, 3, 2) ( 1, 3, 2)
+     L copy 5: ( 0, 3, 3) ( 0, 4, 3) ( 0, 4, 4) ( 0, 4, 5) ( 0, 4, 6)
+
+5. Comparison with George Sicherman's published minimum
+----------------------------------------------------------------
+   George's published minimum for the L pentacube
+   (inverse/diagonal symmetry oddities): 11 copies.
+   This construction: 5 copies at V=25 with exact
+   CK6 symmetry -- smaller than the published minimum
+   (5 < 11).
+
+   Exact source/page reference (established by Stage 5P):
+     George Sicherman, "Pentacube Oddities with Inverse/Diagonal Symmetry",
+     https://sicherman.net/c5odd/c5nodd.html
+     table "Achiral Pentacubes", row L: 11 tiles.
+     Page revision 2026-09-05 (cached locally at
+     data/ck6_reuse/sicherman_cache/c5odd/c5nodd.html; machine-readable comparison record at
+     data/ck6_reuse/stage5p_george_comparison.json).
+
+6. George-ready summary
+----------------------------------------------------------------
+   5 L pentacubes form a 25-cell connected polycube with exact CK6 symmetry, improving the published L minimum of 11.
+

@@ -1,0 +1,111 @@
+B-V15-S1 PIECE-IDENTITY CROSS-CHECK — INDEPENDENT FORENSIC REPORT
+==================================================================
+Date: 2026-09-09
+Method: fully independent recomputation from canonical registry definitions;
+        stored labels in the witness package were deliberately distrusted.
+        No solver code or catalogue data was modified; no search was run.
+Script: /tmp/opencode/b_v15_crosscheck.py (throwaway; read-only over the repo)
+
+1. SOURCE OF TRUTH FOR THE DEFINITIONS
+------------------------------------------------------------------
+Canonical registry: common/registry.py, PIECES["B"] and PIECES["M"].
+Git history: common/registry.py was touched by 4 commits
+(b30896b, f53a5d4, e404eb0, 30404ca). The B and M coordinate arrays are
+IDENTICAL in every one of them — no recent registry change, no ambiguity.
+
+2. NORMALIZED DEFINITIONS (translation-normalized, 5 cells each)
+------------------------------------------------------------------
+B normalized (registry, Shirakawa 5-19, kurnell 82):
+    (0,0,0) (1,0,0) (2,0,0) (1,1,0) (1,0,1)
+  = a planar T (row of 3 + branch at the centre) with a 5th cube stacked
+    on the T-junction centre cell in z. Has a degree-4 (cross) cell.
+  Face-connected: yes. Proper-orientation set size: 12 (chiral piece with
+  2-fold symmetry => 24/2 = 12 distinct proper orientations).
+
+M normalized (registry, Shirakawa 5-18, kurnell 51):
+    (0,0,0) (1,0,0) (2,0,0) (1,1,0) (1,1,1)
+  = the same planar T but with the 5th cube stacked on the BRANCH TIP
+    (1,1,0), not on the junction. Maximum degree 3 (no cross cell).
+  Face-connected: yes. Proper-orientation set size: 24 (asymmetric).
+
+B and M are structurally distinct (graph degree sequences differ), their
+proper-orientation sets are DISJOINT, and they are NOT even related by a
+reflection (no improper transform maps B to M). So a placement can never
+be simultaneously "B" and "M".
+
+3. THE STORED WITNESS
+------------------------------------------------------------------
+data/ck6_reuse/report.json does NOT exist. The stored B-V15-S1 witness is
+    data/ck6_reuse/george_package/b_v15/witness.json  (id "B-V15-S1")
+with provenance run record data/ck6_reuse/run/v15_B/final.json
+(piece label "B", status COMPLETE). The witness target matches
+final.json's canonical_target exactly (independently confirmed).
+Both stored tilings (number_of_tilings = 2) were checked.
+
+4. THE THREE PLACEMENTS (Tiling 1 = the S1 witness tiling)
+------------------------------------------------------------------
+  copy 1: (0,1,1) (1,0,1) (1,1,0) (1,1,1) (1,2,1)
+  copy 2: (0,2,2) (1,1,2) (1,2,2) (1,2,3) (2,2,2)
+  copy 3: (1,3,2) (1,3,3) (1,3,4) (1,4,3) (2,3,3)
+(Tiling 2 placements were also tested; results identical in kind.)
+
+5. PER-PLACEMENT MEMBERSHIP TESTS (proper rotations only, det=+1)
+------------------------------------------------------------------
+Each placement was normalized by translation and tested against the
+COMPLETE proper-orientation sets generated from the registry coordinates
+(all 24 rotation matrices of the cube), and — for the "something else"
+case — against ALL 20 registry pentacubes.
+
+Tiling 1:
+  copy 1: in B proper set: YES (B orientation 11 of 12)  in M: NO
+  copy 2: in B proper set: YES (B orientation 9 of 12)   in M: NO
+  copy 3: in B proper set: YES (B orientation 1 of 12)   in M: NO
+Tiling 2:
+  copy 1: in B proper set: YES (B orientation 10 of 12)  in M: NO
+  copy 2: in B proper set: YES (B orientation 2 of 12)   in M: NO
+  copy 3: in B proper set: YES (B orientation 7 of 12)   in M: NO
+
+All 6 placements are face-connected 5-cell sets. Under proper rotations,
+EVERY placement matches B and B ONLY — no other registry pentacube
+matches, even when reflections (improper transforms) are allowed.
+(The orientation index is just a position in the sorted set of B's 12
+normalized proper orientations; Tiling 1's copies happen to be rotated
+versions of the same chiral grip in different global placements.)
+
+6. UNION CHECK (raw coordinates, no renormalization)
+------------------------------------------------------------------
+Tiling 1: 3 placements pairwise disjoint, union = 15 cubes,
+          union == stored target_coordinates EXACTLY: TRUE
+Tiling 2: same: TRUE
+The target is face-connected, bounding box (0,0,0)-(2,4,4) (3x5x5).
+
+7. INDEPENDENT SYMMETRY COMPUTATION
+------------------------------------------------------------------
+Exhaustive scan of the full cubic-lattice isometry group
+(48 signed permutation matrices x translations):
+  symmetry order = 4 (exactly; no stronger symmetry exists)
+  kinds: identity, inversion, c2_diag, mirror_diag  (CK6 subgroup)
+  the 4 affine maps form a closed group under composition: TRUE
+This reproduces the witness's claimed symmetry_order=4 / class CK6
+independently.
+
+8. CONCLUSION
+------------------------------------------------------------------
+Answer to the identity question: (A) — ALL THREE placements are the
+genuine B pentacube. None is M; none is anything else. The "B" labels in
+witness.json, report.txt, and the Stage run metadata are CORRECT, not
+merely asserted: the placements provably lie in B's proper-orientation
+set and in no other piece's.
+
+Corroborating checks:
+  - union of the three placements equals the 15-cell target exactly
+  - target has exact CK6 symmetry of order 4 (independently recomputed)
+  - B/M registry definitions unchanged across all of git history
+No discrepancy remains that would require an exact-cover re-run, so none
+was performed (per instructions). The V35 search was not touched.
+
+Caveat on the witness package's framing (not part of the identity
+question): report.txt compares "3 copies at V=15" against George
+Sicherman's published minimum of 13 copies for B oddities with
+inverse/diagonal symmetry; that comparison's validity is a separate
+matter from the piece-identity determination made here.

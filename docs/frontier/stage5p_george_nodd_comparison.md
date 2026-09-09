@@ -110,7 +110,8 @@ B-V25-S12) — witness coordinates and renders are in `data/ck6_reuse/`.
 
 * His **T-19** minimum is fully consistent with our proven impossibility results for T at
   V = 15, 25, 35, 45 (an independent external corroboration of the Stage 2–4E negative
-  results; our V=55 search continues separately).
+  results; our V=55 search was abandoned with zero results — see `ck6_oddity_design.md`
+  §10.8e — and V=55 remains open).
 * His R-3 appearing in *both* chiral tables (same figure) matches our R-V15-S1 being an
   achiral target tiled under proper rotations only.
 * Our Stage 5L search independently rediscovered his P-5 and Z-5 minima (and their exact

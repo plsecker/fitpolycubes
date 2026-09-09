@@ -1,0 +1,612 @@
+{
+ "our_target": {
+  "source": "data/ck6_reuse/george_package/b_v15/witness.json",
+  "id": "B-V15-S1",
+  "cells": [
+   [
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    2,
+    2
+   ],
+   [
+    1,
+    0,
+    1
+   ],
+   [
+    1,
+    1,
+    0
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    2
+   ],
+   [
+    1,
+    2,
+    1
+   ],
+   [
+    1,
+    2,
+    2
+   ],
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    3,
+    2
+   ],
+   [
+    1,
+    3,
+    3
+   ],
+   [
+    1,
+    3,
+    4
+   ],
+   [
+    1,
+    4,
+    3
+   ],
+   [
+    2,
+    2,
+    2
+   ],
+   [
+    2,
+    3,
+    3
+   ]
+  ],
+  "oh_canonical_id": "oh-0216334782e8",
+  "p24_canonical_id": "p24-0216334782e8",
+  "bbox": {
+   "min": [
+    0,
+    0,
+    0
+   ],
+   "max": [
+    2,
+    4,
+    4
+   ],
+   "dims": [
+    3,
+    5,
+    5
+   ]
+  },
+  "layer_profiles": {
+   "x": [
+    2,
+    11,
+    2
+   ],
+   "y": [
+    1,
+    4,
+    5,
+    4,
+    1
+   ],
+   "z": [
+    1,
+    4,
+    5,
+    4,
+    1
+   ]
+  },
+  "degree_histogram": {
+   "1": 8,
+   "2": 4,
+   "5": 2,
+   "6": 1
+  },
+  "sorted_degrees": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   2,
+   2,
+   2,
+   2,
+   5,
+   5,
+   6
+  ]
+ },
+ "george_m_target": {
+  "source_image": "sicherman.net/c5odd/c5n-ach.png (live rev 2026-09-08; cached rev 2026-09-05 identical for this figure)",
+  "strip": {
+   "band": [
+    289,
+    330
+   ],
+   "x_range": [
+    252,
+    343
+   ]
+  },
+  "cells": [
+   [
+    0,
+    1,
+    1
+   ],
+   [
+    1,
+    0,
+    1
+   ],
+   [
+    1,
+    1,
+    0
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    2,
+    1
+   ],
+   [
+    2,
+    1,
+    1
+   ],
+   [
+    2,
+    2,
+    0
+   ],
+   [
+    2,
+    2,
+    1
+   ],
+   [
+    2,
+    2,
+    2
+   ],
+   [
+    2,
+    3,
+    1
+   ],
+   [
+    3,
+    2,
+    1
+   ],
+   [
+    3,
+    3,
+    1
+   ],
+   [
+    3,
+    3,
+    2
+   ],
+   [
+    3,
+    4,
+    1
+   ],
+   [
+    4,
+    3,
+    1
+   ]
+  ],
+  "oh_canonical_id": "oh-0216334782e8",
+  "p24_canonical_id": "p24-0216334782e8",
+  "symmetry_order": 4,
+  "bbox": {
+   "min": [
+    0,
+    0,
+    0
+   ],
+   "max": [
+    4,
+    4,
+    2
+   ],
+   "dims": [
+    5,
+    5,
+    3
+   ]
+  },
+  "layer_profiles": {
+   "x": [
+    1,
+    4,
+    5,
+    4,
+    1
+   ],
+   "y": [
+    1,
+    4,
+    5,
+    4,
+    1
+   ],
+   "z": [
+    2,
+    11,
+    2
+   ]
+  },
+  "degree_histogram": {
+   "1": 8,
+   "2": 4,
+   "5": 2,
+   "6": 1
+  },
+  "sorted_degrees": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   2,
+   2,
+   2,
+   2,
+   5,
+   5,
+   6
+  ],
+  "published_colouring_piece": "B",
+  "published_colouring_is_piece_decomposition": true,
+  "n_ck6_connected_assemblies_live": 8,
+  "n_ck6_connected_assemblies_cached": 8,
+  "live_equals_cached_figure": true
+ },
+ "comparison": {
+  "congruent_24_proper": true,
+  "congruent_48_isometries": true,
+  "same_oh_id": true,
+  "same_p24_id": true,
+  "verdict": "SAME SHAPE (proper-rotation congruent)"
+ },
+ "exact_covers_george_target": {
+  "repo_B_covers": 2,
+  "repo_B_witnesses": [
+   [
+    [
+     [
+      3,
+      2,
+      1
+     ],
+     [
+      3,
+      3,
+      1
+     ],
+     [
+      3,
+      3,
+      2
+     ],
+     [
+      3,
+      4,
+      1
+     ],
+     [
+      4,
+      3,
+      1
+     ]
+    ],
+    [
+     [
+      1,
+      2,
+      1
+     ],
+     [
+      2,
+      2,
+      0
+     ],
+     [
+      2,
+      2,
+      1
+     ],
+     [
+      2,
+      2,
+      2
+     ],
+     [
+      2,
+      3,
+      1
+     ]
+    ],
+    [
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ]
+    ]
+   ],
+   [
+    [
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      1,
+      2,
+      1
+     ]
+    ],
+    [
+     [
+      2,
+      3,
+      1
+     ],
+     [
+      3,
+      3,
+      1
+     ],
+     [
+      3,
+      3,
+      2
+     ],
+     [
+      3,
+      4,
+      1
+     ],
+     [
+      4,
+      3,
+      1
+     ]
+    ],
+    [
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      2,
+      2,
+      0
+     ],
+     [
+      2,
+      2,
+      1
+     ],
+     [
+      2,
+      2,
+      2
+     ],
+     [
+      3,
+      2,
+      1
+     ]
+    ]
+   ]
+  ],
+  "repo_M_covers": 0,
+  "repo_M_witnesses": [],
+  "george_colouring_equals_B_witness_index": 0,
+  "george_colouring_equals_M_witness_index": null,
+  "n_B_covers": 2,
+  "n_M_covers": 0
+ },
+ "george_page_revision_notes": {
+  "cached_rev": "2026-09-05",
+  "live_rev": "2026-09-08",
+  "M_row": "M 3 on both revisions; figure pixel-identical (strip layers [2,11,2], colours aqua/red/gold x5); live target congruent to cached target under all 48 isometries",
+  "current_page_identifies_figure_as": "M, 3 tiles, 'Achiral Pentacubes' table, https://sicherman.net/c5odd/c5nodd.html",
+  "B_row_changed": "cached: B 13 tiles; live: B 9 tiles (45-cell figure, strip layers [1,4,11,13,11,4,1])",
+  "L_row_changed": "cached-era minimum 11; live: L 5 with explicit credit 'Philip Secker' next to the figure",
+  "U_row": "U 7 moved into row 2 of the live layout",
+  "B9_figure_colouring": "5 colours with counts 10/10/10/5/10 - colours are decorative on this figure, so its piece cannot be identified by colouring"
+ },
+ "colouring_identity": {
+  "george_published_colour_classes": {
+   "aqua": [
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ]
+   ],
+   "red": [
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     0
+    ],
+    [
+     2,
+     2,
+     1
+    ],
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     3,
+     2,
+     1
+    ]
+   ],
+   "gold": [
+    [
+     2,
+     3,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     3,
+     2
+    ],
+    [
+     3,
+     4,
+     1
+    ],
+    [
+     4,
+     3,
+     1
+    ]
+   ]
+  },
+  "each_class_is_proper_rotation_image_of": "repo B",
+  "classes_partition_target": true,
+  "coincides_with_repo_B_tiling_of_same_target_up_to_target_symmetry": "witness index 0",
+  "aqua_class_is_exactly_our_Tiling1_copy1_in_our_own_frame": true
+ },
+ "diagnosis": {
+  "case": "CASE B (resolved; root cause is a piece-lettering convention mismatch)",
+  "george_target_vs_ours": "SAME SHAPE - identical O_h and proper canonical ids (oh-0216334782e8 / p24-0216334782e8); congruent under the 24 proper rotations alone",
+  "tileable_by_repo_B": true,
+  "repo_B_cover_count_on_george_target": 2,
+  "tileable_by_repo_M": false,
+  "repo_M_cover_count_on_george_target": 0,
+  "root_cause": "George's pentacube letter for this shape is 'M'; the repo registry's letter for the same pentacube (Shirakawa 5-19, kurnell 82) is 'B'. The repo's 'M' (Shirakawa 5-18, kurnell 51) is a different pentacube that cannot tile this target at all. Stage 5P's GEORGE_ROWS table mapped George's letters 1:1 onto repo letters, which is wrong for B/M.",
+  "supporting_evidence": [
+   "George's M-3 figure colouring decomposes uniquely (among all 8 CK6-connected strip assemblies) into 3 proper-rotation copies of repo-B, and matches one of our 2 exact covers up to target symmetry",
+   "repo-M has 0 exact covers of George's target (full-domain enumeration, proper rotations)",
+   "repo corpus searches for repo-M CK6 oddities at V=5,15,25,45 all COMPLETE with 0 solutions, so repo-M has no 3-tile CK6 oddity, consistent with George's 'M' not being repo-M",
+   "George's reply 'My CK6 oddity for 5M has the same shape as the 15-cube you sent me for 5B' is literally true under his lettering: his 5M figure IS our 5B figure"
+  ],
+  "handedness_note": "Strip reading is fixed only up to reflection, but the figure contains inversion (achiral), and the reconstruction is proper-rotation congruent to ours (same p24 id), so handedness conventions cannot affect the conclusion."
+ },
+ "implications_stage5p_claim": {
+  "claim_under_audit": "'B-V15-S1: 3 copies vs George's smallest known 13 (B row) - improvement over published minimum'",
+  "verdict": "INVALID on two counts",
+  "reason_1": "wrong row: George's 'B' row is a different pentacube under his lettering (his B minimum is now 9 tiles on the live page); the repo letter mapping in Stage 5P GEORGE_ROWS is not valid for B/M",
+  "reason_2": "not novel: B-V15-S1's target and construction coincide exactly with George's published 'M 3' figure (rev 2026-09-05, predating the correspondence), i.e. the Stage 5L search independently rediscovered George's published construction",
+  "corrected_comparison": "repo-B minimal CK6 oddity = 3 tiles (ours, verified) = George's published minimum for the same pentacube (his 'M' row): a TIE, not an improvement",
+  "geometric_validity_of_B_V15_S1": "unaffected - target, 2 exact covers, exact CK6 symmetry independently re-verified"
+ }
+}

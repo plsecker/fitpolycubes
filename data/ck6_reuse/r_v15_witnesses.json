@@ -1,0 +1,855 @@
+{
+ "description": "The two distinct positive R-pentacube witnesses at V=15 from the completed Stage 5L run (data/ck6_reuse/run/v15_R/final.json, status COMPLETE). Each target is a connected 15-cube CK6 symmetric (Lunnon class CK6, order 4) polycube tiled by exactly 3 R pentacubes; each target admits 2 exact covers and one is given here. Coordinates are integer lattice cubes (x, y, z) face-adjacent when L1 distance is 1.",
+ "piece": "R",
+ "piece_cells": [
+  [
+   0,
+   0,
+   0
+  ],
+  [
+   1,
+   0,
+   0
+  ],
+  [
+   1,
+   1,
+   0
+  ],
+  [
+   1,
+   1,
+   1
+  ],
+  [
+   2,
+   1,
+   0
+  ]
+ ],
+ "volume": 15,
+ "tiles": 3,
+ "stage": "5L",
+ "source_record": "data/ck6_reuse/run/v15_R/final.json",
+ "stage5l_counters": {
+  "number_of_targets": 368,
+  "targets_rejected_few_placements": 217,
+  "targets_rejected_uncovered": 110,
+  "exact_cover_candidates": 41,
+  "reject_exact_cover_unsat": 39,
+  "sat_count": 2,
+  "number_of_solutions": 4
+ },
+ "witnesses": [
+  {
+   "witness_id": "R_V15_W1",
+   "volume": 15,
+   "target_cube_coordinates": [
+    [
+     -1,
+     0,
+     0
+    ],
+    [
+     -1,
+     0,
+     1
+    ],
+    [
+     -1,
+     1,
+     1
+    ],
+    [
+     -1,
+     1,
+     2
+    ],
+    [
+     0,
+     -1,
+     -1
+    ],
+    [
+     0,
+     -1,
+     0
+    ],
+    [
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     -1,
+     -2
+    ],
+    [
+     1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     0,
+     -1
+    ],
+    [
+     1,
+     0,
+     0
+    ]
+   ],
+   "tiling": [
+    {
+     "piece": "R",
+     "copy": 1,
+     "cells": [
+      [
+       -1,
+       1,
+       1
+      ],
+      [
+       -1,
+       1,
+       2
+      ],
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       1,
+       1
+      ]
+     ]
+    },
+    {
+     "piece": "R",
+     "copy": 2,
+     "cells": [
+      [
+       0,
+       -1,
+       -1
+      ],
+      [
+       1,
+       -1,
+       -2
+      ],
+      [
+       1,
+       -1,
+       -1
+      ],
+      [
+       1,
+       0,
+       -1
+      ],
+      [
+       1,
+       0,
+       0
+      ]
+     ]
+    },
+    {
+     "piece": "R",
+     "copy": 3,
+     "cells": [
+      [
+       -1,
+       0,
+       0
+      ],
+      [
+       -1,
+       0,
+       1
+      ],
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       0,
+       0,
+       -1
+      ],
+      [
+       0,
+       0,
+       0
+      ]
+     ]
+    }
+   ],
+   "symmetry_operations_fixing_target": [
+    {
+     "matrix": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "translation": [
+      0,
+      0,
+      0
+     ],
+     "kind": "identity"
+    },
+    {
+     "matrix": [
+      [
+       -1,
+       0,
+       0
+      ],
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       0,
+       0,
+       -1
+      ]
+     ],
+     "translation": [
+      0,
+      0,
+      0
+     ],
+     "kind": "inversion"
+    },
+    {
+     "matrix": [
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       -1
+      ]
+     ],
+     "translation": [
+      0,
+      0,
+      0
+     ],
+     "kind": "c2_diag"
+    },
+    {
+     "matrix": [
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       -1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "translation": [
+      0,
+      0,
+      0
+     ],
+     "kind": "mirror_diag"
+    }
+   ],
+   "symmetry_order": 4,
+   "symmetry_kinds": [
+    "c2_diag",
+    "identity",
+    "inversion",
+    "mirror_diag"
+   ],
+   "symmetry_class": "CK6",
+   "canonical_target_proper": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     3
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     2,
+     3
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     1,
+     3
+    ],
+    [
+     2,
+     2,
+     3
+    ],
+    [
+     2,
+     2,
+     4
+    ]
+   ],
+   "number_of_exact_covers": 2
+  },
+  {
+   "witness_id": "R_V15_W2",
+   "volume": 15,
+   "target_cube_coordinates": [
+    [
+     -1,
+     0,
+     -1
+    ],
+    [
+     -1,
+     0,
+     0
+    ],
+    [
+     -1,
+     1,
+     -2
+    ],
+    [
+     -1,
+     1,
+     -1
+    ],
+    [
+     0,
+     -1,
+     0
+    ],
+    [
+     0,
+     -1,
+     1
+    ],
+    [
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     -1
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     1,
+     -1,
+     1
+    ],
+    [
+     1,
+     -1,
+     2
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     1
+    ]
+   ],
+   "tiling": [
+    {
+     "piece": "R",
+     "copy": 1,
+     "cells": [
+      [
+       -1,
+       0,
+       -1
+      ],
+      [
+       -1,
+       0,
+       0
+      ],
+      [
+       -1,
+       1,
+       -2
+      ],
+      [
+       -1,
+       1,
+       -1
+      ],
+      [
+       0,
+       1,
+       -1
+      ]
+     ]
+    },
+    {
+     "piece": "R",
+     "copy": 2,
+     "cells": [
+      [
+       0,
+       0,
+       -1
+      ],
+      [
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       1
+      ]
+     ]
+    },
+    {
+     "piece": "R",
+     "copy": 3,
+     "cells": [
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       0,
+       -1,
+       1
+      ],
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       -1,
+       1
+      ],
+      [
+       1,
+       -1,
+       2
+      ]
+     ]
+    }
+   ],
+   "symmetry_operations_fixing_target": [
+    {
+     "matrix": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "translation": [
+      0,
+      0,
+      0
+     ],
+     "kind": "identity"
+    },
+    {
+     "matrix": [
+      [
+       -1,
+       0,
+       0
+      ],
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       0,
+       0,
+       -1
+      ]
+     ],
+     "translation": [
+      0,
+      0,
+      0
+     ],
+     "kind": "inversion"
+    },
+    {
+     "matrix": [
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       -1
+      ]
+     ],
+     "translation": [
+      0,
+      0,
+      0
+     ],
+     "kind": "c2_diag"
+    },
+    {
+     "matrix": [
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       -1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "translation": [
+      0,
+      0,
+      0
+     ],
+     "kind": "mirror_diag"
+    }
+   ],
+   "symmetry_order": 4,
+   "symmetry_kinds": [
+    "c2_diag",
+    "identity",
+    "inversion",
+    "mirror_diag"
+   ],
+   "symmetry_class": "CK6",
+   "canonical_target_proper": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     3
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     2,
+     3
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     1,
+     3
+    ],
+    [
+     2,
+     2,
+     3
+    ],
+    [
+     2,
+     2,
+     4
+    ]
+   ],
+   "number_of_exact_covers": 2
+  }
+ ],
+ "stage5l_witness_identifier": {
+  "field": "canonical_target_proper",
+  "note": "Proper-rotation canonical form used by Stage 5L as the geometric identifier of a positive construction. Both V=15 R witnesses carry the same identifier: they are distinct center-type targets that O_h-canonicalization maps to one form.",
+  "value": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1
+   ],
+   [
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    1,
+    0,
+    1
+   ],
+   [
+    1,
+    0,
+    2
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    2
+   ],
+   [
+    1,
+    1,
+    3
+   ],
+   [
+    1,
+    2,
+    2
+   ],
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    2,
+    1,
+    2
+   ],
+   [
+    2,
+    1,
+    3
+   ],
+   [
+    2,
+    2,
+    3
+   ],
+   [
+    2,
+    2,
+    4
+   ]
+  ]
+ }
+}

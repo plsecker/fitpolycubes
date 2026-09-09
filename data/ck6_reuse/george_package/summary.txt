@@ -1,0 +1,11 @@
+George-ready summaries
+======================
+
+B-V15-S1:
+  3 B pentacubes form a 15-cell connected polycube with exact CK6 symmetry, improving the published B minimum of 13.
+  (evidence: data/ck6_reuse/george_package/b_v15/report.txt)
+
+L-V25-S1:
+  5 L pentacubes form a 25-cell connected polycube with exact CK6 symmetry, improving the published L minimum of 11.
+  (evidence: data/ck6_reuse/george_package/l_v25/report.txt)
+

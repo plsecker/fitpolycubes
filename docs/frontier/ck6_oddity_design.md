@@ -328,7 +328,7 @@ Method B is exponentially bounded and will not scale to volume 25; Stage 3 uses 
 ### 10.6 Stage 4B: volume 35 is a proven negative result (complete exhaustive search)
 
 **Claim.** No connected 35-cell polycube with CK6 symmetry (or higher) is tileable by exactly
-7 T pentacubes. **Volume 55 (11 T) search is RUNNING (Stage 5F, §10.8e). Volume 65 is the next unassessed case.**
+7 T pentacubes. **Volume 55 (11 T) search was launched but ABANDONED with zero results (Stage 5F, §10.8e); V=55 remains open. Volume 65 is the next unassessed case.**
 
 **Execution.** `solvers/t_ck6_oddity_v35_search.py run --volume 35 --shards 8 --parallel 4`
 (2026-09-04 22:26 → 2026-09-05 02:55 NZST, wall ≈ 4.5 h, 4 concurrent workers on 4 cores,
@@ -559,7 +559,7 @@ V=35 funnel rate: **31,658 targets/s** (packed) vs 25,978/s (FastFunnel) vs 987/
 - funnel: minutes to hours depending on target count
 - **the full V=55 search is practical as an overnight run**
 
-### 10.8e Stage 5F: V=55 production launch — RUNNING
+### 10.8e Stage 5F: V=55 production launch — ABANDONED (zero results)
 
 **Architecture change.** The count phase was removed entirely (the monolithic
 count DFS hit the ~20 GB RAM wall at V=55). Fixed min-id shard boundaries
@@ -572,12 +572,14 @@ reduced to 1 worker** after 2 concurrent workers OOM-crashed overnight
 **Launch.** `run --volume 55 --shards 4 --parallel 1 --workdir data/ck6_v55`
 (detached via setsid, launched Sep 7 05:52 NZST).
 
-**Operational status: RUNNING.** Results will be available in
-`data/ck6_v55/shard_*.json` and `data/ck6_v55/report.json` upon completion.
-Inspect with:
-```bash
-python3 solvers/t_ck6_v55_search.py status --workdir data/ck6_v55
-```
+**Operational status: ABANDONED.** The runner (pid 1557595) died without
+producing any results — no `shard_*.json`, no checkpoints, no `report.json`
+were ever written; `shard_000.log` is 0 bytes. `status.txt` was a stale
+"running" marker; the search is dead (verified via `ps` 2026-09-09/10) and
+was not relaunched. **V=55 remains an OPEN case — no negative result is
+claimed.** Archival status: `data/ck6_v55/STATUS.md` (2026-09-10). The
+`shard_plan.json` partition (all 7,139 orbit ids, no gaps) is complete and
+reusable for a future run.
 ### 10.8e Stage 5E: Packed V=55 funnel + feasibility update
 
 **Packed PlacementIndex.** Replaced the Python-object PlacementIndex with

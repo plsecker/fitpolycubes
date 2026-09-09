@@ -1,0 +1,35 @@
+B-V15-S1 - coordinates (verified from stored Stage 5O/5P data)
+================================================================
+Convention: integer lattice cubes (x,y,z); two cubes are
+face-adjacent iff their L1 distance is 1.
+
+Piece B pentacube cells (canonical):
+  ( 0, 0, 0) ( 1, 0, 0) ( 2, 0, 0) ( 1, 1, 0) ( 1, 0, 1)
+
+Target cube coordinates (15):
+  ( 0, 1, 1)
+  ( 0, 2, 2)
+  ( 1, 0, 1)
+  ( 1, 1, 0)
+  ( 1, 1, 1)
+  ( 1, 1, 2)
+  ( 1, 2, 1)
+  ( 1, 2, 2)
+  ( 1, 2, 3)
+  ( 1, 3, 2)
+  ( 1, 3, 3)
+  ( 1, 3, 4)
+  ( 1, 4, 3)
+  ( 2, 2, 2)
+  ( 2, 3, 3)
+
+Verified tilings (2), each with 3 disjoint
+B pentacubes whose union is exactly the target:
+  Tiling 1:
+    B copy 1: ( 0, 1, 1) ( 1, 0, 1) ( 1, 1, 0) ( 1, 1, 1) ( 1, 2, 1)
+    B copy 2: ( 0, 2, 2) ( 1, 1, 2) ( 1, 2, 2) ( 1, 2, 3) ( 2, 2, 2)
+    B copy 3: ( 1, 3, 2) ( 1, 3, 3) ( 1, 3, 4) ( 1, 4, 3) ( 2, 3, 3)
+  Tiling 2:
+    B copy 1: ( 0, 1, 1) ( 1, 0, 1) ( 1, 1, 0) ( 1, 1, 1) ( 1, 1, 2)
+    B copy 2: ( 1, 2, 3) ( 1, 3, 3) ( 1, 3, 4) ( 1, 4, 3) ( 2, 3, 3)
+    B copy 3: ( 0, 2, 2) ( 1, 2, 1) ( 1, 2, 2) ( 1, 3, 2) ( 2, 2, 2)

@@ -1,0 +1,104 @@
+STAGE 5O -- GEOMETRIC AUDIT OF THE SMALL CK6 CATALOGUE
+==============================================================
+shapes: 52  |  distinct under proper rotations: 51  |  achiral: 52  |  chiral: 0  |  enantiomer pairs across entries: 0 (merged by O_h grouping)
+
+THE THREE 3-COPY FIGURES (smallest exact-CK6 constructions)
+--------------------------------------------------------------
+  B-V15-S1: 3 copies of B, V=15, class CK6 (order 4), 2 tiling(s), achiral
+    proper-rotation ID: p24-0216334782e8
+    full-O_h ID:        oh-0216334782e8
+    congruent to other catalogue figures: none
+    renders: data/ck6_reuse/renders/B-V15-S1_tiling.png
+
+  R-V15-S1: 3 copies of R, V=15, class CK6 (order 4), 2 tiling(s), achiral
+    proper-rotation ID: p24-4bb83e83ad90
+    full-O_h ID:        oh-4bb83e83ad90
+    congruent to other catalogue figures: none
+    renders: data/ck6_reuse/renders/R-V15-S1_tiling.png
+
+  X-V15-S2: 3 copies of X, V=15, class CK6 (order 4), 1 tiling(s), achiral
+    proper-rotation ID: p24-93c73bc39bb1
+    full-O_h ID:        oh-93c73bc39bb1
+    congruent to other catalogue figures: none
+    renders: data/ck6_reuse/renders/X-V15-S2_tiling.png
+
+HIGHER-SYMMETRY FAMILIES (parents containing CK6)
+--------------------------------------------------------------
+  I-V5-S1: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  I-V15-S1: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  I-V25-S1: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  I-V25-S2: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  I-V25-S3: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  I-V25-S12: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  P-V25-S3: class order12, order 12, 3 CK6 subgroup(s) in Sym
+  X-V5-S1: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  X-V15-S1: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  X-V25-S1: class order8, order 8, 2 CK6 subgroup(s) in Sym
+  X-V25-S2: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  X-V25-S6: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  X-V25-S9: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  X-V25-S13: class order16, order 16, 2 CK6 subgroup(s) in Sym
+  Z-V25-S1: class order8, order 8, 2 CK6 subgroup(s) in Sym
+
+FAMILY / SHAPE DESCRIPTORS
+--------------------------------------------------------------
+  B-V15-S1     free-form polycube (bbox 3x5x5)            CK6      order 4   achiral
+  B-V25-S1     free-form polycube (bbox 5x5x5)            CK6      order 4   achiral
+  B-V25-S2     free-form polycube (bbox 5x5x5)            CK6      order 4   achiral
+  B-V25-S3     free-form polycube (bbox 3x5x5)            CK6      order 4   achiral
+  B-V25-S4     free-form polycube (bbox 5x5x7)            CK6      order 4   achiral
+  B-V25-S5     free-form polycube (bbox 5x5x9)            CK6      order 4   achiral
+  B-V25-S6     free-form polycube (bbox 3x7x7)            CK6      order 4   achiral
+  B-V25-S7     free-form polycube (bbox 3x7x7)            CK6      order 4   achiral
+  B-V25-S8     free-form polycube (bbox 7x7x5)            CK6      order 4   achiral
+  B-V25-S9     free-form polycube (bbox 7x7x5)            CK6      order 4   achiral
+  B-V25-S10    free-form polycube (bbox 7x5x5)            CK6      order 4   achiral
+  B-V25-S11    free-form polycube (bbox 9x5x5)            CK6      order 4   achiral
+  B-V25-S12    free-form polycube (bbox 5x5x5)            CK6      order 4   achiral
+  B-V25-S13    free-form polycube (bbox 5x5x9)            CK6      order 4   achiral
+  B-V25-S14    free-form polycube (bbox 5x5x9)            CK6      order 4   achiral
+  I-V5-S1      straight bar 1x1x5                         order16  order 16  achiral
+  I-V15-S1     straight bar 1x1x15                        order16  order 16  achiral
+  I-V25-S1     straight bar 1x1x25                        order16  order 16  achiral
+  I-V25-S2     slab 1x5x5                                 order16  order 16  achiral
+  I-V25-S3     free-form polycube (bbox 5x3x3)            order16  order 16  achiral
+  I-V25-S4     free-form polycube (bbox 7x3x3)            CK6      order 4   achiral
+  I-V25-S5     free-form polycube (bbox 9x3x3)            CK6      order 4   achiral
+  I-V25-S6     free-form polycube (bbox 11x3x3)           CK6      order 4   achiral
+  I-V25-S7     free-form polycube (bbox 13x3x3)           CK6      order 4   achiral
+  I-V25-S8     free-form polycube (bbox 5x9x9)            CK6      order 4   achiral
+  I-V25-S9     free-form polycube (bbox 5x11x11)          CK6      order 4   achiral
+  I-V25-S10    free-form polycube (bbox 9x5x9)            CK6      order 4   achiral
+  I-V25-S11    free-form polycube (bbox 11x5x11)          CK6      order 4   achiral
+  I-V25-S12    free-form polycube (bbox 11x5x11)          order16  order 16  achiral
+  L-V25-S1     free-form polycube (bbox 5x7x7)            CK6      order 4   achiral
+  P-V25-S1     free-form polycube (bbox 3x3x5)            CK6      order 4   achiral
+  P-V25-S2     free-form polycube (bbox 3x3x5)            CK6      order 4   achiral
+  P-V25-S3     free-form polycube (bbox 3x3x3)            order12  order 12  achiral
+  R-V15-S1     free-form polycube (bbox 3x3x5)            CK6      order 4   achiral
+  X-V5-S1      slab 1x3x3                                 order16  order 16  achiral
+  X-V15-S1     collinear stack of 3 copies (bbox 3x3x3)   order16  order 16  achiral
+  X-V15-S2     collinear stack of 3 copies (bbox 3x5x5)   CK6      order 4   achiral
+  X-V25-S1     free-form polycube (bbox 3x5x5)            order8   order 8   achiral
+  X-V25-S2     collinear stack of 5 copies (bbox 5x3x3)   order16  order 16  achiral
+  X-V25-S3     free-form polycube (bbox 5x5x5)            CK6      order 4   achiral
+  X-V25-S4     free-form polycube (bbox 5x5x5)            CK6      order 4   achiral
+  X-V25-S5     collinear stack of 5 copies (bbox 5x7x7)   CK6      order 4   achiral
+  X-V25-S6     free-form polycube (bbox 5x3x5)            order16  order 16  achiral
+  X-V25-S7     free-form polycube (bbox 5x5x5)            CK6      order 4   achiral
+  X-V25-S8     free-form polycube (bbox 3x7x7)            CK6      order 4   achiral
+  X-V25-S9     slab 1x9x9                                 order16  order 16  achiral
+  X-V25-S10    collinear stack of 5 copies (bbox 5x5x5)   CK6      order 4   achiral
+  X-V25-S11    collinear stack of 5 copies (bbox 7x7x3)   CK6      order 4   achiral
+  X-V25-S12    free-form polycube (bbox 5x7x7)            CK6      order 4   achiral
+  X-V25-S13    free-form polycube (bbox 3x9x9)            order16  order 16  achiral
+  Z-V25-S1     free-form polycube (bbox 3x3x3)            order8   order 8   achiral
+  Z-V25-S2     collinear stack of 5 copies (bbox 3x3x5)   CK6      order 4   achiral
+
+STRUCTURAL NOTES
+--------------------------------------------------------------
+  * CROSS-PIECE CONGRUENCE: I-V25-S3 == X-V25-S2 -- the same figure tiled by both pieces (5x3x3 cross-tower: 5 stacked X crosses = 5 parallel I-bars).
+  * No cross-entry enantiomer pairs can exist: mirror images share one full-O_h canonical, hence one entry.
+  * All 52 figures contain inversion (CK6 or higher), hence ALL are achiral: proper-rotation and O_h canonicalisations agree per figure; 51 distinct figures under proper rotations.
+  * Most exact-CK6 figures have corpus_entries = 2: they are closed under TWO conjugate centre-type CK6 placements (the 19-T phenomenon); higher-symmetry figures have exactly 1.
+  * The I-pentacube family spans bars (V=5, V=15 straight bars, V=25 1x1x25 bar and 1x5x5 slab), collinear stacks, and 8 exact-CK6 free-form I-bar figures at V=25.

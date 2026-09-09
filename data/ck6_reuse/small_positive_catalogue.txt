@@ -1,0 +1,180 @@
+SMALL CK6 POSITIVE CONSTRUCTIONS -- Stage 5N catalogue
+============================================================
+source: completed Stage 5L search, V <= 25 (52 distinct shapes, 92 corpus entries, 37 exact-CK6)
+
+PIECE B
+----------------------------------------
+  [B-V15-S1]  3 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); smallest tile count for this piece; multiple corpus entries (conjugate CK6 placements); multiple distinct tilings
+      target (proper canonical): [(0, 1, 1), (0, 2, 2), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2), (1, 2, 3), (1, 3, 2), (1, 3, 3), (1, 3, 4), (1, 4, 3), (2, 2, 2), (2, 3, 3)]
+  [B-V25-S1]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 1), (0, 1, 2), (1, 0, 1), (1, 0, 2), (1, 1, 1), (1, 1, 2), (1, 2, 2), (2, 1, 2), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 3, 2), (3, 2, 2), (3, 3, 2), (3, 3, 3), (3, 4, 2), (3, 4, 3), (4, 3, 2), (4, 3, 3), (4, 4, 2), (4, 4, 3), (4, 4, 4)]
+  [B-V25-S10]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (1, 1, 1), (1, 1, 2), (1, 2, 1), (2, 1, 1), (2, 2, 2), (2, 3, 3), (3, 0, 1), (3, 1, 0), (3, 1, 1), (3, 1, 2), (3, 2, 1), (3, 2, 2), (3, 2, 3), (3, 3, 2), (3, 3, 3), (3, 3, 4), (3, 4, 3), (4, 1, 1), (4, 2, 2), (4, 3, 3), (5, 2, 3), (5, 3, 2), (5, 3, 3), (6, 3, 3)]
+  [B-V25-S11]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (1, 1, 1), (1, 1, 2), (1, 2, 1), (2, 1, 1), (3, 1, 1), (3, 2, 2), (4, 0, 1), (4, 1, 0), (4, 1, 1), (4, 1, 2), (4, 2, 1), (4, 2, 2), (4, 2, 3), (4, 3, 2), (4, 3, 3), (4, 3, 4), (4, 4, 3), (5, 2, 2), (5, 3, 3), (6, 3, 3), (7, 2, 3), (7, 3, 2), (7, 3, 3), (8, 3, 3)]
+  [B-V25-S12]  5 copies, 10 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 2, 0), (1, 2, 1), (1, 2, 2), (1, 3, 1), (2, 1, 2), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 3, 2), (3, 1, 3), (3, 2, 2), (3, 2, 3), (3, 2, 4), (3, 3, 1), (3, 3, 2), (3, 3, 3), (3, 4, 2), (4, 2, 3), (4, 3, 2)]
+  [B-V25-S13]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 4), (1, 0, 4), (1, 1, 3), (1, 1, 4), (1, 2, 1), (1, 2, 4), (2, 1, 1), (2, 1, 4), (2, 2, 0), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 2, 4), (2, 2, 5), (2, 2, 6), (2, 2, 7), (2, 2, 8), (2, 3, 4), (2, 3, 7), (3, 2, 4), (3, 2, 7), (3, 3, 4), (3, 3, 5), (3, 4, 4), (4, 3, 4)]
+  [B-V25-S14]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 4), (1, 0, 4), (1, 1, 3), (1, 1, 4), (1, 2, 4), (1, 2, 7), (2, 1, 4), (2, 1, 7), (2, 2, 0), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 2, 4), (2, 2, 5), (2, 2, 6), (2, 2, 7), (2, 2, 8), (2, 3, 1), (2, 3, 4), (3, 2, 1), (3, 2, 4), (3, 3, 4), (3, 3, 5), (3, 4, 4), (4, 3, 4)]
+  [B-V25-S2]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 1), (0, 1, 2), (1, 0, 1), (1, 0, 2), (1, 1, 2), (1, 1, 3), (1, 2, 2), (2, 1, 2), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 3, 2), (3, 2, 2), (3, 3, 1), (3, 3, 2), (3, 4, 2), (3, 4, 3), (4, 3, 2), (4, 3, 3), (4, 4, 2), (4, 4, 3), (4, 4, 4)]
+  [B-V25-S3]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (0, 1, 3), (0, 2, 2), (0, 3, 1), (1, 0, 1), (1, 0, 3), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 1, 4), (1, 2, 1), (1, 2, 2), (1, 2, 3), (1, 3, 0), (1, 3, 1), (1, 3, 2), (1, 3, 3), (1, 3, 4), (1, 4, 1), (1, 4, 3), (2, 1, 3), (2, 2, 2), (2, 3, 1), (2, 3, 3)]
+  [B-V25-S4]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (0, 1, 3), (1, 0, 1), (1, 0, 3), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 1, 4), (1, 2, 3), (2, 1, 3), (2, 2, 2), (2, 2, 3), (2, 2, 4), (2, 3, 3), (3, 2, 3), (3, 3, 2), (3, 3, 3), (3, 3, 4), (3, 3, 5), (3, 3, 6), (3, 4, 3), (3, 4, 5), (4, 3, 3), (4, 3, 5)]
+  [B-V25-S5]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (0, 1, 4), (1, 0, 1), (1, 0, 4), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 1, 4), (1, 2, 4), (2, 1, 4), (2, 2, 3), (2, 2, 4), (2, 2, 5), (2, 3, 4), (3, 2, 4), (3, 3, 4), (3, 3, 5), (3, 3, 6), (3, 3, 7), (3, 3, 8), (3, 4, 4), (3, 4, 7), (4, 3, 4), (4, 3, 7)]
+  [B-V25-S6]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (0, 2, 2), (0, 3, 3), (0, 4, 4), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2), (1, 2, 3), (1, 3, 2), (1, 3, 3), (1, 3, 4), (1, 4, 3), (1, 4, 4), (1, 4, 5), (1, 5, 4), (1, 5, 5), (1, 5, 6), (1, 6, 5), (2, 2, 2), (2, 3, 3), (2, 4, 4), (2, 5, 5)]
+  [B-V25-S7]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (0, 2, 2), (0, 3, 3), (0, 5, 5), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2), (1, 2, 3), (1, 3, 2), (1, 3, 3), (1, 3, 4), (1, 4, 3), (1, 4, 4), (1, 4, 5), (1, 5, 4), (1, 5, 5), (1, 5, 6), (1, 6, 5), (2, 1, 1), (2, 3, 3), (2, 4, 4), (2, 5, 5)]
+  [B-V25-S8]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 2), (2, 1, 2), (2, 2, 1), (2, 2, 2), (2, 3, 2), (3, 2, 2), (3, 3, 1), (3, 3, 2), (3, 3, 3), (3, 4, 2), (4, 3, 2), (4, 4, 2), (4, 4, 3), (4, 5, 2), (5, 4, 2), (5, 5, 2), (5, 5, 3), (5, 5, 4), (5, 6, 3), (6, 5, 3)]
+  [B-V25-S9]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 2), (2, 1, 2), (2, 2, 2), (2, 2, 3), (2, 3, 2), (3, 2, 2), (3, 3, 1), (3, 3, 2), (3, 3, 3), (3, 4, 2), (4, 3, 2), (4, 4, 1), (4, 4, 2), (4, 5, 2), (5, 4, 2), (5, 5, 2), (5, 5, 3), (5, 5, 4), (5, 6, 3), (6, 5, 3)]
+
+PIECE I
+----------------------------------------
+  [I-V5-S1]  1 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; smallest tile count for this piece
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 0, 3), (0, 0, 4)]
+  [I-V15-S1]  3 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 0, 3), (0, 0, 4), (0, 0, 5), (0, 0, 6), (0, 0, 7), (0, 0, 8), (0, 0, 9), (0, 0, 10), (0, 0, 11), (0, 0, 12), (0, 0, 13), (0, 0, 14)]
+  [I-V25-S1]  5 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 0, 3), (0, 0, 4), (0, 0, 5), (0, 0, 6), (0, 0, 7), (0, 0, 8), (0, 0, 9), (0, 0, 10), (0, 0, 11), (0, 0, 12), (0, 0, 13), (0, 0, 14), (0, 0, 15), (0, 0, 16), (0, 0, 17), (0, 0, 18), (0, 0, 19), (0, 0, 20), (0, 0, 21), (0, 0, 22), (0, 0, 23), (0, 0, 24)]
+  [I-V25-S10]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 3), (1, 1, 3), (2, 1, 3), (3, 1, 3), (3, 3, 0), (3, 3, 1), (3, 3, 2), (3, 3, 3), (3, 3, 4), (4, 0, 4), (4, 1, 3), (4, 1, 4), (4, 2, 4), (4, 3, 4), (4, 3, 5), (4, 4, 4), (5, 1, 4), (5, 1, 5), (5, 1, 6), (5, 1, 7), (5, 1, 8), (5, 3, 5), (6, 3, 5), (7, 3, 5), (8, 3, 5)]
+  [I-V25-S11]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 5), (1, 1, 5), (2, 1, 5), (3, 1, 5), (4, 1, 5), (5, 0, 5), (5, 1, 0), (5, 1, 1), (5, 1, 2), (5, 1, 3), (5, 1, 4), (5, 1, 5), (5, 2, 5), (5, 3, 5), (5, 3, 6), (5, 3, 7), (5, 3, 8), (5, 3, 9), (5, 3, 10), (5, 4, 5), (6, 3, 5), (7, 3, 5), (8, 3, 5), (9, 3, 5), (10, 3, 5)]
+  [I-V25-S12]  5 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 2, 5), (1, 2, 5), (2, 2, 5), (3, 2, 5), (4, 2, 5), (5, 0, 5), (5, 1, 5), (5, 2, 0), (5, 2, 1), (5, 2, 2), (5, 2, 3), (5, 2, 4), (5, 2, 5), (5, 2, 6), (5, 2, 7), (5, 2, 8), (5, 2, 9), (5, 2, 10), (5, 3, 5), (5, 4, 5), (6, 2, 5), (7, 2, 5), (8, 2, 5), (9, 2, 5), (10, 2, 5)]
+  [I-V25-S2]  5 copies, 2 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 0, 3), (0, 0, 4), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 1, 3), (0, 1, 4), (0, 2, 0), (0, 2, 1), (0, 2, 2), (0, 2, 3), (0, 2, 4), (0, 3, 0), (0, 3, 1), (0, 3, 2), (0, 3, 3), (0, 3, 4), (0, 4, 0), (0, 4, 1), (0, 4, 2), (0, 4, 3), (0, 4, 4)]
+  [I-V25-S3]  5 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 1), (2, 0, 1), (2, 1, 0), (2, 1, 1), (2, 1, 2), (2, 2, 1), (3, 0, 1), (3, 1, 0), (3, 1, 1), (3, 1, 2), (3, 2, 1), (4, 0, 1), (4, 1, 0), (4, 1, 1), (4, 1, 2), (4, 2, 1)]
+  [I-V25-S4]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1), (2, 0, 1), (2, 1, 0), (2, 1, 1), (2, 1, 2), (2, 2, 1), (3, 0, 1), (3, 1, 0), (3, 1, 1), (3, 1, 2), (3, 2, 1), (4, 0, 1), (4, 1, 0), (4, 1, 1), (4, 1, 2), (4, 2, 1), (5, 1, 1), (5, 1, 2), (5, 2, 1), (6, 1, 2), (6, 2, 1)]
+  [I-V25-S5]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (1, 0, 1), (1, 1, 0), (2, 0, 1), (2, 1, 0), (2, 1, 1), (3, 0, 1), (3, 1, 0), (3, 1, 1), (4, 0, 1), (4, 1, 0), (4, 1, 1), (4, 1, 2), (4, 2, 1), (5, 1, 1), (5, 1, 2), (5, 2, 1), (6, 1, 1), (6, 1, 2), (6, 2, 1), (7, 1, 2), (7, 2, 1), (8, 1, 2), (8, 2, 1)]
+  [I-V25-S6]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (1, 0, 1), (1, 1, 0), (2, 0, 1), (2, 1, 0), (3, 0, 1), (3, 1, 0), (3, 1, 1), (4, 0, 1), (4, 1, 0), (4, 1, 1), (5, 1, 1), (6, 1, 1), (6, 1, 2), (6, 2, 1), (7, 1, 1), (7, 1, 2), (7, 2, 1), (8, 1, 2), (8, 2, 1), (9, 1, 2), (9, 2, 1), (10, 1, 2), (10, 2, 1)]
+  [I-V25-S7]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (1, 0, 1), (1, 1, 0), (2, 0, 1), (2, 1, 0), (3, 0, 1), (3, 1, 0), (4, 0, 1), (4, 1, 0), (4, 1, 1), (5, 1, 1), (6, 1, 1), (7, 1, 1), (8, 1, 1), (8, 1, 2), (8, 2, 1), (9, 1, 2), (9, 2, 1), (10, 1, 2), (10, 2, 1), (11, 1, 2), (11, 2, 1), (12, 1, 2), (12, 2, 1)]
+  [I-V25-S8]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 3), (0, 1, 3), (0, 2, 3), (0, 3, 3), (0, 4, 3), (0, 4, 4), (0, 5, 4), (0, 5, 5), (0, 5, 6), (0, 5, 7), (0, 5, 8), (1, 4, 4), (2, 4, 4), (3, 4, 4), (4, 3, 0), (4, 3, 1), (4, 3, 2), (4, 3, 3), (4, 3, 4), (4, 4, 4), (4, 4, 5), (4, 5, 5), (4, 6, 5), (4, 7, 5), (4, 8, 5)]
+  [I-V25-S9]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 5), (0, 1, 5), (0, 2, 5), (0, 3, 5), (0, 4, 5), (0, 5, 0), (0, 5, 1), (0, 5, 2), (0, 5, 3), (0, 5, 4), (0, 5, 5), (1, 5, 5), (2, 5, 5), (3, 5, 5), (4, 5, 5), (4, 5, 6), (4, 5, 7), (4, 5, 8), (4, 5, 9), (4, 5, 10), (4, 6, 5), (4, 7, 5), (4, 8, 5), (4, 9, 5), (4, 10, 5)]
+
+PIECE L
+----------------------------------------
+  [L-V25-S1]  5 copies, 4 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings
+      target (proper canonical): [(0, 0, 2), (0, 1, 2), (0, 2, 2), (0, 3, 2), (0, 3, 3), (0, 4, 3), (0, 4, 4), (0, 4, 5), (0, 4, 6), (1, 3, 2), (1, 3, 3), (1, 4, 3), (2, 3, 3), (3, 2, 3), (3, 3, 3), (3, 3, 4), (4, 2, 0), (4, 2, 1), (4, 2, 2), (4, 2, 3), (4, 3, 3), (4, 3, 4), (4, 4, 4), (4, 5, 4), (4, 6, 4)]
+
+PIECE P
+----------------------------------------
+  [P-V25-S1]  5 copies, 4 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 0, 3), (0, 0, 4), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 0), (1, 0, 2), (1, 0, 3), (1, 0, 4), (1, 1, 2), (1, 2, 0), (1, 2, 1), (1, 2, 2), (2, 0, 4), (2, 1, 2), (2, 1, 3), (2, 1, 4), (2, 2, 0), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 2, 4)]
+  [P-V25-S2]  5 copies, 4 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 0, 3), (0, 0, 4), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 0, 3), (1, 0, 4), (1, 1, 2), (1, 2, 0), (1, 2, 1), (1, 2, 2), (2, 0, 3), (2, 1, 2), (2, 1, 3), (2, 1, 4), (2, 2, 0), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 2, 4)]
+  [P-V25-S3]  5 copies, 24 tiling(s), class order12 (order 12), corpus entries 2
+      flags: higher-symmetry target; multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 0), (0, 2, 1), (1, 0, 0), (1, 0, 1), (1, 0, 2), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 0), (1, 2, 1), (1, 2, 2), (2, 0, 1), (2, 0, 2), (2, 1, 0), (2, 1, 1), (2, 1, 2), (2, 2, 0), (2, 2, 1), (2, 2, 2)]
+
+PIECE R
+----------------------------------------
+  [R-V15-S1]  3 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); smallest tile count for this piece; multiple corpus entries (conjugate CK6 placements); multiple distinct tilings
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 1, 1), (0, 1, 2), (1, 0, 1), (1, 0, 2), (1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 2, 2), (1, 2, 3), (2, 1, 2), (2, 1, 3), (2, 2, 3), (2, 2, 4)]
+
+PIECE X
+----------------------------------------
+  [X-V5-S1]  1 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; smallest tile count for this piece
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1)]
+  [X-V15-S1]  3 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 1), (2, 0, 1), (2, 1, 0), (2, 1, 1), (2, 1, 2), (2, 2, 1)]
+  [X-V15-S2]  3 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2), (1, 2, 3), (1, 3, 2), (2, 2, 3), (2, 3, 2), (2, 3, 3), (2, 3, 4), (2, 4, 3)]
+  [X-V25-S1]  5 copies, 1 tiling(s), class order8 (order 8), corpus entries 2
+      flags: higher-symmetry target; multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1), (0, 2, 3), (0, 3, 2), (0, 3, 3), (0, 3, 4), (0, 4, 3), (1, 1, 2), (1, 2, 1), (1, 2, 2), (1, 2, 3), (1, 3, 2), (2, 0, 1), (2, 1, 0), (2, 1, 1), (2, 1, 2), (2, 2, 1), (2, 2, 3), (2, 3, 2), (2, 3, 3), (2, 3, 4), (2, 4, 3)]
+  [X-V25-S10]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (1, 0, 1), (1, 1, 1), (1, 2, 0), (1, 2, 1), (1, 2, 2), (1, 2, 4), (2, 1, 0), (2, 1, 1), (2, 1, 2), (2, 1, 4), (2, 2, 0), (2, 2, 2), (2, 2, 4), (2, 3, 0), (2, 3, 2), (2, 3, 3), (2, 3, 4), (3, 2, 0), (3, 2, 2), (3, 2, 3), (3, 2, 4), (3, 3, 3), (3, 4, 3), (4, 3, 3)]
+  [X-V25-S11]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 1), (1, 0, 1), (1, 1, 1), (1, 2, 0), (1, 2, 1), (2, 1, 0), (2, 1, 1), (2, 2, 0), (2, 3, 0), (2, 3, 1), (3, 2, 0), (3, 2, 1), (3, 3, 1), (3, 4, 1), (3, 4, 2), (4, 3, 1), (4, 3, 2), (4, 4, 2), (4, 5, 1), (4, 5, 2), (5, 4, 1), (5, 4, 2), (5, 5, 1), (5, 6, 1), (6, 5, 1)]
+  [X-V25-S12]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 3), (0, 3, 1), (1, 0, 3), (1, 1, 3), (1, 2, 3), (1, 3, 0), (1, 3, 1), (1, 3, 2), (2, 1, 3), (2, 2, 3), (2, 3, 1), (2, 3, 2), (2, 3, 3), (2, 3, 4), (2, 3, 5), (2, 4, 3), (2, 5, 3), (3, 3, 4), (3, 3, 5), (3, 3, 6), (3, 4, 3), (3, 5, 3), (3, 6, 3), (4, 3, 5), (4, 5, 3)]
+  [X-V25-S13]  5 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 1, 4), (0, 4, 1), (0, 4, 7), (0, 7, 4), (1, 0, 4), (1, 1, 4), (1, 2, 4), (1, 3, 4), (1, 4, 0), (1, 4, 1), (1, 4, 2), (1, 4, 3), (1, 4, 4), (1, 4, 5), (1, 4, 6), (1, 4, 7), (1, 4, 8), (1, 5, 4), (1, 6, 4), (1, 7, 4), (1, 8, 4), (2, 1, 4), (2, 4, 1), (2, 4, 7), (2, 7, 4)]
+  [X-V25-S2]  5 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 1), (2, 0, 1), (2, 1, 0), (2, 1, 1), (2, 1, 2), (2, 2, 1), (3, 0, 1), (3, 1, 0), (3, 1, 1), (3, 1, 2), (3, 2, 1), (4, 0, 1), (4, 1, 0), (4, 1, 1), (4, 1, 2), (4, 2, 1)]
+  [X-V25-S3]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 1), (2, 1, 2), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 3, 2), (3, 2, 3), (3, 3, 2), (3, 3, 3), (3, 3, 4), (3, 4, 3), (4, 2, 3), (4, 3, 2), (4, 3, 3), (4, 3, 4), (4, 4, 3)]
+  [X-V25-S4]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2), (1, 2, 3), (1, 3, 2), (2, 1, 2), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 3, 2), (3, 1, 2), (3, 2, 1), (3, 2, 2), (3, 2, 3), (3, 3, 2), (4, 2, 3), (4, 3, 2), (4, 3, 3), (4, 3, 4), (4, 4, 3)]
+  [X-V25-S5]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 1), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2), (1, 2, 3), (1, 3, 2), (2, 2, 3), (2, 3, 2), (2, 3, 3), (2, 3, 4), (2, 4, 3), (3, 3, 4), (3, 4, 3), (3, 4, 4), (3, 4, 5), (3, 5, 4), (4, 4, 5), (4, 5, 4), (4, 5, 5), (4, 5, 6), (4, 6, 5)]
+  [X-V25-S6]  5 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 2), (0, 1, 1), (0, 1, 2), (0, 1, 3), (0, 2, 2), (1, 1, 0), (1, 1, 2), (1, 1, 4), (2, 0, 0), (2, 0, 4), (2, 1, 0), (2, 1, 1), (2, 1, 2), (2, 1, 3), (2, 1, 4), (2, 2, 0), (2, 2, 4), (3, 1, 0), (3, 1, 2), (3, 1, 4), (4, 0, 2), (4, 1, 1), (4, 1, 2), (4, 1, 3), (4, 2, 2)]
+  [X-V25-S7]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 2), (0, 1, 1), (0, 1, 2), (0, 1, 3), (0, 2, 2), (1, 1, 0), (1, 2, 2), (1, 3, 4), (2, 0, 0), (2, 1, 0), (2, 2, 0), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 2, 4), (2, 3, 4), (2, 4, 4), (3, 1, 0), (3, 2, 2), (3, 3, 4), (4, 2, 2), (4, 3, 1), (4, 3, 2), (4, 3, 3), (4, 4, 2)]
+  [X-V25-S8]  5 copies, 1 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 3), (0, 1, 2), (0, 1, 3), (0, 1, 4), (0, 2, 1), (0, 2, 3), (0, 3, 0), (0, 3, 1), (0, 3, 2), (0, 4, 1), (1, 2, 3), (1, 3, 2), (1, 3, 3), (1, 3, 4), (1, 4, 3), (2, 2, 5), (2, 3, 4), (2, 3, 5), (2, 3, 6), (2, 4, 3), (2, 4, 5), (2, 5, 2), (2, 5, 3), (2, 5, 4), (2, 6, 3)]
+  [X-V25-S9]  5 copies, 1 tiling(s), class order16 (order 16), corpus entries 1
+      flags: higher-symmetry target; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 4), (0, 1, 3), (0, 1, 4), (0, 1, 5), (0, 2, 4), (0, 3, 1), (0, 3, 4), (0, 3, 7), (0, 4, 0), (0, 4, 1), (0, 4, 2), (0, 4, 3), (0, 4, 4), (0, 4, 5), (0, 4, 6), (0, 4, 7), (0, 4, 8), (0, 5, 1), (0, 5, 4), (0, 5, 7), (0, 6, 4), (0, 7, 3), (0, 7, 4), (0, 7, 5), (0, 8, 4)]
+
+PIECE Z
+----------------------------------------
+  [Z-V25-S1]  5 copies, 4 tiling(s), class order8 (order 8), corpus entries 2
+      flags: higher-symmetry target; multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 2), (0, 1, 0), (0, 1, 1), (0, 1, 2), (0, 2, 0), (0, 2, 1), (0, 2, 2), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2), (2, 0, 0), (2, 0, 1), (2, 0, 2), (2, 1, 0), (2, 1, 1), (2, 1, 2), (2, 2, 0), (2, 2, 1), (2, 2, 2)]
+  [Z-V25-S2]  5 copies, 2 tiling(s), class CK6 (order 4), corpus entries 2
+      flags: exact-CK6 (order 4); multiple corpus entries (conjugate CK6 placements); multiple distinct tilings; multiple non-congruent shapes at this volume
+      target (proper canonical): [(0, 0, 0), (0, 0, 1), (0, 0, 3), (0, 1, 1), (0, 1, 2), (0, 1, 3), (0, 2, 1), (0, 2, 2), (0, 2, 3), (1, 0, 1), (1, 0, 2), (1, 0, 3), (1, 1, 2), (1, 2, 1), (1, 2, 2), (1, 2, 3), (2, 0, 1), (2, 0, 2), (2, 0, 3), (2, 1, 1), (2, 1, 2), (2, 1, 3), (2, 2, 1), (2, 2, 3), (2, 2, 4)]

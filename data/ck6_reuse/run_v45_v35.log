@@ -1,0 +1,327 @@
+[combo] V=45 A: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2286626)
+[combo] launched shard 1 (pid 2286627)
+[combo] launched shard 2 (pid 2286628)
+[combo] launched shard 3 (pid 2286629)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 A: targets=1469999 candidates=16706 SAT=0 (shard max 492s)
+[combo] V=45 B: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2288806)
+[combo] launched shard 1 (pid 2288807)
+[combo] launched shard 2 (pid 2288808)
+[combo] launched shard 3 (pid 2288809)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 B: targets=1469999 candidates=2490 SAT=0 (shard max 462s)
+[combo] V=45 E: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2289910)
+[combo] launched shard 1 (pid 2289911)
+[combo] launched shard 2 (pid 2289912)
+[combo] launched shard 3 (pid 2289913)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 E: targets=1469999 candidates=3324 SAT=0 (shard max 494s)
+[combo] V=45 F: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2292216)
+[combo] launched shard 1 (pid 2292217)
+[combo] launched shard 2 (pid 2292218)
+[combo] launched shard 3 (pid 2292219)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 F: targets=1469999 candidates=0 SAT=0 (shard max 515s)
+[combo] V=45 G: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2295454)
+[combo] launched shard 1 (pid 2295455)
+[combo] launched shard 2 (pid 2295456)
+[combo] launched shard 3 (pid 2295457)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 G: targets=1469999 candidates=833 SAT=0 (shard max 460s)
+[combo] V=45 H: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2297926)
+[combo] launched shard 1 (pid 2297927)
+[combo] launched shard 2 (pid 2297928)
+[combo] launched shard 3 (pid 2297929)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 H: targets=1469999 candidates=46090 SAT=0 (shard max 488s)
+[combo] V=45 I: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2300128)
+[combo] launched shard 1 (pid 2300129)
+[combo] launched shard 2 (pid 2300130)
+[combo] launched shard 3 (pid 2300131)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 I: targets=1469999 candidates=866 SAT=215 (shard max 486s)
+[combo] V=45 J: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2303459)
+[combo] launched shard 1 (pid 2303460)
+[combo] launched shard 2 (pid 2303461)
+[combo] launched shard 3 (pid 2303462)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 J: targets=1469999 candidates=46090 SAT=0 (shard max 494s)
+[combo] V=45 K: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2306664)
+[combo] launched shard 1 (pid 2306665)
+[combo] launched shard 2 (pid 2306666)
+[combo] launched shard 3 (pid 2306667)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 K: targets=1469999 candidates=81756 SAT=0 (shard max 479s)
+[combo] V=45 L: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2307979)
+[combo] launched shard 1 (pid 2307980)
+[combo] launched shard 2 (pid 2307981)
+[combo] launched shard 3 (pid 2307982)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 L: targets=1469999 candidates=70133 SAT=0 (shard max 548s)
+[combo] V=45 M: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2312539)
+[combo] launched shard 1 (pid 2312540)
+[combo] launched shard 2 (pid 2312541)
+[combo] launched shard 3 (pid 2312542)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 M: targets=1469999 candidates=5411 SAT=0 (shard max 490s)
+[combo] V=45 N: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2314608)
+[combo] launched shard 1 (pid 2314609)
+[combo] launched shard 2 (pid 2314610)
+[combo] launched shard 3 (pid 2314611)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 N: targets=1469999 candidates=10057 SAT=0 (shard max 479s)
+[combo] V=45 P: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2317005)
+[combo] launched shard 1 (pid 2317006)
+[combo] launched shard 2 (pid 2317007)
+[combo] launched shard 3 (pid 2317008)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 P: targets=1469999 candidates=3487 SAT=0 (shard max 483s)
+[combo] V=45 Q: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2319538)
+[combo] launched shard 1 (pid 2319539)
+[combo] launched shard 2 (pid 2319540)
+[combo] launched shard 3 (pid 2319541)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 Q: targets=1469999 candidates=31204 SAT=0 (shard max 481s)
+[combo] V=45 R: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2321770)
+[combo] launched shard 1 (pid 2321771)
+[combo] launched shard 2 (pid 2321772)
+[combo] launched shard 3 (pid 2321773)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 R: targets=1469999 candidates=12362 SAT=4 (shard max 478s)
+[combo] V=45 S: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2324151)
+[combo] launched shard 1 (pid 2324152)
+[combo] launched shard 2 (pid 2324153)
+[combo] launched shard 3 (pid 2324154)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 S: targets=1469999 candidates=222 SAT=0 (shard max 457s)
+[combo] V=45 T: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2325927)
+[combo] launched shard 1 (pid 2325928)
+[combo] launched shard 2 (pid 2325929)
+[combo] launched shard 3 (pid 2325930)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+Traceback (most recent call last):
+  File "/home/philip/Work/fitpolycubes/solvers/t_ck6_reuse_multipiece.py", line 622, in <module>
+    main()
+  File "/home/philip/Work/fitpolycubes/solvers/t_ck6_reuse_multipiece.py", line 617, in main
+    dict(verify=cmd_verify, controls=cmd_controls, combo=cmd_combo,
+  File "/home/philip/Work/fitpolycubes/solvers/t_ck6_reuse_multipiece.py", line 525, in cmd_run
+    run_combo(volume, piece, args.parallel)
+  File "/home/philip/Work/fitpolycubes/solvers/t_ck6_reuse_multipiece.py", line 488, in run_combo
+    final, missing = aggregate_combo(volume, piece, workdir,
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/philip/Work/fitpolycubes/solvers/t_ck6_reuse_multipiece.py", line 365, in aggregate_combo
+    _check_t_anchor(volume, piece, total)
+  File "/home/philip/Work/fitpolycubes/solvers/t_ck6_reuse_multipiece.py", line 387, in _check_t_anchor
+    assert got == anchor, f"T anchor drift at V={volume}:\n{got}\n{anchor}"
+           ^^^^^^^^^^^^^
+AssertionError: T anchor drift at V=45:
+{'targets': 1469999, 'reject: <k contained placements': 1436064, 'reject: uncovered cell': 33935, 'pass coverage': 0, 'reject: exact cover UNSAT': 0, 'TILEABLE': 0}
+{'targets': 1469999, 'reject: <k contained placements': 1436064, 'reject: uncovered cell': 33953, 'pass coverage': 0, 'reject: exact cover UNSAT': 0, 'TILEABLE': 0}
+[combo] V=45 A: already complete (resume)
+[combo] V=45 B: already complete (resume)
+[combo] V=45 E: already complete (resume)
+[combo] V=45 F: already complete (resume)
+[combo] V=45 G: already complete (resume)
+[combo] V=45 H: already complete (resume)
+[combo] V=45 I: already complete (resume)
+[combo] V=45 J: already complete (resume)
+[combo] V=45 K: already complete (resume)
+[combo] V=45 L: already complete (resume)
+[combo] V=45 M: already complete (resume)
+[combo] V=45 N: already complete (resume)
+[combo] V=45 P: already complete (resume)
+[combo] V=45 Q: already complete (resume)
+[combo] V=45 R: already complete (resume)
+[combo] V=45 S: already complete (resume)
+[combo] V=45 T: 0 shards to run on 4 workers
+  T anchor V=45: funnel counters match the historical result exactly
+[combo] V=45 T: targets=1469999 candidates=0 SAT=0 (shard max 480s)
+[combo] V=45 U: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2354041)
+[combo] launched shard 1 (pid 2354042)
+[combo] launched shard 2 (pid 2354043)
+[combo] launched shard 3 (pid 2354044)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 U: targets=1469999 candidates=1400 SAT=0 (shard max 492s)
+[combo] V=45 V: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2357079)
+[combo] launched shard 1 (pid 2357080)
+[combo] launched shard 2 (pid 2357081)
+[combo] launched shard 3 (pid 2357082)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 V: targets=1469999 candidates=0 SAT=0 (shard max 495s)
+[combo] V=45 W: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2359665)
+[combo] launched shard 1 (pid 2359666)
+[combo] launched shard 2 (pid 2359667)
+[combo] launched shard 3 (pid 2359668)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 W: targets=1469999 candidates=0 SAT=0 (shard max 507s)
+[combo] V=45 X: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2362709)
+[combo] launched shard 1 (pid 2362710)
+[combo] launched shard 2 (pid 2362711)
+[combo] launched shard 3 (pid 2362712)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 X: targets=1469999 candidates=0 SAT=0 (shard max 501s)
+[combo] V=45 Y: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2365795)
+[combo] launched shard 1 (pid 2365796)
+[combo] launched shard 2 (pid 2365797)
+[combo] launched shard 3 (pid 2365798)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 Y: targets=1469999 candidates=12404 SAT=0 (shard max 483s)
+[combo] V=45 Z: 4 shards to run on 4 workers
+[combo] launched shard 0 (pid 2368370)
+[combo] launched shard 1 (pid 2368371)
+[combo] launched shard 2 (pid 2368377)
+[combo] launched shard 3 (pid 2368378)
+[combo] shard 1 finished rc=0
+[combo] shard 0 finished rc=0
+[combo] shard 2 finished rc=0
+[combo] shard 3 finished rc=0
+[combo] V=45 Z: targets=1469999 candidates=0 SAT=0 (shard max 462s)
+[combo] V=35 A: 8 shards to run on 2 workers
+[combo] launched shard 0 (pid 2369727)
+[combo] launched shard 1 (pid 2369728)
+[combo] shard 1 finished rc=0
+[combo] launched shard 2 (pid 2396665)
+[combo] shard 0 finished rc=0
+[combo] launched shard 3 (pid 2400874)
+[combo] shard 2 finished rc=0
+[combo] launched shard 4 (pid 2442234)
+[combo] shard 3 finished rc=0
+[combo] launched shard 5 (pid 2442422)
+[combo] shard 5 finished rc=0
+[combo] launched shard 6 (pid 2473835)
+[combo] shard 4 finished rc=0
+[combo] launched shard 7 (pid 2474353)
+[combo] shard 6 finished rc=0
+[combo] shard 7 finished rc=0
+[combo] V=35 A: targets=15289669 candidates=201879 SAT=0 (shard max 7848s)
+[combo] V=35 B: 8 shards to run on 2 workers
+[combo] launched shard 0 (pid 2516424)
+[combo] launched shard 1 (pid 2516425)
+[combo] shard 1 finished rc=0
+[combo] launched shard 2 (pid 2550204)
+[combo] shard 0 finished rc=0
+[combo] launched shard 3 (pid 2552933)
+[combo] shard 2 finished rc=0
+[combo] launched shard 4 (pid 2589904)
+[combo] shard 3 finished rc=0
+[combo] launched shard 5 (pid 2590663)
+[combo] shard 5 finished rc=0
+[combo] launched shard 6 (pid 2632871)
+[combo] shard 4 finished rc=0
+[combo] launched shard 7 (pid 2636324)
+[combo] shard 6 finished rc=0
+[combo] shard 7 finished rc=0
+[combo] V=35 B: targets=15289669 candidates=71970 SAT=544 (shard max 7806s)
+[combo] V=35 E: 8 shards to run on 2 workers
+[combo] launched shard 0 (pid 2664968)
+[combo] launched shard 1 (pid 2664969)
+[combo] shard 1 finished rc=0
+[combo] launched shard 2 (pid 2702673)
+[combo] shard 0 finished rc=0
+[combo] launched shard 3 (pid 2711285)
+[combo] shard 2 finished rc=0
+[combo] launched shard 4 (pid 2757677)
+[combo] shard 3 finished rc=0
+[combo] launched shard 5 (pid 2757934)
+[combo] shard 5 finished rc=0
+[combo] launched shard 6 (pid 2811602)
+[combo] shard 4 finished rc=0
+[combo] launched shard 7 (pid 2814831)
+[combo] shard 6 finished rc=0
+[combo] shard 7 finished rc=0
+[combo] V=35 E: targets=15289669 candidates=263611 SAT=0 (shard max 8297s)
+[combo] V=35 F: 8 shards to run on 2 workers
+[combo] launched shard 0 (pid 2855618)
+[combo] launched shard 1 (pid 2855619)
+[combo] shard 1 finished rc=0
+[combo] launched shard 2 (pid 2890658)
+[combo] shard 0 finished rc=0
+[combo] launched shard 3 (pid 2894784)

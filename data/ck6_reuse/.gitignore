@@ -1,0 +1,9 @@
+# C3 final-evidence freeze (2026-09-10): excluded from versioning.
+# run/        — transient Stage 5L run state (95 piece dirs, shards, checkpoints); preserved on disk, not versioned
+# renders/    — regenerable PNG renders (from committed witness JSONs)
+# sicherman_cache/ — cached external page (regenerable)
+# *.png       — render artefacts (regenerable from committed witness/coordinate data)
+run/
+renders/
+sicherman_cache/
+*.png

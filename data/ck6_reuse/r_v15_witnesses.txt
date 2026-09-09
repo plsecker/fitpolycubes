@@ -1,0 +1,115 @@
+Stage 5L - the two distinct positive R-pentacube witnesses at V=15
+===================================================================
+
+Source : data/ck6_reuse/run/v15_R/final.json (status COMPLETE)
+Piece  : R pentacube, cells (x,y,z): (0,0,0) (1,0,0) (1,1,0) (1,1,1) (2,1,0)
+Format : integer lattice cubes; two cubes touch face-to-face when
+         their L1 distance is 1. Each target has 15 cubes and is
+         tiled by 3 disjoint R copies.
+Class  : CK6 (order 4): identity, inversion, c2_diag, mirror_diag.
+
+----------------------------------------------------------------------
+Witness R_V15_W1
+----------------------------------------------------------------------
+Target cube coordinates (15):
+  (-1, 0, 0)
+  (-1, 0, 1)
+  (-1, 1, 1)
+  (-1, 1, 2)
+  ( 0,-1,-1)
+  ( 0,-1, 0)
+  ( 0, 0,-1)
+  ( 0, 0, 0)
+  ( 0, 0, 1)
+  ( 0, 1, 0)
+  ( 0, 1, 1)
+  ( 1,-1,-2)
+  ( 1,-1,-1)
+  ( 1, 0,-1)
+  ( 1, 0, 0)
+
+Tiling by 3 R pentacubes (one of its 2 exact covers):
+  R copy 1: (-1, 1, 1) (-1, 1, 2) ( 0, 0, 1) ( 0, 1, 0) ( 0, 1, 1)
+  R copy 2: ( 0,-1,-1) ( 1,-1,-2) ( 1,-1,-1) ( 1, 0,-1) ( 1, 0, 0)
+  R copy 3: (-1, 0, 0) (-1, 0, 1) ( 0,-1, 0) ( 0, 0,-1) ( 0, 0, 0)
+
+Symmetry operations fixing the target (CK6, order 4):
+  identity     matrix [[1, 0, 0] [0, 1, 0] [0, 0, 1]]  translation (0, 0, 0)
+  inversion    matrix [[-1, 0, 0] [0, -1, 0] [0, 0, -1]]  translation (0, 0, 0)
+  c2_diag      matrix [[0, 1, 0] [1, 0, 0] [0, 0, -1]]  translation (0, 0, 0)
+  mirror_diag  matrix [[0, -1, 0] [-1, 0, 0] [0, 0, 1]]  translation (0, 0, 0)
+
+Stage 5L canonical/proper-rotation identifier (canonical_target_proper):
+  (0,0,0)
+  (0,0,1)
+  (0,1,1)
+  (0,1,2)
+  (1,0,1)
+  (1,0,2)
+  (1,1,1)
+  (1,1,2)
+  (1,1,3)
+  (1,2,2)
+  (1,2,3)
+  (2,1,2)
+  (2,1,3)
+  (2,2,3)
+  (2,2,4)
+
+----------------------------------------------------------------------
+Witness R_V15_W2
+----------------------------------------------------------------------
+Target cube coordinates (15):
+  (-1, 0,-1)
+  (-1, 0, 0)
+  (-1, 1,-2)
+  (-1, 1,-1)
+  ( 0,-1, 0)
+  ( 0,-1, 1)
+  ( 0, 0,-1)
+  ( 0, 0, 0)
+  ( 0, 0, 1)
+  ( 0, 1,-1)
+  ( 0, 1, 0)
+  ( 1,-1, 1)
+  ( 1,-1, 2)
+  ( 1, 0, 0)
+  ( 1, 0, 1)
+
+Tiling by 3 R pentacubes (one of its 2 exact covers):
+  R copy 1: (-1, 0,-1) (-1, 0, 0) (-1, 1,-2) (-1, 1,-1) ( 0, 1,-1)
+  R copy 2: ( 0, 0,-1) ( 0, 0, 0) ( 0, 1, 0) ( 1, 0, 0) ( 1, 0, 1)
+  R copy 3: ( 0,-1, 0) ( 0,-1, 1) ( 0, 0, 1) ( 1,-1, 1) ( 1,-1, 2)
+
+Symmetry operations fixing the target (CK6, order 4):
+  identity     matrix [[1, 0, 0] [0, 1, 0] [0, 0, 1]]  translation (0, 0, 0)
+  inversion    matrix [[-1, 0, 0] [0, -1, 0] [0, 0, -1]]  translation (0, 0, 0)
+  c2_diag      matrix [[0, 1, 0] [1, 0, 0] [0, 0, -1]]  translation (0, 0, 0)
+  mirror_diag  matrix [[0, -1, 0] [-1, 0, 0] [0, 0, 1]]  translation (0, 0, 0)
+
+Stage 5L canonical/proper-rotation identifier (canonical_target_proper):
+  (0,0,0)
+  (0,0,1)
+  (0,1,1)
+  (0,1,2)
+  (1,0,1)
+  (1,0,2)
+  (1,1,1)
+  (1,1,2)
+  (1,1,3)
+  (1,2,2)
+  (1,2,3)
+  (2,1,2)
+  (2,1,3)
+  (2,2,3)
+  (2,2,4)
+
+----------------------------------------------------------------------
+Note: the two witnesses are distinct enumerated targets (different
+cell sets), but both carry the same canonical_target_proper
+identifier; O_h-canonicalization maps them to one shared form.
+Verification performed: 15 cubes per target; face-connected; exact
+CK6 (order 4, kinds {identity, inversion, c2_diag, mirror_diag});
+the 3 R placements are pairwise disjoint; their union equals the
+target exactly. Funnel counters reproduce the Stage 5L record
+(217 / 110 / 41 / 39, TILEABLE 2, 4 covers total).

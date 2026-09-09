@@ -1,0 +1,137 @@
+{
+ "audit": "CK6 sharded target enumeration - sharding/count prefilter bug",
+ "date": "2026-09-09",
+ "status": "bug confirmed; repair designed; regression test ALL PASS; no large search launched; no historical artefact modified",
+ "root_cause": {
+  "file": "solvers/t_ck6_oddity_v35_search.py",
+  "function": "cmd_count, sharded branch (volume > 35)",
+  "block": "'validity prefilter: seeded reachability'",
+  "defect": "candidate minimum-orbit ids are admitted only if reachable from a start-front orbit s0 through adjacent orbits with ids >= s0 (id-nondecreasing from the chain ROOT). This assumes orbit ids (l1_ball enumeration order) are compatible with centre-outward connectivity growth, which is false. The seeded DFS itself only needs ids >= s from the seed s onward, so valid min-ids below the centre-adjacent orbits' ids are wrongly excluded.",
+  "downstream": [
+   "minid_counts.json hist keys",
+   "shards.json min_ids",
+   "Stage 5L run_shard_piece target streaming"
+  ],
+  "false_assumption": "every connected CK6-closed target's minimum orbit id is reachable centre-outward through non-decreasing orbit ids"
+ },
+ "counterexample_george_b9": {
+  "provenance": "George Sicherman 'B 9' oddity, sicherman.net/c5odd/c5nodd.html rev 2026-09-08; forensic reconstruction in data/ck6_reuse/george_b9_geometry_reconciliation.json",
+  "volume": 45,
+  "symmetry": "exact CK6, order 4 (identity, inversion, c2_diag, mirror_diag)",
+  "oh_canonical_id": "oh-109166b4c83a",
+  "p24_canonical_id": "p24-109166b4c83a",
+  "min_orbit_id_v45": 3590,
+  "n_distinct_orbits": 16,
+  "orbit_id_range": [
+   3590,
+   3937
+  ],
+  "contains_start_front_orbits": [
+   3652,
+   3937
+  ],
+  "reachable_by_seeded_dfs": true,
+  "reachability_proof": "exact bounded BFS replay of iter_targets_seeded mechanics, 6976 states",
+  "repo_M_covers": 12,
+  "repo_B_covers": 0,
+  "old_prefilter_candidates": "86 ids in [3652..3937]; 3590 excluded"
+ },
+ "old_vs_corrected": {
+  "old": "s admitted iff s reachable FROM a start-front orbit via ids >= s0 (root-bounded)",
+  "old_v45_domain": {
+   "n": 86,
+   "range": [
+    3652,
+    3937
+   ]
+  },
+  "corrected": "s admitted iff s can REACH a start-front orbit via adjacent orbits with ids >= s (sound necessary condition; over-approximation harmless); or simply use all orbit ids as the shard domain",
+  "corrected_v45_domain": {
+   "n": 3696,
+   "range": [
+    0,
+    3937
+   ]
+  },
+  "omitted_candidate_min_ids_below_plan_minimum": 3652,
+  "completeness_proof": "Disjoint: min orbit id is intrinsic; shard s enumerates exactly {T : minid(T)=s}. Complete: every connected CK6-closed odd-volume target contains its inversion-centre cell and has orbit cost exactly (V-1)/2; its orbit graph is connected with all ids >= s, so a frontier growth order from {centre, s} exists; the frontier is a function of the mask so visited-dedup is sound; hence iter_targets_seeded(un, s, (V-1)//2) yields it. The corrected filter keeps every s satisfying the necessary condition, so no target's shard is dropped."
+ },
+ "regression_test": {
+  "path": "tools/frontier/test_ck6_sharding_bug.py",
+  "result": "ALL CHECKS PASSED",
+  "runtime": "fast mode ~15s (V5+V15); full ~206s (adds V25)",
+  "checks": [
+   "target 45 cells / face-connected / CK6-closed / oh id match",
+   "min orbit id == 3590",
+   "orbit cost == budget 22",
+   "OLD prefilter rejects 3590 (bug reproduced)",
+   "CORRECTED filter accepts 3590",
+   "target reachable by seeded-DFS mechanics (6976-state exact replay)",
+   "repo-M covers == 12 (independent full-domain enumeration)",
+   "V5 corrected sharding == reference: total 2, set equality",
+   "V15 corrected sharding == reference: total 368, set equality",
+   "V25 corrected sharding == reference: total 71539, set equality"
+  ]
+ },
+ "validation_against_reference": {
+  "V5": {
+   "corrected_total": 2,
+   "reference_total": 2,
+   "set_equal": true
+  },
+  "V15": {
+   "corrected_total": 368,
+   "reference_total": 368,
+   "set_equal": true
+  },
+  "V25": {
+   "corrected_total": 71539,
+   "reference_total": 71539,
+   "set_equal": true
+  }
+ },
+ "v35_impact": {
+  "affected": false,
+  "reason": "cmd_count uses the MONOLITHIC count_minids for volume <= 35 (no prefilter); monolithic DFS is complete and validated at V25 against the reference enumerator; V35 hist [558..1857] (489 min-ids) is the true min-id distribution and shards.json covers exactly those",
+  "v35_corpus_total": 15289669,
+  "v35_plan_min_ids": 489,
+  "v35_plan_range": [
+   558,
+   1857
+  ],
+  "completed_v35_piece_results_valid": true,
+  "v35_completed_pieces": {
+   "A": "SAT 0",
+   "B": "SAT 544 (1652 solutions)",
+   "E": "SAT 0"
+  },
+  "process_check": "no CK6 search process currently running (ps); 'running V35 search' premise stale; nothing to stop",
+  "remaining_v35_combos": "20 pieces never run; can safely use the existing complete V35 corpus/plan"
+ },
+ "v45_impact": {
+  "affected": true,
+  "old_candidate_domain": 86,
+  "corrected_candidate_domain": 3696,
+  "omitted_candidate_min_ids": 3652,
+  "omitted_range": "[0..3651]",
+  "george_b9_included_in_corrected_domain": true,
+  "revised_target_count": "unknown without running the omitted shards (>= 1469999; George B-9 target included)",
+  "recorded_piece_results_status": "all 23 V45 piece results (sat_count=0) are not exhaustive negatives and must be annotated",
+  "funnel_exonerated": "driver funnel_and_cover returns SAT 12 covers for George's target with piece M; placement audit: 0 anchor gaps for this target"
+ },
+ "other_volumes": {
+  "v55_production_plan": "data/ck6_v55/shard_plan.json shards ALL 7139 orbit ids (0..7138), no gaps - complete partition, prefilter not used; no process currently running (stale status.txt)",
+  "v5_v15_v25": "single-process reference enumerator; not affected"
+ },
+ "secondary_observation": "latent funnel edge case: normalized orientations need not contain (0,0,0) (true for M, P), so a placement's anchor can lie outside a ball region while its cells are inside; not observed for George's target (ball rows 140 == complete box count); cheap hardening: box-domain funnel index",
+ "historical_preservation": "data/ck6_v45/shards.json, minid_counts.json, Stage 5L reports untouched; corrected artefacts to be written under distinct names (minid_counts_corrected.json, shards_corrected.json)",
+ "recommended_next_steps": [
+  "replace the cmd_count prefilter with the corrected sound filter (or all orbit ids)",
+  "re-count V45 for the 3652 omitted min-ids incrementally; rebuild shards_corrected.json",
+  "re-run the V45 piece matrix (at least M and B) on the corrected corpus",
+  "annotate Stage 5L V45 results as non-exhaustive (append-only)",
+  "V35: no corpus repair needed; optionally finish the remaining 20 piece combos",
+  "keep tools/frontier/test_ck6_sharding_bug.py as a permanent regression gate",
+  "optional: box-domain funnel index hardening"
+ ]
+}

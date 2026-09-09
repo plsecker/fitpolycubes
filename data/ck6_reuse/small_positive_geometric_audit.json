@@ -1,0 +1,1654 @@
+{
+ "stage": "5O",
+ "totals": {
+  "shapes": 52,
+  "geometrically_distinct_under_proper_rotations": 51,
+  "achiral": 52,
+  "chiral": 0,
+  "enantiomer_pairs_across_entries": 0,
+  "higher_symmetry_shapes": 15
+ },
+ "canonicalisation": [
+  {
+   "id": "B-V15-S1",
+   "oh_canonical_id": "oh-0216334782e8",
+   "p24_canonical_id": "p24-0216334782e8",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 3x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S1",
+   "oh_canonical_id": "oh-63b7aa6c8ec0",
+   "p24_canonical_id": "p24-63b7aa6c8ec0",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 5x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S2",
+   "oh_canonical_id": "oh-94563453740c",
+   "p24_canonical_id": "p24-94563453740c",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 5x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S3",
+   "oh_canonical_id": "oh-5c4259fee32b",
+   "p24_canonical_id": "p24-5c4259fee32b",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 3x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S4",
+   "oh_canonical_id": "oh-c01ebcc054f9",
+   "p24_canonical_id": "p24-c01ebcc054f9",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    7
+   ],
+   "family": "free-form polycube (bbox 5x5x7)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S5",
+   "oh_canonical_id": "oh-6e03688bce97",
+   "p24_canonical_id": "p24-6e03688bce97",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    9
+   ],
+   "family": "free-form polycube (bbox 5x5x9)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S6",
+   "oh_canonical_id": "oh-287941a8c892",
+   "p24_canonical_id": "p24-287941a8c892",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    7,
+    7
+   ],
+   "family": "free-form polycube (bbox 3x7x7)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S7",
+   "oh_canonical_id": "oh-02cae9a16532",
+   "p24_canonical_id": "p24-02cae9a16532",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    7,
+    7
+   ],
+   "family": "free-form polycube (bbox 3x7x7)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S8",
+   "oh_canonical_id": "oh-10b24dad953a",
+   "p24_canonical_id": "p24-10b24dad953a",
+   "handedness": "achiral",
+   "bbox_dims": [
+    7,
+    7,
+    5
+   ],
+   "family": "free-form polycube (bbox 7x7x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S9",
+   "oh_canonical_id": "oh-4f63c8120056",
+   "p24_canonical_id": "p24-4f63c8120056",
+   "handedness": "achiral",
+   "bbox_dims": [
+    7,
+    7,
+    5
+   ],
+   "family": "free-form polycube (bbox 7x7x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S10",
+   "oh_canonical_id": "oh-aac468e45430",
+   "p24_canonical_id": "p24-aac468e45430",
+   "handedness": "achiral",
+   "bbox_dims": [
+    7,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 7x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S11",
+   "oh_canonical_id": "oh-267c414b66fb",
+   "p24_canonical_id": "p24-267c414b66fb",
+   "handedness": "achiral",
+   "bbox_dims": [
+    9,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 9x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S12",
+   "oh_canonical_id": "oh-33031433c6f0",
+   "p24_canonical_id": "p24-33031433c6f0",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 5x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 10,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S13",
+   "oh_canonical_id": "oh-e3241b9131b9",
+   "p24_canonical_id": "p24-e3241b9131b9",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    9
+   ],
+   "family": "free-form polycube (bbox 5x5x9)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "B-V25-S14",
+   "oh_canonical_id": "oh-c20f34d849fa",
+   "p24_canonical_id": "p24-c20f34d849fa",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    9
+   ],
+   "family": "free-form polycube (bbox 5x5x9)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "I-V5-S1",
+   "oh_canonical_id": "oh-452bec1052ce",
+   "p24_canonical_id": "p24-452bec1052ce",
+   "handedness": "achiral",
+   "bbox_dims": [
+    1,
+    1,
+    5
+   ],
+   "family": "straight bar 1x1x5",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "I-V15-S1",
+   "oh_canonical_id": "oh-457e5ccac7b7",
+   "p24_canonical_id": "p24-457e5ccac7b7",
+   "handedness": "achiral",
+   "bbox_dims": [
+    1,
+    1,
+    15
+   ],
+   "family": "straight bar 1x1x15",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "I-V25-S1",
+   "oh_canonical_id": "oh-21ab39ddc176",
+   "p24_canonical_id": "p24-21ab39ddc176",
+   "handedness": "achiral",
+   "bbox_dims": [
+    1,
+    1,
+    25
+   ],
+   "family": "straight bar 1x1x25",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "I-V25-S2",
+   "oh_canonical_id": "oh-68a47980fbef",
+   "p24_canonical_id": "p24-68a47980fbef",
+   "handedness": "achiral",
+   "bbox_dims": [
+    1,
+    5,
+    5
+   ],
+   "family": "slab 1x5x5",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 2,
+   "corpus_entries": 1
+  },
+  {
+   "id": "I-V25-S3",
+   "oh_canonical_id": "oh-2029977919c4",
+   "p24_canonical_id": "p24-2029977919c4",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    3,
+    3
+   ],
+   "family": "free-form polycube (bbox 5x3x3)",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "I-V25-S4",
+   "oh_canonical_id": "oh-3f97a07d25aa",
+   "p24_canonical_id": "p24-3f97a07d25aa",
+   "handedness": "achiral",
+   "bbox_dims": [
+    7,
+    3,
+    3
+   ],
+   "family": "free-form polycube (bbox 7x3x3)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "I-V25-S5",
+   "oh_canonical_id": "oh-9182eb8faba1",
+   "p24_canonical_id": "p24-9182eb8faba1",
+   "handedness": "achiral",
+   "bbox_dims": [
+    9,
+    3,
+    3
+   ],
+   "family": "free-form polycube (bbox 9x3x3)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "I-V25-S6",
+   "oh_canonical_id": "oh-8f4638e96a65",
+   "p24_canonical_id": "p24-8f4638e96a65",
+   "handedness": "achiral",
+   "bbox_dims": [
+    11,
+    3,
+    3
+   ],
+   "family": "free-form polycube (bbox 11x3x3)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "I-V25-S7",
+   "oh_canonical_id": "oh-361bca6b9a5a",
+   "p24_canonical_id": "p24-361bca6b9a5a",
+   "handedness": "achiral",
+   "bbox_dims": [
+    13,
+    3,
+    3
+   ],
+   "family": "free-form polycube (bbox 13x3x3)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "I-V25-S8",
+   "oh_canonical_id": "oh-a93f6241bf0b",
+   "p24_canonical_id": "p24-a93f6241bf0b",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    9,
+    9
+   ],
+   "family": "free-form polycube (bbox 5x9x9)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "I-V25-S9",
+   "oh_canonical_id": "oh-77fe51204a8c",
+   "p24_canonical_id": "p24-77fe51204a8c",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    11,
+    11
+   ],
+   "family": "free-form polycube (bbox 5x11x11)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "I-V25-S10",
+   "oh_canonical_id": "oh-8298b1f4b377",
+   "p24_canonical_id": "p24-8298b1f4b377",
+   "handedness": "achiral",
+   "bbox_dims": [
+    9,
+    5,
+    9
+   ],
+   "family": "free-form polycube (bbox 9x5x9)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "I-V25-S11",
+   "oh_canonical_id": "oh-846f8b418d58",
+   "p24_canonical_id": "p24-846f8b418d58",
+   "handedness": "achiral",
+   "bbox_dims": [
+    11,
+    5,
+    11
+   ],
+   "family": "free-form polycube (bbox 11x5x11)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "I-V25-S12",
+   "oh_canonical_id": "oh-5ea4b97d0e89",
+   "p24_canonical_id": "p24-5ea4b97d0e89",
+   "handedness": "achiral",
+   "bbox_dims": [
+    11,
+    5,
+    11
+   ],
+   "family": "free-form polycube (bbox 11x5x11)",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "L-V25-S1",
+   "oh_canonical_id": "oh-9bf009d60759",
+   "p24_canonical_id": "p24-9bf009d60759",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    7,
+    7
+   ],
+   "family": "free-form polycube (bbox 5x7x7)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 4,
+   "corpus_entries": 2
+  },
+  {
+   "id": "P-V25-S1",
+   "oh_canonical_id": "oh-52d50e3f661a",
+   "p24_canonical_id": "p24-52d50e3f661a",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    3,
+    5
+   ],
+   "family": "free-form polycube (bbox 3x3x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 4,
+   "corpus_entries": 2
+  },
+  {
+   "id": "P-V25-S2",
+   "oh_canonical_id": "oh-b1bd6f51b612",
+   "p24_canonical_id": "p24-b1bd6f51b612",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    3,
+    5
+   ],
+   "family": "free-form polycube (bbox 3x3x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 4,
+   "corpus_entries": 2
+  },
+  {
+   "id": "P-V25-S3",
+   "oh_canonical_id": "oh-69beb16fe99d",
+   "p24_canonical_id": "p24-69beb16fe99d",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    3,
+    3
+   ],
+   "family": "free-form polycube (bbox 3x3x3)",
+   "symmetry_class": "order12",
+   "symmetry_order": 12,
+   "ck6_subgroups_in_sym": 3,
+   "exact_ck6": false,
+   "number_of_tilings": 24,
+   "corpus_entries": 2
+  },
+  {
+   "id": "R-V15-S1",
+   "oh_canonical_id": "oh-4bb83e83ad90",
+   "p24_canonical_id": "p24-4bb83e83ad90",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    3,
+    5
+   ],
+   "family": "free-form polycube (bbox 3x3x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V5-S1",
+   "oh_canonical_id": "oh-c14a4b6d57b1",
+   "p24_canonical_id": "p24-c14a4b6d57b1",
+   "handedness": "achiral",
+   "bbox_dims": [
+    1,
+    3,
+    3
+   ],
+   "family": "slab 1x3x3",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "X-V15-S1",
+   "oh_canonical_id": "oh-3574482ca09a",
+   "p24_canonical_id": "p24-3574482ca09a",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    3,
+    3
+   ],
+   "family": "collinear stack of 3 copies (bbox 3x3x3)",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "X-V15-S2",
+   "oh_canonical_id": "oh-93c73bc39bb1",
+   "p24_canonical_id": "p24-93c73bc39bb1",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    5,
+    5
+   ],
+   "family": "collinear stack of 3 copies (bbox 3x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S1",
+   "oh_canonical_id": "oh-57b329860867",
+   "p24_canonical_id": "p24-57b329860867",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 3x5x5)",
+   "symmetry_class": "order8",
+   "symmetry_order": 8,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S2",
+   "oh_canonical_id": "oh-2029977919c4",
+   "p24_canonical_id": "p24-2029977919c4",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    3,
+    3
+   ],
+   "family": "collinear stack of 5 copies (bbox 5x3x3)",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "X-V25-S3",
+   "oh_canonical_id": "oh-e6bd23ca5916",
+   "p24_canonical_id": "p24-e6bd23ca5916",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 5x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S4",
+   "oh_canonical_id": "oh-529a0e153d97",
+   "p24_canonical_id": "p24-529a0e153d97",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 5x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S5",
+   "oh_canonical_id": "oh-dd310cbccb12",
+   "p24_canonical_id": "p24-dd310cbccb12",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    7,
+    7
+   ],
+   "family": "collinear stack of 5 copies (bbox 5x7x7)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S6",
+   "oh_canonical_id": "oh-6c5e6a90336d",
+   "p24_canonical_id": "p24-6c5e6a90336d",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    3,
+    5
+   ],
+   "family": "free-form polycube (bbox 5x3x5)",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "X-V25-S7",
+   "oh_canonical_id": "oh-b2fbd004bf06",
+   "p24_canonical_id": "p24-b2fbd004bf06",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    5
+   ],
+   "family": "free-form polycube (bbox 5x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S8",
+   "oh_canonical_id": "oh-b9e1d210e5ac",
+   "p24_canonical_id": "p24-b9e1d210e5ac",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    7,
+    7
+   ],
+   "family": "free-form polycube (bbox 3x7x7)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S9",
+   "oh_canonical_id": "oh-2a28773a8baa",
+   "p24_canonical_id": "p24-2a28773a8baa",
+   "handedness": "achiral",
+   "bbox_dims": [
+    1,
+    9,
+    9
+   ],
+   "family": "slab 1x9x9",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "X-V25-S10",
+   "oh_canonical_id": "oh-5014b19cf30e",
+   "p24_canonical_id": "p24-5014b19cf30e",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    5,
+    5
+   ],
+   "family": "collinear stack of 5 copies (bbox 5x5x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S11",
+   "oh_canonical_id": "oh-9eacdc73fe3f",
+   "p24_canonical_id": "p24-9eacdc73fe3f",
+   "handedness": "achiral",
+   "bbox_dims": [
+    7,
+    7,
+    3
+   ],
+   "family": "collinear stack of 5 copies (bbox 7x7x3)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S12",
+   "oh_canonical_id": "oh-779f2a6f6bcb",
+   "p24_canonical_id": "p24-779f2a6f6bcb",
+   "handedness": "achiral",
+   "bbox_dims": [
+    5,
+    7,
+    7
+   ],
+   "family": "free-form polycube (bbox 5x7x7)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 1,
+   "corpus_entries": 2
+  },
+  {
+   "id": "X-V25-S13",
+   "oh_canonical_id": "oh-df9d218f0816",
+   "p24_canonical_id": "p24-df9d218f0816",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    9,
+    9
+   ],
+   "family": "free-form polycube (bbox 3x9x9)",
+   "symmetry_class": "order16",
+   "symmetry_order": 16,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 1,
+   "corpus_entries": 1
+  },
+  {
+   "id": "Z-V25-S1",
+   "oh_canonical_id": "oh-325afb95cf59",
+   "p24_canonical_id": "p24-325afb95cf59",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    3,
+    3
+   ],
+   "family": "free-form polycube (bbox 3x3x3)",
+   "symmetry_class": "order8",
+   "symmetry_order": 8,
+   "ck6_subgroups_in_sym": 2,
+   "exact_ck6": false,
+   "number_of_tilings": 4,
+   "corpus_entries": 2
+  },
+  {
+   "id": "Z-V25-S2",
+   "oh_canonical_id": "oh-eb7e9a7d9f43",
+   "p24_canonical_id": "p24-eb7e9a7d9f43",
+   "handedness": "achiral",
+   "bbox_dims": [
+    3,
+    3,
+    5
+   ],
+   "family": "collinear stack of 5 copies (bbox 3x3x5)",
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "ck6_subgroups_in_sym": 1,
+   "exact_ck6": true,
+   "number_of_tilings": 2,
+   "corpus_entries": 2
+  }
+ ],
+ "relationships": {
+  "cross_entry_full_oh_congruences": {
+   "oh-2029977919c4": 2
+  },
+  "cross_entry_proper_congruences": {
+   "p24-2029977919c4": 2
+  },
+  "shared_target_congruences": [
+   {
+    "oh_canonical_id": "oh-2029977919c4",
+    "entries": [
+     "I-V25-S3",
+     "X-V25-S2"
+    ],
+    "note": "the SAME geometric figure is tiled by different pentacubes (Stage 5N grouped per piece/volume, so cross-piece congruences were not merged there)"
+   }
+  ],
+  "note_congruence": "Stage 5N grouped the corpus entries by full-O_h canonical form WITHIN each piece/volume combination, so cross-piece congruences were not merged there.  The audit found exactly 1 cross-piece congruence(s): I-V25-S3 == X-V25-S2 (the 5x3x3 cross-tower: 5 stacked X crosses = 5 parallel I-bars).  Distinct catalogue entries are otherwise pairwise O_h-incongruent.",
+  "enantiomer_pairs_across_entries": "impossible by construction: mirror images share the same full-O_h canonical form and are therefore one catalogue entry; within-entry enantiomorphic corpus entries would be flagged 'enantiomorphic_corpus_entries' (none occur in this catalogue)",
+  "chiral_shapes": [],
+  "higher_symmetry_parents": [
+   {
+    "id": "I-V5-S1",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "I-V15-S1",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "I-V25-S1",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "I-V25-S2",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "I-V25-S3",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "I-V25-S12",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "P-V25-S3",
+    "symmetry_order": 12,
+    "ck6_subgroups_in_sym": 3,
+    "class": "order12"
+   },
+   {
+    "id": "X-V5-S1",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "X-V15-S1",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "X-V25-S1",
+    "symmetry_order": 8,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order8"
+   },
+   {
+    "id": "X-V25-S2",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "X-V25-S6",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "X-V25-S9",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "X-V25-S13",
+    "symmetry_order": 16,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order16"
+   },
+   {
+    "id": "Z-V25-S1",
+    "symmetry_order": 8,
+    "ck6_subgroups_in_sym": 2,
+    "class": "order8"
+   }
+  ],
+  "bar_family": [
+   "I-V5-S1",
+   "I-V15-S1",
+   "I-V25-S1"
+  ],
+  "family_descriptors": {
+   "B-V15-S1": "free-form polycube (bbox 3x5x5)",
+   "B-V25-S1": "free-form polycube (bbox 5x5x5)",
+   "B-V25-S2": "free-form polycube (bbox 5x5x5)",
+   "B-V25-S3": "free-form polycube (bbox 3x5x5)",
+   "B-V25-S4": "free-form polycube (bbox 5x5x7)",
+   "B-V25-S5": "free-form polycube (bbox 5x5x9)",
+   "B-V25-S6": "free-form polycube (bbox 3x7x7)",
+   "B-V25-S7": "free-form polycube (bbox 3x7x7)",
+   "B-V25-S8": "free-form polycube (bbox 7x7x5)",
+   "B-V25-S9": "free-form polycube (bbox 7x7x5)",
+   "B-V25-S10": "free-form polycube (bbox 7x5x5)",
+   "B-V25-S11": "free-form polycube (bbox 9x5x5)",
+   "B-V25-S12": "free-form polycube (bbox 5x5x5)",
+   "B-V25-S13": "free-form polycube (bbox 5x5x9)",
+   "B-V25-S14": "free-form polycube (bbox 5x5x9)",
+   "I-V5-S1": "straight bar 1x1x5",
+   "I-V15-S1": "straight bar 1x1x15",
+   "I-V25-S1": "straight bar 1x1x25",
+   "I-V25-S2": "slab 1x5x5",
+   "I-V25-S3": "free-form polycube (bbox 5x3x3)",
+   "I-V25-S4": "free-form polycube (bbox 7x3x3)",
+   "I-V25-S5": "free-form polycube (bbox 9x3x3)",
+   "I-V25-S6": "free-form polycube (bbox 11x3x3)",
+   "I-V25-S7": "free-form polycube (bbox 13x3x3)",
+   "I-V25-S8": "free-form polycube (bbox 5x9x9)",
+   "I-V25-S9": "free-form polycube (bbox 5x11x11)",
+   "I-V25-S10": "free-form polycube (bbox 9x5x9)",
+   "I-V25-S11": "free-form polycube (bbox 11x5x11)",
+   "I-V25-S12": "free-form polycube (bbox 11x5x11)",
+   "L-V25-S1": "free-form polycube (bbox 5x7x7)",
+   "P-V25-S1": "free-form polycube (bbox 3x3x5)",
+   "P-V25-S2": "free-form polycube (bbox 3x3x5)",
+   "P-V25-S3": "free-form polycube (bbox 3x3x3)",
+   "R-V15-S1": "free-form polycube (bbox 3x3x5)",
+   "X-V5-S1": "slab 1x3x3",
+   "X-V15-S1": "collinear stack of 3 copies (bbox 3x3x3)",
+   "X-V15-S2": "collinear stack of 3 copies (bbox 3x5x5)",
+   "X-V25-S1": "free-form polycube (bbox 3x5x5)",
+   "X-V25-S2": "collinear stack of 5 copies (bbox 5x3x3)",
+   "X-V25-S3": "free-form polycube (bbox 5x5x5)",
+   "X-V25-S4": "free-form polycube (bbox 5x5x5)",
+   "X-V25-S5": "collinear stack of 5 copies (bbox 5x7x7)",
+   "X-V25-S6": "free-form polycube (bbox 5x3x5)",
+   "X-V25-S7": "free-form polycube (bbox 5x5x5)",
+   "X-V25-S8": "free-form polycube (bbox 3x7x7)",
+   "X-V25-S9": "slab 1x9x9",
+   "X-V25-S10": "collinear stack of 5 copies (bbox 5x5x5)",
+   "X-V25-S11": "collinear stack of 5 copies (bbox 7x7x3)",
+   "X-V25-S12": "free-form polycube (bbox 5x7x7)",
+   "X-V25-S13": "free-form polycube (bbox 3x9x9)",
+   "Z-V25-S1": "free-form polycube (bbox 3x3x3)",
+   "Z-V25-S2": "collinear stack of 5 copies (bbox 3x3x5)"
+  }
+ },
+ "three_copy_figures": [
+  {
+   "id": "B-V15-S1",
+   "volume": 15,
+   "number_of_copies": 3,
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "lunnon_class": "CK6",
+   "number_of_tilings": 2,
+   "p24_canonical_id": "p24-0216334782e8",
+   "oh_canonical_id": "oh-0216334782e8",
+   "handedness": "achiral",
+   "congruent_to_other_stage5N_figures": [],
+   "target_coordinates": [
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     2,
+     3
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     1,
+     3,
+     3
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     2,
+     3,
+     3
+    ]
+   ],
+   "explicit_tiling": [
+    [
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      1,
+      2,
+      1
+     ]
+    ],
+    [
+     [
+      0,
+      2,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      1,
+      2,
+      2
+     ],
+     [
+      1,
+      2,
+      3
+     ],
+     [
+      2,
+      2,
+      2
+     ]
+    ],
+    [
+     [
+      1,
+      3,
+      2
+     ],
+     [
+      1,
+      3,
+      3
+     ],
+     [
+      1,
+      3,
+      4
+     ],
+     [
+      1,
+      4,
+      3
+     ],
+     [
+      2,
+      3,
+      3
+     ]
+    ]
+   ],
+   "render_paths": [
+    "data/ck6_reuse/renders/B-V15-S1_target.png",
+    "data/ck6_reuse/renders/B-V15-S1_tiling.png"
+   ]
+  },
+  {
+   "id": "R-V15-S1",
+   "volume": 15,
+   "number_of_copies": 3,
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "lunnon_class": "CK6",
+   "number_of_tilings": 2,
+   "p24_canonical_id": "p24-4bb83e83ad90",
+   "oh_canonical_id": "oh-4bb83e83ad90",
+   "handedness": "achiral",
+   "congruent_to_other_stage5N_figures": [],
+   "target_coordinates": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     2
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     1,
+     3
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     2,
+     3
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     1,
+     3
+    ],
+    [
+     2,
+     2,
+     3
+    ],
+    [
+     2,
+     2,
+     4
+    ]
+   ],
+   "explicit_tiling": [
+    [
+     [
+      1,
+      2,
+      3
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      3
+     ],
+     [
+      2,
+      2,
+      3
+     ],
+     [
+      2,
+      2,
+      4
+     ]
+    ],
+    [
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      1,
+      1,
+      3
+     ],
+     [
+      1,
+      2,
+      2
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      1,
+      1,
+      1
+     ]
+    ]
+   ],
+   "render_paths": [
+    "data/ck6_reuse/renders/R-V15-S1_target.png",
+    "data/ck6_reuse/renders/R-V15-S1_tiling.png"
+   ]
+  },
+  {
+   "id": "X-V15-S2",
+   "volume": 15,
+   "number_of_copies": 3,
+   "symmetry_class": "CK6",
+   "symmetry_order": 4,
+   "lunnon_class": "CK6",
+   "number_of_tilings": 1,
+   "p24_canonical_id": "p24-93c73bc39bb1",
+   "oh_canonical_id": "oh-93c73bc39bb1",
+   "handedness": "achiral",
+   "congruent_to_other_stage5N_figures": [],
+   "target_coordinates": [
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     2
+    ],
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     2,
+     3
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     2,
+     3
+    ],
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     2,
+     3,
+     3
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     2,
+     4,
+     3
+    ]
+   ],
+   "explicit_tiling": [
+    [
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      1,
+      2,
+      1
+     ],
+     [
+      1,
+      2,
+      2
+     ],
+     [
+      1,
+      2,
+      3
+     ],
+     [
+      1,
+      3,
+      2
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      0,
+      2,
+      1
+     ]
+    ],
+    [
+     [
+      2,
+      2,
+      3
+     ],
+     [
+      2,
+      3,
+      2
+     ],
+     [
+      2,
+      3,
+      3
+     ],
+     [
+      2,
+      3,
+      4
+     ],
+     [
+      2,
+      4,
+      3
+     ]
+    ]
+   ],
+   "render_paths": [
+    "data/ck6_reuse/renders/X-V15-S2_target.png",
+    "data/ck6_reuse/renders/X-V15-S2_tiling.png"
+   ]
+  }
+ ]
+}

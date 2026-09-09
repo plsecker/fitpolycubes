@@ -1,0 +1,935 @@
+{
+ "stage": "5P",
+ "source": "sicherman.net/c5odd/c5nodd.html",
+ "page_rev": "2026-09-05",
+ "cached": "data/ck6_reuse/sicherman_cache/c5odd",
+ "george_rows": {
+  "A": {
+   "tiles": 15,
+   "table": "ach"
+  },
+  "B": {
+   "tiles": 13,
+   "table": "ach"
+  },
+  "E": {
+   "tiles": 13,
+   "table": "chd"
+  },
+  "F": {
+   "tiles": 11,
+   "table": "ach"
+  },
+  "G": {
+   "tiles": 7,
+   "table": "chd"
+  },
+  "H": {
+   "tiles": 7,
+   "table": "chd"
+  },
+  "I": {
+   "tiles": 1,
+   "table": "ach"
+  },
+  "J": {
+   "tiles": 9,
+   "table": "chd"
+  },
+  "K": {
+   "tiles": 21,
+   "table": "ach"
+  },
+  "L": {
+   "tiles": 11,
+   "table": "ach"
+  },
+  "M": {
+   "tiles": 3,
+   "table": "ach"
+  },
+  "N": {
+   "tiles": 15,
+   "table": "ach"
+  },
+  "P": {
+   "tiles": 5,
+   "table": "ach"
+  },
+  "Q": {
+   "tiles": 7,
+   "table": "ach"
+  },
+  "R": {
+   "tiles": 3,
+   "table": "chd"
+  },
+  "S": {
+   "tiles": 7,
+   "table": "chd"
+  },
+  "T": {
+   "tiles": 19,
+   "table": "ach"
+  },
+  "U": {
+   "tiles": 7,
+   "table": "ach"
+  },
+  "V": {
+   "tiles": 7,
+   "table": "ach"
+  },
+  "W": {
+   "tiles": 9,
+   "table": "ach"
+  },
+  "X": {
+   "tiles": 1,
+   "table": "ach"
+  },
+  "Y": {
+   "tiles": 13,
+   "table": "ach"
+  },
+  "Z": {
+   "tiles": 5,
+   "table": "ach"
+  }
+ },
+ "reconstructions": [
+  {
+   "name": "R-3",
+   "image": "c5n-chd.png",
+   "piece": "R",
+   "tiles": 3,
+   "band": [
+    150,
+    200
+   ],
+   "x_range": [
+    0,
+    130
+   ],
+   "layer_sizes": [
+    1,
+    4,
+    5,
+    4,
+    1
+   ],
+   "n_aligned_candidates": 1,
+   "candidates": [
+    {
+     "oh_canonical_id": "oh-4bb83e83ad90",
+     "p24_canonical_id": "p24-4bb83e83ad90",
+     "symmetry_order": 4,
+     "tiling_count": 2,
+     "tiling_orbit_count": 1,
+     "offsets": {
+      "0": [
+       0,
+       0
+      ],
+      "1": [
+       0,
+       0
+      ],
+      "2": [
+       0,
+       0
+      ],
+      "3": [
+       1,
+       1
+      ],
+      "4": [
+       2,
+       2
+      ]
+     },
+     "zflip": false,
+     "colors_are_pieces": true,
+     "his_tiling_orbit_index": 0
+    }
+   ],
+   "cells_by_oh": {
+    "oh-4bb83e83ad90": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      1,
+      1,
+      3
+     ],
+     [
+      1,
+      2,
+      2
+     ],
+     [
+      1,
+      2,
+      3
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      3
+     ],
+     [
+      2,
+      2,
+      3
+     ],
+     [
+      2,
+      2,
+      4
+     ]
+    ]
+   },
+   "cell_count": 15,
+   "connected": true,
+   "symmetry_order": 4,
+   "ck6_subgroups": 1,
+   "oh_canonical_id": "oh-4bb83e83ad90",
+   "p24_canonical_id": "p24-4bb83e83ad90",
+   "tiling_count": 2,
+   "tiling_orbit_count": 1,
+   "colors_are_pieces": true,
+   "his_tiling_orbit_index": 0,
+   "our_candidates": [
+    {
+     "our_id": "R-V15-S1",
+     "our_oh": "oh-4bb83e83ad90",
+     "our_p24": "p24-4bb83e83ad90",
+     "congruent_to_george": true,
+     "our_tiling_count": 2,
+     "his_tiling_orbit_index": 0,
+     "our_orbit_count": 1,
+     "raw_tiling_counts_agree": true
+    }
+   ]
+  },
+  {
+   "name": "P-5",
+   "image": "c5n-ach.png",
+   "piece": "P",
+   "tiles": 5,
+   "band": [
+    100,
+    160
+   ],
+   "x_range": [
+    150,
+    320
+   ],
+   "layer_sizes": [
+    8,
+    9,
+    8
+   ],
+   "n_aligned_candidates": 2,
+   "candidates": [
+    {
+     "oh_canonical_id": "oh-69beb16fe99d",
+     "p24_canonical_id": "p24-69beb16fe99d",
+     "symmetry_order": 12,
+     "tiling_count": 24,
+     "tiling_orbit_count": 2,
+     "offsets": {
+      "0": [
+       0,
+       0
+      ],
+      "1": [
+       0,
+       0
+      ],
+      "2": [
+       0,
+       0
+      ]
+     },
+     "zflip": false,
+     "colors_are_pieces": false
+    }
+   ],
+   "cells_by_oh": {
+    "oh-69beb16fe99d": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      0,
+      2,
+      0
+     ],
+     [
+      0,
+      2,
+      1
+     ],
+     [
+      0,
+      2,
+      2
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      1,
+      2,
+      0
+     ],
+     [
+      1,
+      2,
+      1
+     ],
+     [
+      1,
+      2,
+      2
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      2
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      2,
+      2,
+      0
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ]
+   },
+   "cell_count": 25,
+   "connected": true,
+   "symmetry_order": 12,
+   "ck6_subgroups": 3,
+   "oh_canonical_id": "oh-69beb16fe99d",
+   "p24_canonical_id": "p24-69beb16fe99d",
+   "tiling_count": 24,
+   "tiling_orbit_count": 2,
+   "colors_are_pieces": false,
+   "his_tiling_orbit_index": null,
+   "our_candidates": [
+    {
+     "our_id": "P-V25-S1",
+     "our_oh": "oh-52d50e3f661a",
+     "our_p24": "p24-52d50e3f661a",
+     "congruent_to_george": false,
+     "our_tiling_count": 4
+    },
+    {
+     "our_id": "P-V25-S2",
+     "our_oh": "oh-b1bd6f51b612",
+     "our_p24": "p24-b1bd6f51b612",
+     "congruent_to_george": false,
+     "our_tiling_count": 4
+    },
+    {
+     "our_id": "P-V25-S3",
+     "our_oh": "oh-69beb16fe99d",
+     "our_p24": "p24-69beb16fe99d",
+     "congruent_to_george": true,
+     "our_tiling_count": 24,
+     "his_tiling_orbit_index": null,
+     "our_orbit_count": 2,
+     "raw_tiling_counts_agree": true
+    }
+   ]
+  },
+  {
+   "name": "Z-5",
+   "image": "c5n-ach.png",
+   "piece": "Z",
+   "tiles": 5,
+   "band": [
+    100,
+    160
+   ],
+   "x_range": [
+    340,
+    460
+   ],
+   "layer_sizes": [
+    9,
+    7,
+    9
+   ],
+   "n_aligned_candidates": 1,
+   "candidates": [
+    {
+     "oh_canonical_id": "oh-325afb95cf59",
+     "p24_canonical_id": "p24-325afb95cf59",
+     "symmetry_order": 8,
+     "tiling_count": 4,
+     "tiling_orbit_count": 1,
+     "offsets": {
+      "0": [
+       0,
+       0
+      ],
+      "1": [
+       0,
+       0
+      ],
+      "2": [
+       0,
+       0
+      ]
+     },
+     "zflip": false,
+     "colors_are_pieces": false
+    }
+   ],
+   "cells_by_oh": {
+    "oh-325afb95cf59": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      0,
+      2,
+      0
+     ],
+     [
+      0,
+      2,
+      1
+     ],
+     [
+      0,
+      2,
+      2
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      1,
+      2,
+      0
+     ],
+     [
+      1,
+      2,
+      1
+     ],
+     [
+      1,
+      2,
+      2
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      2
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      2,
+      2,
+      0
+     ],
+     [
+      2,
+      2,
+      2
+     ]
+    ]
+   },
+   "cell_count": 25,
+   "connected": true,
+   "symmetry_order": 8,
+   "ck6_subgroups": 2,
+   "oh_canonical_id": "oh-325afb95cf59",
+   "p24_canonical_id": "p24-325afb95cf59",
+   "tiling_count": 4,
+   "tiling_orbit_count": 1,
+   "colors_are_pieces": false,
+   "his_tiling_orbit_index": null,
+   "our_candidates": [
+    {
+     "our_id": "Z-V25-S1",
+     "our_oh": "oh-325afb95cf59",
+     "our_p24": "p24-325afb95cf59",
+     "congruent_to_george": true,
+     "our_tiling_count": 4,
+     "his_tiling_orbit_index": null,
+     "our_orbit_count": 1,
+     "raw_tiling_counts_agree": true
+    },
+    {
+     "our_id": "Z-V25-S2",
+     "our_oh": "oh-eb7e9a7d9f43",
+     "our_p24": "p24-eb7e9a7d9f43",
+     "congruent_to_george": false,
+     "our_tiling_count": 2
+    }
+   ]
+  }
+ ],
+ "pair_verdicts": [],
+ "metadata_notes": [
+  {
+   "our_id": "B-V15-S1",
+   "category": "improvement over published minimum",
+   "detail": "3 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 10 tiles"
+  },
+  {
+   "our_id": "B-V25-S1",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S10",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S11",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S12",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S13",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S14",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S2",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S3",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S4",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S5",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S6",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S7",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S8",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "B-V25-S9",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+  },
+  {
+   "our_id": "I-V15-S1",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S1",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S10",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S11",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S12",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S2",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S3",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S4",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S5",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S6",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S7",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S8",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V25-S9",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "I-V5-S1",
+   "category": "known shape + known tiling",
+   "detail": "trivial: the 1-tile oddity is the piece itself, identical to George's trivial entry"
+  },
+  {
+   "our_id": "L-V25-S1",
+   "category": "improvement over published minimum",
+   "detail": "5 tiles vs George's smallest known 11 tiles (ach table) -- smaller by 6 tiles"
+  },
+  {
+   "our_id": "P-V25-S1",
+   "category": "related-but-distinct",
+   "detail": "same piece and tile count as George's minimum (5 tiles) but non-congruent to his figure"
+  },
+  {
+   "our_id": "P-V25-S2",
+   "category": "related-but-distinct",
+   "detail": "same piece and tile count as George's minimum (5 tiles) but non-congruent to his figure"
+  },
+  {
+   "our_id": "P-V25-S3",
+   "category": "known shape",
+   "detail": "congruent to George's P-5 figure; we hold 24 tilings in 2 orbits; his colouring could not be extracted from the drawing (colours reused across copies)"
+  },
+  {
+   "our_id": "R-V15-S1",
+   "category": "known shape + known tiling",
+   "detail": "congruent to George's R-3 figure; his published colouring coincides with our tiling orbit 0 of 1"
+  },
+  {
+   "our_id": "X-V15-S1",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V15-S2",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S1",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S10",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S11",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S12",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S13",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S2",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S3",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S4",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S5",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S6",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S7",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S8",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V25-S9",
+   "category": "no match on page",
+   "detail": "more tiles than George's minimum (1); the page lists minima only and cannot adjudicate"
+  },
+  {
+   "our_id": "X-V5-S1",
+   "category": "known shape + known tiling",
+   "detail": "trivial: the 1-tile oddity is the piece itself, identical to George's trivial entry"
+  },
+  {
+   "our_id": "Z-V25-S1",
+   "category": "known shape + known tiling",
+   "detail": "congruent to George's Z-5 figure; single tiling orbit, so his drawing coincides with ours up to symmetry"
+  },
+  {
+   "our_id": "Z-V25-S2",
+   "category": "related-but-distinct",
+   "detail": "same piece and tile count as George's minimum (5 tiles) but non-congruent to his figure"
+  }
+ ]
+}

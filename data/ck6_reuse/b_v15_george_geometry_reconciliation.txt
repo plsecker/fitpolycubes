@@ -1,0 +1,162 @@
+B-V15-S1 vs GEORGE'S M-V15 CK6 FIGURE — GEOMETRY RECONCILIATION REPORT
+=======================================================================
+Date: 2026-09-09
+Scope: forensic comparison only. No solver code, registry definitions,
+catalogue data, or Stage 5L records were modified. No large search run.
+
+1. VERDICT (one line)
+-----------------------------------------------------------------------
+George's published "M 3" figure and our B-V15-S1 target are THE SAME
+15-cell shape (identical canonical IDs; congruent under the 24 proper
+rotations alone), and George's own published colouring tiles it with
+three copies of the piece our registry calls B.
+
+Diagnosis: CASE B, resolved — the apparent discrepancy is a PIECE
+LETTERING CONVENTION MISMATCH between George's page and the repo
+registry, not a geometric one. George's "M" = repo's "B".
+
+2. OUR TARGET (data/ck6_reuse/george_package/b_v15/witness.json)
+-----------------------------------------------------------------------
+cells (normalized, 15):
+  (0,1,1) (0,2,2) (1,0,1) (1,1,0) (1,1,1) (1,1,2) (1,2,1) (1,2,2)
+  (1,2,3) (1,3,2) (1,3,3) (1,3,4) (1,4,3) (2,2,2) (2,3,3)
+O_h canonical ID:      oh-0216334782e8
+proper canonical ID:   p24-0216334782e8   (achiral target: equal IDs)
+CK6 symmetry elements (order 4, exact):
+  identity            I,                 t = (0,0,0)
+  inversion           -I,                t = (2,4,4)
+  c2_diag             [[-1,0,0],[0,0,-1],[0,-1,0]], t = (2,4,4)
+  mirror_diag         [[1,0,0],[0,0,1],[0,1,0]],    t = (0,0,0)
+  (independently recomputed; group closed under composition)
+bounding box: min (0,0,0), max (2,4,4), dims 3x5x5
+layer profiles: x [2,11,2], y [1,4,5,4,1], z [1,4,5,4,1]
+adjacency degrees: 8x deg-1, 4x deg-2, 2x deg-5, 1x deg-6
+  sorted: [1,1,1,1,1,1,1,1,2,2,2,2,5,5,6]
+
+3. GEORGE'S M-3 FIGURE (reconstructed from his cross-section strip)
+-----------------------------------------------------------------------
+Source: sicherman.net/c5odd/c5nodd.html, "Achiral Pentacubes" table.
+Used the LIVE image c5n-ach.png (page rev 2026-09-08) AND the cached
+rev 2026-09-05 image; the M strips are pixel-identical in both, and the
+reconstructed targets are congruent under all 48 isometries. The
+current page still identifies the figure as M with 3 tiles.
+Parsing used the exact Stage 5P machinery
+(tools/frontier/sicherman_c5nodd_compare.py), imported read-only.
+
+Strip: 3 cross-section grids, layer sizes [2,11,2], colours
+aqua/red/gold, 5 cells each.
+
+Reconstruction: 8 CK6-connected offset assemblies exist; exactly ONE
+makes George's published colouring a genuine piece decomposition, and
+in it ALL THREE colour classes are proper-rotation images of repo-B.
+The reconstruction is therefore geometrically self-validating.
+z-flip and mirror readings cannot change the shape: the figure contains
+inversion (achiral) and the result is proper-rotation congruent to ours.
+
+cells (normalized, 15):
+  (0,1,1) (1,0,1) (1,1,0) (1,1,1) (1,2,1) (2,1,1) (2,2,0) (2,2,1)
+  (2,2,2) (2,3,1) (3,2,1) (3,3,1) (3,3,2) (3,4,1) (4,3,1)
+O_h canonical ID:      oh-0216334782e8   — IDENTICAL to ours
+proper canonical ID:   p24-0216334782e8  — IDENTICAL to ours
+symmetry order: 4 (CK6 subgroup present)
+bounding box: dims 5x5x3 (same shape, axes permuted)
+layer profiles: x [1,4,5,4,1], y [1,4,5,4,1], z [2,11,2]
+adjacency degrees: identical histogram and sorted sequence to ours.
+
+4. EXACT COMPARISON
+-----------------------------------------------------------------------
+A. exact equality after translation: not in the same frame, but —
+B. congruent under all 24 proper rotations:  YES  <- first hit
+C. congruent under all 48 isometries:        YES (implied by B)
+D. invariants: layer profiles, degree histogram, sorted degree
+   sequence: all identical.
+
+CLASSIFICATION: SAME SHAPE (proper-rotation congruent).
+
+5. INDEPENDENT TILING OF GEORGE'S TARGET (complete exact-cover
+   enumeration, full-domain placement convention, proper rotations)
+-----------------------------------------------------------------------
+repo-B covers: 2
+  witness 1:  {(0,1,1),(1,0,1),(1,1,0),(1,1,1),(1,2,1)}
+              {(2,1,1),(2,2,0),(2,2,1),(2,2,2),(3,2,1)}
+              {(2,3,1),(3,3,1),(3,3,2),(3,4,1),(4,3,1)}
+  witness 2:  {(0,1,1),(1,0,1),(1,1,0),(1,1,1),(2,1,1)}
+              {(1,2,1),(2,2,0),(2,2,1),(2,2,2),(2,3,1)}
+              {(3,2,1),(3,3,1),(3,3,2),(3,4,1),(4,3,1)}
+repo-M covers: 0   — repo-M does NOT tile George's target at all.
+
+George's published colouring:
+  aqua = (0,1,1)(1,0,1)(1,1,0)(1,1,1)(1,2,1)
+  red  = (2,1,1)(2,2,0)(2,2,1)(2,2,2)(3,2,1)
+  gold = (2,3,1)(3,3,1)(3,3,2)(3,4,1)(4,3,1)
+  = exactly our witness-1 tiling (aqua is literally our Tiling-1
+  copy 1 in the same coordinate frame); it coincides with one of our
+  two B covers up to a target symmetry. It is NOT an M tiling — repo-M
+  has no cover of this target.
+
+6. WHAT GEORGE ACTUALLY POSTED
+-----------------------------------------------------------------------
+Live page rev 2026-09-08 (fetched 2026-09-09); cache was rev 2026-09-05.
+  - M row: "M 3", unchanged figure, both revisions. Present tense: his
+    page STILL publishes this figure as the M oddity.
+  - His M-3 figure's own colouring = three repo-B pentacubes. Under
+    George's lettering, the pentacube repo calls "B" is called "M".
+  - The repo's "M" (Shirakawa 5-18) is a different pentacube: it cannot
+    tile this figure, and the repo's completed corpus searches found NO
+    repo-M CK6 oddity at V=5/15/25/45 (0 solutions everywhere).
+  - Corroborating page changes in the live revision: B row improved
+    13 -> 9 tiles; L row now 5 tiles with an explicit credit
+    "Philip Secker"; U 7 moved into row 2. So the live page is genuinely
+    newer, but the M row (the one in question) is unchanged.
+  - George's quoted statement — "My CK6 oddity for 5M has the same
+    shape as the 15-cube you sent me for 5B" — is literally TRUE under
+    his lettering: his 5M figure IS our 5B figure.
+
+7. REQUIRED DIAGNOSIS: CASE B (with the root cause identified)
+-----------------------------------------------------------------------
+George's M x3 figure is exactly congruent to our B-V15-S1 target AND it
+is tileable by B — in fact George's own published drawing is a B
+tiling of it. Nobody was wrong about geometry:
+
+  * George never believed it was untileable by B; he calls the piece
+    "M" on his page. His figure demonstrates a 3-copy B construction.
+  * Our B-V15-S1 target, tilings, and CK6 symmetry are all genuine
+    (re-verified independently).
+
+ROOT CAUSE of the apparent discrepancy: lettering conventions diverge.
+Stage 5P's GEORGE_ROWS table mapped George's page letters 1:1 onto repo
+registry letters. That mapping is wrong for this pair:
+    George "M" = repo "B"   (Shirakawa 5-19, kurnell 82)
+    George "B" = some other pentacube (identity NOT established here;
+                his B-9 figure's colouring is decorative — 5 colours
+                with counts 10/10/10/5/10 — so it cannot be pinned down
+                by colouring from the strip alone)
+The Stage 5P letter mapping was validated only for R (R-3 colouring =
+repo R, chiral table); the B/M rows were compared metadata-only.
+
+8. IMPLICATIONS FOR THE STAGE 5P "B 13 -> 3" CLAIM
+-----------------------------------------------------------------------
+The claim "B-V15-S1: 3 copies vs George's smallest known 13 —
+improvement over the published minimum" is INVALID on two counts:
+  1. Wrong row: it compared repo-B against George's "B" row, which is a
+     different pentacube under his lettering (his B minimum is now 9).
+  2. Not novel: B-V15-S1's target and construction coincide exactly
+     with George's published "M 3" figure (present on the page since at
+     least rev 2026-09-05, before the correspondence). The Stage 5L
+     corpus search independently rediscovered George's figure.
+Corrected comparison: repo-B's minimal CK6 oddity = 3 tiles (ours,
+verified) = George's published minimum for the same pentacube (his "M"
+row). A tie, not an improvement.
+The witness B-V15-S1 remains a valid, verified construction; it should
+be cited as "same as George's published M-3 figure", not as a new
+record. Any correction notice to George should acknowledge that his
+"M 3" and our "B x3 @15" are the same construction.
+
+9. ARTIFACTS
+-----------------------------------------------------------------------
+data/ck6_reuse/b_v15_george_geometry_reconciliation.json  (full data)
+data/ck6_reuse/b_v15_george_geometry_reconciliation.txt   (this file)
+Live image kept at /tmp/opencode/c5n-ach_live.png (900x1523, rev
+2026-09-08). Cached image untouched under
+data/ck6_reuse/sicherman_cache/c5odd/. No repo files other than the two
+output artifacts above were created or modified.

@@ -1,0 +1,169 @@
+GEORGE "B 9" FIGURE vs OUR V=45 M SEARCH — GEOMETRY RECONCILIATION
+===================================================================
+Date: 2026-09-09
+Scope: forensic reconciliation only. No solver code, registry data,
+Stage 5L historical records, or the running V35 search were touched.
+No large enumeration was launched (corpus membership settled by a
+bounded 6,976-state reachability replay, not a shard sweep).
+
+1. HEADLINE
+-----------------------------------------------------------------------
+George's current "B 9" figure (live page rev 2026-09-08) reconstructs
+to a connected, exact-CK6 45-cell target that repo-M tiles with 9
+copies — one cover reproducing George's published colouring copy for
+copy — and that repo-B cannot tile at all (0 covers).
+
+The target is ABSENT from our completed V45 CK6 corpus. The gap is a
+corpus-enumeration defect (an unsound min-id reachability prefilter in
+the sharded count stage), NOT a funnel/exact-cover failure.
+
+Diagnosis: CASE C, with the consequence that the Stage 5L record
+"repo-M V45 = SAT 0" is FALSE as a universal statement: repo-M has at
+least one 9-tile CK6 oddity. This also geometrically confirms the
+lettering hypothesis: George's "B" = repo-M.
+
+2. RECONSTRUCTION (from the LIVE image, Stage 5P machinery)
+-----------------------------------------------------------------------
+Source : sicherman.net/c5odd/c5nodd.html rev 2026-09-08, "Achiral
+         Pentacubes" table, label "B 9" (was "B 13" on cached
+         rev 2026-09-05)
+strip  : 7 cross-section grids, layer sizes [1,4,11,13,11,4,1], 45 cells
+method : Stage 5P parsing; inversion-constrained offset alignment
+         (layer pairing forced by the symmetric size profile);
+         888 connected assemblies, 54 distinct exact-CK6 targets;
+         target uniquely identified by George's colouring (below)
+
+target cells (normalized, 45):
+  (0,0,2) (0,0,3) (0,0,4) (0,1,3) (0,1,4) (1,0,3) (1,0,4) (1,1,0)
+  (1,1,1) (1,1,2) (1,1,3) (1,1,4) (1,2,1) (1,2,2) (1,2,3) (1,2,4)
+  (2,1,1) (2,1,2) (2,1,3) (2,1,4) (2,2,1) (2,2,2) (2,2,3) (2,2,4)
+  (2,2,5) (2,3,2) (2,3,3) (2,3,4) (2,3,5) (3,2,2) (3,2,3) (3,2,4)
+  (3,2,5) (3,3,2) (3,3,3) (3,3,4) (3,3,5) (3,3,6) (3,4,2) (3,4,3)
+  (4,3,2) (4,3,3) (4,4,2) (4,4,3) (4,4,4)
+bounding box: dims 5x5x7; face-connected
+symmetry: EXACT CK6, order 4:
+  identity; inversion (centre (2,2,3));
+  c2_diag (180 deg about the (1,-1,0) face diagonal);
+  mirror_diag (plane x=y)
+O_h canonical ID:    oh-109166b4c83a
+proper canonical ID: p24-109166b4c83a
+
+3. THE COLOURING (what the 10/10/10/5/10 colours encode)
+-----------------------------------------------------------------------
+George colours each pentacube COPY in one colour and reuses colours
+across copies that never share a z-layer. Colour-class sizes
+10/10/10/5/10 = 2/2/2/1/2 copies. The reconstruction is uniquely
+selected by requiring a cover whose pieces are all monochromatic:
+exactly 1 of the 54 candidates admits one, and it matches George's
+drawing exactly:
+
+  gold   (0,0,2)(0,0,3)(0,0,4)(0,1,3)(1,1,3)   \
+  purple (0,1,4)(1,0,3)(1,0,4)(1,1,4)(2,1,4)    |
+  aqua   (1,1,0)(1,1,1)(1,1,2)(1,2,1)(2,2,1)    |
+  green  (1,2,2)(1,2,3)(1,2,4)(2,2,3)(2,3,3)    | 9 x repo-M
+  red    (2,1,1)(2,1,2)(2,1,3)(2,2,2)(3,2,2)    |
+  aqua   (2,2,4)(2,3,4)(3,2,3)(3,2,4)(3,2,5)    |
+  red    (2,2,5)(2,3,5)(3,3,4)(3,3,5)(3,3,6)    |
+  gold   (2,3,2)(3,3,2)(3,4,2)(3,4,3)(4,3,2)    |
+  purple (3,3,3)(4,3,3)(4,4,2)(4,4,3)(4,4,4)   /
+
+4. PIECE IDENTITY (George's "B")
+-----------------------------------------------------------------------
+  repo-M covers George's B-9 target : 12 (colouring-consistent: 1)
+  repo-B covers George's B-9 target :  0
+George's gray "B" drawing and the 9-copy M tiling agree: George's
+letter "B" denotes the pentacube our registry calls M
+([[0,0,0],[1,0,0],[2,0,0],[1,1,0],[1,1,1]], Shirakawa 5-18).
+(Consistent with the B-V15 reconciliation: George's "M" = repo-B.)
+
+5. EXACT-COVER RESULT (independent full-domain enumeration)
+-----------------------------------------------------------------------
+Complete placement generator: all 24 proper rotations x all
+translations over an extended box, filtered to the target; Algorithm X.
+Placements touching the target: M 140-equivalent rows (audit below),
+B ~0 contained rows beyond... (see JSON; B = 0 covers).
+  repo-M : 12 covers (witness above)
+  repo-B :  0 covers
+Cross-check via the DRIVER's own path (below) agreed: SAT, 12 covers.
+
+6. CORPUS MEMBERSHIP AND THE V45 DISCREPANCY (forensic chain)
+-----------------------------------------------------------------------
+The reconstructed target is an exact-CK6, connected, 45-cell target
+containing the centre cell, max L1 = 5 << universe radius 22. Under the
+corpus conventions (after the proper rotation
+diag(1,-1,0,-1) aligning its CK6 subgroup onto the corpus subgroup) it
+has minimum CK6-orbit id 3590 (16 distinct orbits, ids 3590..3937, and
+it CONTAINS both start-front orbits 3652 and 3937).
+
+Forensic results, each through the driver's own code:
+  a) funnel_and_cover(build_universe(45) ball universe, piece M):
+     SAT, 12 covers, counters {'pass coverage': 1, 'TILEABLE': 1}.
+     -> funnel/placement/exact-cover machinery is sound here.
+  b) placement audit: PlacementIndex 140 rows, coverage complete;
+     exhaustive min-corner enumeration 134 unique placements;
+     0 placements have an anchor outside the ball
+     -> no ball-domain anchor incompleteness for this target.
+  c) enumeration reachability: exact bounded BFS replay of the
+     iter_targets_seeded mechanics over the target's own orbits:
+     target mask REACHABLE (6,976 states)
+     -> iter_targets_seeded(un, 3590, 22) would enumerate it.
+
+  d) BUT: data/ck6_v45/shards.json contains only 86 min-ids, range
+     [3652..3937]. Min-id 3590 has NO SHARD.
+     data/ck6_v45/minid_counts.json hist has NO entry below 3652.
+
+ROOT CAUSE: the sharded count pass (t_ck6_oddity_v35_search.py,
+cmd_count) pre-filters candidate min-ids by "seeded reachability":
+an orbit id s is admitted only if reachable from some START-FRONT
+orbit s0 through a chain of adjacent orbits with ids >= s0
+(id-nondecreasing FROM THE ROOT). That criterion is unsound. George's
+target is the counterexample: its minimum orbit 3590 lies BELOW its
+own centre-adjacent orbits (3652, 3937), so no non-decreasing chain
+from either start orbit reaches it, yet a perfectly valid seeded DFS
+from orbit 3590 grows the target (verified). The count pass therefore
+recorded zero targets for min-id 3590 (and everything else below
+3652), the plan built no shard for it, and the target was never
+enumerated, never funneled, never covered.
+
+The corpus totals are internally self-consistent (count pass and run
+pass use the same prefiltered partition; 1,469,999 == expected), which
+is why the incompleteness was invisible to the Stage validation.
+
+7. COMPARISON WITH THE STAGE 5L V45 RESULT
+-----------------------------------------------------------------------
+  recorded : run/v45_M/final.json  -> targets 1,469,999,
+             exact_cover_candidates 5411, sat_count 0, COMPLETE
+  truth    : the corpus omitted min-id 3590 (and potentially other
+             gaps); over the TRUE target space, repo-M V45 SAT >= 1
+             (George's B-9 figure; 12 covers).
+Classification: CASE C -> the Stage 5L "M V45 = 0" is not a valid
+universal negative. repo-M's minimal CK6 oddity is at most 9 tiles.
+
+8. IMPLICATIONS
+-----------------------------------------------------------------------
+  * George's "B" = repo-M is now geometrically proven (tiling +
+    colouring + B-covers-0). His published minimum for repo-M is 9
+    tiles (down from 13 on rev 2026-09-05).
+  * repo-M therefore HAS a 9-tile CK6 oddity; our records saying the
+    V45 search completed with SAT 0 for M must be annotated
+    accordingly (done in the JSON; historical files untouched).
+  * The RUNNING V35 search uses the same prefilter code path; its
+    corpus is suspect for the same reason. It was NOT interrupted.
+    A post-completion audit should re-derive the V35 min-id candidate
+    set without the prefilter (or seed-shard the missing min-ids).
+  * V <= 25 corpora used the reference single-process enumerator
+    (enumerate_connected_ck6_targets, grows from the centre alone, no
+    prefilter) and are not affected by this defect.
+  * For completeness of the record: our previous B-V15 conclusions are
+    unaffected. The correct current standings: repo-B CK6 oddity
+    minimum = 3 (George's "M 3" = our B-V15-S1 target; tie),
+    repo-M CK6 oddity minimum <= 9 (George's "B 9").
+
+9. ARTIFACTS
+-----------------------------------------------------------------------
+data/ck6_reuse/george_b9_geometry_reconciliation.json  (full data)
+data/ck6_reuse/george_b9_geometry_reconciliation.txt   (this file)
+Live image: /tmp/opencode/c5n-ach_live.png (rev 2026-09-08).
+Throwaway forensic scripts in /tmp/opencode (b9_recon.py,
+b9_stage2.py, b9_forensic*.py). No repo files modified except the two
+output artifacts above.

@@ -1,0 +1,401 @@
+{
+ "id": "B-V15-S1",
+ "piece": "B",
+ "volume": 15,
+ "number_of_copies": 3,
+ "symmetry_order": 4,
+ "symmetry_class": "CK6",
+ "symmetry_kinds": [
+  "c2_diag",
+  "identity",
+  "inversion",
+  "mirror_diag"
+ ],
+ "symmetry_operations": [
+  {
+   "kind": "identity",
+   "matrix": [
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ]
+   ],
+   "translation": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "kind": "inversion",
+   "matrix": [
+    [
+     -1,
+     0,
+     0
+    ],
+    [
+     0,
+     -1,
+     0
+    ],
+    [
+     0,
+     0,
+     -1
+    ]
+   ],
+   "translation": [
+    2,
+    4,
+    4
+   ]
+  },
+  {
+   "kind": "c2_diag",
+   "matrix": [
+    [
+     -1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     -1
+    ],
+    [
+     0,
+     -1,
+     0
+    ]
+   ],
+   "translation": [
+    2,
+    4,
+    4
+   ]
+  },
+  {
+   "kind": "mirror_diag",
+   "matrix": [
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     0
+    ]
+   ],
+   "translation": [
+    0,
+    0,
+    0
+   ]
+  }
+ ],
+ "bounding_box_min": [
+  0,
+  0,
+  0
+ ],
+ "bounding_box_max_inclusive": [
+  2,
+  4,
+  4
+ ],
+ "target_coordinates": [
+  [
+   0,
+   1,
+   1
+  ],
+  [
+   0,
+   2,
+   2
+  ],
+  [
+   1,
+   0,
+   1
+  ],
+  [
+   1,
+   1,
+   0
+  ],
+  [
+   1,
+   1,
+   1
+  ],
+  [
+   1,
+   1,
+   2
+  ],
+  [
+   1,
+   2,
+   1
+  ],
+  [
+   1,
+   2,
+   2
+  ],
+  [
+   1,
+   2,
+   3
+  ],
+  [
+   1,
+   3,
+   2
+  ],
+  [
+   1,
+   3,
+   3
+  ],
+  [
+   1,
+   3,
+   4
+  ],
+  [
+   1,
+   4,
+   3
+  ],
+  [
+   2,
+   2,
+   2
+  ],
+  [
+   2,
+   3,
+   3
+  ]
+ ],
+ "number_of_tilings": 2,
+ "tilings": [
+  [
+   [
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     1
+    ]
+   ],
+   [
+    [
+     0,
+     2,
+     2
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     2,
+     3
+    ],
+    [
+     2,
+     2,
+     2
+    ]
+   ],
+   [
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     1,
+     3,
+     3
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     3,
+     3
+    ]
+   ]
+  ],
+  [
+   [
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ]
+   ],
+   [
+    [
+     1,
+     2,
+     3
+    ],
+    [
+     1,
+     3,
+     3
+    ],
+    [
+     1,
+     3,
+     4
+    ],
+    [
+     1,
+     4,
+     3
+    ],
+    [
+     2,
+     3,
+     3
+    ]
+   ],
+   [
+    [
+     0,
+     2,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     3,
+     2
+    ],
+    [
+     2,
+     2,
+     2
+    ]
+   ]
+  ]
+ ],
+ "verification": {
+  "volume": true,
+  "connected": true,
+  "exact_ck6": true,
+  "tiling_count_recomputed": true,
+  "placements_valid_orientations": true,
+  "tiling_disjoint": true,
+  "tiling_covers_target": true,
+  "rendered_cube_count_checked": true
+ },
+ "provenance": {
+  "catalogue": "data/ck6_reuse/small_positive_catalogue.json",
+  "audit": "data/ck6_reuse/small_positive_geometric_audit.json",
+  "george_comparison": "data/ck6_reuse/stage5p_george_comparison.json",
+  "search_stage": "5L (per-piece per-volume corpus search)"
+ },
+ "george_published_minimum": 13,
+ "george_source": {
+  "source_url": "https://sicherman.net/c5odd/c5nodd.html",
+  "page_title": "Pentacube Oddities with Inverse/Diagonal Symmetry",
+  "table": "Achiral Pentacubes",
+  "page_rev": "2026-09-05",
+  "cache": "data/ck6_reuse/sicherman_cache/c5odd/c5nodd.html",
+  "stage5p_record": "data/ck6_reuse/stage5p_george_comparison.json",
+  "published_minimum": {
+   "B": 13,
+   "L": 11
+  }
+ }
+}

@@ -1,0 +1,3 @@
+[run] V=55, 4 fixed min-id shards, 1 workers
+shard plan written: data/ck6_v55/shard_plan.json
+[run] launched shard 0 (pid 1557595)

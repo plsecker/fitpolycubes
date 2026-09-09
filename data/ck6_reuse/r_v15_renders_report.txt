@@ -1,0 +1,48 @@
+Stage 5M render report - the two V=15 R-pentacube CK6 witnesses
+===============================================================
+
+Rendered from: data/ck6_reuse/r_v15_witnesses.json (read-only).
+Renderer: matplotlib mplot3d voxels - every occupied coordinate
+is one unit cube on the shared integer lattice; shared faces are
+co-planar by construction. Rendered cube count validated = 15 per
+target, coordinates exactly the exported ones (asserted in code).
+
+Files:
+  r_v15_witness_1.png  (assembled + tiled, witness 1)
+  r_v15_witness_2.png  (assembled + tiled, witness 2)
+  r_v15_comparison.png (both assembled targets side by side)
+
+1. Are the two targets visually distinct?
+   YES. As placed in the exported
+   coordinates the two 15-cube figures occupy different cells;
+   they share 7 of 15 cube positions (the exported
+   coordinates differ).
+   witness 1 = [(-1, 0, 0), (-1, 0, 1), (-1, 1, 1), (-1, 1, 2), (0, -1, -1), (0, -1, 0), (0, 0, -1), (0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (1, -1, -2), (1, -1, -1), (1, 0, -1), (1, 0, 0)]
+   witness 2 = [(-1, 0, -1), (-1, 0, 0), (-1, 1, -2), (-1, 1, -1), (0, -1, 0), (0, -1, 1), (0, 0, -1), (0, 0, 0), (0, 0, 1), (0, 1, -1), (0, 1, 0), (1, -1, 1), (1, -1, 2), (1, 0, 0), (1, 0, 1)]
+   In the side-by-side render they read as two different
+   staircases of the same 15-cube figure.
+
+2. Congruence under a proper rotation?
+   YES. The targets are congruent under a proper rotation
+   matrix M = [[-1, 0, 0], [0, -1, 0], [0, 0, 1]]
+   with integer translation t = (0, 0, 0):  {M@c + t} == witness 2.
+   det(M) = +1, so the two figures have the same chirality.
+   This matches the export: both carry the identical
+   canonical_target_proper identifier from Stage 5L.
+
+3. Which differences are merely orientation/placement?
+   All of them. The two targets are the same free polycube;
+   the exported coordinates differ only by the proper
+   rotation M and translation t above (both fixes of the
+   center-type CK6 group keep the origin as fixed point, and
+   both keep the C2 axis along a face diagonal). No intrinsic
+   geometric property (shape, connectivity, symmetry group,
+   CK6 class, tiling count = 2 exact covers each) differs.
+   The tilings correspond likewise: applying M (+t) to the
+   three R copies of witness 1 gives the three R copies of
+   witness 2 (verified: True).
+
+Annotations on every panel: R x 3, V = 15, exact CK6,
+symmetry order = 4. Assembled panels mark the origin (CK6 fixed
+point, red dot) and the C2 axis along the face diagonal (1,1,0)
+(red dashed line).

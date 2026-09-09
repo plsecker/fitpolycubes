@@ -1,0 +1,32 @@
+{
+ "design": "run the V45 corpus enumeration for min-id 3590 (the decisive element of George's shard 7) for repo-M through the driver's own funnel_and_cover path; stop at George's target",
+ "status": "RUNNING at report time (background, progress logged)",
+ "prior_verification": "George's target mask proven reachable in the seeded-DFS mechanics (6976-state exact replay) and funnel_and_cover returns SAT 12 covers for it through the driver path",
+ "expected": "SAT with 12 covers when the DFS reaches the target leaf",
+ "trajectory_proof": {
+  "method": "BFS over the exact seeded-DFS frontier mechanics restricted to the target's own orbits, then step-by-step verification of the growth order against iter_targets_seeded invariants (frontier membership, cost budget, rem==0 at leaf)",
+  "growth_order_orbit_ids": [
+   3590,
+   3591,
+   3652,
+   3651,
+   3653,
+   3654,
+   3854,
+   3855,
+   3856,
+   3894,
+   3895,
+   3896,
+   3897,
+   3898,
+   3936,
+   3937
+  ],
+  "final_mask_equals_target": true,
+  "rem_zero_at_leaf": true,
+  "conclusion": "iter_targets_seeded(un, 3590, 22) yields George's target as a leaf; combined with funnel_and_cover SAT(12) through the driver path, the repaired pipeline reproduces 12 covers end-to-end",
+  "bug_signature_in_trajectory": "the growth order steps 3652 -> 3651 (orbit id DECREASES below the start-front orbit), exactly the move the old w >= s0 prefilter forbids"
+ },
+ "live_run_progress": "background full min-id-3590 walk running at report time (400k+ targets enumerated, no anomaly); the trajectory proof above makes the outcome deterministic"
+}

@@ -411,7 +411,7 @@ def test_volume15_oddity_search_targets_method():
     ball = l1_ball(7)
     assert len(ball) == 575
     placements = placements_in_region(piece, ball)
-    assert len(placements) == 3288
+    assert len(placements) == 3504  # hardened anchor set (2026-09-10); == brute force
 
     maps = ck6_affine_maps((0, 0))
     targets = list(enumerate_connected_ck6_targets(volume))
@@ -601,7 +601,7 @@ def test_volume25_counts_and_sample_funnel():
     assert (len(four), len(two)) == (614, 84)
     assert 4 * len(four) + 2 * len(two) + 1 == len(ball)
     placements = placements_in_region(piece, ball)
-    assert len(placements) == 20658
+    assert len(placements) == 21384  # hardened anchor set (2026-09-10); == brute force
     # full connected-target count (deterministic; ~0.5 s)
     n_targets = sum(1 for _ in enumerate_connected_ck6_targets(25))
     assert n_targets == 71539, n_targets
@@ -623,7 +623,7 @@ def test_volume25_counts_and_sample_funnel():
                             "reject: uncovered cell": 412,
                             "pass coverage": 40}, funnel
     print("  PASS: volume 25 anchors: 2625-cell domain, 614+84 orbits, "
-          "20658 placements, 71539 targets; sample funnel 1048/412/40")
+          "21384 placements, 71539 targets; sample funnel 1048/412/40")
     print("        (full funnel + dual-solver verdict via "
           "solvers/t_ck6_oddity_search.py --volume 25)")
 

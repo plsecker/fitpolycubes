@@ -1,0 +1,1 @@
+5 L pentacubes form a 25-cell connected polycube with exact CK6 symmetry, improving the published L minimum of 11.

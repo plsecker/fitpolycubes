@@ -98,15 +98,33 @@ def placements_in_region(piece, region):
     """All translations of all orientations of `piece` inside `region`.
 
     Returns a sorted list of frozensets of cells.
+
+    Anchor completeness (hardened 2026-09-10, CK6 sharding-repair audit):
+    orientations are normalized to per-axis minimum (0,0,0) but need not
+    CONTAIN (0,0,0) as a cell (true for 18/24 orientations of M and
+    6/24 of P).  For such an orientation the anchor of a placement (its
+    component-wise minimum corner) is not a placement cell and can lie
+    outside a non-box region that fully contains the placement.  The
+    anchor set is therefore computed exactly, as the intersection of the
+    region translated by minus each orientation cell:
+        {a : a + o subset of region}  =  intersection over c in o of
+                                         (region - c).
+    For orientations that do contain (0,0,0) the anchor lies in the
+    placement, hence in the region, so the hardened version is a strict
+    superset of the old anchor-in-region enumeration and identical for
+    box regions up to the (previously missed) boundary placements.
     """
-    region = set(region)
+    region = set(tuple(int(v) for v in c) for c in region)
     out = set()
     for o in unique_orientations(piece):
-        for a in region:
-            cells = frozenset((a[0] + c[0], a[1] + c[1], a[2] + c[2])
-                              for c in o)
-            if cells <= region:
-                out.add(cells)
+        anchors = None
+        for c in o:
+            shifted = {(x - c[0], y - c[1], z - c[2])
+                       for (x, y, z) in region}
+            anchors = shifted if anchors is None else anchors & shifted
+        for a in anchors:
+            out.add(frozenset((a[0] + c[0], a[1] + c[1], a[2] + c[2])
+                              for c in o))
     return sorted(out)
 
 

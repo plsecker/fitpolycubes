@@ -1,0 +1,1641 @@
+{
+ "source": {
+  "page": "https://sicherman.net/c5odd/c5nodd.html (rev 2026-09-08)",
+  "image": "c5n-ach.png (live)",
+  "strip": {
+   "band": [
+    509,
+    567
+   ],
+   "x_range": [
+    520,
+    743
+   ],
+   "layer_sizes": [
+    1,
+    4,
+    11,
+    13,
+    11,
+    4,
+    1
+   ]
+  },
+  "page_label": "B 9"
+ },
+ "reconstruction": {
+  "method": "Stage 5P strip parsing; inversion-constrained offset alignment (pairing forced by symmetric layer sizes [1,4,11,13,11,4,1]); candidate disambiguated by George's per-copy colouring (colour classes 10/10/10/5/10 must be unions of whole copies)",
+  "n_ck6_candidates": 54,
+  "m_cover_counts_per_candidate": {
+   "oh-07fce8b1d6ca": 0,
+   "oh-109166b4c83a": 12,
+   "oh-13a7853894c0": 0,
+   "oh-173ebd53e0ce": 0,
+   "oh-1b0ae6f9e64b": 0,
+   "oh-214dbc0c0c09": 0,
+   "oh-221bf1bb121e": 0,
+   "oh-2576d32278e2": 0,
+   "oh-2baaef0563fc": 0,
+   "oh-33f306ea95cd": 0,
+   "oh-367f16ce50c7": 0,
+   "oh-40bd0fbf0541": 0,
+   "oh-4324f4dda317": 0,
+   "oh-435b9626db63": 0,
+   "oh-488cf5114b3b": 0,
+   "oh-4fbfc7196707": 0,
+   "oh-50401f0906ce": 0,
+   "oh-5b081c97e053": 0,
+   "oh-62d14d630b1c": 0,
+   "oh-6544b347b657": 0,
+   "oh-70133df4d56c": 0,
+   "oh-71405c84c0fc": 0,
+   "oh-71a06792e53a": 0,
+   "oh-7374c1159e40": 0,
+   "oh-7982ef590a3d": 0,
+   "oh-7eccee677cec": 0,
+   "oh-8802907e8329": 0,
+   "oh-8a41aa711968": 0,
+   "oh-9741c64ec449": 0,
+   "oh-9889aab70de5": 0,
+   "oh-a73ea635c75e": 0,
+   "oh-ad9dadc2baa5": 0,
+   "oh-b2b51832807e": 0,
+   "oh-b5f772f85dea": 0,
+   "oh-b6d2b3cc9582": 0,
+   "oh-bacc86b074b1": 0,
+   "oh-bea78d81ca42": 0,
+   "oh-beb625034ba4": 0,
+   "oh-c46c34c4c86e": 0,
+   "oh-d0579358b358": 0,
+   "oh-de8da7251d44": 0,
+   "oh-e67f903f6010": 0,
+   "oh-ea2be01a4c3c": 0,
+   "oh-eaa073e94101": 0,
+   "oh-eaf8262e59ca": 0,
+   "oh-eb241df476b8": 0,
+   "oh-ebe959e2b2f9": 0,
+   "oh-f098e1d16949": 0,
+   "oh-f0ab08120baf": 0,
+   "oh-f2a313c5b4b8": 0,
+   "oh-f7ae78341dd0": 0,
+   "oh-f8623393c1d1": 0,
+   "oh-f961e6a360bb": 0,
+   "oh-fbde687232a6": 0
+  },
+  "cells": [
+   [
+    0,
+    0,
+    2
+   ],
+   [
+    0,
+    0,
+    3
+   ],
+   [
+    0,
+    0,
+    4
+   ],
+   [
+    0,
+    1,
+    3
+   ],
+   [
+    0,
+    1,
+    4
+   ],
+   [
+    1,
+    0,
+    3
+   ],
+   [
+    1,
+    0,
+    4
+   ],
+   [
+    1,
+    1,
+    0
+   ],
+   [
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    2
+   ],
+   [
+    1,
+    1,
+    3
+   ],
+   [
+    1,
+    1,
+    4
+   ],
+   [
+    1,
+    2,
+    1
+   ],
+   [
+    1,
+    2,
+    2
+   ],
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    1,
+    2,
+    4
+   ],
+   [
+    2,
+    1,
+    1
+   ],
+   [
+    2,
+    1,
+    2
+   ],
+   [
+    2,
+    1,
+    3
+   ],
+   [
+    2,
+    1,
+    4
+   ],
+   [
+    2,
+    2,
+    1
+   ],
+   [
+    2,
+    2,
+    2
+   ],
+   [
+    2,
+    2,
+    3
+   ],
+   [
+    2,
+    2,
+    4
+   ],
+   [
+    2,
+    2,
+    5
+   ],
+   [
+    2,
+    3,
+    2
+   ],
+   [
+    2,
+    3,
+    3
+   ],
+   [
+    2,
+    3,
+    4
+   ],
+   [
+    2,
+    3,
+    5
+   ],
+   [
+    3,
+    2,
+    2
+   ],
+   [
+    3,
+    2,
+    3
+   ],
+   [
+    3,
+    2,
+    4
+   ],
+   [
+    3,
+    2,
+    5
+   ],
+   [
+    3,
+    3,
+    2
+   ],
+   [
+    3,
+    3,
+    3
+   ],
+   [
+    3,
+    3,
+    4
+   ],
+   [
+    3,
+    3,
+    5
+   ],
+   [
+    3,
+    3,
+    6
+   ],
+   [
+    3,
+    4,
+    2
+   ],
+   [
+    3,
+    4,
+    3
+   ],
+   [
+    4,
+    3,
+    2
+   ],
+   [
+    4,
+    3,
+    3
+   ],
+   [
+    4,
+    4,
+    2
+   ],
+   [
+    4,
+    4,
+    3
+   ],
+   [
+    4,
+    4,
+    4
+   ]
+  ],
+  "layer_offsets": {
+   "0": [
+    1,
+    1
+   ],
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    0,
+    0
+   ],
+   "3": [
+    0,
+    0
+   ],
+   "4": [
+    0,
+    0
+   ],
+   "5": [
+    2,
+    2
+   ],
+   "6": [
+    3,
+    3
+   ]
+  },
+  "bbox_min": [
+   0,
+   0,
+   0
+  ],
+  "bbox_max": [
+   4,
+   4,
+   6
+  ],
+  "bbox_dims": [
+   5,
+   5,
+   7
+  ],
+  "face_connected": true,
+  "symmetry_order": 4,
+  "symmetry_kinds": [
+   "c2_diag",
+   "identity",
+   "inversion",
+   "mirror_diag"
+  ],
+  "symmetry_operations": [
+   {
+    "matrix": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "translation": [
+     0,
+     0,
+     0
+    ],
+    "kind": "identity"
+   },
+   {
+    "matrix": [
+     [
+      -1,
+      0,
+      0
+     ],
+     [
+      0,
+      -1,
+      0
+     ],
+     [
+      0,
+      0,
+      -1
+     ]
+    ],
+    "translation": [
+     4,
+     4,
+     6
+    ],
+    "kind": "inversion"
+   },
+   {
+    "matrix": [
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "translation": [
+     0,
+     0,
+     0
+    ],
+    "kind": "mirror_diag"
+   },
+   {
+    "matrix": [
+     [
+      0,
+      -1,
+      0
+     ],
+     [
+      -1,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      -1
+     ]
+    ],
+    "translation": [
+     4,
+     4,
+     6
+    ],
+    "kind": "c2_diag"
+   }
+  ],
+  "oh_canonical_id": "oh-109166b4c83a",
+  "p24_canonical_id": "p24-109166b4c83a",
+  "colouring_model": "each pentacube copy drawn in one colour; colours reused across copies that never share a z-layer; colour-class sizes 10/10/10/5/10 = 2/2/2/1/2 copies",
+  "corpus_frame": {
+   "rotation_to_corpus_ck6_subgroup": [
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     -1,
+     0
+    ],
+    [
+     0,
+     0,
+     -1
+    ]
+   ],
+   "inversion_centre_in_reconstruction_frame": [
+    2,
+    2,
+    3
+   ],
+   "note": "George's CK6 subgroup (C2 about the (1,-1,0) diagonal, mirror across x=y) is conjugated by this proper rotation onto the corpus subgroup (C2 about (1,1,0), mirror across x+y=0); the corpus-frame target is closed under ck6_affine_maps((0,0)) and contains the centre cell.",
+   "min_orbit_id_in_v45_universe": 3590,
+   "n_distinct_ck6_orbits": 16,
+   "orbit_id_range_in_target": [
+    3590,
+    3937
+   ],
+   "contains_start_front_orbits": [
+    3652,
+    3937
+   ]
+  }
+ },
+ "exact_covers": {
+  "repo_M_definition": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0
+   ],
+   [
+    1,
+    1,
+    1
+   ]
+  ],
+  "repo_B_definition": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0
+   ],
+   [
+    1,
+    0,
+    1
+   ]
+  ],
+  "repo_M_covers": 12,
+  "repo_M_witnesses": [
+   [
+    [
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      0,
+      0,
+      3
+     ],
+     [
+      0,
+      0,
+      4
+     ],
+     [
+      1,
+      0,
+      3
+     ],
+     [
+      1,
+      1,
+      3
+     ]
+    ],
+    [
+     [
+      0,
+      1,
+      3
+     ],
+     [
+      0,
+      1,
+      4
+     ],
+     [
+      1,
+      0,
+      4
+     ],
+     [
+      1,
+      1,
+      4
+     ],
+     [
+      1,
+      2,
+      4
+     ]
+    ],
+    [
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    [
+     [
+      1,
+      2,
+      1
+     ],
+     [
+      1,
+      2,
+      2
+     ],
+     [
+      1,
+      2,
+      3
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      2,
+      2,
+      2
+     ]
+    ],
+    [
+     [
+      2,
+      1,
+      3
+     ],
+     [
+      2,
+      2,
+      3
+     ],
+     [
+      2,
+      3,
+      3
+     ],
+     [
+      3,
+      2,
+      2
+     ],
+     [
+      3,
+      2,
+      3
+     ]
+    ],
+    [
+     [
+      2,
+      1,
+      4
+     ],
+     [
+      2,
+      2,
+      4
+     ],
+     [
+      2,
+      3,
+      4
+     ],
+     [
+      3,
+      2,
+      4
+     ],
+     [
+      3,
+      2,
+      5
+     ]
+    ],
+    [
+     [
+      2,
+      2,
+      5
+     ],
+     [
+      2,
+      3,
+      5
+     ],
+     [
+      3,
+      3,
+      4
+     ],
+     [
+      3,
+      3,
+      5
+     ],
+     [
+      3,
+      3,
+      6
+     ]
+    ],
+    [
+     [
+      2,
+      3,
+      2
+     ],
+     [
+      3,
+      3,
+      2
+     ],
+     [
+      3,
+      4,
+      2
+     ],
+     [
+      3,
+      4,
+      3
+     ],
+     [
+      4,
+      3,
+      2
+     ]
+    ],
+    [
+     [
+      3,
+      3,
+      3
+     ],
+     [
+      4,
+      3,
+      3
+     ],
+     [
+      4,
+      4,
+      2
+     ],
+     [
+      4,
+      4,
+      3
+     ],
+     [
+      4,
+      4,
+      4
+     ]
+    ]
+   ],
+   [
+    [
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      0,
+      0,
+      3
+     ],
+     [
+      0,
+      0,
+      4
+     ],
+     [
+      1,
+      0,
+      3
+     ],
+     [
+      1,
+      1,
+      3
+     ]
+    ],
+    [
+     [
+      0,
+      1,
+      3
+     ],
+     [
+      0,
+      1,
+      4
+     ],
+     [
+      1,
+      0,
+      4
+     ],
+     [
+      1,
+      1,
+      4
+     ],
+     [
+      1,
+      2,
+      4
+     ]
+    ],
+    [
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    [
+     [
+      1,
+      2,
+      1
+     ],
+     [
+      1,
+      2,
+      2
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      2,
+      2,
+      2
+     ],
+     [
+      2,
+      3,
+      2
+     ]
+    ],
+    [
+     [
+      1,
+      2,
+      3
+     ],
+     [
+      2,
+      1,
+      3
+     ],
+     [
+      2,
+      1,
+      4
+     ],
+     [
+      2,
+      2,
+      3
+     ],
+     [
+      3,
+      2,
+      3
+     ]
+    ],
+    [
+     [
+      2,
+      2,
+      4
+     ],
+     [
+      2,
+      3,
+      3
+     ],
+     [
+      2,
+      3,
+      4
+     ],
+     [
+      2,
+      3,
+      5
+     ],
+     [
+      3,
+      2,
+      4
+     ]
+    ],
+    [
+     [
+      2,
+      2,
+      5
+     ],
+     [
+      3,
+      2,
+      5
+     ],
+     [
+      3,
+      3,
+      4
+     ],
+     [
+      3,
+      3,
+      5
+     ],
+     [
+      3,
+      3,
+      6
+     ]
+    ],
+    [
+     [
+      3,
+      2,
+      2
+     ],
+     [
+      3,
+      3,
+      2
+     ],
+     [
+      3,
+      4,
+      2
+     ],
+     [
+      4,
+      3,
+      2
+     ],
+     [
+      4,
+      3,
+      3
+     ]
+    ],
+    [
+     [
+      3,
+      3,
+      3
+     ],
+     [
+      3,
+      4,
+      3
+     ],
+     [
+      4,
+      4,
+      2
+     ],
+     [
+      4,
+      4,
+      3
+     ],
+     [
+      4,
+      4,
+      4
+     ]
+    ]
+   ],
+   [
+    [
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      0,
+      0,
+      3
+     ],
+     [
+      0,
+      0,
+      4
+     ],
+     [
+      1,
+      0,
+      3
+     ],
+     [
+      1,
+      1,
+      3
+     ]
+    ],
+    [
+     [
+      0,
+      1,
+      3
+     ],
+     [
+      0,
+      1,
+      4
+     ],
+     [
+      1,
+      0,
+      4
+     ],
+     [
+      1,
+      1,
+      4
+     ],
+     [
+      1,
+      2,
+      4
+     ]
+    ],
+    [
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      2,
+      2,
+      1
+     ]
+    ],
+    [
+     [
+      1,
+      2,
+      1
+     ],
+     [
+      1,
+      2,
+      2
+     ],
+     [
+      1,
+      2,
+      3
+     ],
+     [
+      2,
+      2,
+      2
+     ],
+     [
+      2,
+      3,
+      2
+     ]
+    ],
+    [
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      3
+     ],
+     [
+      2,
+      1,
+      4
+     ],
+     [
+      2,
+      2,
+      3
+     ],
+     [
+      3,
+      2,
+      3
+     ]
+    ],
+    [
+     [
+      2,
+      2,
+      4
+     ],
+     [
+      2,
+      3,
+      3
+     ],
+     [
+      2,
+      3,
+      4
+     ],
+     [
+      2,
+      3,
+      5
+     ],
+     [
+      3,
+      2,
+      4
+     ]
+    ],
+    [
+     [
+      2,
+      2,
+      5
+     ],
+     [
+      3,
+      2,
+      5
+     ],
+     [
+      3,
+      3,
+      4
+     ],
+     [
+      3,
+      3,
+      5
+     ],
+     [
+      3,
+      3,
+      6
+     ]
+    ],
+    [
+     [
+      3,
+      2,
+      2
+     ],
+     [
+      3,
+      3,
+      2
+     ],
+     [
+      3,
+      4,
+      2
+     ],
+     [
+      4,
+      3,
+      2
+     ],
+     [
+      4,
+      3,
+      3
+     ]
+    ],
+    [
+     [
+      3,
+      3,
+      3
+     ],
+     [
+      3,
+      4,
+      3
+     ],
+     [
+      4,
+      4,
+      2
+     ],
+     [
+      4,
+      4,
+      3
+     ],
+     [
+      4,
+      4,
+      4
+     ]
+    ]
+   ]
+  ],
+  "repo_M_colouring_consistent_covers": 1,
+  "repo_B_covers": 0,
+  "repo_B_colouring_consistent_covers": 0,
+  "george_colouring_cover_witness": [
+   [
+    [
+     0,
+     0,
+     2
+    ],
+    [
+     0,
+     0,
+     3
+    ],
+    [
+     0,
+     0,
+     4
+    ],
+    [
+     0,
+     1,
+     3
+    ],
+    [
+     1,
+     1,
+     3
+    ]
+   ],
+   [
+    [
+     0,
+     1,
+     4
+    ],
+    [
+     1,
+     0,
+     3
+    ],
+    [
+     1,
+     0,
+     4
+    ],
+    [
+     1,
+     1,
+     4
+    ],
+    [
+     2,
+     1,
+     4
+    ]
+   ],
+   [
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     2
+    ],
+    [
+     1,
+     2,
+     1
+    ],
+    [
+     2,
+     2,
+     1
+    ]
+   ],
+   [
+    [
+     1,
+     2,
+     2
+    ],
+    [
+     1,
+     2,
+     3
+    ],
+    [
+     1,
+     2,
+     4
+    ],
+    [
+     2,
+     2,
+     3
+    ],
+    [
+     2,
+     3,
+     3
+    ]
+   ],
+   [
+    [
+     2,
+     1,
+     1
+    ],
+    [
+     2,
+     1,
+     2
+    ],
+    [
+     2,
+     1,
+     3
+    ],
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     3,
+     2,
+     2
+    ]
+   ],
+   [
+    [
+     2,
+     2,
+     4
+    ],
+    [
+     2,
+     3,
+     4
+    ],
+    [
+     3,
+     2,
+     3
+    ],
+    [
+     3,
+     2,
+     4
+    ],
+    [
+     3,
+     2,
+     5
+    ]
+   ],
+   [
+    [
+     2,
+     2,
+     5
+    ],
+    [
+     2,
+     3,
+     5
+    ],
+    [
+     3,
+     3,
+     4
+    ],
+    [
+     3,
+     3,
+     5
+    ],
+    [
+     3,
+     3,
+     6
+    ]
+   ],
+   [
+    [
+     2,
+     3,
+     2
+    ],
+    [
+     3,
+     3,
+     2
+    ],
+    [
+     3,
+     4,
+     2
+    ],
+    [
+     3,
+     4,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ]
+   ],
+   [
+    [
+     3,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     4,
+     2
+    ],
+    [
+     4,
+     4,
+     3
+    ],
+    [
+     4,
+     4,
+     4
+    ]
+   ]
+  ]
+ },
+ "v45_stage5l_context": {
+  "run_v45_M": {
+   "piece": "M",
+   "volume": 45,
+   "tiles": 9,
+   "number_of_targets": 1469999,
+   "targets_rejected_few_placements": 734539,
+   "targets_rejected_uncovered": 730049,
+   "exact_cover_candidates": 5411,
+   "reject_exact_cover_unsat": 5411,
+   "sat_count": 0,
+   "number_of_solutions": 0,
+   "max_solutions_single_target": 0,
+   "symmetry_order": null,
+   "symmetry_class": null,
+   "elapsed_shard_max_s": 490.2,
+   "peak_rss_mb": 3582.3,
+   "status": "COMPLETE"
+  },
+  "run_v45_B": {
+   "piece": "B",
+   "volume": 45,
+   "tiles": 9,
+   "number_of_targets": 1469999,
+   "targets_rejected_few_placements": 836388,
+   "targets_rejected_uncovered": 631121,
+   "exact_cover_candidates": 2490,
+   "reject_exact_cover_unsat": 2490,
+   "sat_count": 0,
+   "number_of_solutions": 0,
+   "max_solutions_single_target": 0,
+   "symmetry_order": null,
+   "symmetry_class": null,
+   "elapsed_shard_max_s": 462.5,
+   "peak_rss_mb": 3187.9,
+   "status": "COMPLETE"
+  },
+  "small_positive_catalogue_volumes": [
+   5,
+   15,
+   25
+  ]
+ },
+ "forensic": {
+  "driver_funnel_and_cover_reproduction": {
+   "path": "build_universe(45) -> FastFunnel(piece=M, l1_ball(22)) -> funnel_and_cover(target, index, 9) -- the exact run_shard_piece code path",
+   "result": "SAT, 12 covers, funnel counters {'pass coverage': 1, 'TILEABLE': 1}",
+   "placementindex_rows": 140,
+   "coverage_complete": true,
+   "conclusion": "funnel/placement/exact-cover stage is sound for this target"
+  },
+  "placement_audit": {
+   "placements_in_region(ball) contained in target": 140,
+   "exhaustive min-corner enumeration over all orientations": 134,
+   "placements_with_anchor_outside_ball": 0,
+   "note": "PlacementIndex over the ball even over-generates (140 vs 134 unique min-corner placements; duplicates by anchor); no missing placements"
+  },
+  "corpus_enumeration_reachability": {
+   "method": "restricted replay of iter_targets_seeded mechanics over the target's own 16 orbits (exact BFS; frontier is a function of the mask), full sweep NOT launched",
+   "target_mask_reachable": true,
+   "bfs_states": 6976,
+   "conclusion": "iter_targets_seeded(un, 3590, 22) WOULD enumerate the target; the enumerator itself is sound"
+  },
+  "corpus_gap_root_cause": {
+   "stage": "sharded count pass min-id prefilter (t_ck6_oddity_v35_search.py cmd_count, 'validity prefilter: seeded reachability')",
+   "mechanism": "candidate min-ids are collected only if reachable from a start-front orbit s0 through chains with w >= s0 (id-nondecreasing from the ROOT). This assumes every connected target's min orbit is reachable centre-outward through non-decreasing ids, which is false: George's target has min-id 3590 while its centre-adjacent (start-front) orbits have ids 3652 and 3937, so no non-decreasing chain from either start orbit can reach 3590.",
+   "evidence": {
+    "v45_hist_min_id": 3652,
+    "v45_hist_entries_below_3652": 0,
+    "v45_shard_plan_min_ids": "86 ids in [3652..3937]; 3590 absent",
+    "prefilter_cands_contains_3590": false,
+    "target_start_front_orbit_ids": [
+     3652,
+     3937
+    ],
+    "target_orbit_id_min": 3590
+   },
+   "scope": "V45 confirmed affected. V35 uses the same prefilter (sharded count/plan), so the running V35 search's corpus is suspect for the same reason. V<=25 used the reference single-process enumerator enumerate_connected_ck6_targets (no prefilter) and is not affected by this defect."
+  }
+ },
+ "diagnosis": {
+  "case": "CASE C (target absent from the V45 corpus; corpus incomplete)",
+  "chain": [
+   "1. George's 'B 9' figure reconstructs to a connected, exact-CK6 45-cell target (order 4: identity, inversion, c2_diag, mirror_diag), uniquely disambiguated by his per-copy colouring.",
+   "2. repo-M tiles it: 12 exact covers, one of which reproduces George's published colouring copy-for-copy (2 gold + 2 purple + 2 aqua + 1 green + 2 red = colour classes 10/10/10/5/10). repo-B does NOT tile it (0 covers). Hence George's 'B' = repo-M.",
+   "3. The driver's own funnel+cover path returns SAT(12) for this target with piece M -- the Stage 5L funnel is exonerated.",
+   "4. The target's minimum V45 corpus orbit id is 3590, which the count pass's reachability prefilter wrongly excluded (its centre-adjacent orbits have ids 3652/3937, and the prefilter only accepts min-ids reachable from start-front orbits through id-nondecreasing chains). Min-id 3590 has no shard.",
+   "5. Therefore the target was never enumerated; the recorded repo-M V45 SAT=0 is correct only over the INCOMPLETE corpus and is FALSE as a universal statement."
+  ],
+  "verdict_on_v45_m_result": "Stage 5L 'repo-M V45 = SAT 0' does not hold over all exact-CK6 45-cell targets; repo-M has at least one 9-tile CK6 oddity (George's current 'B 9' figure, oh-109166b4c83a)",
+  "no_historical_data_modified": true,
+  "v35_running_search_implication": "same prefilter code; results for sharded volumes should be re-audited after completion; not interrupted per instructions"
+ }
+}

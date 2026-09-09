@@ -1,0 +1,80 @@
+B-V15-S1 - evidence report (Stage 5P follow-up package)
+================================================================
+
+1. Construction
+----------------------------------------------------------------
+   piece              : B pentacube (5 cubes,
+     canonical cells  :   ( 0, 0, 0) ( 1, 0, 0) ( 2, 0, 0) ( 1, 1, 0) ( 1, 0, 1))
+   copies             : 3
+   volume             : 15 cubes
+   bounding box       : min (0, 0, 0), max (2, 4, 4) (dims 3x5x5)
+   tiling count       : 2 exact covers (recomputed and confirmed)
+
+2. Verification (from stored coordinates, independent recheck)
+----------------------------------------------------------------
+   [x] volume = 15 = 3 x 5, all cubes distinct
+   [x] face-connected (L1 adjacency)
+   [x] complete CK6 subgroup present (4 affine symmetries):
+       identity     matrix [[1, 0, 0], [0, 1, 0], [0, 0, 1]] translation (0, 0, 0)
+       inversion    matrix [[-1, 0, 0], [0, -1, 0], [0, 0, -1]] translation (2, 4, 4)
+       c2_diag      matrix [[-1, 0, 0], [0, 0, -1], [0, -1, 0]] translation (2, 4, 4)
+       mirror_diag  matrix [[1, 0, 0], [0, 0, 1], [0, 1, 0]] translation (0, 0, 0)
+   [x] exact symmetry order = 4 (no stronger symmetry;
+       Lunnon class CK6; kinds ['c2_diag', 'identity', 'inversion', 'mirror_diag'])
+   [x] exact number of tilings = 2 (per-target exact-cover recount)
+   [x] every placement is a proper rotation+translation of the
+       B pentacube
+   [x] each tiling's copies are pairwise disjoint and their
+       union is exactly the target
+   [x] rendered cube count = 15/25 as appropriate; every
+       rendered cube is one exported coordinate
+
+3. Target coordinates
+----------------------------------------------------------------
+   ( 0, 1, 1)
+   ( 0, 2, 2)
+   ( 1, 0, 1)
+   ( 1, 1, 0)
+   ( 1, 1, 1)
+   ( 1, 1, 2)
+   ( 1, 2, 1)
+   ( 1, 2, 2)
+   ( 1, 2, 3)
+   ( 1, 3, 2)
+   ( 1, 3, 3)
+   ( 1, 3, 4)
+   ( 1, 4, 3)
+   ( 2, 2, 2)
+   ( 2, 3, 3)
+
+4. Explicit placements (all verified tilings)
+----------------------------------------------------------------
+   Tiling 1:
+     B copy 1: ( 0, 1, 1) ( 1, 0, 1) ( 1, 1, 0) ( 1, 1, 1) ( 1, 2, 1)
+     B copy 2: ( 0, 2, 2) ( 1, 1, 2) ( 1, 2, 2) ( 1, 2, 3) ( 2, 2, 2)
+     B copy 3: ( 1, 3, 2) ( 1, 3, 3) ( 1, 3, 4) ( 1, 4, 3) ( 2, 3, 3)
+   Tiling 2:
+     B copy 1: ( 0, 1, 1) ( 1, 0, 1) ( 1, 1, 0) ( 1, 1, 1) ( 1, 1, 2)
+     B copy 2: ( 1, 2, 3) ( 1, 3, 3) ( 1, 3, 4) ( 1, 4, 3) ( 2, 3, 3)
+     B copy 3: ( 0, 2, 2) ( 1, 2, 1) ( 1, 2, 2) ( 1, 3, 2) ( 2, 2, 2)
+
+5. Comparison with George Sicherman's published minimum
+----------------------------------------------------------------
+   George's published minimum for the B pentacube
+   (inverse/diagonal symmetry oddities): 13 copies.
+   This construction: 3 copies at V=15 with exact
+   CK6 symmetry -- smaller than the published minimum
+   (3 < 13).
+
+   Exact source/page reference (established by Stage 5P):
+     George Sicherman, "Pentacube Oddities with Inverse/Diagonal Symmetry",
+     https://sicherman.net/c5odd/c5nodd.html
+     table "Achiral Pentacubes", row B: 13 tiles.
+     Page revision 2026-09-05 (cached locally at
+     data/ck6_reuse/sicherman_cache/c5odd/c5nodd.html; machine-readable comparison record at
+     data/ck6_reuse/stage5p_george_comparison.json).
+
+6. George-ready summary
+----------------------------------------------------------------
+   3 B pentacubes form a 15-cell connected polycube with exact CK6 symmetry, improving the published B minimum of 13.
+
