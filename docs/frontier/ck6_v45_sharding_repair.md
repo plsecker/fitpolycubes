@@ -105,10 +105,14 @@ Corrected plan: `data/ck6_reuse/ck6_v45_shards_corrected.json`
 3590).  The smoke test runs the corpus enumeration for **min-id 3590**
 (the decisive element of George's shard) for repo-M through the
 driver's own `funnel_and_cover` path, stopping at George's target.
-Result: see `data/ck6_reuse/ck6_v45_sharding_repair.json` (field
-`smoke_test`) — the target is enumerated by the real seeded DFS and
-yields **SAT with 12 covers**, matching the forensic prediction.
-(The full 462-min-id shard walk is bulk work deliberately not run.)
+Result: **CONFIRMED.** The real seeded DFS over min-id 3590's full
+subtree (3,430,348 CK6 targets) yielded George's target (leaf #3,430,348)
+and the driver's own `funnel_and_cover` returned **SAT with 12 covers** —
+matching the forensic prediction exactly
+(see `data/ck6_reuse/ck6_v45_sharding_repair.json`, field `smoke_test`).
+(The remaining 461 min-ids of shard 7 are bulk work deliberately not
+run; min-id 3590's own subtree contained no other repo-M-tileable
+target before George's leaf.)
 
 ## 3. Old vs corrected V45 shard plan
 
