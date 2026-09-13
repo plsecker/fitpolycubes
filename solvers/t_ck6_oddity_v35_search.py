@@ -144,6 +144,124 @@ def iter_targets_seeded(un, min_id, budget):
             stack.append((nm, nf, rem - c))
 
 
+def current_rss_mb():
+    """Current process RSS in MiB (0.0 if unreadable)."""
+    try:
+        with open("/proc/self/status") as f:
+            for line in f:
+                if line.startswith("VmRSS:"):
+                    return int(line.split()[1]) / 1024.0
+    except OSError:
+        pass
+    return 0.0
+
+
+class SearchLimit(Exception):
+    """Raised by the seeded generators when a caller-supplied bound is
+    hit (max_states / max_seconds / max_rss_mb); the reason is recorded
+    in the limits dict before raising."""
+
+
+def iter_targets_seeded_seeds(un, seeds, budget, stats=None, limits=None):
+    """Exact partition of a min-id search by a mandatory seed set.
+
+    seeds: sorted tuple of mandatory orbit ids (s, q1, ..., qk), k >= 2.
+    Yields every connected CK6-closed target whose orbit set is
+    {seeds} | R with R a subset of {j > seeds[-1]}; the target's minimum
+    orbit id is seeds[0] and its second-minimum is seeds[1].  Masks are
+    shifted down by seeds[-1] (bit i represents orbit id i + seeds[-1]),
+    the same memory optimization as iter_targets_seeded.
+
+    stats (optional dict) counts DFS pops and samples peak RSS / mask
+    sizes; limits (optional dict: max_states / max_seconds / max_rss_mb /
+    t0) raises SearchLimit when a bound is hit, recording the reason in
+    limits['reason'].
+    """
+    adj, cost = un["adj"], un["cost"]
+    all_orbits = un["all_orbits"]
+    center = un["center"]
+    base = seeds[-1]
+    rem0 = budget - sum(cost[x] for x in seeds)
+    if rem0 < 0:
+        return
+    seed_set = set(seeds)
+    adj_union = set().union(*(adj[x] for x in seeds))
+    frontier = frozenset(j for j in (un["start_front"] | adj_union)
+                         - seed_set if j > base)
+    visited = {0}  # shifted by base: bit i = orbit id i + base
+    stack = [(0, frontier, rem0)]
+    while stack:
+        mask, frontier_, rem = stack.pop()
+        if stats is not None:
+            stats["states"] += 1
+            if stats["states"] % 50000 == 0:
+                rss = current_rss_mb()
+                if rss > stats.get("peak_rss", 0):
+                    stats["peak_rss"] = rss
+                mb = stats.setdefault("mask_bytes_sum", 0)
+                stats["mask_bytes_sum"] = mb + sys.getsizeof(mask)
+                stats["mask_bytes_n"] = stats.get("mask_bytes_n", 0) + 1
+                if limits is not None:
+                    if stats["states"] >= limits["max_states"]:
+                        limits["reason"] = "max_states %d" % limits["max_states"]
+                        raise SearchLimit
+                    if time.time() - limits["t0"] > limits["max_seconds"]:
+                        limits["reason"] = "max_seconds %g" % limits["max_seconds"]
+                        raise SearchLimit
+                    if rss > limits["max_rss_mb"]:
+                        limits["reason"] = ("max_rss_mb %g (rss %.0f MiB)"
+                                            % (limits["max_rss_mb"], rss))
+                        raise SearchLimit
+        if rem == 0:
+            cells = {center}
+            for x in seeds:
+                cells |= set(all_orbits[x])
+            m = mask
+            while m:
+                b = m & -m
+                cells |= set(all_orbits[(b.bit_length() - 1) + base])
+                m ^= b
+            if not is_face_connected(cells):
+                continue
+            yield cells
+            continue
+        for j in frontier_:
+            c = cost[j]
+            if c > rem:
+                continue
+            nm = mask | (1 << (j - base))
+            if nm in visited:
+                continue
+            visited.add(nm)
+            nf = frozenset(x for x in (frontier_ | adj[j]) - {j} if x > base)
+            stack.append((nm, nf, rem - c))
+    if stats is not None:
+        stats["visited"] = len(visited)
+        stats["stack"] = len(stack)
+
+
+def iter_targets_seeded_pair(un, s, q, budget, stats=None, limits=None):
+    """Exact partition of the min-id-s search by second-minimum orbit q.
+
+    Yields exactly the connected CK6-closed targets whose orbit set has
+    minimum id s and second-minimum id q.  The (s, q) searches are
+    pairwise disjoint and their union (plus the single-orbit degenerate
+    case, iter_targets_seeded_single) equals the full min-id-s search.
+    """
+    return iter_targets_seeded_seeds(un, (s, q), budget, stats=stats,
+                                     limits=limits)
+
+
+def iter_targets_seeded_single(un, s, budget):
+    """Degenerate case: {center} | orbit[s] alone is a complete connected
+    target (no second orbit).  Only possible when budget - cost[s] == 0."""
+    if budget - un["cost"][s] != 0:
+        return
+    cells = {un["center"]} | set(un["all_orbits"][s])
+    if is_face_connected(cells):
+        yield cells
+
+
 def count_minids(un, volume):
     """Reference DFS pass: per-leaf minimum orbit id histogram."""
     adj, cost = un["adj"], un["cost"]

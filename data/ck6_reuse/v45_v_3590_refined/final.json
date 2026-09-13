@@ -1,0 +1,53 @@
+{
+ "status": "complete",
+ "commit": "9a305871e717e75eb5c255d51fdb8dbf920154dc",
+ "started_at": "2026-09-13T10:03:47+1200",
+ "ended_at": "2026-09-13T10:33:10+1200",
+ "elapsed_s": 1744.9,
+ "piece": "V",
+ "volume": 45,
+ "totals": {
+  "targets": 7170536,
+  "states": 60136018,
+  "sat": 0,
+  "covers_total": 0,
+  "covers_max": 0,
+  "funnel": {
+   "reject: <k contained placements": 4782924,
+   "reject: uncovered cell": 2386076,
+   "pass coverage": 1536,
+   "reject: exact cover UNSAT": 1536
+  },
+  "witnesses": []
+ },
+ "validation": {
+  "total_targets": 7170536,
+  "expected_total_targets": 7170536,
+  "total_states": 60136018,
+  "expected_total_states": 60136018,
+  "targets_match": true,
+  "states_match": true,
+  "child_sums_match": true,
+  "duplicate_free": true,
+  "digest_count": 7170536,
+  "george_present": true,
+  "george_min_orbit": 3590,
+  "george_centre_adjacent_orbits": [
+   3652,
+   3937
+  ],
+  "george_v_stage": "reject_cov",
+  "george_v_covers": 0,
+  "george_classification": "CK6",
+  "george_symmetry_order": 4,
+  "independent_m_smoke": {
+   "stage": "SAT",
+   "covers": 12,
+   "expected": 12,
+   "match": true
+  }
+ },
+ "peak_rss_mb": 3449.0,
+ "min_available_ram_mb": 20129.1,
+ "peak_swap_mb": 2779.8
+}
