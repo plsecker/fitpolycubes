@@ -1,15 +1,23 @@
 # Audit Report: Piece B (Pentomino 5/19)
 
+> **Lettering note (2026-09-15 B/M nomenclature fix):** this audit report
+> describes `catalogues/b_catalogue.py`, which is named by **Sicherman's
+> letter B** = the "tip" piece (3-bar + cube on the middle + cube on top
+> of that, 3 even + 2 odd cells) = Shirakawa 5-19 = Künzell 82 = Sillke
+> qu5.82. The repo's *internal* piece letter for this shape is **M** (the
+> repo's internal B/M letters are swapped relative to Sicherman's; see
+> `common/registry.py` and `docs/frontier/george_b9_letter_mapping.md`).
+
 ## Investigations Performed
-- Audited `catalogues/b_catalogue.py` against the cached Shirakawa markdown (`shirakawa/5-19.md`).
+- Audited `catalogues/b_catalogue.py` against the cached Shirakawa markdown (`shirakawa/B.md`, the 5-19 transcription).
 - Checked the `impossible_reason` function for empirical rules lacking proof or published authority.
 - Found that `Box(3, 10, 11)` was explicitly listed as impossible because the rule for the published impossible family `3x11xN` (Postl, 1993) was poorly implemented (it only checked `b` and not `c`).
 - Ran `validate_catalogue` and `audit_catalogue`.
 
 ## Evidence Gathered
-- `shirakawa/5-19.md` lists `2x5x5` as the 3D minimal prime.
-- `shirakawa/5-19.md` mentions that Sillke overlooked `3x16x25`, `3x17x25`, and `5x9x9`.
-- `shirakawa/5-19.md` states that `5x7x8` is composite (`2x5x8 + 2x5x5 * 4`).
+- `shirakawa/B.md` lists `2x5x5` as the 3D minimal prime.
+- `shirakawa/B.md` mentions that Sillke overlooked `3x16x25`, `3x17x25`, and `5x9x9`.
+- `shirakawa/B.md` states that `5x7x8` is composite (`2x5x8 + 2x5x5 * 4`).
 - `catalogues/b_catalogue.py` contained an explicit list of impossible boxes. Some of these were redundant or covered by published impossible families.
 
 ## Accepted Changes

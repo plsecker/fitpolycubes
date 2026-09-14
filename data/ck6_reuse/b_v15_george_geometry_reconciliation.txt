@@ -160,3 +160,15 @@ Live image kept at /tmp/opencode/c5n-ach_live.png (900x1523, rev
 2026-09-08). Cached image untouched under
 data/ck6_reuse/sicherman_cache/c5odd/. No repo files other than the two
 output artifacts above were created or modified.
+
+10. POST-FIX NOTE (2026-09-15 B/M nomenclature fix)
+-----------------------------------------------------------------------
+On 2026-09-15 the external metadata in common/registry.py was corrected
+(repo B = junction = Sicherman M = Kuenzell 51 = Sillke qu5.51 =
+Shirakawa 5-18; repo M = tip = Sicherman B = Kuenzell 82 = Sillke
+qu5.82 = Shirakawa 5-19).  The parenthetical identity tags in section 7
+above ("Shirakawa 5-19, kurnell 82" for repo B; "Shirakawa 5-18,
+kurnell 51" for repo M) echoed the OLD swapped registry fields and are
+now stale.  The geometric conclusion of this report is unaffected:
+George's "M" = repo "B" (junction), the shapes are congruent
+(oh-0216334782e8), repo-B covers = 2, repo-M covers = 0.

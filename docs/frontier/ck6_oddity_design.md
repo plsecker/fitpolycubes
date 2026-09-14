@@ -1115,7 +1115,9 @@ structure; per-layer xy-offsets recovered by constraint search over connectivity
 classes ≅ piece under proper rotations, CK6 ⊆ Sym, and tileability), then compared by
 canonical form and tiling orbits. All page figures are achiral, so any consistent reading
 convention is congruent. Piece letterings: R, P, Z confirmed geometrically; B, L confirmed by
-high-zoom thumbnail identification on top of the odd-box lettering reconciliation.
+high-zoom thumbnail identification on top of the odd-box lettering reconciliation. Note the
+**B/M lettering swap**: George's page letter B is the tip piece = repo M; the repo's B is the
+junction piece = George's M (see `docs/frontier/george_b9_letter_mapping.md`).
 
 **Results (full report: `docs/frontier/stage5p_george_nodd_comparison.md`; raw evidence:
 `data/ck6_reuse/stage5p_george_comparison.json`; tool:
@@ -1123,15 +1125,16 @@ high-zoom thumbnail identification on top of the odd-box lettering reconciliatio
 
 | verdict | count | highlights |
 |---|---|---|
-| known shape + known tiling | 4 | R-V15-S1 ≡ his R-3 (his colouring = one of our 2 tilings); Z-V25-S1 ≡ his Z-5; I-V5-S1, X-V5-S1 (trivial entries) |
+| known shape + known tiling | 5 | R-V15-S1 ≡ his R-3 (his colouring = one of our 2 tilings); Z-V25-S1 ≡ his Z-5; I-V5-S1, X-V5-S1 (trivial entries); B-V15-S1 ≡ his M-3 (`oh-0216334782e8`) |
 | known shape | 1 | P-V25-S3 ≡ his P-5 (order 12; tiling count 24 = 24) |
 | related-but-distinct | 3 | P-V25-S1, P-V25-S2, Z-V25-S2 |
-| **improvement over published minimum** | **16** | **B-V15-S1: 3 tiles vs his 13**; all 14 B-V25-*; **L-V25-S1: 5 tiles vs his 11** |
-| no match on page (minima-only caveat) | 28 | non-trivial I/X figures |
+| **improvement over published minimum** | **1** | **L-V25-S1: 5 tiles vs his 11** |
+| no match on page (minima-only caveat) | 42 | all 14 B-V25-* (5 junction pieces vs his 3-piece M minimum); non-trivial I/X figures |
 
 His T-19 minimum independently corroborates our V ≤ 45 T impossibility proofs. Nothing in our
-catalogue contradicts his page. Suggested action: write to George about B-V15-S1, L-V25-S1
-(and B-V25-S12) — the page explicitly solicits smaller solutions.
+catalogue contradicts his page. Suggested action: write to George about L-V25-S1 (the genuine
+improvement); optionally note that our B-V15-S1 is congruent to his published M-3 figure — an
+independent confirmation of his result, not a claim against it.
 
 **Latent trap found (no prior-result impact).** `common/oddity.py::placements_in_region`
 anchors at region cells; pieces with orientations missing their component-wise minimum corner

@@ -28,6 +28,12 @@ from catalogues.y_catalogue import Y_CATALOGUE
 from catalogues.e_catalogue import E_CATALOGUE
 
 # https://sicherman.net/c5nomen/index.html
+# NOTE (2026-09-15 B/M coordinate fix): the keys below are SICHERMAN
+# letters, and after the coordinate fix in common/registry.py the repo's
+# internal piece letters match them exactly (repo B = Sicherman B = the
+# tip; repo M = Sicherman M = the junction).  The catalogue modules are
+# named by Sicherman letter, so this dict is consistent with
+# common/registry.py as-is.
 CATALOGUES = {
     "F": F_CATALOGUE,
     "L": L_CATALOGUE,

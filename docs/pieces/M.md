@@ -1,5 +1,13 @@
 # M Pentacube (5-18)
 
+> **Lettering note (2026-09-15 B/M nomenclature fix):** this audit report
+> describes `catalogues/m_catalogue.py`, which is named by **Sicherman's
+> letter M** = the "junction" piece (3-bar + side cube + top cube at the
+> middle, 4 even + 1 odd cells) = Shirakawa 5-18 = Künzell 51 = Sillke
+> qu5.51. The repo's *internal* piece letter for this shape is **B** (the
+> repo's internal B/M letters are swapped relative to Sicherman's; see
+> `common/registry.py` and `docs/frontier/george_b9_letter_mapping.md`).
+
 ## Investigations Performed
 - Audited `catalogues/m_catalogue.py` against the authoritative published source: [Shirakawa's 5-18 Box Packing Collection](https://puzzlewillbeplayed.com/Shirakawa/5-18.html).
 - Cross-referenced `PUBLISHED_SOLUTIONS` and `RAW_PRIMES` with the published data to ensure fidelity and completeness.

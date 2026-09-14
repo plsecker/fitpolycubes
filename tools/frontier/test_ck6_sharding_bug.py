@@ -6,11 +6,15 @@ Permanent regression test for the CK6 sharded-enumeration bug
 Counterexample: George Sicherman's published "B 9" pentacube oddity
 (sicherman.net/c5odd/c5nodd.html rev 2026-09-08), reconstructed
 forensically (data/ck6_reuse/george_b9_geometry_reconciliation.json).
-In the corpus frame it is a connected, exact-CK6, 45-cell target with
+George's "B" is the tip piece = repo B (the 2026-09-15 B/M coordinate
+fix aligned the repo letters with Sicherman's; see common/registry.py),
+so the "repo-B covers = 12" checks below use PENTACUBES["B"]
+deliberately.  In the corpus frame it is a connected, exact-CK6,
+45-cell target with
 
     minimum CK6-orbit id  = 3590,
     O_h canonical id      = oh-109166b4c83a,
-    repo-M covers         = 12.
+    repo-B covers         = 12.
 
 The V45 sharded count pass excluded min-id 3590 via an unsound
 "seeded reachability" prefilter, so this target is absent from the
@@ -23,7 +27,7 @@ The test asserts:
   4. the CORRECTED sound filter accepts min-id 3590;
   5. the target is reachable by iter_targets_seeded mechanics
      (exact bounded BFS replay over the target's own orbits);
-  6. repo-M tiles it in exactly 12 ways (independent full-domain
+  6. repo-B tiles it in exactly 12 ways (independent full-domain
      enumeration);
   7. the corrected sharding (sound candidate filter + per-min-id
      seeded DFS) reproduces the reference corpora exactly:
@@ -70,7 +74,7 @@ GEORGE_B9_CORPUS_FRAME = [
 ]
 GEORGE_B9_OH_ID = "oh-109166b4c83a"
 GEORGE_B9_MIN_ORBIT_ID = 3590
-GEORGE_B9_M_COVERS = 12
+GEORGE_B9_B_COVERS = 12
 
 FAILURES = []
 
@@ -290,10 +294,10 @@ def main():
     check("target reachable by iter_targets_seeded mechanics "
           "(bounded exact replay)", reached, f"{states} states")
 
-    # 6. repo-M tiles it in 12 ways
-    piece_M = [tuple(int(v) for v in c) for c in PENTACUBES["M"]]
-    covers = full_domain_covers(target, piece_M)
-    check("repo-M covers == 12", len(covers) == GEORGE_B9_M_COVERS,
+    # 6. repo-B tiles it in 12 ways
+    piece_B = [tuple(int(v) for v in c) for c in PENTACUBES["B"]]
+    covers = full_domain_covers(target, piece_B)
+    check("repo-B covers == 12", len(covers) == GEORGE_B9_B_COVERS,
           str(len(covers)))
 
     # 7. corrected sharding reproduces the reference corpora

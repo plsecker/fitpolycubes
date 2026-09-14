@@ -1,1 +1,1 @@
-3 B pentacubes form a 15-cell connected polycube with exact CK6 symmetry, improving the published B minimum of 13.
+3 B pentacubes form a 15-cell connected polycube with exact CK6 symmetry; congruent to George's published M-3 figure (oh-0216334782e8) -- an independent confirmation of his result, not an improvement.

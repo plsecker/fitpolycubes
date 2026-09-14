@@ -608,5 +608,10 @@
   "reason_2": "not novel: B-V15-S1's target and construction coincide exactly with George's published 'M 3' figure (rev 2026-09-05, predating the correspondence), i.e. the Stage 5L search independently rediscovered George's published construction",
   "corrected_comparison": "repo-B minimal CK6 oddity = 3 tiles (ours, verified) = George's published minimum for the same pentacube (his 'M' row): a TIE, not an improvement",
   "geometric_validity_of_B_V15_S1": "unaffected - target, 2 exact covers, exact CK6 symmetry independently re-verified"
+ },
+ "post_fix_note_2026_09_15": {
+  "what": "common/registry.py B/M external metadata was corrected on 2026-09-15 (B/M nomenclature fix). The parenthetical identity tags in 'diagnosis.root_cause' above ('Shirakawa 5-19, kurnell 82' for repo B; 'Shirakawa 5-18, kurnell 51' for repo M) echoed the OLD swapped registry fields and are now stale.",
+  "corrected_identity": "repo B = junction = Sicherman M = Kuenzell 51 = Sillke qu5.51 = Shirakawa 5-18; repo M = tip = Sicherman B = Kuenzell 82 = Sillke qu5.82 = Shirakawa 5-19.",
+  "geometric_conclusion_unchanged": "George's 'M' = repo 'B' (junction) remains the authoritative conclusion; the shape congruence (oh-0216334782e8), the 2 repo-B covers, and the 0 repo-M covers are unaffected."
  }
 }

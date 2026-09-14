@@ -3,7 +3,7 @@
 - Source URL: https://puzzlewillbeplayed.com/Shirakawa/5-18.html
 - Page title: `Shirakawa's Box Packing Collection : 5-18`
 - Piece heading: `Pentomino 5/18`
-- Repository identification: `catalogues/m_catalogue.py` maps piece `M` to Shirakawa page `5-18`.
+- Repository identification: `catalogues/m_catalogue.py` is the catalogue of this piece (Shirakawa 5-18). NOTE (2026-09-15 B/M nomenclature fix): catalogue modules are named by Sicherman letters — `m_catalogue` = Sicherman M = this piece (the "junction": 3-bar + side cube + top cube at the middle, 4 even + 1 odd cells) = Künzell 51 = Sillke qu5.51. The repo's *internal* piece letter for this shape is **B** (repo B/M letters are swapped relative to Sicherman's; see `common/registry.py` and `docs/frontier/george_b9_letter_mapping.md`).
 - Transcription basis: live original Shirakawa HTML fetched from the source URL.
 - Transcription scope: every solution-list row, size-class prime/composite/minimal marker, remark marker, note paragraph, reference line, and address/update line visible in the source HTML.
 

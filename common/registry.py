@@ -1,3 +1,35 @@
+"""
+Registry of the 21 pentacubes used in this repository.
+
+LETTERING CONVENTION (2026-09-15 B/M coordinate fix)
+----------------------------------------------------
+The repo's internal piece letters B and M match the external
+Sicherman / Kuenzell / Shirakawa lettering:
+
+    B ("tip": 3-bar + cube on the middle + cube on top of that,
+       3 even + 2 odd cells) = Sicherman B
+                             = Kuenzell 82
+                             = Sillke qu5.82
+                             = Shirakawa 5-19
+    M ("junction": 3-bar + side cube + top cube at the middle,
+       4 even + 1 odd cells) = Sicherman M
+                             = Kuenzell 51
+                             = Sillke qu5.51
+                             = Shirakawa 5-18
+
+The catalogue modules catalogues/*_catalogue.py are named by SICHERMAN
+letters (b_catalogue = Sicherman B = the tip = repo B; m_catalogue =
+Sicherman M = the junction = repo M), so the `catalogue_module` fields
+below link B to b_catalogue and M to m_catalogue.
+
+History: before 2026-09-15 the B and M coordinate arrays were inverted
+relative to these identities (B held the junction shape, M held the
+tip) and the catalogue_module fields were swapped to compensate.  The
+2026-09-15 coordinate fix swapped the arrays so the letters now match
+the external lettering directly; no aliases or translation layer is
+needed.
+"""
+
 from dataclasses import dataclass
 from typing import Optional
 import numpy as np
@@ -92,8 +124,14 @@ PIECES = {
     ),
     "B": PieceInfo(
         letter="B",
-        coords=np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[1, 1, 0],[1, 0, 1]]),
-        catalogue_module=None,
+        # The "tip": 3-bar + cube on the middle + cube on top of that,
+        # 3 even + 2 odd cells = Sicherman B = Kuenzell 82 = Sillke
+        # qu5.82 = Shirakawa 5-19.  (2026-09-15 coordinate fix: the
+        # previous entry held the junction shape; the B/M coordinate
+        # arrays were swapped so the letters match the external
+        # lettering.)
+        coords=np.array([[0, 0, 0],[1, 0, 0],[2, 0, 0],[1, 1, 0],[1, 1, 1]]),
+        catalogue_module="catalogues.b_catalogue",
         kurnell=82, shirakawa_url="https://puzzlewillbeplayed.com/Shirakawa/5-19.html", shirakawa_piece=19
     ),
     "K": PieceInfo(
@@ -104,7 +142,11 @@ PIECES = {
     ),
     "M": PieceInfo(
         letter="M",
-        coords=np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [1, 1, 0], [1, 1, 1]]),
+        # The "junction": 3-bar + side cube + top cube at the middle,
+        # 4 even + 1 odd cells = Sicherman M = Kuenzell 51 = Sillke
+        # qu5.51 = Shirakawa 5-18.  (2026-09-15 coordinate fix: see the
+        # B entry above.)
+        coords=np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [1, 1, 0], [1, 0, 1]]),
         catalogue_module="catalogues.m_catalogue",
         kurnell=51, shirakawa_url="https://puzzlewillbeplayed.com/Shirakawa/5-18.html", shirakawa_piece=18
     ),

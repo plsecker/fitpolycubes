@@ -1,5 +1,15 @@
-George package - CK6 oddity improvements for the B and L pentacubes
-===================================================================
+George package - CK6 constructions for the B and L pentacubes
+=============================================================
+
+NOTE (2026-09-15 B/M nomenclature fix): the repo's internal letters
+B and M are swapped relative to George Sicherman's page letters
+(repo B = junction = Sicherman M; repo M = tip = Sicherman B; see
+docs/frontier/george_b9_letter_mapping.md).  Consequently:
+  * B-V15-S1 (3 junction pieces) is CONGRUENT to George's published
+    "M 3" figure (oh-0216334782e8) -- a known shape + known tiling,
+    an independent confirmation of his result, NOT an improvement;
+  * L-V25-S1 (5 L pieces) IS a genuine improvement over George's
+    published L minimum of 11.
 
 Prepared from the completed Stage 5L search via the Stage 5N/5O
 small-positive catalogue and the Stage 5P George comparison.

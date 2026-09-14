@@ -50,10 +50,20 @@ from catalogues.base import Box  # noqa: E402
 # "none"       -> no smallest odd box is known
 # "impossible" -> the piece cannot tile any odd box
 # otherwise    -> (a, b, c) smallest known odd box
+#
+# LETTERING NOTE (2026-09-15 B/M coordinate fix): the keys below are
+# SICHERMAN letters, and after the coordinate fix in common/registry.py
+# the repo's internal piece letters match them exactly:
+#   Sicherman B = the "tip" piece (3 even + 2 odd cells) = repo B
+#   Sicherman M = the "junction" piece (4 even + 1 odd cells) = repo M
+# The catalogue files are named by Sicherman letter (b_catalogue =
+# Sicherman B = repo B), so the loop below compares each Sicherman-
+# lettered catalogue against the same Sicherman-lettered published
+# minimum.
 # ---------------------------------------------------------------------------
 SICHERMAN = {
     "A": "none",
-    "B": (3, 13, 15),
+    "B": (5, 7, 7),
     "E": (5, 5, 5),
     "F": (5, 5, 11),
     "G": "impossible",
@@ -198,6 +208,44 @@ def compare(computed, expected):
     return False
 
 
+def check_bm_lettering():
+    """Cross-check the B/M lettering (2026-09-15 coordinate fix).
+
+    The SICHERMAN dict and the catalogue files are keyed by Sicherman
+    letters, which now match the repo letters in common/registry.py.
+    Guard against a future re-swap:
+      * repo B (tip, 3 even + 2 odd cells) must link to
+        catalogues.b_catalogue, whose MINIMAL_ODD must be set
+        (a 3E+2O piece can tile odd boxes);
+      * repo M (junction, 4 even + 1 odd cells) must link to
+        catalogues.m_catalogue, whose MINIMAL_ODD must be None
+        (a 4E+1O piece cannot tile any odd box).
+    """
+    from common.registry import PIECES
+
+    def evens(coords):
+        return sum(1 for c in coords
+                   if (int(c[0]) + int(c[1]) + int(c[2])) % 2 == 0)
+
+    b_evens = evens(PIECES["B"].coords)
+    m_evens = evens(PIECES["M"].coords)
+    if (b_evens, m_evens) != (3, 4):
+        raise SystemExit(
+            "FATAL: common/registry.py B/M parity changed (B evens="
+            f"{b_evens}, M evens={m_evens}); expected B=3E+2O (tip), "
+            "M=4E+1O (junction). The B/M lettering may have been "
+            "re-swapped.")
+
+    b_mod = importlib.import_module("catalogues.b_catalogue")
+    m_mod = importlib.import_module("catalogues.m_catalogue")
+    if b_mod.MINIMAL_ODD is None or m_mod.MINIMAL_ODD is not None:
+        raise SystemExit(
+            "FATAL: catalogue MINIMAL_ODD inconsistent with the B/M "
+            "lettering: b_catalogue (Sicherman B = tip) must have "
+            "an odd box, m_catalogue (Sicherman M = junction) must have "
+            "none.")
+
+
 def explain(ranked, expected, computed):
     """Which catalogue entries caused a mismatch."""
     lines = []
@@ -234,6 +282,8 @@ def explain(ranked, expected, computed):
 
 
 def main():
+    check_bm_lettering()
+
     repo_catalogues = {}
     pattern = os.path.join(REPO_ROOT, "catalogues", "*_catalogue.py")
     for path in sorted(glob.glob(pattern)):

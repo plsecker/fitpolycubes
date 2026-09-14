@@ -5,6 +5,9 @@ B-V15-S1 - evidence report (Stage 5P follow-up package)
 ----------------------------------------------------------------
    piece              : B pentacube (5 cubes,
      canonical cells  :   ( 0, 0, 0) ( 1, 0, 0) ( 2, 0, 0) ( 1, 1, 0) ( 1, 0, 1))
+                        (repo B = "junction" = Sicherman M = Kuenzell 51
+                        = Shirakawa 5-18; see
+                        docs/frontier/george_b9_letter_mapping.md)
    copies             : 3
    volume             : 15 cubes
    bounding box       : min (0, 0, 0), max (2, 4, 4) (dims 3x5x5)
@@ -60,21 +63,28 @@ B-V15-S1 - evidence report (Stage 5P follow-up package)
 
 5. Comparison with George Sicherman's published minimum
 ----------------------------------------------------------------
-   George's published minimum for the B pentacube
-   (inverse/diagonal symmetry oddities): 13 copies.
-   This construction: 3 copies at V=15 with exact
-   CK6 symmetry -- smaller than the published minimum
-   (3 < 13).
+   NOTE (2026-09-15 B/M nomenclature fix): the repo's internal
+   letter B is the "junction" piece, which George Sicherman calls M
+   (repo B/M letters are swapped relative to his page letters; see
+   docs/frontier/george_b9_letter_mapping.md).  George's published
+   minimum for the M pentacube (inverse/diagonal symmetry oddities)
+   is 3 copies, and this construction is CONGRUENT to his published
+   "M 3" figure (oh-0216334782e8, bbox 3x5x5): his colouring is one
+   of our 2 tilings.  It is therefore a known shape + known tiling,
+   NOT an improvement over the published minimum.
 
    Exact source/page reference (established by Stage 5P):
      George Sicherman, "Pentacube Oddities with Inverse/Diagonal Symmetry",
      https://sicherman.net/c5odd/c5nodd.html
-     table "Achiral Pentacubes", row B: 13 tiles.
+     table "Achiral Pentacubes", row M: 3 tiles.
      Page revision 2026-09-05 (cached locally at
      data/ck6_reuse/sicherman_cache/c5odd/c5nodd.html; machine-readable comparison record at
      data/ck6_reuse/stage5p_george_comparison.json).
 
 6. George-ready summary
 ----------------------------------------------------------------
-   3 B pentacubes form a 15-cell connected polycube with exact CK6 symmetry, improving the published B minimum of 13.
+   3 B pentacubes form a 15-cell connected polycube with exact CK6
+   symmetry; congruent to George's published M-3 figure
+   (oh-0216334782e8) -- an independent confirmation of his result,
+   not an improvement.
 

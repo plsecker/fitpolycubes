@@ -1,6 +1,7 @@
 {
  "stage": "5N",
  "source": "completed Stage 5L all-pentacube search, V <= 25",
+ "migration_note_2026_09_15": "B/M coordinate fix: the 15 constructions whose IDs start with 'B-' (B-V15-S1, B-V25-S1..S14) are junction-piece constructions (4 even + 1 odd cells).  Under the pre-fix lettering the junction was repo B; after the 2026-09-15 coordinate fix in common/registry.py the junction is repo M, so their 'piece' fields are corrected to 'M' here.  The construction IDs retain the pre-fix lettering for historical continuity; the geometry (target_coordinates, canonical ids, tilings) is unchanged.",
  "totals": {
   "positive_combinations": 12,
   "distinct_shapes": 52,
@@ -10,7 +11,7 @@
  "constructions": [
   {
    "id": "B-V15-S1",
-   "piece": "B",
+   "piece": "M",
    "volume": 15,
    "number_of_copies": 3,
    "corpus_entries": 2,
@@ -352,7 +353,7 @@
   },
   {
    "id": "B-V25-S1",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -898,7 +899,7 @@
   },
   {
    "id": "B-V25-S2",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -1444,7 +1445,7 @@
   },
   {
    "id": "B-V25-S3",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -1990,7 +1991,7 @@
   },
   {
    "id": "B-V25-S4",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -2536,7 +2537,7 @@
   },
   {
    "id": "B-V25-S5",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -3082,7 +3083,7 @@
   },
   {
    "id": "B-V25-S6",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -3628,7 +3629,7 @@
   },
   {
    "id": "B-V25-S7",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -4174,7 +4175,7 @@
   },
   {
    "id": "B-V25-S8",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -4720,7 +4721,7 @@
   },
   {
    "id": "B-V25-S9",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -5266,7 +5267,7 @@
   },
   {
    "id": "B-V25-S10",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -5812,7 +5813,7 @@
   },
   {
    "id": "B-V25-S11",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -6358,7 +6359,7 @@
   },
   {
    "id": "B-V25-S12",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -6904,7 +6905,7 @@
   },
   {
    "id": "B-V25-S13",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,
@@ -7450,7 +7451,7 @@
   },
   {
    "id": "B-V25-S14",
-   "piece": "B",
+   "piece": "M",
    "volume": 25,
    "number_of_copies": 5,
    "corpus_entries": 2,

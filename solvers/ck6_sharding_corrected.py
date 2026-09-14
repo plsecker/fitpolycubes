@@ -9,6 +9,8 @@ branch) excluded candidate minimum-orbit ids that are not reachable
 FROM a start-front orbit through id-nondecreasing chains.  That
 criterion is unsound; George Sicherman's "B 9" target (min orbit id
 3590, centre-adjacent orbits 3652/3937) is the concrete counterexample.
+(George's "B" is the tip piece = repo B; the 2026-09-15 B/M coordinate
+fix aligned the repo letters with Sicherman's, see common/registry.py.)
 
 This module provides:
 
@@ -32,14 +34,14 @@ This module provides:
 
   smoke_george_b9(...)
       End-to-end smoke test: run the shard containing min-id 3590 of
-      the V45 corpus for repo-M through the driver's own
+      the V45 corpus for repo-B through the driver's own
       funnel_and_cover path, stopping when George's target is found;
       expect 12 covers.
 
 Subcommands:
   validate [--quick]   V5/V15 (/V25) reference validation
   plan                 write the corrected V45 shard plan
-  smoke                George B-9 shard smoke test (repo-M)
+  smoke                George B-9 shard smoke test (repo-B)
 
 Nothing here modifies historical artefacts; corrected plans are written
 to data/ck6_reuse/ with distinct names.
@@ -77,7 +79,7 @@ GEORGE_B9_CORPUS_FRAME = [
 ]
 GEORGE_B9_MIN_ORBIT_ID = 3590
 GEORGE_B9_OH_ID = "oh-109166b4c83a"
-GEORGE_B9_M_COVERS = 12
+GEORGE_B9_B_COVERS = 12
 
 
 def corrected_candidate_min_ids(un):
@@ -154,14 +156,17 @@ def validate_volume(volume):
 
 
 def smoke_george_b9(time_cap_s=3600.0):
-    """Run the V45 shard containing min-id 3590 for repo-M; stop when
+    """Run the V45 shard containing min-id 3590 for repo-B; stop when
     George's target is found.  Returns a result record."""
     plan, un = build_corrected_plan(45, n_shards=8)
     sh = shard_for_min_id(plan, GEORGE_B9_MIN_ORBIT_ID)
     print(f"shard {sh['shard']} holds min-id 3590 "
           f"({len(sh['min_ids'])} min-ids, ids "
           f"[{sh['min_ids'][0]}..{sh['min_ids'][-1]}])")
-    piece = [tuple(int(v) for v in c) for c in PENTACUBES["M"]]
+    # George's "B" = the tip piece = repo B (2026-09-15 B/M coordinate
+    # fix aligned the repo letters with Sicherman's).  Using repo B
+    # here is deliberate, not a typo.
+    piece = [tuple(int(v) for v in c) for c in PENTACUBES["B"]]
     ff = FastFunnel(piece, un["ball"])
     index = ff.index
     george = frozenset(GEORGE_B9_CORPUS_FRAME)

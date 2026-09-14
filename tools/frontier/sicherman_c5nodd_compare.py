@@ -48,9 +48,14 @@ Verdicts are reported per pair as one of:
     related-but-distinct         (same piece/count/class, non-congruent)
     no match found               (no same piece/count entry on the page)
 
-Metadata-only comparisons (B 13 vs our B-V15-S1 etc.) are recorded from
-the parsed page labels; for those, absence from the page is NOT evidence
-of absence -- the page lists one smallest-known figure per piece.
+Metadata-only comparisons are recorded from the parsed page labels; for
+those, absence from the page is NOT evidence of absence -- the page
+lists one smallest-known figure per piece.  GEORGE_ROWS is keyed by
+George's page letters, which match the repo's internal letters for B
+and M (2026-09-15 B/M coordinate fix; see common/registry.py).  Our
+B-V15-S1 (junction-piece construction, 3 tiles; the construction ID
+retains the pre-fix lettering) is therefore compared against George's M
+row and is congruent to his "M 3" figure (oh-0216334782e8).
 
 This script is read-only over repo data except for its own report files
 under data/ck6_reuse/.
@@ -117,6 +122,29 @@ GEORGE_ROWS = {
     "J": (9, "chd"),
     "G": (7, "chd"),
     "E": (13, "chd"),
+}
+
+# ---------------------------------------------------------------------------
+# LETTERING NOTE (2026-09-15 B/M coordinate fix): GEORGE_ROWS is keyed
+# by George Sicherman's page letters, which now match the repo's
+# internal piece letters in common/registry.py:
+#   George's "B" = the tip piece (3 even + 2 odd cells) = repo B
+#   George's "M" = the junction piece (4 even + 1 odd cells) = repo M
+# The metadata loop below therefore looks up GEORGE_ROWS directly with
+# the repo piece letter; no translation is needed.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Known geometric congruences between our constructions and George's
+# published figures, established by the Stage 5P reconstruction audit
+# (see data/ck6_reuse/b_v15_george_geometry_reconciliation.json).
+# our_id -> (george figure name, oh canonical id of the shared shape)
+#
+# NOTE: construction IDs retain the pre-fix lettering.  B-V15-S1 is a
+# junction-piece construction, i.e. piece M under the corrected IDs.
+# ---------------------------------------------------------------------------
+KNOWN_CONGRUENT = {
+    "B-V15-S1": ("M-3", "oh-0216334782e8"),
 }
 
 # Which published figures we reconstruct geometrically, and which of our
@@ -712,6 +740,8 @@ def main():
     for s in sorted(shapes, key=lambda s: s["id"]):
         pid = s["piece"]
         tiles = s["volume"] // 5
+        # repo letters match George's page letters for B and M
+        # (2026-09-15 coordinate fix); lookup is direct
         g = GEORGE_ROWS.get(pid)
         if g is None:
             notes.append({"our_id": s["id"], "category": "no page entry",
@@ -740,6 +770,12 @@ def main():
                           f"{rec['tiling_orbit_count']} orbits; his "
                           f"colouring could not be extracted from the "
                           f"drawing (colours reused across copies)")
+        elif s["id"] in KNOWN_CONGRUENT:
+            gname, oh_id = KNOWN_CONGRUENT[s["id"]]
+            cat = "known shape + known tiling"
+            detail = (f"congruent to George's {gname} figure "
+                      f"({oh_id}); his published colouring coincides "
+                      f"with one of our tiling orbits")
         elif tiles == 1 and cid(canonical_form(
                 [tuple(int(v) for v in c) for c in PENTACUBES[pid]],
                 proper_only=True)) == cid(canonical_form(

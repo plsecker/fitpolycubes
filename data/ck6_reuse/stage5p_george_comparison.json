@@ -673,78 +673,78 @@
  "metadata_notes": [
   {
    "our_id": "B-V15-S1",
-   "category": "improvement over published minimum",
-   "detail": "3 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 10 tiles"
+   "category": "known shape + known tiling",
+   "detail": "congruent to George's M-3 figure (oh-0216334782e8); his published colouring coincides with one of our 2 tiling orbits (see data/ck6_reuse/b_v15_george_geometry_reconciliation.json)"
   },
   {
    "our_id": "B-V25-S1",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S10",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S11",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S12",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S13",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S14",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S2",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S3",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S4",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S5",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S6",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S7",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S8",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "B-V25-S9",
-   "category": "improvement over published minimum",
-   "detail": "5 tiles vs George's smallest known 13 tiles (ach table) -- smaller by 8 tiles"
+   "category": "no match on page",
+   "detail": "5 tiles vs George's smallest known 3 tiles (ach table, M row) -- larger by 2 tiles; the page lists minima only and cannot adjudicate"
   },
   {
    "our_id": "I-V15-S1",
@@ -931,5 +931,6 @@
    "category": "related-but-distinct",
    "detail": "same piece and tile count as George's minimum (5 tiles) but non-congruent to his figure"
   }
- ]
+ ],
+ "nomenclature_fix_2026_09_15": "Repo-internal B/M letters are swapped relative to George Sicherman's page letters (repo B = junction = Sicherman M; repo M = tip = Sicherman B; see docs/frontier/george_b9_letter_mapping.md). The B-* metadata notes were re-annotated accordingly: B-V15-S1 is congruent to George's M-3 figure (oh-0216334782e8), and the 14 B-V25-* constructions (5 junction pieces) are larger than his 3-piece M minimum. Only L-V25-S1 remains an improvement over the published minimum."
 }

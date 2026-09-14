@@ -27,6 +27,10 @@ Transcribed rows (label + tile count, read at 7–8× zoom from the table images
 | Chiral, disallowing reflection | R 3, S 7, H 7, J 9, G 7, E 13 |
 | Chiral, allowing reflection | R 3, S 7, H 7, J 9, E 11, G 7 |
 
+> Page letters are George Sicherman's. For **B and M** they are **swapped** relative to the
+> repo's internal piece letters (George's B = the tip = repo M; George's M = the junction =
+> repo B) — see §2 and `docs/frontier/george_b9_letter_mapping.md`.
+
 Sister pages (also cached): square box (order 16, rev 2026-09-07), square (order 8, rev
 2026-05-12), ternary/diagonal mirror (rev 2026-09-05). On all of them the I and X solutions are
 stated to be trivial (the pieces themselves already have the symmetry).
@@ -59,9 +63,12 @@ cross-section strips and compared it with our targets. Steps, all asserted in co
 
 **Piece-lettering verification.** R, P, Z are confirmed *geometrically* (his figures tile by
 our registry pieces and match our canonical forms). B and L were confirmed by high-zoom
-thumbnail identification (B = 3-bar + side cube + top cube at the middle; L = 4-bar + end
-cube) on top of the pre-existing odd-box reconciliation of the repo catalogue lettering
-(`tools/verify_sicherman_odd_boxes.py`, B → (3,13,15), L → (3,5,5) PASS).
+thumbnail identification (George's B = 3-bar + cube on the middle + cube on top of that =
+the "tip" = repo M; L = 4-bar + end cube) on top of the odd-box reconciliation of the
+catalogue lettering (`tools/verify_sicherman_odd_boxes.py`, B → (5,7,7), L → (3,5,5) PASS).
+Note the **B/M lettering swap**: George's page letter B is the tip piece, which the repo
+calls M; the repo's B is the junction piece (3-bar + side cube + top cube at the middle),
+which George calls M. See `docs/frontier/george_b9_letter_mapping.md`.
 
 ## 3. Geometry-level results
 
@@ -86,25 +93,31 @@ CK6 subgroup present, exact-cover tileable. Figures:
 
 | category | count | shapes |
 |---|---|---|
-| known shape + known tiling | 4 | I-V5-S1, X-V5-S1 (trivial 1-tile = his trivial I/X entries), R-V15-S1, Z-V25-S1 |
+| known shape + known tiling | 5 | I-V5-S1, X-V5-S1 (trivial 1-tile = his trivial I/X entries), R-V15-S1, Z-V25-S1, B-V15-S1 (congruent to his "M 3" figure, `oh-0216334782e8`) |
 | known shape | 1 | P-V25-S3 |
 | related-but-distinct | 3 | P-V25-S1, P-V25-S2, Z-V25-S2 |
-| **improvement over published minimum** | **16** | **B-V15-S1** and all 14 B-V25-*, L-V25-S1 |
-| no match on page (minima-only caveat) | 28 | all non-trivial X and I figures |
+| no match on page (minima-only caveat) | 42 | all 14 B-V25-*, all non-trivial X and I figures |
+| **improvement over published minimum** | **1** | **L-V25-S1** |
 
-### 4.1 Headline: B and L improvements
+### 4.1 Headline: one genuine improvement, one known-shape tie
 
-* **B-V15-S1: 3 B pentacubes, 15 cells, exact CK6, 2 tilings** — vs George's published B
-  minimum of **13 tiles** (65 cells). Smaller by 10 tiles / 50 cells. All fourteen of our
-  5-B constructions (including B-V25-S12 with its 10 tilings) are also below his minimum.
 * **L-V25-S1: 5 L pentacubes, 25 cells** — vs George's published L minimum of **11 tiles**
-  (55 cells). Smaller by 6 tiles / 30 cells.
+  (55 cells). Smaller by 6 tiles / 30 cells. This is a genuine "please write" case.
+* **B-V15-S1: 3 B pentacubes, 15 cells, exact CK6, 2 tilings** — repo B is the junction
+  piece, which George calls **M**; his published M minimum is **3 tiles**, and our B-V15-S1
+  is *congruent* to his "M 3" figure (`oh-0216334782e8`, bbox 3×5×5; his colouring is one of
+  our two tilings — see `data/ck6_reuse/b_v15_george_geometry_reconciliation.json`). It is a
+  **known shape + known tiling**, not an improvement. Our fourteen 5-B constructions
+  (B-V25-*, 5 junction pieces) are *larger* than his 3-piece M minimum; the page lists
+  minima only, so they fall under "no match on page".
 
-These are exactly the "please write" cases the page solicits. They rest on: (a) Stage 5N/O
-independent verification of our constructions (standalone auditor, dual checks), (b) the
-lettering verification chain above, (c) the page's own semantics (one smallest-known figure
-per piece). **Suggested action: write to George** with B-V15-S1, L-V25-S1 (and optionally
-B-V25-S12) — witness coordinates and renders are in `data/ck6_reuse/`.
+These rest on: (a) Stage 5N/O independent verification of our constructions (standalone
+auditor, dual checks), (b) the lettering verification chain above (including the B/M swap
+documented in `docs/frontier/george_b9_letter_mapping.md`), (c) the page's own semantics (one
+smallest-known figure per piece). **Suggested action: write to George** with L-V25-S1 (the
+genuine improvement); optionally note that our B-V15-S1 is congruent to his published M-3
+figure — an independent confirmation of his result, not a claim against it. Witness
+coordinates and renders are in `data/ck6_reuse/`.
 
 ### 4.2 Consistency checks that passed
 
