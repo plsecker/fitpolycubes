@@ -7,9 +7,9 @@ Scope: classify every existing NO-RECORD solver solution (witness-bearing `data/
 
 All 34 witnessed (piece, box) pairs are reconciled against the corpus. **No genuine corpus omissions remain:**
 
-- 22 `EXPLICIT_RECORD`, 4 `OTHER_PUBLISHED_EVIDENCE`, 1 `STATUS_0` contradiction (S 5×6×28), 1 `UNRESOLVED` (I 1×1×5).
+- 22 `EXPLICIT_RECORD`, 4 `OTHER_PUBLISHED_EVIDENCE`, 1 `COMPOSITE_EXPLAINED` case (S 5×6×28), 1 `UNRESOLVED` (I 1×1×5).
 - The six apparent gaps (S 4×6×10, S 5×6×8, S 5×8×12, S 5×8×18, U 3×9×10, Y 2×5×10) are **all composite boxes derivable from published primes** on the same pages (prover-verified decompositions, see the investigation section). The Shirakawa pages are prime/decomposition catalogues, so absence of a concrete composite box is not evidence of a corpus omission.
-- S 5×6×28 is a **confirmed published-data error**: a valid local witness contradicts the published `0` claim for N = 28 only (25–27 stand uncontradicted).
+- S 5×6×28 is **not a prime/corpus gap**: it is trivially composite because 5×6×28 = 7 × (4×5×6), and 4×5×6 is a published S prime. The local witness is therefore an explicit decomposition witness, not a new prime exception. The published `5x6x[25-28] = 0` range is still a data error for N = 28 (25–27 remain uncontradicted), but the error is simply failure to recognize the composite construction.
 - I 1×1×5 remains **unresolved**: no I page exists in the corpus (live `I.html` is 404), so there is no published record to cite; the tiling itself is trivial.
 
 ## 1. Method
@@ -60,7 +60,7 @@ All 34 witnessed (piece, box) pairs, classified (initial pass; the six `GENUINE_
 | S | 4×9×105 | `solutions_s_4x9x105_shirakawa.dat` | EXPLICIT_RECORD | S.md: `4x9x105 prime 1+ Shirakawa 2014` |
 | S | 4×10×10 | `solutions_s_4x10x10.dat` | EXPLICIT_RECORD | S.md: `80 \| 4x10x10 \| prime \| 1+ \| Postl 1998` |
 | S | 5×6×8 | `solutions_s_5x8x6.dat` | GENUINE_GAP | S.md full transcription: 5x6x8 absent, sits between impossible ranges `5x6x[6-7]` and `5x6x[9-11]` (both 0, Sillke 1993) |
-| S | 5×6×28 | `solutions_s_5x6x28.dat` | STATUS_0 — **contradiction** | S.md + live S page: `5x6x[25-28] = 0` (Shirakawa 2014), but valid local witness exists (168 S-pentacubes, exact 5×6×28 box) — **witness VALID**, see the investigation section |
+| S | 5×6×28 | `solutions_s_5x6x28.dat` | COMPOSITE_EXPLAINED | S.md + live S page: `5x6x[25-28] = 0` (Shirakawa 2014); but 5×6×28 = 7 × (4×5×6), and 4×5×6 is a published S prime. The 168-piece witness is therefore a decomposition witness, not a new prime exception. |
 | S | 5×7×24 | `solutions_s_5x7x24_shirakawa.dat` | EXPLICIT_RECORD | S.md: `168 \| 5x7x24 \| prime \| 1+ \| Sillke 1998` |
 | S | 5×7×36 | `solutions_s_5x7x36_shirakawa.dat` | EXPLICIT_RECORD | S.md: `5x7x36 prime 1+ Sillke 1998` |
 | S | 5×7×42 | `solutions_s_5x7x42_shirakawa.dat` | EXPLICIT_RECORD | S.md: `5x7x42 prime 1+ Sillke 1998` |
@@ -80,7 +80,7 @@ All 34 witnessed (piece, box) pairs, classified (initial pass; the six `GENUINE_
 | Y | 1×5×10 | `solutions_fast_y_1x5x10.dat` | EXPLICIT_RECORD | live Y page 2D: `5x10 \| prime minimal \| 4 \| Golomb 1966` (thickness-1 box = 2D rectangle) |
 | Y | 2×5×10 | `solutions_hybrid_y_2x5x10.dat` | GENUINE_GAP | live Y page "3D Complete." lists 22 3D primes (2x5x6, 2x5x8, 2x5x11, 2x5x13, 2x5x15 among them); 2x5x10 absent; valid local witness → tileable composite box not recorded |
 
-Counts by classification: **EXPLICIT_RECORD 22, OTHER_PUBLISHED_EVIDENCE 4, GENUINE_GAP 6, STATUS_0 1 (contradiction), UNRESOLVED 1**. No `FAMILY_COVERED` (positive) cases with witnesses. **The six `GENUINE_GAP` entries are the initial classification only — all six are resolved as composite boxes in the investigation section below (0 remain genuine gaps).**
+Counts by classification: **EXPLICIT_RECORD 22, OTHER_PUBLISHED_EVIDENCE 4, GENUINE_GAP 6, COMPOSITE_EXPLAINED 1, UNRESOLVED 1**. No `FAMILY_COVERED` (positive) cases with witnesses. **The six `GENUINE_GAP` entries are the initial classification only — all six are resolved as composite boxes in the investigation section below (0 remain genuine gaps).**
 
 ## 3. Genuine gaps
 
@@ -99,13 +99,13 @@ Each of these six is investigated in the dedicated section below; all six resolv
 
 **I 1×1×5** — the only unresolved case. No I.md ever existed in the repo (verified `git log --all`), and the live `I.html` returns 404: the Shirakawa collection has no I page at all. The I pentacube trivially tiles 1×1×5 (the piece is the box), and the local witness `solutions_fast_i_1x1x5.dat` confirms it, but there is no published record to cite. Classified UNRESOLVED because the corpus cannot decide; the triviality note above is the practical resolution.
 
-**Flagged discrepancy — S 5×6×28.** The corpus (S.md and the live S page) records `5x6x[25-28] = 0` (Shirakawa 2014), i.e. 5×6×28 is claimed impossible, yet a local witness exists. This is not a gap (the corpus does cover the box, with status 0) but a discrepancy. It has been fully investigated — see the dedicated section below. **Verdict: the witness is VALID**, so the published `0` claim is contradicted for N=28.
+**Flagged classification issue — S 5×6×28.** The corpus (S.md and the live S page) records `5x6x[25-28] = 0` (Shirakawa 2014). The local witness is valid, but it does not constitute a new prime exception: 5×6×28 = 7 × (4×5×6), and 4×5×6 is already a published S prime. The range-level `0` is therefore erroneous for N=28 because the box is composite/tileable, not because we discovered an overlooked prime case. See the dedicated section below.
 
 **Corpus-internal inconsistency (context).** S.md's narrative note says: "Sillke says 4x10x14 and 4x9x15 are possible, but they are impossible. The solutions of 4x10x14, 4x9x15 and 5x7x30 are wrong." — while the S.md table lists `5x7x30 \| prime \| 1+ \| Sillke 1998`. The corpus itself contains corrections of Sillke's data, which is relevant context for how much weight to give published impossibility claims.
 
-## S 5×6×28 contradiction investigation
+## S 5×6×28 composite-case resolution
 
-**Verdict: VALID** — the repository contains a genuine, independently verified S-pentacube tiling of 5×6×28.
+**Verdict: COMPOSITE, VALID WITNESS** — the repository contains a genuine, independently verified S-pentacube tiling of 5×6×28, but this is exactly what should be expected from the published 4×5×6 prime: 5×6×28 = 7 × (4×5×6).
 
 ### Witness and provenance
 
@@ -145,7 +145,7 @@ Live page (fetched 2026-09-16) row: `5x6x[25-28] | 0 | 2014 | Shirakawa`. Adjace
 
 ### What this means for the Shirakawa `0` claim
 
-The published claim `5x6x[25-28] = 0` (Shirakawa 2014) is **contradicted for N = 28** by a valid, independently verified S-pentacube tiling. The witness is not a search artifact: it is a macro construction built from a verified length-4 cycle of the complete 5×6 macro graph, and every piece is a proper-rotation image of the canonical S pentacube covering the box exactly once. The claim may still hold for N = 25, 26, 27 (no local witnesses exist for those). The corpus itself contains precedent for published data being wrong (S.md note: "Sillke says 4x10x14 and 4x9x15 are possible, but they are impossible. The solutions of 4x10x14, 4x9x15 and 5x7x30 are wrong."). No catalogue classification is modified by this finding.
+The published claim `5x6x[25-28] = 0` (Shirakawa 2014) is **wrong for N = 28**, but for a simple reason: 5×6×28 = 7 × (4×5×6), and 4×5×6 is a published S prime (Hamlyn 1993). Thus N=28 is a composite tileable case and should not be treated as a prime/corpus-gap anomaly. Our independently verified 168-piece witness is consistent with this decomposition; the macro implementation realizes it as seven copies of the verified length-4 cycle. The claim may still hold for N = 25, 26, 27 (no local witnesses exist for those), but those are separate questions. No new prime exception is established here.
 
 ## Historical status of the S 5×6×28 discrepancy
 
@@ -159,9 +159,9 @@ The published claim `5x6x[25-28] = 0` (Shirakawa 2014) is **contradicted for N =
 
 No earlier source exists in the repository (the `shirakawa/*.md` files are transcriptions of the current live pages; there is no older edition of the S page in the repo). The claim is a **range-level** statement: the page lists the range with a single `0` and no per-N breakdown.
 
-### Exact verified local counterexample
+### Exact verified local construction
 
-`data/solutions_s_5x6x28.dat` — 168 S-pentacubes covering the 5×6×28 box exactly (840 cells), validated by four independent implementations (see the investigation section above) and reproduced piece-for-piece from the documented macro pipeline (7 concatenated copies of the verified length-4 cycle `0→s1→s2→FULL→0`). This disproves the published claim **for N = 28 only**.
+`data/solutions_s_5x6x28.dat` — 168 S-pentacubes covering the 5×6×28 box exactly (840 cells), validated by four independent implementations and reproduced piece-for-piece from the documented macro pipeline (7 concatenated copies of the verified length-4 cycle `0→s1→s2→FULL→0`). This is a concrete witness of the obvious decomposition into seven 4×5×6 blocks; it does not establish a new prime case.
 
 ### Is a later correction already present in the corpus?
 
@@ -173,19 +173,13 @@ No earlier source exists in the repository (the `shirakawa/*.md` files are trans
   - `data/frontier/s_piece/macro_width_survey.json` — machine-readable `catalogue_contradiction_resolved: "5x6x28 is tileable; source range [25-28] had error for z=28"`; its `published_impossible` list already reads `…25-27,30-31…` (28 excluded).
   - Regression tests `tools/frontier/test_macro_construction.py` and `test_macro_semigroup.py` already treat 28 as representable and exclude it from the non-representable list (25, 26, 27 remain).
 
-### Should the discrepancy be recorded as a confirmed published-data error?
+### Correct interpretation
 
-**Yes.** The evidence is already sufficient and already recorded in the research documentation (above). The established corpus convention for published-data corrections is a verbatim note in the piece file's "Note before table" section (S.md's Sillke note; F.md "Sillke overlooked 4x6x[20,25] and 5x6x10"; V.md "Sillke says 5x5x12 is prime, but it is not prime…"), and repository errors are recorded as "Audit note" sections (G.md). Following that convention, the recommended action — when catalogue data is changed — is to add a short annotation to `shirakawa/S.md` next to the `5x6x[25-28]` row (e.g. "5x6x28 is tileable (verified macro construction, 2026-08-23); range claim erroneous for N=28") and to update the catalogue entry. Neither is done in this task.
+The published range row is still erroneous for N=28, but it should be interpreted as a **composite/tileability classification error**, not as evidence of a missing prime. Before treating any solver witness absent from Shirakawa as a corpus anomaly, the decomposition check against already-published primes should be applied first. For N=28 that check is immediate: 28 = 7×4, with 4×5×6 already published as prime. Any future catalogue annotation should state this explicitly.
 
-### What evidence would still be desirable before changing catalogue data
+### What remains open
 
-1. **An exact-cover solver verification of 5×6×28.** The survey's `physical_verification` covers only z=4 and `matches_solver_for: [4, 8]`; z=28 was macro-construction-verified but never matched against a solver. A solver run (not performed here — no new search) would confirm the tiling independently of the macro machinery.
-2. **Confirmation that N = 25, 26, 27 remain impossible.** No local witnesses exist for them; semigroup non-representability (⟨4,29,46,47⟩) is a necessary condition for macro-construction tilings but not a proof of impossibility of arbitrary tilings. The published claim for 25–27 stands uncontradicted.
-3. Optionally, external corroboration (Sillke's pages, Reid's collection) — out of scope here.
-
-### Narrow conclusion
-
-**Only N = 28 is disproved by the local witness. Do not infer anything about N = 25–27.** The published range claim `5x6x[25-28] = 0` is a confirmed published-data error for N = 28; for N = 25, 26, 27 it remains the standing published classification, consistent with the semigroup analysis and with no counterexample in the repository.
+No additional verification is needed to establish the basic point about N=28: the published 4×5×6 prime already gives a seven-block construction. The existing witness and independent validations are useful confirmation, but they are not necessary to recognize compositeness. N = 25, 26, 27 remain separate published-impossible cases; nothing in this audit changes them.
 
 ## Investigation of the six genuine gaps
 
@@ -230,10 +224,6 @@ The U page claims "Complete." and 3×9×10 is tileable (23,936 witness solutions
 
 **0 of the 6 remain genuine gaps.** All six are composite tileable boxes whose tileability follows from published primes (or published 2D data) on the same pages; the pages are prime catalogues, and the S page does not even claim 3D completeness. The §3 list should be read as "absent from the corpus pages", not as "missing published solutions". The closest calls were U 3×9×10 (complete prime catalogue + tileable + absent) and Y 2×5×10 (complete 3D catalogue), both resolved by decompositions into published primes. **No candidate remains a strong target for further historical investigation.**
 
-## 5. Single smallest next research action
+## 5. Conclusion
 
-**Document the S 5×6×28 corpus error and verify the remaining N = 25, 26, 27.**
-
-The S 5×6×28 contradiction is resolved: the witness is VALID (see the investigation section above), so the published `5x6x[25-28] = 0` claim is erroneous for N=28. The smallest next action is to record this finding where the corpus is consumed (e.g. a note in `shirakawa/S.md` or the S catalogue, without changing classifications) and to check whether the published range claim also covers N = 25, 26, 27 — those have no local witnesses, so they remain open.
-
-Alternative: none of the six genuine gaps remain open — the dedicated investigation section above resolves all six as composite boxes derivable from published primes (closest call: U 3×9×10).
+The Shirakawa corpus audit is complete for the witness-bearing cases examined here. No genuine corpus omissions remain among the six apparent gaps: all six are composite tileable boxes derivable from published primes or published 2D data. The 5×6×28 case is likewise composite, with the immediate decomposition 7 × (4×5×6); its valid witness is a confirmation of that construction, not a new prime exception. The only remaining historical oddity in the audit is the range-level `5x6x[25-28] = 0` statement, which is simply wrong for N=28 because it overlooks this composite construction.
