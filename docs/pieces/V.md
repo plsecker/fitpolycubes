@@ -2,7 +2,7 @@
 
 ## Summary
 
-Catalogue record for the V-pentomino (5/6). The catalogue contains 29 prime boxes and extensive published impossibility families. The Shirakawa source declares "3D Complete."
+Catalogue record for the V-pentomino (5/6). The catalogue contains 29 prime boxes and published impossibility families, plus a legacy repository convention (the cube rule, removed 2026-09-17). The Shirakawa source declares "3D Complete."
 
 ## Catalogue Overview
 
@@ -55,11 +55,19 @@ None.
 Published impossible families:
 
 - `a <= 1`: impossible
-- `a == b == c` (cube): impossible
 - `a == 2, b == c` (`2xNxN`): impossible (NxN is impossible)
 - `(a, b) == (3, 3)` (`3x3xN`): impossible (dies out after 7 steps)
 - `(a, b) == (3, 4)` (`3x4xN`): impossible (dies out after 15 steps)
 - `(a, b) == (3, 5), c` odd (`3x5xu` odd): impossible
+
+Legacy / repository conventions (not published; source/proof not established):
+
+- `a == b == c` (cube): impossible — inherited/legacy catalogue rule; no
+  authoritative source or proof identified; contradicted by local
+  constructions for V cubes 10³…60³ (see
+  `docs/frontier/cross_piece_cube_rule_audit.md`). **Removed 2026-09-17** as
+  a repository catalogue correction (not a correction to Shirakawa's
+  published source data).
 
 Published individual impossible boxes:
 

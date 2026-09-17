@@ -58,6 +58,17 @@ class Impossible(ProofNode):
     box: Box
     reason: str
 
+@dataclass
+class Contradiction(ProofNode):
+    """A box the active catalogue records as published-impossible, yet for
+    which a verifiable local decomposition (the witness below) exists.
+    A constructive local proof outranks a published impossibility assertion
+    in this prover, so the contradiction is surfaced instead of a silent
+    Impossible."""
+    box: Box
+    published_reason: str
+    decomposition: ProofNode
+
 
 @dataclass
 class Unknown(ProofNode):
@@ -100,6 +111,10 @@ def closes(node):
     if isinstance(node, PublishedSolution):
         return True
 
+    if isinstance(node, Contradiction):
+        # The published impossibility is refuted by a local witness.
+        return closes(node.decomposition)
+
     if isinstance(node, Impossible):
         return False
 
@@ -124,7 +139,12 @@ def closes(node):
 # Generic Impossibility Rules
 # ============================================================
 
-def impossible_reason(box):
+def local_impossible_reason(box):
+    """Impossibility provable WITHOUT consulting the published corpus:
+    dimensional sanity and the volume invariant.  These are genuine proofs
+    and are safe to short-circuit the prover, because no constructive
+    decomposition can contradict a box with non-positive or non-multiple
+    volume.  The published corpus is deliberately excluded here."""
     a, b, c = box.a, box.b, box.c
 
     if a <= 0 or b <= 0 or c <= 0:
@@ -133,7 +153,17 @@ def impossible_reason(box):
     if (a * b * c) % PIECE_SIZE != 0:
         return "volume"
 
-    # Delegate piece-specific checks to the active catalogue
+    return None
+
+
+def impossible_reason(box):
+    """Full impossibility check: local geometric proofs first, then the
+    active catalogue's published impossibility assertions.  Kept for external
+    callers that want the published evidence bundled; decomp.classify itself
+    uses only local_impossible_reason so the decomposition prover runs first."""
+    local = local_impossible_reason(box)
+    if local:
+        return local
     return catalogue.impossible_reason(box)
 
 
@@ -175,11 +205,27 @@ def semigroup_decompose(target, generators):
 # dimensions, together with any semigroup decompositions supplied by the active
 # catalogue. It is not an exhaustive tiling solver; arbitrary non-guillotine
 # decompositions and placement searches are outside its scope.
+def _finish(box, candidate):
+    """Handle a locally-closed decomposition.  If the active catalogue ALSO
+    records this same box as published-impossible, the published assertion is
+    disproven by a verifiable local construction: surface a Contradiction
+    carrying the decomposition witness.  A local proof outranks a published
+    impossibility claim in this prover."""
+    published_reason = catalogue.impossible_reason(box)
+    if published_reason:
+        return Contradiction(box, published_reason, candidate)
+    return candidate
+
+
 @cache
 def classify(box):
     box = box.canonical()
-    reason = impossible_reason(box)
 
+    # Only *local*, verifiable impossibility may short-circuit the prover:
+    # dimensional sanity and the volume invariant.  Neither can be contradicted
+    # by a constructive witness on another axis, so both are safe to consult
+    # first.  The published corpus is deliberately NOT consulted here.
+    reason = local_impossible_reason(box)
     if reason:
         return Impossible(box, reason)
 
@@ -203,7 +249,7 @@ def classify(box):
 
             candidate = Generator(box, parts)
             if closes(candidate):
-                return candidate
+                return _finish(box, candidate)
 
     #
     # Width semigroup
@@ -219,7 +265,7 @@ def classify(box):
 
             candidate = Generator(box, parts)
             if closes(candidate):
-                return candidate
+                return _finish(box, candidate)
 
     #
     # Slab decomposition
@@ -230,7 +276,7 @@ def classify(box):
 
         candidate = Slab(box, left, right)
         if closes(candidate):
-            return candidate
+            return _finish(box, candidate)
 
     #
     # Width decomposition
@@ -241,7 +287,7 @@ def classify(box):
 
         candidate = Width(box, left, right)
         if closes(candidate):
-            return candidate
+            return _finish(box, candidate)
 
     #
     # Breadth decomposition
@@ -252,10 +298,18 @@ def classify(box):
 
         candidate = Breadth(box, left, right)
         if closes(candidate):
-            return candidate
+            return _finish(box, candidate)
 
-    # Final fallback: consult published_solutions ONLY after exhausting all constructive proofs.
-    # Do not move this earlier; must not short-circuit the decomposition pipeline.
+    # ------------------------------------------------------------------
+    # Exhausted every constructive/local proof.  NOW (and only now) consult
+    # the active catalogue as a fallback.  Serving as evidence, the published
+    # corpus must never have been consulted earlier and cannot override a
+    # locally-verified decomposition (handled by _finish above).
+    # ------------------------------------------------------------------
+    published_reason = catalogue.impossible_reason(box)
+    if published_reason:
+        return Impossible(box, published_reason)
+
     if box in {b.canonical() for b in catalogue.published_solutions}:
         return PublishedSolution(box)
 
@@ -271,6 +325,12 @@ def dump(node, indent=0):
 
     if isinstance(node, PublishedSolution):
         print(f"{pad}PUBLISHED_SOLUTION {node.box}")
+        return
+
+    if isinstance(node, Contradiction):
+        print(f"{pad}CONTRADICTION {node.box}")
+        print(f"{pad}  published-impossible [{node.published_reason}] but locally decomposable:")
+        dump(node.decomposition, indent + 2)
         return
 
     if isinstance(node, Prime):

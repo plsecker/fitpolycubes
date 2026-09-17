@@ -153,12 +153,13 @@ MINIMAL_ODD = Box(5, 7, 7)
 # Smallest RAW_PRIME with all three dimensions even.
 MINIMAL_EVEN = Box(4, 6, 10)
 
-SEARCHED_NO_SOLUTION = {
-    Box(2, 5, 10),
-    Box(2, 5, 13),
-    Box(2, 5, 15),
-    Box(2, 5, 16),
-}
+# The former SEARCHED_NO_SOLUTION entries {2x5x10, 2x5x13, 2x5x15, 2x5x16}
+# were removed on 2026-09-17 as a metadata correction: they were never
+# consulted by impossible_reason() and each is tileable by published B
+# primes (2x5x10 = 2x(2x5x5), 2x5x13 = 2x5x5 + 2x5x8, 2x5x15 = 3x(2x5x5),
+# 2x5x16 = 2x5x5 + 2x5x11). See
+# docs/frontier/b_piece/searched_no_solution_audit.md.
+SEARCHED_NO_SOLUTION = set()
 
 ROW_FAMILIES = {
 }

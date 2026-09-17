@@ -181,9 +181,6 @@ class VCatalogue(Catalogue):
         if a <= 1:
             return "published_impossible"
 
-        if a == b == c:
-            return "cube"
-
         #
         # Published impossible families
         #

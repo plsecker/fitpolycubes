@@ -132,17 +132,23 @@ does not mention it.
 | rule | source | justification |
 |---|---|---|
 | `a ≤ 1` → impossible | repository convention | a 5-cell piece cannot fit in a 1-wide box |
-| `a == b == c` → impossible ("cube") | repository convention | cubes cannot be tiled by pentacubes (known result) |
+| `a == b == c` → impossible ("cube") | repository convention (inherited) | **REMOVED 2026-09-17** — repository catalogue correction (not a correction to Shirakawa's published source data); source/proof never established |
 
-These are standard conventions in pentacube tiling theory, not source-verified
-results. They are conservative (they don't exclude any tileable box).
+These are repository conventions, not source-verified results. The `a ≤ 1`
+rule is geometric (a 5-cell piece cannot fit in a 1-wide box). The cube rule
+was an inherited/legacy catalogue rule: no source or proof was ever
+identified, and it was contradicted by local constructions for K cubes 10³,
+15³, 20³, 30³, 40³, 45³, 50³, 60³ (see
+`docs/frontier/cross_piece_cube_rule_audit.md`). It was **removed on
+2026-09-17** as a repository catalogue correction (not a correction to
+Shirakawa's published source data).
 
 ## 5. Complete impossibility provenance summary
 
 | # | rule | source | classification |
 |---|---|---|---|
 | 1 | `a ≤ 1` | repository convention | REASONABLE BUT SOURCE UNCLEAR |
-| 2 | `a == b == c` (cube) | repository convention | REASONABLE BUT SOURCE UNCLEAR |
+| 2 | `a == b == c` (cube) | repository convention | **REMOVED 2026-09-17** (was REASONABLE BUT SOURCE UNCLEAR) |
 | 3 | `a == 2, b ∈ {2..7}` | Shirakawa 5-13, Sillke 1993 | **SOURCE-VERIFIED** |
 | 4 | `a == 3, b == 3` | Shirakawa 5-13, Sillke 1993 | **SOURCE-VERIFIED** |
 | 5 | odd-width theorem (3 conditions) | mathematical theory | **THEOREM** |
@@ -198,11 +204,11 @@ The following catalogue features are **not from the Shirakawa page**:
 | catalogue feature | source | justification |
 |---|---|---|
 | `a ≤ 1` → impossible | repository convention | standard (piece too large) |
-| `a == b == c` → "cube" | repository convention | standard (known result) |
+| `a == b == c` → "cube" | repository convention (inherited) | **REMOVED 2026-09-17** — repository catalogue correction; source/proof never established |
 | odd-width theorem (3 conditions) | mathematical theory | standard pentacube result |
 
-These are **correct mathematical additions** to the Shirakawa data — they
-are not transcription errors.
+These are **repository additions** to the Shirakawa data — they are
+not transcription errors.
 
 ## 7. Closure verification (task 5)
 
@@ -258,11 +264,13 @@ solutions are the same set.
 | Impossibility: 3×4×15 | **A. SOURCE-VERIFIED** | 1 |
 | Odd-width theorem | **C. THEOREM** (mathematically proved) | 1 family |
 | `a ≤ 1` convention | **C. REASONABLE BUT SOURCE UNCLEAR** | 1 |
-| Cube convention | **C. REASONABLE BUT SOURCE UNCLEAR** | 1 |
+| Cube convention | **REMOVED 2026-09-17** (was C. REASONABLE BUT SOURCE UNCLEAR) | 1 |
 
 **All 18 primes and 3 Shirakawa impossibility rules are SOURCE-VERIFIED.**
-The odd-width theorem is a mathematical THEOREM. The two repository
-conventions (`a ≤ 1`, cube) are REASONABLE BUT SOURCE UNCLEAR.
+The odd-width theorem is a mathematical THEOREM. The `a ≤ 1` convention is
+REASONABLE BUT SOURCE UNCLEAR; the cube convention was **removed on
+2026-09-17** as a repository catalogue correction (not a correction to
+Shirakawa's published source data).
 
 **No entry is classified as UNSUPPORTED / NEEDS INVESTIGATION.**
 

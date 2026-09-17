@@ -136,8 +136,7 @@ class FCatalogue(Catalogue):
         if box in self.searched_no_solution:
             return "searched_no_solution"
 
-        if a == 3 and b in {3, 4, 5}:
-            return "published_impossible"
+
 
         if a == 4 and b in {3, 4}:
             return "published_impossible"
@@ -150,8 +149,7 @@ class FCatalogue(Catalogue):
             if c in {3, 4, 5, 6, 7, 9}:
                 return "published_impossible"
 
-        if box == Box(5, 7, 7):
-            return "published_impossible"
+
 
         return None
 

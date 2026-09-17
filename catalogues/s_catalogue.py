@@ -121,8 +121,19 @@ SEARCHED_NO_SOLUTION = {
     # Empirically searched without finding a solution; no explicit page entry.
     Box(4, 5, 7),
 
-    # Empirically searched without finding a solution; related to the
-    # impossible 4x10x14 (stacking 4x10x14 twice along the 8 dimension).
+    # 8x10x14 -- CATALOGUE-DERIVED impossibility, NOT a direct Shirakawa
+    # published-impossible record.  It has no explicit page entry; it was
+    # inferred from the impossible 4x10x14 by stacking that box twice along the
+    # 8 dimension.  That inference is INVALID: a tiling need not respect the
+    # 4+4 split.  The local decomposition prover (solvers/decomp.py) now
+    # establishes 8x10x14 as TILEABLE:
+    #
+    #     8x10x14 = 8x8x10 + 4 x (4x5x6)
+    #
+    # where 8x8x10 is a published one-sided prime (Shirakawa 2014, RAW_PRIMES
+    # above) and 4x5x6 is the minimal one-sided prime (Hamlyn 1993).
+    # Classification is intentionally left unchanged here (documentation-only
+    # follow-up); see docs/frontier/s_piece/published_impossible_audit.md.
     Box(8, 10, 14),
 }
 

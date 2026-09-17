@@ -284,12 +284,7 @@ class WCatalogue(Catalogue):
         #
         # 4*5*{1..18,20,21,22,23,25,27}
         #
-        if (a, b) == (4, 5):
-            if 1 <= c <= 18:
-                return "published_impossible"
 
-            if c in {20, 21, 22, 23, 25, 27}:
-                return "published_impossible"
 
         #
         # 3*3*Z
