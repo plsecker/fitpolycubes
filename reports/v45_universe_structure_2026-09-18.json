@@ -1,0 +1,43 @@
+{
+  "adj": {
+    "length": 3938,
+    "type": "list"
+  },
+  "all_orbits": {
+    "length": 3938,
+    "type": "list"
+  },
+  "ball": {
+    "length": 15225,
+    "type": "list"
+  },
+  "bset": {
+    "length": 15225,
+    "type": "set"
+  },
+  "cell2orb": {
+    "length": 15224,
+    "type": "dict"
+  },
+  "center": {
+    "length": 3,
+    "type": "tuple"
+  },
+  "cost": {
+    "length": 3938,
+    "type": "list"
+  },
+  "nbrs": {
+    "length": null,
+    "type": "function"
+  },
+  "radius": {
+    "length": null,
+    "type": "int",
+    "value": 22
+  },
+  "start_front": {
+    "length": 2,
+    "type": "frozenset"
+  }
+}
