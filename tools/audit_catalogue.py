@@ -130,6 +130,7 @@ def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
     prime_mismatches = []
     unproven_composites = []
     discovered_composites = []
+    contradictions = []
     
     # Generate test boxes up to max_dimension
     test_boxes = []
@@ -160,6 +161,16 @@ def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
         # Audit C: Solver discovers closed proof for unlisted box
         if not is_prime and closes(node) and node_type in ['Generator', 'Slab', 'Width', 'Breadth']:
             discovered_composites.append((box, node))
+
+        # Audit C2: The catalogue asserts the box is impossible, yet the solver
+        # built a closing local construction.  classify() reports this as a
+        # Contradiction node carrying the witness.  Without this branch the box
+        # matched no section at all -- Audit B excludes it because
+        # impossible_reason() is truthy, and Audit C excludes it because
+        # 'Contradiction' is not in its node-type list -- so the local
+        # construction was silently hidden.
+        if isinstance(node, decomp.Contradiction):
+            contradictions.append((box, node))
     
     # Report results
     def print_section(title, items, limit):
@@ -184,6 +195,8 @@ def audit_catalogue(catalogue_name, max_dimension=20, limit=None):
     print_section("A: Prime mismatches", prime_mismatches, limit)
     print_section("B: Unproven composites", unproven_composites, limit)
     print_section("C: Discovered composites", discovered_composites, limit)
+    print_section("C2: Contradictions (catalogue-impossible but locally proven)",
+                  contradictions, limit)
     
     # Audit D: Published solutions
     print("\nAUDIT D: Published solutions")

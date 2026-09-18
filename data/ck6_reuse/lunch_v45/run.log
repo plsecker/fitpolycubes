@@ -1,0 +1,20 @@
+sharded count: 86 candidate min-ids
+  min-id 3671 (20/86): 2 cumulative 1,469,997 (1053s)
+  min-id 3891 (40/86): 0 cumulative 1,469,998 (1053s)
+  min-id 3911 (60/86): 0 cumulative 1,469,998 (1053s)
+  min-id 3931 (80/86): 0 cumulative 1,469,999 (1053s)
+count: 1,469,999 targets (1053.0s); 86 distinct min-ids
+planned 6 shards, total 1469999; expected load per shard: [851921, 293405, 154120, 80968, 44793, 44792]
+[run] 6 shards to run on 6 workers
+[run] launched shard 0 (pid 2483)
+[run] launched shard 1 (pid 2484)
+[run] launched shard 2 (pid 2485)
+[run] launched shard 3 (pid 2486)
+[run] launched shard 4 (pid 2487)
+[run] launched shard 5 (pid 2488)
+[run] shard 1 finished rc=0
+[run] shard 2 finished rc=0
+[run] shard 3 finished rc=0
+[run] shard 0 finished rc=0
+[run] shard 4 finished rc=0
+[run] shard 5 finished rc=0

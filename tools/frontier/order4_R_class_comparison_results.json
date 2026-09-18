@@ -1,0 +1,677 @@
+[
+  {
+    "class": "A12",
+    "desc": "cyclic C4 about z (no mirrors)",
+    "orbit_sizes": {
+      "1": 5,
+      "4": 30
+    },
+    "connected_targets": 8719,
+    "tileable": false,
+    "tilings": 0,
+    "canonical_witnesses": 0,
+    "search_nodes": 21718,
+    "search_seconds": 0.89,
+    "capped": false
+  },
+  {
+    "class": "J10",
+    "desc": "cyclic S4 about z (no mirrors)",
+    "orbit_sizes": {
+      "1": 1,
+      "2": 2,
+      "4": 30
+    },
+    "connected_targets": 5729,
+    "tileable": false,
+    "tilings": 0,
+    "canonical_witnesses": 0,
+    "search_nodes": 9535,
+    "search_seconds": 0.5,
+    "capped": false
+  },
+  {
+    "class": "BB10",
+    "desc": "c2 axes x,y,z (no mirrors)",
+    "orbit_sizes": {
+      "1": 1,
+      "2": 6,
+      "4": 28
+    },
+    "connected_targets": 18729,
+    "tileable": false,
+    "tilings": 0,
+    "canonical_witnesses": 0,
+    "search_nodes": 16041,
+    "search_seconds": 0.77,
+    "capped": false
+  },
+  {
+    "class": "BC10",
+    "desc": "c2 axes z,(1,1,0),(1,-1,0) (no mirrors)",
+    "orbit_sizes": {
+      "1": 1,
+      "2": 6,
+      "4": 28
+    },
+    "connected_targets": 8583,
+    "tileable": false,
+    "tilings": 0,
+    "canonical_witnesses": 0,
+    "search_nodes": 19568,
+    "search_seconds": 1.28,
+    "capped": false
+  },
+  {
+    "class": "CE3",
+    "desc": "mirrors z=0 & x=y; product c2 about (1,1,0)",
+    "orbit_sizes": {
+      "1": 5,
+      "2": 20,
+      "4": 20
+    },
+    "connected_targets": 392719,
+    "tileable": true,
+    "tilings": 16,
+    "canonical_witnesses": 4,
+    "search_nodes": 170236,
+    "search_seconds": 4.32,
+    "capped": false,
+    "witness": {
+      "target": [
+        [
+          -1,
+          -1,
+          -2
+        ],
+        [
+          -1,
+          -1,
+          -1
+        ],
+        [
+          -1,
+          -1,
+          1
+        ],
+        [
+          -1,
+          -1,
+          2
+        ],
+        [
+          -1,
+          0,
+          -1
+        ],
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          -1,
+          0,
+          1
+        ],
+        [
+          -1,
+          1,
+          0
+        ],
+        [
+          0,
+          -1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          -1
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ]
+      ],
+      "placements": [
+        [
+          [
+            1,
+            -1,
+            0
+          ],
+          [
+            1,
+            0,
+            -1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            0
+          ]
+        ],
+        [
+          [
+            -1,
+            -1,
+            -2
+          ],
+          [
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0,
+            -1
+          ],
+          [
+            0,
+            -1,
+            -1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        [
+          [
+            -1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            1,
+            -1
+          ]
+        ],
+        [
+          [
+            -1,
+            -1,
+            1
+          ],
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            -1,
+            0,
+            1
+          ],
+          [
+            0,
+            -1,
+            1
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "class": "BF6",
+    "desc": "mirrors x=y & x=-y; product c2 about z",
+    "orbit_sizes": {
+      "1": 5,
+      "2": 20,
+      "4": 20
+    },
+    "connected_targets": 116641,
+    "tileable": false,
+    "tilings": 0,
+    "canonical_witnesses": 0,
+    "search_nodes": 154468,
+    "search_seconds": 3.63,
+    "capped": false
+  },
+  {
+    "class": "EE4",
+    "desc": "mirrors x=0 & y=0; product c2 about z",
+    "orbit_sizes": {
+      "1": 5,
+      "2": 20,
+      "4": 20
+    },
+    "connected_targets": 2072331,
+    "tileable": true,
+    "tilings": 16,
+    "canonical_witnesses": 4,
+    "search_nodes": 119023,
+    "search_seconds": 2.46,
+    "capped": false,
+    "witness": {
+      "target": [
+        [
+          -2,
+          0,
+          0
+        ],
+        [
+          -2,
+          0,
+          1
+        ],
+        [
+          -1,
+          -1,
+          0
+        ],
+        [
+          -1,
+          -1,
+          1
+        ],
+        [
+          -1,
+          0,
+          -1
+        ],
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          -1,
+          0,
+          1
+        ],
+        [
+          -1,
+          0,
+          2
+        ],
+        [
+          -1,
+          1,
+          0
+        ],
+        [
+          -1,
+          1,
+          1
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          0,
+          -1
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ]
+      ],
+      "placements": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            -1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            -1,
+            0,
+            1
+          ],
+          [
+            -1,
+            0,
+            2
+          ],
+          [
+            -1,
+            1,
+            0
+          ],
+          [
+            -1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            -2,
+            0,
+            0
+          ],
+          [
+            -2,
+            0,
+            1
+          ],
+          [
+            -1,
+            -1,
+            0
+          ],
+          [
+            -1,
+            0,
+            -1
+          ],
+          [
+            -1,
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            -1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            -1,
+            -1,
+            1
+          ],
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            -1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            -1,
+            0
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "class": "BE4",
+    "desc": "mirror z=0 + inversion; product c2 about z",
+    "orbit_sizes": {
+      "1": 1,
+      "2": 14,
+      "4": 24
+    },
+    "connected_targets": 145795,
+    "tileable": false,
+    "tilings": 0,
+    "canonical_witnesses": 0,
+    "search_nodes": 42957,
+    "search_seconds": 1.53,
+    "capped": false
+  },
+  {
+    "class": "CK6",
+    "desc": "mirror x=-y + inversion; product c2 about (1,1,0)",
+    "orbit_sizes": {
+      "1": 1,
+      "2": 14,
+      "4": 24
+    },
+    "connected_targets": 21127,
+    "tileable": false,
+    "tilings": 0,
+    "canonical_witnesses": 0,
+    "search_nodes": 46173,
+    "search_seconds": 1.37,
+    "capped": false
+  }
+]
