@@ -158,6 +158,9 @@ def run_shard(piece, shard_idx, plan, workdir, stop_path):
             if (ck.get("volume") == VOLUME and ck.get("piece") == piece
                     and ck.get("shard") == shard_idx):
                 state = ck["state"]
+                # JSON round-trip turns the funnel Counter into a plain
+                # dict; restore Counter so missing-key increments work
+                state["funnel"] = Counter(state["funnel"])
                 done = {int(k): v for k, v in ck["done"].items()}
                 print(f"shard {shard_idx}: resumed from checkpoint "
                       f"({len(done)}/{len(sh['min_ids'])} min-ids done, "
