@@ -2,7 +2,8 @@
 """
 Regression test: placement-domain completeness for pieces whose
 orientations do not contain their component-wise minimum corner
-(18/24 orientations of repo-M, 6/24 of repo-P).
+(9/12 orientations of repo-M, 6/24 of repo-P; the tip piece, repo B,
+has 18/24).
 
 Background (CK6 sharding-repair audit, 2026-09-10): the pre-hardening
 placements_in_region anchored each orientation only at region cells.

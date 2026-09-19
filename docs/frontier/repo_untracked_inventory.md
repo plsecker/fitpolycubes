@@ -5,6 +5,8 @@
 **HEAD:** `ebd28c4` ("Checkpoint C++ solver: phase-2 infra + sound symmetry + centre-pair + colour research")
 **Scope:** Full audit of untracked + uncommitted files for repo hygiene, plus the `.gitignore` regression fix. No solver algorithm changes, no deletions.
 
+> **Update (2026-09-16):** This is a historical snapshot of the 2026-09-03 hygiene audit. The `.gitignore` deficiencies listed in §2.7 have since been addressed (current `.gitignore` covers `placements_*.txt`, `temp.txt`, `scc_aware_analysis_results.txt`, `/logs/`, `frontier_compact_pure_268m/`, `4x9_*_backup/`, `data/ck6_reuse/run/`, `data/v_5x5x9_search/tasks/`, stale CK6 logs, regenerable SAT `.cnf`, and the 4x8x130 dump). The Shirakawa corpus audit (2026-09-16) added two new artifacts — `docs/frontier/shirakawa_corpus_gap_audit.md` and `tools/frontier/shirakawa_gap_audit.py` — and is documented in `docs/frontier/repo_cleanup_2026-09-16.md`.
+
 ---
 
 ## 1. Executive Summary

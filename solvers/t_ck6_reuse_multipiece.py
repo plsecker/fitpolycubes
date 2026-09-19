@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Stage 5L: reuse the completed CK6 target corpora (V = 5..45) to search for
+Stage 5L: reuse the completed CK6 target corpora (V = 5..35; V45
+UNKNOWN / NOT YET VALIDATED -- see KNOWN_TOTALS and
+docs/frontier/v45_enumeration_validation.md) to search for
 CK6-or-higher oddities with EVERY pentacube in common.registry.PENTACUBES,
 not only T.
 
@@ -80,7 +82,15 @@ REPORT_PATH = os.path.join(REUSE_DIR, "report.json")
 # planar X cross (center + one generic 4-orbit), both BBC2 (order 16)
 # superset-of-CK6 figures.  The enumerator is authoritative; the brief's
 # V=5 expectation is corrected here and flagged in the report.
-KNOWN_TOTALS = {5: 2, 15: 368, 25: 71539, 35: 15289669, 45: 1469999}
+#
+# V45: the historical total (1,469,999) came from the unsound min-id
+# prefilter (86 min-ids >= 3652, min-id 3590 excluded) and is RETIRED.
+# The corrected V45 total is UNKNOWN / NOT YET VALIDATED until a
+# corrected count pass (count_minids_sqlite over the corrected 3,696
+# min-id domain) establishes it independently.  See
+# docs/frontier/v45_enumeration_validation.md.
+KNOWN_TOTALS = {5: 2, 15: 368, 25: 71539, 35: 15289669}
+V45_STATUS = "UNKNOWN / NOT YET VALIDATED (corrected count not established)"
 
 # Historical T funnel counters, for the negative-result controls.
 T_ANCHORS = {
@@ -96,12 +106,9 @@ T_ANCHORS = {
          "pass coverage": 56889,
          "reject: exact cover UNSAT": 56889,
          "TILEABLE": 0},
-    45: {"targets": 1469999,
-         "reject: <k contained placements": 1436064,
-         "reject: uncovered cell": 33935,
-         "pass coverage": 0,
-         "reject: exact cover UNSAT": 0,
-         "TILEABLE": 0},
+    # V45 has NO valid anchor: the historical counters (1,469,999
+    # targets, 86 min-ids) came from the buggy prefilter and are
+    # retired; the corrected V45 corpus does not exist yet.
 }
 
 PIECES = sorted(PENTACUBES)  # canonical registry catalogue, 23 pieces
@@ -434,6 +441,12 @@ def _append_jsonl(final):
 
 
 def run_combo(volume, piece, parallel=None):
+    if volume not in KNOWN_TOTALS:
+        raise RuntimeError(
+            f"V={volume} has no validated corpus total "
+            f"(V45: {V45_STATUS}); refusing to run. A corrected count "
+            f"pass over the corrected min-id domain must establish the "
+            f"total first (see docs/frontier/v45_enumeration_validation.md).")
     if parallel is None:
         # V=45: 4 workers x ~3.2 GB peak fits RAM; V=35: the DFS visited
         # set dominates (~7-8 GB/shard, piece-independent), so 2 workers.

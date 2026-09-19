@@ -96,7 +96,7 @@ def build_universe(volume):
                 center=center, nbrs=nbrs)
 
 
-def iter_targets_seeded(un, min_id, budget):
+def iter_targets_seeded(un, min_id, budget, stats=None, limits=None):
     """Yield every connected CK6-closed target whose minimum orbit id is
     exactly min_id (seeded DFS; ids < min_id forbidden; leaf connectivity
     checked because the seed need not be center-adjacent).
@@ -142,6 +142,138 @@ def iter_targets_seeded(un, min_id, budget):
             visited.add(nm)
             nf = frozenset(x for x in (frontier_ | adj[j]) - {j} if x >= s)
             stack.append((nm, nf, rem - c))
+
+
+def _conn_prune_data(un):
+    """Root-level reachability data for the connectivity-pruned seeded
+    enumerator, computed once and cached on the universe dict.
+
+    dist_to_center[s]: minimum node-weight path cost from orbit s to the
+    centre (Dijkstra over the orbit graph; node weight = orbit cost).
+    Any target containing orbit s must contain a path from s to the
+    centre, so dist_to_center[s] is a LOWER BOUND on the target's total
+    cost; if it exceeds the budget the bucket is provably empty.
+
+    cells_ge[s]: |union of orbits with id >= s|.  A target with min-id s
+    has every orbit >= s, so its non-centre cells are a subset of that
+    union; if the union has fewer than volume - 1 cells the bucket is
+    provably empty.
+    """
+    if "dist_to_center" in un:
+        return un["dist_to_center"], un["cells_ge"]
+    import heapq
+    adj, cost = un["adj"], un["cost"]
+    dist = {f: cost[f] for f in un["start_front"]}
+    heap = [(cost[f], f) for f in un["start_front"]]
+    heapq.heapify(heap)
+    while heap:
+        d, u = heapq.heappop(heap)
+        if d > dist.get(u, float("inf")):
+            continue
+        for v in adj[u]:
+            nd = d + cost[v]
+            if nd < dist.get(v, float("inf")):
+                dist[v] = nd
+                heapq.heappush(heap, (nd, v))
+    cells_ge = [0] * len(un["all_orbits"])
+    acc = set()
+    for s in range(len(un["all_orbits"]) - 1, -1, -1):
+        acc |= set(un["all_orbits"][s])
+        cells_ge[s] = len(acc)
+    un["dist_to_center"] = dist
+    un["cells_ge"] = cells_ge
+    return dist, cells_ge
+
+
+def iter_targets_seeded_connected(un, min_id, budget, stats=None, limits=None):
+    """Yield every connected CK6-closed target whose minimum orbit id is
+    exactly min_id (connectivity-pruned seeded DFS).
+
+    This is the production V45 engine candidate: it is provably complete
+    (same target set as iter_targets_seeded) but explores only the
+    centre-connected part of the state space, which makes zero-leaf
+    buckets either provably empty at the root or cheap.
+
+    CONNECTIVITY PRUNE (complete).  Every connected target T with
+    min-id s has a connected orbit graph (a cell path between any two
+    cells maps to an orbit walk).  Root a spanning tree of T's orbit
+    graph at the centre and order the orbits: s first, then all others
+    by non-decreasing tree depth.  Each orbit v != s added in this order
+    is adjacent to its tree parent, which has smaller depth and is
+    therefore already present and connected to the centre, so v is
+    adjacent to the centre's connected component at add time.  The seed
+    s may be added disconnected; it joins the centre component when its
+    parent is added, and its tree children are then added through
+    s-adjacency.  The DFS expands every centre-component-adjacent orbit
+    at every state, so every target's orbit set is reached and yielded.
+
+    REACHABILITY PRUNE (root, provably empty buckets).  If
+    dist_to_center[s] > budget no target containing s can afford a path
+    from s to the centre; if cells_ge[s] < volume - 1 the orbits >= s
+    cannot supply enough cells; in both cases the bucket is empty and
+    nothing is yielded.
+
+    LEAF CONNECTIVITY CHECK (exact, no BFS).  Every added orbit is
+    centre-component-adjacent at add time, so the centre component is
+    always connected and is the only component besides possibly the seed
+    s.  The cell set is connected iff s is bridged into the centre
+    component (s in start_front or some added orbit adjacent to s), so
+    the leaf check is `bridged`; is_face_connected is not needed.
+
+    Masks are shifted down by s (bit i = orbit id i + s), as in
+    iter_targets_seeded.
+    """
+    adj, cost = un["adj"], un["cost"]
+    all_orbits = un["all_orbits"]
+    center = un["center"]
+    s = min_id
+    dist, cells_ge = _conn_prune_data(un)
+    if dist[s] > budget:
+        return
+    if cells_ge[s] < 2 * budget:  # volume - 1 non-centre cells
+        return
+    rem0 = budget - cost[s]
+    if rem0 < 0:
+        return
+    bridged = s in un["start_front"]
+    if bridged:
+        cc_adj = frozenset(j for j in (un["start_front"] | adj[s]) - {s}
+                           if j >= s)
+    else:
+        cc_adj = frozenset(j for j in un["start_front"] if j >= s)
+    visited = {1}  # shifted seed: orbit id s -> bit 0
+    stack = [(1, rem0, bridged, cc_adj)]
+    while stack:
+        mask, rem, bridged_, cc_adj_ = stack.pop()
+        if stats is not None:
+            stats["states"] = stats.get("states", 0) + 1
+        if rem == 0:
+            if not bridged_:
+                continue
+            cells = {center}
+            m = mask
+            while m:
+                b = m & -m
+                cells |= set(all_orbits[(b.bit_length() - 1) + s])
+                m ^= b
+            yield cells
+            continue
+        for j in cc_adj_:
+            c = cost[j]
+            if c > rem:
+                continue
+            nm = mask | (1 << (j - s))  # shift orbit id j down by s
+            if nm in visited:
+                continue
+            visited.add(nm)
+            n_bridged = bridged_ or (j in adj[s])
+            n_cc = frozenset(x for x in (cc_adj_ | adj[j]) - {j} if x >= s)
+            if n_bridged and not bridged_:
+                # s just joined the centre component: its neighbours
+                # become centre-component-adjacent
+                n_cc = frozenset(x for x in (n_cc | adj[s]) if x >= s
+                                 and x != s)
+            stack.append((nm, rem - c, n_bridged, n_cc))
 
 
 def current_rss_mb():
@@ -290,6 +422,122 @@ def count_minids(un, volume):
                  elapsed_s=round(time.time() - t0, 2)), leaves)
 
 
+def count_minids_sqlite(un, volume, db_path, ckpt_every=2_000_000):
+    """Monolithic DFS with a SQLite-backed visited set (bounded memory).
+
+    Identical traversal to count_minids (sorted-frontier expansion, same
+    leaf attribution), so the histogram is exactly the same; only the
+    visited-set storage differs: masks are stored as fixed-size BLOBs in
+    a WITHOUT ROWID table instead of an in-memory Python set.  Memory
+    stays bounded (~150 MiB + DFS stack) for V=45's ~41M states, which
+    the in-memory set cannot hold (23.5 GB, Stage 4C).
+
+    Crash-safe resume: the DFS stack, histogram and counters are
+    checkpointed into the same database (meta table) in the same
+    transaction as the visited-set inserts, so the database is always
+    internally consistent (visited set == every state ever pushed, stack
+    == pushed-but-unpopped).  If db_path holds a checkpoint for this
+    volume the search resumes exactly; otherwise it starts fresh (a
+    stale database without a matching checkpoint is removed).  On
+    completion the caller should delete db_path (it is only needed for
+    resume).
+    """
+    import pickle
+    import sqlite3
+    adj, cost = un["adj"], un["cost"]
+    nbytes = (len(un["all_orbits"]) + 7) // 8
+    t0 = time.time()
+
+    def open_db():
+        con = sqlite3.connect(db_path)
+        con.execute("PRAGMA journal_mode=WAL")
+        con.execute("PRAGMA synchronous=NORMAL")
+        con.execute("PRAGMA cache_size=-1000000")  # 1 GiB page cache
+        con.execute("CREATE TABLE IF NOT EXISTS visited "
+                    "(mask BLOB PRIMARY KEY) WITHOUT ROWID")
+        con.execute("CREATE TABLE IF NOT EXISTS meta "
+                    "(key TEXT PRIMARY KEY, value BLOB) WITHOUT ROWID")
+        return con
+
+    def write_meta(con, stack, hist, leaves, states):
+        con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                    "('volume', ?)", (str(volume).encode(),))
+        con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                    "('stack', ?)", (pickle.dumps(stack),))
+        con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                    "('hist', ?)", (pickle.dumps(hist),))
+        con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                    "('leaves', ?)", (str(leaves).encode(),))
+        con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                    "('states', ?)", (str(states).encode(),))
+
+    con = open_db()
+    row = con.execute("SELECT value FROM meta WHERE key='volume'").fetchone()
+    if row is not None and int(row[0]) == volume:
+        stack = pickle.loads(con.execute(
+            "SELECT value FROM meta WHERE key='stack'").fetchone()[0])
+        hist = pickle.loads(con.execute(
+            "SELECT value FROM meta WHERE key='hist'").fetchone()[0])
+        leaves = int(con.execute(
+            "SELECT value FROM meta WHERE key='leaves'").fetchone()[0])
+        states = int(con.execute(
+            "SELECT value FROM meta WHERE key='states'").fetchone()[0])
+        print(f"count: resumed from checkpoint ({states:,} states, "
+              f"{leaves:,} leaves)", flush=True)
+    else:
+        con.close()
+        if os.path.exists(db_path):
+            os.remove(db_path)
+        con = open_db()
+        stack = [(0, un["start_front"], (volume - 1) // 2)]
+        hist = Counter()
+        leaves = 0
+        states = 0
+        con.execute("INSERT OR IGNORE INTO visited(mask) VALUES (?)",
+                    (b"\x00" * nbytes,))
+        write_meta(con, stack, hist, leaves, states)
+        con.commit()
+    con.execute("BEGIN")
+    while stack:
+        mask, frontier, rem = stack.pop()
+        states += 1
+        if states % 100000 == 0:
+            print(f"  count: {states:,} states, {leaves:,} leaves, "
+                  f"rss {current_rss_mb():.0f} MiB, "
+                  f"elapsed {time.time()-t0:.0f}s", flush=True)
+        if rem == 0:
+            hist[(mask & -mask).bit_length() - 1] += 1
+            leaves += 1
+        else:
+            for j in sorted(frontier):
+                c = cost[j]
+                if c > rem:
+                    continue
+                nm = mask | (1 << j)
+                nb = nm.to_bytes(nbytes, "big")
+                if con.execute("SELECT 1 FROM visited WHERE mask=?",
+                               (nb,)).fetchone() is not None:
+                    continue
+                con.execute("INSERT OR IGNORE INTO visited(mask) VALUES (?)",
+                            (nb,))
+                stack.append((nm, (frontier | adj[j]) - {j}, rem - c))
+        # checkpoint after every state is fully processed (leaf counted or
+        # children pushed), so the saved stack is always consistent with
+        # the committed visited set
+        if states % ckpt_every == 0:
+            write_meta(con, stack, hist, leaves, states)
+            con.commit()
+            con.execute("BEGIN")
+            print(f"  count: checkpoint at {states:,} states "
+                  f"(stack {len(stack):,}, {time.time()-t0:.0f}s)",
+                  flush=True)
+    con.commit()
+    con.close()
+    return (dict(total=leaves,
+                 hist={str(k): v for k, v in sorted(hist.items())},
+                 elapsed_s=round(time.time() - t0, 2)), leaves)
+
+
 def funnel_and_cover(t, index, k, shard_state, ff=None):
     """Containment/coverage funnel + exact cover + dual-solver audit.
 
@@ -359,8 +607,9 @@ def run_shard(volume, shard_idx, min_ids, workdir):
     stop = os.path.join(workdir, "STOP")
     t0 = time.time()
     last_ckpt = 0.0
+    limits = {"max_states": 40_000_000, "max_seconds": 3600, "t0": time.time(), "max_rss_mb": 10838}
     for s in min_ids:
-        for t in iter_targets_seeded(un, s, budget):
+        for t in iter_targets_seeded(un, s, budget, stats=None, limits=limits):
             state["targets"] += 1
             stage, n, rows = funnel_and_cover(t, index, k, state, ff=ff)
             if stage == "SAT":
@@ -412,14 +661,13 @@ def cmd_count(args):
 
     For volumes whose monolithic DFS fits in memory (V <= 35) this is
     the single reference DFS pass.  For larger volumes (V = 45+) the
-    monolithic DFS hits the RAM wall (Stage 4C: 41M states / 23.5 GB
-    capped at V=45), so the count runs SHARDED: per-min-id seeded DFS
-    passes, each memory-bounded, with a checkpoint per completed min-id
-    so an interrupted count resumes exactly.
+    monolithic DFS's in-memory visited set hits the RAM wall (Stage 4C:
+    41M states / 23.5 GB capped at V=45), so the same DFS runs with a
+    SQLite-backed visited set (count_minids_sqlite): identical traversal
+    and histogram, bounded memory, crash-safe checkpoint/resume.
     """
     os.makedirs(args.workdir, exist_ok=True)
     counts_path = os.path.join(args.workdir, "minid_counts.json")
-    partial_path = os.path.join(args.workdir, "minid_partial.json")
     if args.volume <= 35:
         un = build_universe(args.volume)
         res, leaves = count_minids(un, args.volume)
@@ -433,56 +681,19 @@ def cmd_count(args):
         print(f"count: {leaves} targets ({res['elapsed_s']}s); "
               f"{len(res['hist'])} distinct min-ids")
         return
-    # sharded count for large volumes
+    # monolithic SQLite-backed count for large volumes
     un = build_universe(args.volume)
-    budget = (args.volume - 1) // 2
-    # candidate min-ids: every orbit id that can be a minimum, i.e. is
-    # in the start frontier or reachable from it via >= ids; cheap
-    # validity prefilter: seeded reachability
-    start_front = sorted(un["start_front"])
-    cands = set(start_front)
-    for s0 in start_front:
-        stack = [s0]
-        seen = {s0}
-        while stack:
-            v = stack.pop()
-            for w in un["adj"][v]:
-                if w >= s0 and w not in seen:
-                    seen.add(w)
-                    cands.add(w)
-                    stack.append(w)
-    cands = sorted(cands)
-    print(f"sharded count: {len(cands)} candidate min-ids")
-    done = {}
-    if os.path.exists(counts_path):
-        with open(counts_path) as f:
-            old = json.load(f)
-        done = {int(k): v for k, v in old.get("hist", {}).items()}
-    t0 = time.time()
-    for i, s in enumerate(cands):
-        if s in done:
-            continue
-        cnt = 0
-        for _t in iter_targets_seeded(un, s, budget):
-            cnt += 1
-        done[s] = cnt
-        if (i + 1) % 20 == 0:
-            with open(counts_path, "w") as f:
-                json.dump({"volume": args.volume,
-                           "hist": {str(k): v for k, v in sorted(done.items())},
-                           "total": sum(done.values()),
-                           "elapsed_s": round(time.time() - t0, 1),
-                           "cands_total": len(cands)}, f, indent=1)
-            print(f"  min-id {s} ({i+1}/{len(cands)}): {cnt:,} "
-                  f"cumulative {sum(done.values()):,} "
-                  f"({time.time()-t0:.0f}s)", flush=True)
-    total = sum(done.values())
-    res = {"volume": args.volume, "total": total,
-           "hist": {str(k): v for k, v in sorted(done.items())},
-           "elapsed_s": round(time.time() - t0, 1), "method": "sharded"}
+    db_path = os.path.join(args.workdir, f"visited_v{args.volume}.db")
+    res, leaves = count_minids_sqlite(un, args.volume, db_path)
+    res["volume"] = args.volume
+    res["method"] = "monolithic-sqlite"
     with open(counts_path, "w") as f:
         json.dump(res, f, indent=1)
-    print(f"count: {total:,} targets ({res['elapsed_s']}s); "
+    # resume artifacts are only needed for an interrupted run
+    for p in (db_path, db_path + "-wal", db_path + "-shm"):
+        if os.path.exists(p):
+            os.remove(p)
+    print(f"count: {leaves:,} targets ({res['elapsed_s']}s); "
           f"{len(res['hist'])} distinct min-ids")
 
 
