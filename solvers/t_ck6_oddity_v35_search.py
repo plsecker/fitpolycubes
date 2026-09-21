@@ -288,6 +288,285 @@ def current_rss_mb():
     return 0.0
 
 
+def iter_targets_seeded_connected_sqlite(un, min_id, budget, db_path,
+                                         ckpt_every=2_000_000, run_id=None,
+                                         state=None, info=None, stats=None,
+                                         limits=None, stop_check=None):
+    """Yield every connected CK6-closed target whose minimum orbit id is
+    exactly min_id, with the visited set stored in a SQLite database at
+    db_path (bounded memory; identical target set and traversal to
+    iter_targets_seeded_connected -- the visited set is only a
+    membership test, so traversal order and yielded targets are
+    unchanged).
+
+    Crash-safe resume: the DFS stack, counters and (optionally) the
+    caller's processing state are checkpointed into the same database in
+    the same transaction as the visited-set inserts, so the database is
+    always internally consistent (visited set == every state ever
+    pushed, stack == pushed-but-unpopped).  If db_path holds a
+    checkpoint for this min_id the search resumes exactly; otherwise it
+    starts fresh (a stale database -- wrong bucket, or a run_id
+    mismatch -- is removed).
+
+    run_id: optional identity token.  When given, a database whose
+    stored run_id differs is treated as stale and discarded; the
+    production driver passes a stable run_id (persisted in its shard
+    checkpoint) so a killed shard resumes its own databases and never
+    reuses another run's.
+
+    state: optional mutable dict owned by the caller (e.g. the driver's
+    funnel/sat/unsat/witness state).  At every checkpoint the current
+    state is pickled into the meta table; on resume the state dict is
+    restored in place (cleared and re-filled) so a killed bucket resumes
+    without losing or duplicating processed targets.
+
+    info: optional BucketRunInfo filled with run metadata (db_path,
+    run_id, resumed, completed, targets, states).
+
+    limits: optional dict (max_states / max_seconds / t0 / max_rss_mb,
+    same convention as iter_targets_seeded_seeds).  Bounds are checked
+    at checkpoint boundaries; on a hit the checkpoint is committed and
+    SearchLimit is raised with limits['reason'] set.
+
+    stop_check: optional zero-arg callable checked at checkpoint
+    boundaries; when it returns True the checkpoint is committed and
+    BucketStopped is raised (the bucket is resumable).
+
+    On resume of an already-complete bucket (meta 'complete' == '1')
+    nothing is yielded; info.completed is set, info.targets holds the
+    recorded total, and the caller's state is restored from the final
+    checkpoint.  The caller should record the bucket as done without
+    re-enumerating.
+
+    The database is NEVER deleted by this function: completed buckets
+    keep their database (marked complete) for audit/reproducibility;
+    explicit cleanup is the caller's decision.
+    """
+    import pickle
+    import sqlite3
+    adj, cost = un["adj"], un["cost"]
+    all_orbits = un["all_orbits"]
+    center = un["center"]
+    s = min_id
+    dist, cells_ge = _conn_prune_data(un)
+    if dist[s] > budget:
+        return
+    if cells_ge[s] < 2 * budget:  # volume - 1 non-centre cells
+        return
+    rem0 = budget - cost[s]
+    if rem0 < 0:
+        return
+    bridged = s in un["start_front"]
+    if bridged:
+        cc_adj = frozenset(j for j in (un["start_front"] | adj[s]) - {s}
+                           if j >= s)
+    else:
+        cc_adj = frozenset(j for j in un["start_front"] if j >= s)
+    nbytes = ((len(all_orbits) - 1 - s) + 8) // 8
+    t0 = time.time()
+
+    def open_db():
+        con = sqlite3.connect(db_path)
+        con.execute("PRAGMA journal_mode=WAL")
+        con.execute("PRAGMA synchronous=NORMAL")
+        con.execute("PRAGMA cache_size=-1000000")  # 1 GiB page cache
+        con.execute("CREATE TABLE IF NOT EXISTS visited "
+                    "(mask BLOB PRIMARY KEY) WITHOUT ROWID")
+        con.execute("CREATE TABLE IF NOT EXISTS meta "
+                    "(key TEXT PRIMARY KEY, value BLOB) WITHOUT ROWID")
+        return con
+
+    def write_meta(con, stack, targets, states):
+        con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                    "('bucket', ?)", (str(s).encode(),))
+        if run_id is not None:
+            con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                        "('run_id', ?)", (run_id.encode(),))
+        con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                    "('stack', ?)", (pickle.dumps(stack),))
+        con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                    "('targets', ?)", (str(targets).encode(),))
+        con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                    "('states', ?)", (str(states).encode(),))
+        if state is not None:
+            con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                        "('state', ?)", (pickle.dumps(state),))
+
+    def restore_state():
+        if state is None:
+            return
+        saved = pickle.loads(con.execute(
+            "SELECT value FROM meta WHERE key='state'").fetchone()[0])
+        state.clear()
+        state.update(saved)
+
+    def limit_reason():
+        if limits is None:
+            return None
+        if limits.get("max_states") is not None and \
+                states >= limits["max_states"]:
+            return "max_states %d" % limits["max_states"]
+        if limits.get("max_seconds") is not None and \
+                time.time() - limits.get("t0", t0) > limits["max_seconds"]:
+            return "max_seconds %g" % limits["max_seconds"]
+        if limits.get("max_rss_mb") is not None and \
+                current_rss_mb() > limits["max_rss_mb"]:
+            return "max_rss_mb %g" % limits["max_rss_mb"]
+        return None
+
+    con = open_db()
+    row = con.execute("SELECT value FROM meta WHERE key='bucket'").fetchone()
+    resume = False
+    if row is not None and int(row[0]) == s:
+        rid_row = con.execute(
+            "SELECT value FROM meta WHERE key='run_id'").fetchone()
+        rid = None if rid_row is None else rid_row[0].decode()
+        if run_id is None or rid == run_id:
+            stack = pickle.loads(con.execute(
+                "SELECT value FROM meta WHERE key='stack'").fetchone()[0])
+            targets = int(con.execute(
+                "SELECT value FROM meta WHERE key='targets'").fetchone()[0])
+            states = int(con.execute(
+                "SELECT value FROM meta WHERE key='states'").fetchone()[0])
+            complete = con.execute(
+                "SELECT value FROM meta WHERE key='complete'").fetchone()
+            if complete is not None and complete[0] == b"1":
+                restore_state()
+                if info is not None:
+                    info.db_path = db_path
+                    info.run_id = rid
+                    info.completed = True
+                    info.targets = targets
+                    info.states = states
+                print(f"bucket {s}: already complete ({targets:,} targets, "
+                      f"{states:,} states); state restored", flush=True)
+                con.close()
+                return
+            restore_state()
+            resume = True
+    if not resume:
+        con.close()
+        if os.path.exists(db_path):
+            os.remove(db_path)
+        con = open_db()
+        stack = [(1, rem0, bridged, cc_adj)]
+        targets = 0
+        states = 0
+        con.execute("INSERT OR IGNORE INTO visited(mask) VALUES (?)",
+                    (b"\x00" * (nbytes - 1) + b"\x01",))
+        write_meta(con, stack, targets, states)
+        con.commit()
+        print(f"bucket {s}: fresh start (rem {rem0}, bridged {bridged}, "
+              f"cc_adj {len(cc_adj)}, nbytes {nbytes}, db {db_path})",
+              flush=True)
+    else:
+        print(f"bucket {s}: resumed from checkpoint ({states:,} states, "
+              f"{targets:,} targets, db {db_path})", flush=True)
+    if info is not None:
+        info.db_path = db_path
+        info.run_id = run_id
+        info.resumed = resume
+    con.execute("BEGIN")
+    while stack:
+        mask, rem, bridged_, cc_adj_ = stack.pop()
+        states += 1
+        if stats is not None:
+            stats["states"] = stats.get("states", 0) + 1
+        if states % 100_000 == 0:
+            db_mb = (os.path.getsize(db_path) / 1e6
+                     if os.path.exists(db_path) else 0)
+            print(f"  bucket {s}: {states:,} states, {targets:,} targets, "
+                  f"rss {current_rss_mb():.0f} MiB, stack {len(stack)}, "
+                  f"db {db_mb:.0f} MB, {time.time()-t0:.0f}s", flush=True)
+        if rem == 0:
+            if not bridged_:
+                continue
+            cells = {center}
+            m = mask
+            while m:
+                b = m & -m
+                cells |= set(all_orbits[(b.bit_length() - 1) + s])
+                m ^= b
+            targets += 1
+            yield cells
+            continue
+        for j in cc_adj_:
+            c = cost[j]
+            if c > rem:
+                continue
+            nm = mask | (1 << (j - s))
+            nb = nm.to_bytes(nbytes, "big")
+            if con.execute("SELECT 1 FROM visited WHERE mask=?",
+                           (nb,)).fetchone() is not None:
+                continue
+            con.execute("INSERT OR IGNORE INTO visited(mask) VALUES (?)",
+                        (nb,))
+            n_bridged = bridged_ or (j in adj[s])
+            n_cc = frozenset(x for x in (cc_adj_ | adj[j]) - {j} if x >= s)
+            if n_bridged and not bridged_:
+                # s just joined the centre component: its neighbours
+                # become centre-component-adjacent
+                n_cc = frozenset(x for x in (n_cc | adj[s]) if x >= s
+                                 and x != s)
+            stack.append((nm, rem - c, n_bridged, n_cc))
+        # checkpoint after every state is fully processed (leaf counted or
+        # children pushed), so the saved stack is always consistent with
+        # the committed visited set
+        if states % ckpt_every == 0:
+            write_meta(con, stack, targets, states)
+            con.commit()
+            con.execute("BEGIN")
+            print(f"  bucket {s}: checkpoint at {states:,} states "
+                  f"(stack {len(stack)}, {time.time()-t0:.0f}s)",
+                  flush=True)
+            reason = limit_reason()
+            if reason is not None:
+                limits["reason"] = reason
+                print(f"bucket {s}: {reason}; exiting (resumable)",
+                      flush=True)
+                con.close()
+                raise SearchLimit(reason)
+            if stop_check is not None and stop_check():
+                print(f"bucket {s}: STOP requested; exiting (resumable)",
+                      flush=True)
+                con.close()
+                raise BucketStopped()
+    write_meta(con, stack, targets, states)
+    con.execute("INSERT OR REPLACE INTO meta(key, value) VALUES "
+                "('complete', ?)", (b"1",))
+    con.commit()
+    con.close()
+    if info is not None:
+        info.completed = True
+        info.targets = targets
+        info.states = states
+    db_mb = os.path.getsize(db_path) / 1e6
+    print(f"bucket {s}: COMPLETE {states:,} states, {targets:,} targets, "
+          f"{time.time()-t0:.0f}s, db {db_mb:.0f} MB, "
+          f"rss {current_rss_mb():.0f} MiB", flush=True)
+
+
+class BucketRunInfo:
+    """Per-bucket SQLite run metadata, filled by
+    iter_targets_seeded_connected_sqlite for the caller (the production
+    driver) to log and to detect completed-bucket re-entry."""
+
+    def __init__(self):
+        self.db_path = None      # SQLite database used for this bucket
+        self.run_id = None       # run identity token (None standalone)
+        self.resumed = False     # True if the bucket resumed from a ckpt
+        self.completed = False   # True if the bucket was already complete
+        self.targets = 0         # total targets (from the DB if completed)
+        self.states = 0          # total states (from the DB if completed)
+
+
+class BucketStopped(Exception):
+    """Raised by iter_targets_seeded_connected_sqlite when stop_check()
+    returns True at a checkpoint boundary.  The bucket's progress is
+    checkpointed and resumable; the caller must NOT record the bucket as
+    done (recording it would silently truncate the bucket on resume)."""
+
+
 class SearchLimit(Exception):
     """Raised by the seeded generators when a caller-supplied bound is
     hit (max_states / max_seconds / max_rss_mb); the reason is recorded

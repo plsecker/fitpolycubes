@@ -17,6 +17,12 @@ It uses exclusively:
     (t_ck6_reuse_multipiece._process_target / funnel_and_cover),
     imported unmodified.
 
+The per-bucket visited set is SQLite-backed
+(iter_targets_seeded_connected_sqlite): identical traversal and target
+set to the in-memory engine (the visited set is only a membership
+test), with bounded RSS (~1.1 GiB for the largest bucket) and crash-safe
+mid-bucket resume.  See docs/frontier/v45_memory_bottleneck.md.
+
 It NEVER reads data/ck6_v45/* (the retired 1,469,999-target corpus), never
 references the historical 86-min-id shard plan, and has NO expected-total
 parameter: the V45 total is UNKNOWN until this run completes, so all
@@ -38,12 +44,20 @@ Checkpoint / resume semantics (safe by construction):
     partial shard never looks complete.
   - shard_XXX.ckpt is written ATOMICALLY after every completed min-id
     bucket and holds the FULL worker state (funnel counters, targets,
-    sat/unsat, witnesses, per-min-id counts).  A killed shard resumes
-    exactly from the checkpoint; a stale/corrupt checkpoint is discarded
-    and the shard restarts fresh.
+    sat/unsat, witnesses, per-min-id counts) plus the run_id.  A killed
+    shard resumes exactly from the checkpoint; a stale/corrupt checkpoint
+    is discarded and the shard restarts fresh.
+  - bucket_XXXX.sqlite (one per min-id bucket, in the workdir) holds the
+    bucket's SQLite visited set plus a mid-bucket checkpoint (DFS stack,
+    counters, pickled worker state) committed in the same transaction as
+    the visited-set inserts.  A bucket killed mid-way resumes exactly from
+    its database; a completed bucket keeps its database (marked complete)
+    as audit evidence -- it is NEVER deleted automatically (use
+    --prune-dbs to remove complete databases explicitly).
   - A STOP file in the workdir makes workers exit cleanly WITHOUT a result
-    file (checkpoint preserved); the orchestrator re-runs such shards on
-    the next invocation.
+    file (checkpoint preserved).  The in-flight bucket is NOT recorded as
+    done: it resumes from its SQLite checkpoint on the next invocation, so
+    no bucket is ever silently truncated.
   - The orchestrator re-launches any shard without a result file (crash
     recovery), up to --max-retries per shard.
   - final.json is written ATOMICALLY only when ALL shards have result
@@ -52,11 +66,15 @@ Checkpoint / resume semantics (safe by construction):
 Usage:
   python tools/frontier/run_v45_production.py --piece A            # orchestrator
   python tools/frontier/run_v45_production.py --piece A --shard 7  # one shard
+  python tools/frontier/run_v45_production.py --piece A --prune-dbs
+      # explicit cleanup: delete COMPLETE bucket databases only
 
 Outputs (workdir data/ck6_reuse/run/v45_<PIECE>/):
   shard_XXX.json   per-shard result (completion marker)
   shard_XXX.ckpt   per-shard resume checkpoint (removed on completion)
   shard_XXX.log    worker stdout/stderr
+  bucket_XXXX.sqlite  per-bucket visited set + mid-bucket checkpoint
+                      (kept after completion as audit evidence)
   final.json       aggregate (only when all shards complete)
   plus one line appended to data/ck6_reuse/piece_volume_results.jsonl
 """
@@ -67,6 +85,7 @@ import resource
 import subprocess
 import sys
 import time
+import uuid
 from collections import Counter
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(
@@ -75,8 +94,11 @@ sys.path.insert(0, REPO)
 sys.path.insert(0, os.path.join(REPO, "solvers"))
 
 from t_ck6_oddity_v35_search import (  # noqa: E402
+    BucketRunInfo,
+    BucketStopped,
+    SearchLimit,
     build_universe,
-    iter_targets_seeded_connected,
+    iter_targets_seeded_connected_sqlite,
 )
 from ck6_sharding_corrected import (  # noqa: E402
     build_corrected_plan,
@@ -99,6 +121,7 @@ VOLUME = 45
 BUDGET = (VOLUME - 1) // 2  # 22
 N_CANDIDATES = 3696
 RETIRED_TOTAL = 1469999  # the buggy prefilter total; never an expectation
+CKPT_EVERY = 2_000_000  # bucket DB checkpoint cadence (states)
 
 
 def startup_assertions(plan, un):
@@ -135,8 +158,42 @@ def _write_atomic(path, obj):
     os.replace(tmp, path)
 
 
-def run_shard(piece, shard_idx, plan, workdir, stop_path):
-    """Enumerate one shard of the corrected plan with the pruned engine."""
+def prune_completed_dbs(workdir):
+    """Explicit cleanup: delete ONLY COMPLETE bucket databases.
+
+    A bucket database is complete when its meta table carries
+    'complete' == '1' (written in the same transaction as the final
+    checkpoint).  Complete databases have no resume value left, so
+    removing them loses nothing; incomplete databases hold mid-bucket
+    resume state and are NEVER touched here.
+    """
+    import sqlite3
+    removed = kept = 0
+    for name in sorted(os.listdir(workdir)):
+        if not (name.startswith("bucket_") and name.endswith(".sqlite")):
+            continue
+        path = os.path.join(workdir, name)
+        try:
+            con = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+            row = con.execute(
+                "SELECT value FROM meta WHERE key='complete'").fetchone()
+            con.close()
+        except sqlite3.Error:
+            kept += 1
+            continue
+        if row is not None and row[0] == b"1":
+            os.remove(path)
+            removed += 1
+            print(f"[prune] removed {name}", flush=True)
+        else:
+            kept += 1
+    print(f"[prune] removed {removed} complete DBs, kept {kept} "
+          f"(incomplete/resume or unreadable)", flush=True)
+
+
+def run_shard(piece, shard_idx, plan, workdir, stop_path, max_seconds=None):
+    """Enumerate one shard of the corrected plan with the SQLite-backed
+    pruned engine (bounded RSS, crash-safe mid-bucket resume)."""
     sh = next(s for s in plan["shards"] if s["shard"] == shard_idx)
     result_path = os.path.join(workdir, f"shard_{shard_idx:03d}.json")
     if os.path.exists(result_path):
@@ -151,6 +208,7 @@ def run_shard(piece, shard_idx, plan, workdir, stop_path):
     state = _new_state(VOLUME, piece, shard=shard_idx)
     state["workdir"] = workdir
     done = {}
+    run_id = None
     if os.path.exists(ckpt_path):
         try:
             with open(ckpt_path) as f:
@@ -162,6 +220,7 @@ def run_shard(piece, shard_idx, plan, workdir, stop_path):
                 # dict; restore Counter so missing-key increments work
                 state["funnel"] = Counter(state["funnel"])
                 done = {int(k): v for k, v in ck["done"].items()}
+                run_id = ck.get("run_id")
                 print(f"shard {shard_idx}: resumed from checkpoint "
                       f"({len(done)}/{len(sh['min_ids'])} min-ids done, "
                       f"{state['targets']:,} targets)", flush=True)
@@ -174,25 +233,61 @@ def run_shard(piece, shard_idx, plan, workdir, stop_path):
             state = _new_state(VOLUME, piece, shard=shard_idx)
             state["workdir"] = workdir
             done = {}
+    if run_id is None:
+        # no checkpoint (or a pre-SQLite one): start a new run identity.
+        # Bucket databases from any other run_id are discarded as stale.
+        run_id = uuid.uuid4().hex
+        print(f"shard {shard_idx}: new run_id {run_id}", flush=True)
+    limits = None
+    if max_seconds is not None:
+        limits = {"max_seconds": max_seconds, "t0": time.time()}
     t0 = time.time()
     for s in sh["min_ids"]:
         if s in done:
             continue
+        db_path = os.path.join(workdir, f"bucket_{s:04d}.sqlite")
+        info = BucketRunInfo()
         cnt = 0
-        for t in iter_targets_seeded_connected(un, s, BUDGET):
-            _process_target(t, state, index, ff, k)
-            cnt += 1
-            if cnt % 1_000_000 == 0:
-                if os.path.exists(stop_path):
-                    break
+        try:
+            for t in iter_targets_seeded_connected_sqlite(
+                    un, s, BUDGET, db_path, ckpt_every=CKPT_EVERY,
+                    run_id=run_id, state=state, info=info, limits=limits,
+                    stop_check=lambda: os.path.exists(stop_path)):
+                _process_target(t, state, index, ff, k)
+                cnt += 1
+        except BucketStopped:
+            # STOP mid-bucket: checkpoint preserved, bucket NOT recorded
+            # as done (it resumes from its SQLite checkpoint next run).
+            print(f"shard {shard_idx}: STOP mid-bucket {s}; checkpoint "
+                  f"preserved, bucket not recorded as done", flush=True)
+            _write_atomic(ckpt_path, {"volume": VOLUME, "piece": piece,
+                                      "shard": shard_idx, "done": done,
+                                      "state": state, "run_id": run_id})
+            return
+        except SearchLimit as e:
+            print(f"shard {shard_idx}: limit hit mid-bucket {s} ({e}); "
+                  f"checkpoint preserved, bucket not recorded as done",
+                  flush=True)
+            _write_atomic(ckpt_path, {"volume": VOLUME, "piece": piece,
+                                      "shard": shard_idx, "done": done,
+                                      "state": state, "run_id": run_id})
+            return
+        if info.completed:
+            # info.targets is the bucket TOTAL (fresh run, resumed run, or
+            # already-complete database): on a resumed run the generator
+            # only re-yields targets not yet processed, so cnt alone would
+            # under-count the bucket
+            cnt = info.targets
         done[s] = cnt
         state["per_min_id"] = {str(k): v for k, v in sorted(done.items())}
         _write_atomic(ckpt_path, {"volume": VOLUME, "piece": piece,
                                   "shard": shard_idx, "done": done,
-                                  "state": state})
+                                  "state": state, "run_id": run_id})
+        db_mb = (os.path.getsize(db_path) / 1e6
+                 if os.path.exists(db_path) else 0)
         print(f"shard {shard_idx}: min-id {s} done ({cnt:,} targets, "
-              f"cumulative {state['targets']:,}, "
-              f"{time.time()-t0:.0f}s)", flush=True)
+              f"cumulative {state['targets']:,}, db {db_path} "
+              f"{db_mb:.0f} MB, {time.time()-t0:.0f}s)", flush=True)
         if os.path.exists(stop_path):
             print(f"shard {shard_idx}: STOP file present; exiting without "
                   f"result (checkpoint preserved)", flush=True)
@@ -256,10 +351,21 @@ def main():
     ap.add_argument("--shard", type=int, default=None,
                     help="run one shard only (worker mode)")
     ap.add_argument("--parallel", type=int, default=2,
-                    help="parallel workers (default 2: worst-case bucket "
-                         "~6.1 GB RSS x 2 fits the 28 GB host)")
+                    help="parallel workers (default 2; SQLite visited "
+                         "sets bound per-worker RSS, so parallelism is "
+                         "safe by construction)")
     ap.add_argument("--max-retries", type=int, default=5,
                     help="orchestrator re-launch attempts per shard")
+    ap.add_argument("--max-seconds", type=float, default=None,
+                    help="safety cap per bucket (checkpointed at the cap; "
+                         "the bucket resumes on re-launch).  If a bucket "
+                         "keeps exceeding it the shard aborts after "
+                         "--max-retries")
+    ap.add_argument("--prune-dbs", action="store_true",
+                    help="delete COMPLETE bucket SQLite databases in the "
+                         "workdir (audit evidence is preserved until this "
+                         "explicit cleanup runs); incomplete databases are "
+                         "never touched")
     args = ap.parse_args()
 
     assert args.volume == VOLUME, f"volume must be {VOLUME}"
@@ -271,8 +377,13 @@ def main():
     os.makedirs(workdir, exist_ok=True)
     stop_path = os.path.join(workdir, "STOP")
 
+    if args.prune_dbs:
+        prune_completed_dbs(workdir)
+        return 0
+
     if args.shard is not None:
-        run_shard(args.piece, args.shard, plan, workdir, stop_path)
+        run_shard(args.piece, args.shard, plan, workdir, stop_path,
+                  max_seconds=args.max_seconds)
         return
 
     final_path = os.path.join(workdir, "final.json")
@@ -292,10 +403,11 @@ def main():
         while queue and len(running) < args.parallel:
             i = queue.pop(0)
             logf = open(os.path.join(workdir, f"shard_{i:03d}.log"), "a")
-            p = subprocess.Popen(
-                [sys.executable, os.path.abspath(__file__),
-                 "--piece", args.piece, "--shard", str(i)],
-                stdout=logf, stderr=subprocess.STDOUT)
+            cmd = [sys.executable, os.path.abspath(__file__),
+                   "--piece", args.piece, "--shard", str(i)]
+            if args.max_seconds is not None:
+                cmd += ["--max-seconds", str(args.max_seconds)]
+            p = subprocess.Popen(cmd, stdout=logf, stderr=subprocess.STDOUT)
             running[i] = p
             print(f"[prod] launched shard {i} (pid {p.pid})", flush=True)
         for i in [i for i, p in running.items() if p.poll() is not None]:

@@ -15,7 +15,7 @@ local files, logs, checkpoints, git history, and process state on this machine
 
 | Workstream | Status | Latest verified result |
 |------------|--------|------------------------|
-| V45 CK6 enumeration (production) | **BLOCKED** (memory wall at bucket 1022) | Engine validated; production run incomplete, stopped |
+| V45 CK6 enumeration (production) | **INCOMPLETE** — memory wall RESOLVED (SQLite visited set integrated, tested); run not yet resumed | Engine validated; production run incomplete, stopped at bucket 1022 |
 | CK6 sharding repair / George B-9 | RESOLVED | Corrected 3,696-min-id domain; B-9 = min-id 3590, 12 covers in repo-M |
 | EE4 (R pentacube) | RESOLVED | Matches George's `5-17p.png` exactly; 4 canonical EE4 targets |
 | Catalogue impossibility-rule audits | Mostly committed; 1 action pending | K/V `cube` rule removed; B metadata removed; W `(4,5)` rule still to remove |
@@ -79,10 +79,9 @@ local files, logs, checkpoints, git history, and process state on this machine
   - 2026-09-19 16:41:12 — `v45-prod-A-r3.service` pid 129619 killed, anon-rss **27.6 GiB**
     (matches "r3, parallel 1, funnel fix").
 - **Conclusion**: the in-memory visited set cannot complete bucket 1022 within 28 GiB.
-  The production driver (`run_v45_production.py`) still uses the in-memory visited set —
-  it contains **no sqlite reference** (verified by grep). The SQLite option exists only
-  as `count_minids_sqlite` / a monolithic-sqlite CLI mode in
-  `solvers/t_ck6_oddity_v35_search.py`.
+  **RESOLVED by the SQLite production integration (see §2.7)**: the driver now enumerates
+  every bucket with a SQLite-backed visited set (`iter_targets_seeded_connected_sqlite`),
+  bounded RSS, crash-safe mid-bucket resume.
 
 ### 2.3 Bucket-1022 SQLite benchmark — COMPLETE, VERIFIED (the fix that works)
 
@@ -140,6 +139,76 @@ Per `docs/frontier/v45_memory_bottleneck.md` and `/tmp/opencode/v45_validation/`
   `v45_v_3590_forked/` (has `scheduler.pid` + `current_child.pid` — likely stale).
   `v45_v_3590_refined/` holds the complete 3590/3591 pair = **7,170,536 targets** plus 5
   child digests (3592, 3854, 3855, 3894, 3895) + manifest + run.log.
+
+### 2.7 SQLite production integration — IMPLEMENTED, TESTED (this commit)
+
+The §2.3 benchmark is now integrated into the production driver. The per-bucket visited
+set is SQLite-backed; the mathematical search algorithm is **unchanged** (identical
+traversal and target set to `iter_targets_seeded_connected` — the visited set is only a
+membership test), and the corrected 3,696-min-id shard plan is untouched.
+
+**Implementation** (single coherent commit):
+- `solvers/t_ck6_oddity_v35_search.py`:
+  - `iter_targets_seeded_connected_sqlite(un, min_id, budget, db_path, ckpt_every=2_000_000,
+    run_id=None, state=None, info=None, stats=None, limits=None, stop_check=None)` — the
+    seeded connected DFS with a WITHOUT ROWID BLOB visited table (same schema/PRAGMAs as
+    the benchmark: WAL, synchronous=NORMAL, 1 GiB page cache). Crash-safe resume: DFS
+    stack, counters and the caller's processing `state` are checkpointed into the same
+    database in the same transaction as the visited-set inserts. `run_id` guards against
+    reusing another run's database (mismatch → stale DB discarded). A completed bucket
+    keeps its database marked `complete` (audit evidence; never auto-deleted).
+  - `BucketRunInfo` (per-bucket metadata: db_path, run_id, resumed, completed, targets,
+    states), `BucketStopped` (raised by `stop_check` at a checkpoint boundary).
+- `tools/frontier/run_v45_production.py`:
+  - Every bucket now enumerates via the SQLite generator; bucket DBs live in the workdir
+    as `bucket_XXXX.sqlite` (deterministic, persistent — not `/tmp`).
+  - `run_id` persisted in `shard_XXX.ckpt`; bucket DBs are validated against it.
+  - **STOP-file bug fixed**: a STOP mid-bucket no longer records the partial bucket as
+    done (the old code did, silently truncating the bucket on resume); the in-flight
+    bucket resumes from its SQLite checkpoint on the next invocation.
+  - **Resume accounting fixed**: `done[s]` records the bucket TOTAL (`info.targets`), not
+    just the targets re-yielded after a mid-bucket resume.
+  - Logging per bucket: min-id, target count, cumulative, DB path + size, elapsed.
+  - `--max-seconds` (safety cap per bucket, checkpointed/resumable) and `--prune-dbs`
+    (explicit cleanup of COMPLETE bucket DBs only; incomplete/resume DBs never touched).
+- `tools/frontier/test_v45_sqlite_bucket.py` — 8 test groups, **498 checks, all PASS**:
+  1. SQLite == in-memory target sets and state counts on V5 (all 6 min-ids), V15 (all
+     159), V25 (3 smallest + 2 largest buckets); provably-empty buckets create no DB.
+  2. Two-stage resume (max_states stop at a checkpoint boundary): no lost targets
+     (stage1 ∪ stage2 == memory), no duplicated targets (disjoint), no redo
+     (stage1 + stage2 states == total).
+  3. Killed/interrupted bucket (exception inside the consumer, simulating SIGKILL):
+     resumes from the last checkpoint, no lost targets, redo bounded by one checkpoint
+     interval.
+  4. Completed-bucket re-entry: nothing re-yielded, `info.completed`, caller state
+     restored from the final checkpoint.
+  5. run_id mismatch: stale DB discarded, fresh start == memory.
+  6. STOP semantics: `BucketStopped` raised, bucket not marked complete, resume completes.
+  7. Driver integration (monkeypatched generator): resumed bucket recorded with TOTAL
+     targets; state consistent with per-min-id.
+  8. Driver integration: STOP mid-bucket → bucket NOT recorded as done, no result file,
+     run_id preserved.
+
+**Validation counts unchanged** (re-run 2026-09-21 with the new code in place):
+- `validate_v45_enumeration.py --pruned small` — V5 = **2**, V15 = **368**,
+  V25 = **71,539**, all PASS (raw-set equality, canonical == brute force, per-min-id ==
+  reference hist, no dups).
+- `validate_v45_enumeration.py --pruned v35count` — V35 = **15,289,669** (489 min-ids,
+  range [558..1857]), PASS.
+- `tools/frontier/test_ck6_sharding_bug.py` — V25 corrected sharding == 71,539, PASS.
+
+**Exact command to resume the production run** (from repo root, branch
+`frontier-solutions`):
+
+    python tools/frontier/run_v45_production.py --piece A
+
+The orchestrator re-launches every shard without a result file (shards 2–7); each worker
+resumes its `shard_XXX.ckpt` and each bucket resumes from its `bucket_XXXX.sqlite`
+mid-bucket checkpoint. Expected cost per heavy bucket: ~14 h 45 m at ~11.3k states/s,
+~530 B/state disk, <1.1 GiB RSS (bucket 1022 alone = 312.3 GB disk). Disk budget note:
+completed bucket DBs are kept as audit evidence; remove them explicitly with
+`python tools/frontier/run_v45_production.py --piece A --prune-dbs` (deletes COMPLETE
+databases only).
 
 ---
 
@@ -235,10 +304,13 @@ plus regression tests `solvers/test_decomp_{b,f,kv,m,s,w}_contradiction.py`.
 ## 8. Key files and scripts
 
 - `solvers/t_ck6_oddity_v35_search.py` — engine: `iter_targets_seeded`,
-  `iter_targets_seeded_connected`, `count_minids_sqlite`, monolithic-sqlite CLI mode.
+  `iter_targets_seeded_connected`, `iter_targets_seeded_connected_sqlite` (SQLite-backed
+  visited set, crash-safe resume), `count_minids_sqlite`, monolithic-sqlite CLI mode.
 - `solvers/ck6_sharding_corrected.py` — corrected 3,696-min-id shard plan.
-- `tools/frontier/run_v45_production.py` — production driver (in-memory visited set;
-  funnel-Counter fix at HEAD `2dbb229`).
+- `tools/frontier/run_v45_production.py` — production driver (SQLite-backed visited set
+  per bucket; run_id; STOP-mid-bucket fix; `--max-seconds`, `--prune-dbs`).
+- `tools/frontier/test_v45_sqlite_bucket.py` — SQLite bucket tests (equivalence,
+  two-stage/killed/STOP resume, re-entry, run_id mismatch, driver integration).
 - `tools/frontier/validate_v45_enumeration.py` — validation harness.
 - `tools/frontier/analyze_george_figure.py`, `tools/frontier/audit_s_published_impossible.py`,
   `tools/frontier/audit_prime_impossible_conflicts.py` (last two untracked).
@@ -270,10 +342,12 @@ plus regression tests `solvers/test_decomp_{b,f,kv,m,s,w}_contradiction.py`.
 
 ## 10. Next recommended experiments
 
-1. **Integrate the SQLite-backed visited set into `run_v45_production.py`** (per-bucket
-   SQLite, as benchmarked) and resume from `shard_002.ckpt` at bucket 1022. Expected cost
-   per heavy bucket: ~14 h 45 m at ~11.3k states/s, ~530 B/state disk, <1.1 GiB RSS.
-   This is the only approach proven to fit the 28 GiB envelope.
+1. **DONE — SQLite-backed visited set integrated into `run_v45_production.py`** (see
+   §2.7): per-bucket SQLite, identical traversal, crash-safe resume, tested. The next
+   step is to **resume the production run**:
+   `python tools/frontier/run_v45_production.py --piece A` (resumes shards 2–7 from
+   `shard_XXX.ckpt` + `bucket_XXXX.sqlite`). Expected cost per heavy bucket: ~14 h 45 m
+   at ~11.3k states/s, ~530 B/state disk, <1.1 GiB RSS.
 2. After production V45 completes: derive per-piece SAT/UNSAT verdicts and the first
    valid V45 total.
 3. Remove the W `(4,5)` impossibility rule block (catalogue correction; human approval).
@@ -303,8 +377,12 @@ plus regression tests `solvers/test_decomp_{b,f,kv,m,s,w}_contradiction.py`.
 
 ## 12. Git state
 
-- Branch `frontier-solutions`, **ahead of origin by 2 commits**:
-  - `2dbb229` (HEAD, 2026-09-19) — fix: restore funnel Counter after checkpoint JSON
+- Branch `frontier-solutions`, **ahead of origin by 3 commits**:
+  - `HEAD` (this commit) — SQLite-backed visited set for production V45: new
+    `iter_targets_seeded_connected_sqlite` generator, driver integration (run_id,
+    STOP-mid-bucket fix, resume accounting fix, `--max-seconds`, `--prune-dbs`),
+    `tools/frontier/test_v45_sqlite_bucket.py`, this document updated (§2.7).
+  - `2dbb229` (2026-09-19) — fix: restore funnel Counter after checkpoint JSON
     round-trip (resume KeyError).
   - `cd8bf15` (2026-09-19) — Freeze validated V45 engine: pruned enumerator + corrected
     plan + production driver.
