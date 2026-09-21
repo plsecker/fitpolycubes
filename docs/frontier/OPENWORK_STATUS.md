@@ -75,3 +75,25 @@ Recovery procedure after an OpenWork crash:
 5. Resume work: sync `frontier-solutions` (fast-forward only), then
    re-run the inbox task or production command; checkpoints make this
    safe.
+
+## Current V45 job (issue #4 — bucket 1022 production validation)
+
+- **Service**: `v45-bucket1022.service` (user-level systemd transient,
+  `systemd-run --user`; survives an OpenWork crash)
+- **PID**: 42188 (Main PID; ppid = systemd user manager 2430)
+- **Command**: `python tools/frontier/run_v45_production.py --piece A
+  --shard 2 --max-seconds 72000`
+- **run_id**: `a2edf575429c4ccdb653d4acbe878cbe` (fresh; pre-SQLite
+  checkpoint had none)
+- **Log**: `data/ck6_reuse/run/v45_A/shard_002.log` (append)
+- **Bucket DB**: `data/ck6_reuse/run/v45_A/bucket_1022.sqlite`
+- **Started**: 2026-09-22 07:14:50 NZST
+- **Safety cap**: 20 h (72000 s) → checkpointed stop ~2026-09-23
+  03:15 NZST if not complete (STOPPED / RESUMABLE, not failure)
+- **Expected**: ~14 h 45 m wall, ~312 GB DB, <1.1 GiB RSS (benchmark)
+- **Status**: RUNNING (initial; 98/462 min-ids done, bucket 1022 in
+  progress)
+- **Monitor**: `systemctl --user status v45-bucket1022` /
+  `journalctl --user -u v45-bucket1022`; free disk must stay ≥ 450 GB
+  (currently 846 GB free); on completion update this section with the
+  final result.
