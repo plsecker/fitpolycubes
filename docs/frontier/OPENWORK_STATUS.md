@@ -15,6 +15,10 @@ it does not change solver code and never launches V45 or any solver.
 3. **Safe handling of local uncommitted work**: never discard, reset, or
    force-update local work. A fast-forward-only update is the only
    permitted sync; if it fails, stop and report rather than force.
+4. **Orphan check before expensive work**: before starting any expensive
+   task, run `python tools/frontier/orphan_check.py`. If it reports
+   likely orphans, stop and ask the human before proceeding; never
+   blanket-kill processes.
 
 ## Status fields
 
@@ -31,3 +35,43 @@ later polling):
 | last checkpoint | Most recent durable progress point |
 | last result | Outcome of the last completed step / the task |
 | last error | Most recent error, if any |
+
+## Orphan-process detection & recovery
+
+Research jobs (V45 shard workers, validation runs, ...) are launched as
+subprocesses that share the launcher's process group/session
+(`subprocess.Popen` without `start_new_session`). When the OpenWork
+session crashes, its children are reparented to init (pid 1) and keep
+running, silently consuming CPU (incident 2026-09-21: four
+`validate_bfs_packed.py --module tools.bfs_layered_external 35`
+processes).
+
+Mechanism (report-only, never auto-kills):
+
+- Launchers record each job in `data/ck6_reuse/openwork_jobs.jsonl`
+  (one JSON line per job: pid, ppid, cmd, start time, expected_s,
+  done_file, workdir). `run_v45_production.py` registers its workers
+  and itself (orchestrator mode). Ad-hoc jobs should be registered the
+  same way before launch.
+- `python tools/frontier/orphan_check.py` (default `--check`) reports
+  jobs whose recorded launcher (ppid) is gone — likely orphans — plus
+  jobs abandoned with an orphaned launcher. Exit code 2 when likely
+  orphans are found, 0 otherwise. `--prune` drops entries for dead or
+  finished jobs.
+- Distinguishing intentional vs abandoned: a job whose `done_file`
+  exists is finished; a job still within `expected_s` is likely
+  intentional; a job far past `expected_s` with no progress marker is
+  suspicious. Verify with the human before acting.
+
+Recovery procedure after an OpenWork crash:
+
+1. Run `python tools/frontier/orphan_check.py` and review the report.
+2. For each likely orphan, confirm with the human that it is abandoned
+   (check cmd, start time, elapsed, done_file).
+3. Stop only confirmed abandoned jobs (e.g. `kill <pid>`); never use a
+   blanket `pkill python`.
+4. If an orphaned orchestrator is found, its registered workers are
+   abandoned with it — confirm and stop them together.
+5. Resume work: sync `frontier-solutions` (fast-forward only), then
+   re-run the inbox task or production command; checkpoints make this
+   safe.

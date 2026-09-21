@@ -77,6 +77,12 @@ Outputs (workdir data/ck6_reuse/run/v45_<PIECE>/):
                       (kept after completion as audit evidence)
   final.json       aggregate (only when all shards complete)
   plus one line appended to data/ck6_reuse/piece_volume_results.jsonl
+
+Launched workers (and the orchestrator itself) are recorded in
+data/ck6_reuse/openwork_jobs.jsonl so a new OpenWork session can detect
+orphaned jobs from a crashed session before starting expensive work
+(see tools/frontier/orphan_check.py and
+docs/frontier/OPENWORK_STATUS.md).
 """
 import argparse
 import json
@@ -104,6 +110,7 @@ from ck6_sharding_corrected import (  # noqa: E402
     build_corrected_plan,
     corrected_candidate_min_ids,
 )
+from orphan_check import register_job  # noqa: E402
 from t_ck6_reuse_multipiece import (  # noqa: E402
     _append_jsonl,
     _check_t_anchor,
@@ -396,6 +403,12 @@ def main():
                    workdir, f"shard_{s['shard']:03d}.json"))]
     print(f"[prod] V45 {args.piece}: {len(pending)} shards to run on "
           f"{args.parallel} workers (workdir {workdir})", flush=True)
+    # Register the orchestrator itself so a crashed OpenWork session can
+    # be detected as an orphaned launcher (see orphan_check.py).
+    register_job(pid=os.getpid(), ppid=os.getppid(),
+                 cmd=" ".join([sys.executable, os.path.abspath(__file__),
+                               "--piece", args.piece]),
+                 done_file=final_path, workdir=workdir)
     retries = {}
     queue = list(pending)
     running = {}
@@ -409,6 +422,10 @@ def main():
                 cmd += ["--max-seconds", str(args.max_seconds)]
             p = subprocess.Popen(cmd, stdout=logf, stderr=subprocess.STDOUT)
             running[i] = p
+            register_job(pid=p.pid, ppid=os.getpid(), cmd=" ".join(cmd),
+                         done_file=os.path.join(
+                             workdir, f"shard_{i:03d}.json"),
+                         workdir=workdir)
             print(f"[prod] launched shard {i} (pid {p.pid})", flush=True)
         for i in [i for i, p in running.items() if p.poll() is not None]:
             rc = running.pop(i).returncode
