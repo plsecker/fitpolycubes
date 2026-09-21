@@ -21,7 +21,7 @@ Repository → OpenWork task hand-off (issue-driven smoke test).
 ## TASK-003
 
 - ID: `TASK-003`
-- Status: `READY`
+- Status: `DONE`
 - Task: Establish the minimal OpenWork polling protocol for future repository tasks.
 - Requirements:
   1. Document that OpenWork must first fetch/fast-forward `origin/frontier-solutions` before reading the inbox.
@@ -31,4 +31,4 @@ Repository → OpenWork task hand-off (issue-driven smoke test).
   5. Do not launch V45 or any solver.
   6. Do not change solver code.
   7. Keep the implementation minimal; this task is protocol/documentation only.
-- Result: Pending.
+- Result: `docs/frontier/OPENWORK_STATUS.md` created with the polling protocol (sync-first, READY→RUNNING→DONE lifecycle, safe handling of local work) and the 8 minimal status fields. No solver code changed; no solver launched.
