@@ -43,3 +43,11 @@ bootstrap tasks without an issue number (`Issue: none (bootstrap)`).
 - Status: `DONE`
 - Task: Implement the minimal agent-control protocol from `docs/agent_architecture_audit.md` §5: GitHub issues as the single task queue with `docs/frontier/OPENWORK_INBOX.md` as mirror/bootstrapping ledger; explicit rules for READY→RUNNING→DONE, issue comments and commit SHAs, refreshing RESEARCH_STATE.md and OPENWORK_STATUS.md, closing completed issues, marking stale state, and ChatGPT verification of completed work. Create `docs/agent_control_protocol.md`. Do not modify solver code, production jobs, or run databases/checkpoints/logs; do not restart or stop bucket 1022.
 - Result: `docs/agent_control_protocol.md` created (ADOPTED 2026-09-22); `docs/frontier/OPENWORK_STATUS.md` updated to reference the protocol and the issue queue; `docs/frontier/RESEARCH_STATE.md` updated with a stale marker for the outdated "no processes running" claim (indexed in §11). Commit: `4eee615` on `frontier-solutions`. No solver code, production jobs, databases, checkpoints, or logs touched; bucket 1022 untouched.
+
+## ISSUE-006
+
+- ID: `ISSUE-006`
+- Issue: `#6`
+- Status: `RUNNING`
+- Task: Reconcile V45 bucket 1022 target identity: determine exactly what target was enumerated in bucket 1022, whether its identity can be established from the recorded artifacts, and whether the B-9 claim in the production documentation is an incorrect label. Correct affected documentation; preserve historical evidence; state what is proven/inferred/unknown; update RESEARCH_STATE.md and OPENWORK_STATUS.md only where necessary; add a correction comment to Issue #4; commit and push on frontier-solutions. Do not modify solver algorithms, production/research jobs, or databases/checkpoints/logs.
+- Started: 2026-09-23 (queue poll; issue #6 READY, lowest-numbered open issue after #4 which remains RUNNING)
