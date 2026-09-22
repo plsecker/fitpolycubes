@@ -388,6 +388,12 @@ plus regression tests `solvers/test_decomp_{b,f,kv,m,s,w}_contradiction.py`.
 
 ## 12. Git state
 
+> **STALE MARKER (2026-09-22)** — the snapshot below is historical and is
+> preserved as-is. Current state: `origin/frontier-solutions` = `b32aed9`
+> (2026-09-22, agent-control protocol adoption); local `frontier-solutions`
+> is in sync with origin. Per `docs/agent_control_protocol.md` §8, stale
+> claims are marked, not rewritten.
+
 - Branch `frontier-solutions`, **ahead of origin by 3 commits**:
   - `HEAD` (this commit) — SQLite-backed visited set for production V45: new
     `iter_targets_seeded_connected_sqlite` generator, driver integration (run_id,
