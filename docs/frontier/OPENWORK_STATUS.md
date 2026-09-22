@@ -1,17 +1,24 @@
 # OpenWork Status & Polling Protocol
 
-Minimal protocol for repository → OpenWork task hand-off via
-`docs/frontier/OPENWORK_INBOX.md`. This is protocol/documentation only:
-it does not change solver code and never launches V45 or any solver.
+The authoritative task-hand-off protocol is
+`docs/agent_control_protocol.md` (ADOPTED 2026-09-22): GitHub issues are
+the single task queue; `docs/frontier/OPENWORK_INBOX.md` is the mirror
+ledger. This document keeps the operational details (status fields,
+orphan detection, current job) that the protocol references. It is
+protocol/documentation only: it does not change solver code and never
+launches V45 or any solver.
 
 ## Polling protocol
 
-1. **Sync first**: before reading the inbox, OpenWork must fetch and
+1. **Sync first**: before reading the queue, OpenWork must fetch and
    fast-forward `origin/frontier-solutions`
    (`git fetch origin frontier-solutions && git merge --ff-only origin/frontier-solutions`).
-2. **Execute the first READY task**: OpenWork executes the first task
-   with Status `READY`, changing it to `RUNNING` before substantive work
-   and to `DONE` after successful completion.
+2. **Execute the first READY task**: the queue is GitHub issues, read via
+   the inbox mirror (`docs/frontier/OPENWORK_INBOX.md`). OpenWork executes
+   the lowest-numbered task with Status `READY`, changing it to `RUNNING`
+   (issue comment + inbox entry) before substantive work and to `DONE`
+   (completion comment with commit SHA + inbox entry) after successful
+   completion. See `docs/agent_control_protocol.md` §3–§4.
 3. **Safe handling of local uncommitted work**: never discard, reset, or
    force-update local work. A fast-forward-only update is the only
    permitted sync; if it fails, stop and report rather than force.

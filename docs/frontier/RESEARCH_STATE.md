@@ -9,6 +9,14 @@ local files, logs, checkpoints, git history, and process state on this machine
 **Machine**: 28 GiB RAM, 8 GiB swap, ~1.3 TB disk (~551 GB free).
 **No solver processes are currently running** (verified via `ps`).
 
+> **STALE MARKER (2026-09-22)** — the claim above ("No solver processes are
+> currently running") is superseded: the bucket-1022 production job
+> (`v45-bucket1022.service`, PID 42188) has been running since 2026-09-22
+> 07:14 NZST. Live job state is tracked in `docs/frontier/OPENWORK_STATUS.md`
+> (§ "Current V45 job"). Per `docs/agent_control_protocol.md` §8, this stale
+> claim is marked rather than silently rewritten; refresh the affected
+> sections (§1, §7) on the next task that touches V45 state.
+
 ---
 
 ## 1. Workstreams at a glance
@@ -357,6 +365,9 @@ plus regression tests `solvers/test_decomp_{b,f,kv,m,s,w}_contradiction.py`.
 
 ## 11. Consistency cautions (things that LOOK authoritative but are NOT)
 
+- **This document's own header claim** "No solver processes are currently
+  running" (2026-09-21) — **STALE as of 2026-09-22**; the bucket-1022 job is
+  running. See the stale marker at the top and `docs/frontier/OPENWORK_STATUS.md`.
 - `docs/frontier/v45_compact_state_research.md` — validation table contradicts the
   validated counts; 24 B/state claim contradicted by the measured run. Draft only.
 - `docs/v45_*.md` (top-level, e.g. `v45_next_steps.md`, `v45_search_coverage.md`,
