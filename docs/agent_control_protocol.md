@@ -122,6 +122,13 @@ Rules:
 - RESEARCH_STATE.md's own claims carry a header date; when a claim is known
   to be outdated it is marked inline with
   `[STALE <date>: <pointer>]` rather than silently rewritten.
+- **A stale marker records the verified state at the time the marker was
+  created — never "current" state.** Phrase the replacement state as a
+  dated snapshot: `As of <date>, verified: <state>`. Do not write
+  "current state is X": the act of committing the marker advances Git
+  HEAD, so "current" is stale the moment the marker lands. The marker's
+  date is the verification date; the recorded state is what was verified
+  on that date, not a promise about later state.
 
 ## 9. ChatGPT verification of completed work
 
