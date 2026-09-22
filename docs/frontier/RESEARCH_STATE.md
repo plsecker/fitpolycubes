@@ -79,11 +79,31 @@ Verified 2026-09-23 07:40 NZST from `shard_002.log`, `shard_002.ckpt`, and
 | `bucket_1257.sqlite` | in progress — 248,000,000 states checkpointed at cap (16007 s in-bucket), 120.5 GB |
 | `shard_002.json`, `shard_003.json`, `final.json` | **do not exist** |
 
-- **Bucket 1022 result**: 589,769,226 states, **1 target** (the expected
-  B-9 target), rejected by funnel rule `reject: <k contained placements`;
-  0 SAT witnesses, 0 covers. State accounting in `shard_002.ckpt`:
+- **Bucket 1022 result**: 589,769,226 states, **1 target**, rejected by
+  funnel rule `reject: <k contained placements` (fewer than k=9 contained
+  placements of piece A → provably not tileable by piece A); 0 SAT
+  witnesses, 0 covers. State accounting in `shard_002.ckpt`:
   `targets: 1, sat: 0, unsat: 0, covers_total: 0, witnesses: []`. Matches
   the §2.3 benchmark (589,769,226 states, 1 target) exactly.
+- **Target identity (reconciled, issue #6)**: the bucket-1022 target is
+  **NOT** George's B-9 target. B-9 (`oh-109166b4c83a`) has intrinsic
+  min-id **3590** and is owned by bucket **3590** (shard 7; yielded exactly
+  once there, 12 repo-M covers — `v45_production_launch.md` §3.3–3.4,
+  `ck6_sharding_bug.md`, `george_b9_letter_mapping.md`). The corrected
+  sharding (`ck6_v45_shards_corrected.json`) assigns min-id 1022 to bucket
+  2 and min-id 3590 to bucket 7 — disjoint min-id sets. The earlier
+  "(the B-9 target)" label on bucket 1022 (old §2.3 wording, issue #4
+  checkpoint comment) was an **incorrect label**: the target's identity is
+  **not recorded** in any production artifact (`shard_002.ckpt` has
+  `witnesses: []`; the log records no digest; `bucket_1022.sqlite` has no
+  targets table — `_process_target` records witnesses only for SAT-stage
+  targets, funnel-rejected targets are counted but not stored).
+  - **Proven**: exactly 1 funnel-rejected (non-tileable) target in bucket
+    1022; B-9 = min-id 3590 / bucket 3590, SAT with 12 repo-M covers.
+  - **Inferred**: the bucket-1022 target is not B-9 (disjoint min-id
+    ownership; B-9 is SAT, the bucket-1022 target is reject_k).
+  - **Unknown**: the bucket-1022 target's canonical identity — not
+    recoverable from the recorded artifacts.
 - **Stop reason**: 20 h safety cap (`--max-seconds 72000`) hit mid-bucket
   1257 — `shard 2: limit hit mid-bucket 1257 (max_seconds 72000); checkpoint
   preserved, bucket not recorded as done`. **STOPPED / RESUMABLE**, not a
@@ -99,7 +119,8 @@ Verified 2026-09-23 07:40 NZST from `shard_002.log`, `shard_002.ckpt`, and
 
 Per `docs/frontier/v45_memory_bottleneck.md` and `/tmp/opencode/v45_validation/`:
 
-- Bucket 1022 = **589,769,226 states, 1 target** (the B-9 target).
+- Bucket 1022 = **589,769,226 states, 1 target** (funnel-rejected; **NOT**
+  the B-9 target — see §2.2 reconciliation, issue #6).
 - SQLite-backed visited set: **312.3 GB disk, 14 h 45 m wall, peak RSS 1064 MiB, rc=0**
   (~530 B/state on disk, ~11.3k states/s). Fits comfortably in the 28 GiB envelope.
 - Database: `/tmp/opencode/v45_validation/bucket1022_visited.sqlite` (312,300,355,584 B, present).
