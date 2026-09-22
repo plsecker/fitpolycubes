@@ -1,21 +1,25 @@
 # Frontier Research State — Hand-off Document
 
 **Purpose**: single source of truth for the current state of the frontier research
-(V45/CK6 enumeration, EE4, catalogue audits) as of **2026-09-21**. Written as a
+(V45/CK6 enumeration, EE4, catalogue audits) as of **2026-09-23**. Written as a
 hand-off for ChatGPT / future sessions. Every claim below was verified against
 local files, logs, checkpoints, git history, and process state on this machine
 (`/home/philip/Work/fitpolycubes`, branch `frontier-solutions`).
 
-**Machine**: 28 GiB RAM, 8 GiB swap, ~1.3 TB disk (~551 GB free).
+**Machine**: 28 GiB RAM, 8 GiB swap, ~1.3 TB disk (~443 GB free as of
+2026-09-23; the bucket-1022/1257 DBs occupy ~433 GB).
 **No solver processes are currently running** (verified via `ps`).
 
-> **STALE MARKER (2026-09-22)** — the claim above ("No solver processes are
-> currently running") is superseded: the bucket-1022 production job
-> (`v45-bucket1022.service`, PID 42188) has been running since 2026-09-22
-> 07:14 NZST. Live job state is tracked in `docs/frontier/OPENWORK_STATUS.md`
-> (§ "Current V45 job"). Per `docs/agent_control_protocol.md` §8, this stale
-> claim is marked rather than silently rewritten; refresh the affected
-> sections (§1, §7) on the next task that touches V45 state.
+> **STALE MARKER (2026-09-23)** — the claim above ("No solver processes are
+> currently running") is superseded. As of 2026-09-23, verified: the
+> bucket-1022 production job (`v45-bucket1022.service`, PID 42188) ran
+> 2026-09-22 07:14 → 2026-09-23 03:15 NZST, **completed bucket 1022**, then
+> stopped at the 20 h cap mid-bucket 1257 (**STOPPED / RESUMABLE**). Live job
+> state is tracked in `docs/frontier/OPENWORK_STATUS.md` (§ "Current V45
+> job"). Separate non-v45 solver processes (`fitpolycubes_hybrid.py A
+> --box 8 8 10`, PIDs 169726/169817/169818) were also running as of
+> 2026-09-23 07:40 NZST. Per `docs/agent_control_protocol.md` §8, this
+> stale claim is marked rather than silently rewritten.
 
 ---
 
@@ -23,7 +27,7 @@ local files, logs, checkpoints, git history, and process state on this machine
 
 | Workstream | Status | Latest verified result |
 |------------|--------|------------------------|
-| V45 CK6 enumeration (production) | **INCOMPLETE** — memory wall RESOLVED (SQLite visited set integrated, tested); run not yet resumed | Engine validated; production run incomplete, stopped at bucket 1022 |
+| V45 CK6 enumeration (production) | **IN PROGRESS** — bucket 1022 COMPLETE (1 target, rejected by funnel); shard 2 STOPPED / RESUMABLE at 20 h cap mid-bucket 1257 | Engine validated; bucket 1022 = 589,769,226 states, 1 target, 0 SAT witnesses, 0 covers |
 | CK6 sharding repair / George B-9 | RESOLVED | Corrected 3,696-min-id domain; B-9 = min-id 3590, 12 covers in repo-M |
 | EE4 (R pentacube) | RESOLVED | Matches George's `5-17p.png` exactly; 4 canonical EE4 targets |
 | Catalogue impossibility-rule audits | Mostly committed; 1 action pending | K/V `cube` rule removed; B metadata removed; W `(4,5)` rule still to remove |
@@ -61,35 +65,35 @@ local files, logs, checkpoints, git history, and process state on this machine
   (minid_counts.json: 3,938 zero entries, total=0; 4 empty shards). The retired corpus
   survives only in git history. **No valid V45 total exists yet.**
 
-### 2.2 Production run state — INCOMPLETE, STOPPED
+### 2.2 Production run state — bucket 1022 COMPLETE; shard 2 STOPPED / RESUMABLE
 
-`data/ck6_reuse/run/v45_A/` (all timestamps 2026-09-19):
+Verified 2026-09-23 07:40 NZST from `shard_002.log`, `shard_002.ckpt`, and
+`ps` (job exited 2026-09-23 03:18 NZST, run_id `a2edf575429c4ccdb653d4acbe878cbe`):
 
 | Artifact | State |
 |----------|-------|
 | `shard_000.json` | complete, 0 targets (min-ids 0–461) |
 | `shard_001.json` | complete, 0 targets (min-ids 462–923) |
-| `shard_002.ckpt` | 98/462 min-ids done (924–1021, all 0 targets) — stopped inside bucket 1022 |
-| `shard_003.ckpt` | 134/462 min-ids done (1386–1519, all 0 targets) |
+| `shard_002.ckpt` | **333/462 min-ids done (924–1256)**; min-id 1022 done (**1 target**); bucket 1257 in progress (not done) |
+| `bucket_1022.sqlite` | **COMPLETE** — 589,769,226 states, 1 target, 56200 s, 312310 MB, peak RSS 2043 MiB |
+| `bucket_1257.sqlite` | in progress — 248,000,000 states checkpointed at cap (16007 s in-bucket), 120.5 GB |
 | `shard_002.json`, `shard_003.json`, `final.json` | **do not exist** |
 
-- `shard_002.log` shows three sections: initial run 924–1021; a resume attempt that
-  crashed with `KeyError: 'reject: <k contained placements'`; a final resume attempt
-  (after the fix) that ends abruptly with no traceback — consistent with an OOM kill.
-- `shard_003.log` crashed with the same KeyError on resume.
-- **Root cause of the KeyError** (fixed in commit `2dbb229`, HEAD): checkpoint JSON
-  round-trip turns the funnel `Counter` into a plain `dict`; on resume
-  `dict[missing] += 1` raised `KeyError`. Fix: re-wrap the loaded funnel dict as a
-  `Counter` in `run_shard`.
-- **OOM record** (journalctl, both in bucket 1022):
-  - 2026-09-19 14:59:53 — `v45-prod-A.service` pid 96907 killed, anon-rss **14.9 GiB**
-    (matches "r1, parallel 8" in `v45_memory_bottleneck.md`).
-  - 2026-09-19 16:41:12 — `v45-prod-A-r3.service` pid 129619 killed, anon-rss **27.6 GiB**
-    (matches "r3, parallel 1, funnel fix").
-- **Conclusion**: the in-memory visited set cannot complete bucket 1022 within 28 GiB.
-  **RESOLVED by the SQLite production integration (see §2.7)**: the driver now enumerates
-  every bucket with a SQLite-backed visited set (`iter_targets_seeded_connected_sqlite`),
-  bounded RSS, crash-safe mid-bucket resume.
+- **Bucket 1022 result**: 589,769,226 states, **1 target** (the expected
+  B-9 target), rejected by funnel rule `reject: <k contained placements`;
+  0 SAT witnesses, 0 covers. State accounting in `shard_002.ckpt`:
+  `targets: 1, sat: 0, unsat: 0, covers_total: 0, witnesses: []`. Matches
+  the §2.3 benchmark (589,769,226 states, 1 target) exactly.
+- **Stop reason**: 20 h safety cap (`--max-seconds 72000`) hit mid-bucket
+  1257 — `shard 2: limit hit mid-bucket 1257 (max_seconds 72000); checkpoint
+  preserved, bucket not recorded as done`. **STOPPED / RESUMABLE**, not a
+  failure. Checkpoint and both DBs intact; no WAL files remain (clean
+  checkpoint on exit).
+- **Historical (2026-09-19, pre-SQLite)**: the earlier in-memory attempts
+  crashed with `KeyError: 'reject: <k contained placements'` (fixed in
+  `2dbb229`) and OOM kills (14.9 GiB / 27.6 GiB anon-rss); the in-memory
+  visited set cannot complete bucket 1022 within 28 GiB. **RESOLVED by the
+  SQLite production integration (see §2.7)**.
 
 ### 2.3 Bucket-1022 SQLite benchmark — COMPLETE, VERIFIED (the fix that works)
 

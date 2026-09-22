@@ -85,22 +85,31 @@ Recovery procedure after an OpenWork crash:
 
 ## Current V45 job (issue #4 — bucket 1022 production validation)
 
-- **Service**: `v45-bucket1022.service` (user-level systemd transient,
-  `systemd-run --user`; survives an OpenWork crash)
-- **PID**: 42188 (Main PID; ppid = systemd user manager 2430)
+**Status: STOPPED / RESUMABLE** — verified 2026-09-23 07:40 NZST from
+`shard_002.log`, `shard_002.ckpt`, `ps`, and `systemctl --user status`.
+
+- **Service**: `v45-bucket1022.service` — **GONE** (transient unit removed
+  on process exit; `systemctl --user status` reports "could not be found")
+- **PID**: 42188 — **exited** (no longer exists; verified via `ps`)
 - **Command**: `python tools/frontier/run_v45_production.py --piece A
   --shard 2 --max-seconds 72000`
-- **run_id**: `a2edf575429c4ccdb653d4acbe878cbe` (fresh; pre-SQLite
-  checkpoint had none)
-- **Log**: `data/ck6_reuse/run/v45_A/shard_002.log` (append)
-- **Bucket DB**: `data/ck6_reuse/run/v45_A/bucket_1022.sqlite`
+- **run_id**: `a2edf575429c4ccdb653d4acbe878cbe`
+- **Log**: `data/ck6_reuse/run/v45_A/shard_002.log` (final write
+  2026-09-23 03:18:28 NZST)
+- **Bucket DBs**: `bucket_1022.sqlite` **312.3 GB — COMPLETE**;
+  `bucket_1257.sqlite` **120.5 GB — in progress, checkpointed**
 - **Started**: 2026-09-22 07:14:50 NZST
-- **Safety cap**: 20 h (72000 s) → checkpointed stop ~2026-09-23
-  03:15 NZST if not complete (STOPPED / RESUMABLE, not failure)
-- **Expected**: ~14 h 45 m wall, ~312 GB DB, <1.1 GiB RSS (benchmark)
-- **Status**: RUNNING (initial; 98/462 min-ids done, bucket 1022 in
-  progress)
-- **Monitor**: `systemctl --user status v45-bucket1022` /
-  `journalctl --user -u v45-bucket1022`; free disk must stay ≥ 450 GB
-  (currently 846 GB free); on completion update this section with the
-  final result.
+- **Safety cap**: 72000 s (20 h) hit → exited 2026-09-23 ~03:15 NZST
+- **Result**:
+  - Bucket 1022 **COMPLETE**: 589,769,226 states, **1 target** (rejected by
+    funnel rule `reject: <k contained placements`), 56200 s, db 312310 MB,
+    peak RSS 2043 MiB (settled ~1044–1060 MiB), 0 SAT witnesses, 0 covers.
+  - Job continued to bucket 1257; cap hit mid-bucket at 248,000,000 states
+    (16007 s in-bucket); checkpoint preserved; **bucket 1257 not recorded as
+    done** (`shard 2: limit hit mid-bucket 1257 (max_seconds 72000)`).
+- **Checkpoint**: `shard_002.ckpt` — 333/462 min-ids done (924–1256);
+  min-id 1022 done (1 target); bucket 1257 in progress (not done).
+- **Disk**: 443 GB free (below the 450 GB threshold; job already stopped at
+  the cap, so no action was needed — note for the next launch).
+- **Monitor**: no service to monitor — job is stopped. Next step is the
+  resume/verification decision (issue #4 completion flow).
