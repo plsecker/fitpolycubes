@@ -85,31 +85,38 @@ Recovery procedure after an OpenWork crash:
 
 ## Current V45 job (issue #4 — bucket 1022 production validation)
 
-**Status: STOPPED / RESUMABLE** — verified 2026-09-23 07:40 NZST from
-`shard_002.log`, `shard_002.ckpt`, `ps`, and `systemctl --user status`.
+**Status: RUNNING (resumed)** — verified 2026-09-23 11:56 NZST from
+`shard_002.log`, `shard_002.ckpt`, and `systemctl --user status`.
 
-- **Service**: `v45-bucket1022.service` — **GONE** (transient unit removed
-  on process exit; `systemctl --user status` reports "could not be found")
-- **PID**: 42188 — **exited** (no longer exists; verified via `ps`)
+- **Service**: `v45-shard2.service` — **ACTIVE** (transient systemd unit,
+  launched 2026-09-23 11:55:55 NZST)
+- **PID**: 411978 — running
 - **Command**: `python tools/frontier/run_v45_production.py --piece A
-  --shard 2 --max-seconds 72000`
-- **run_id**: `a2edf575429c4ccdb653d4acbe878cbe`
-- **Log**: `data/ck6_reuse/run/v45_A/shard_002.log` (final write
-  2026-09-23 03:18:28 NZST)
+  --shard 2 --max-seconds 72000` (no `--prune-dbs`)
+- **run_id**: `a2edf575429c4ccdb653d4acbe878cbe` (unchanged across resumes)
+- **Log**: `data/ck6_reuse/run/v45_A/shard_002.log` (append mode)
 - **Bucket DBs**: `bucket_1022.sqlite` **312.3 GB — COMPLETE**;
-  `bucket_1257.sqlite` **120.5 GB — in progress, checkpointed**
-- **Started**: 2026-09-22 07:14:50 NZST
-- **Safety cap**: 72000 s (20 h) hit → exited 2026-09-23 ~03:15 NZST
-- **Result**:
-  - Bucket 1022 **COMPLETE**: 589,769,226 states, **1 target** (rejected by
-    funnel rule `reject: <k contained placements`), 56200 s, db 312310 MB,
-    peak RSS 2043 MiB (settled ~1044–1060 MiB), 0 SAT witnesses, 0 covers.
-  - Job continued to bucket 1257; cap hit mid-bucket at 248,000,000 states
-    (16007 s in-bucket); checkpoint preserved; **bucket 1257 not recorded as
-    done** (`shard 2: limit hit mid-bucket 1257 (max_seconds 72000)`).
+  `bucket_1257.sqlite` **174.75 GB — in progress, checkpointed at
+  358,000,000 states, 1 target** (funnel-rejected, like 1022's)
+- **History**:
+  - 2026-09-22 07:14 → 2026-09-23 03:15: original run (`v45-bucket1022.service`,
+    PID 42188): bucket 1022 COMPLETE (589,769,226 states, 1 target, 56200 s,
+    312310 MB), then 20 h cap hit mid-bucket 1257 at 248,000,000 states.
+  - 2026-09-23 09:33 → 11:52: resumed (PID 390173) per issue #7 decision;
+    reached 358,000,000 states (1 target); **STOPPED cleanly at 11:52** when a
+    new directive ("do not resume immediately; assess first") arrived —
+    checkpoint preserved, nothing deleted.
+  - 2026-09-23 11:55: assessment complete (remaining search IS necessary for
+    the V45 total and per-piece SAT/UNSAT verdicts; see
+    `docs/frontier/ISSUE_007_RESUME_DECISION.md`); **resumed from the 358M
+    checkpoint** (exact resume, zero rework).
 - **Checkpoint**: `shard_002.ckpt` — 333/462 min-ids done (924–1256);
-  min-id 1022 done (1 target); bucket 1257 in progress (not done).
-- **Disk**: 443 GB free (below the 450 GB threshold; job already stopped at
-  the cap, so no action was needed — note for the next launch).
-- **Monitor**: no service to monitor — job is stopped. Next step is the
-  resume/verification decision (issue #4 completion flow).
+  min-id 1022 done (1 target); bucket 1257 in progress (not done);
+  `targets: 2` (1022 + 1257), both funnel-rejected.
+- **Disk**: 391 GB free at resume; bucket 1257 needs ~113 GB more (~4.6 h at
+  ~14–23k/s) → ~278 GB free after; above the 100 GB floor.
+- **Monitor**: tail `shard_002.log`; place `data/ck6_reuse/run/v45_A/STOP`
+  if free space < 100 GB (not expected); 20 h cap will stop cleanly if the
+  rate collapses. Remaining shard workload after 1257: 10 more run buckets
+  (1279, 1301–1305, 1326–1328, 1349) + 118 provably-empty; continuing past
+  1257 requires pruning completed DBs after audit.
