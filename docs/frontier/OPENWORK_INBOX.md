@@ -44,6 +44,14 @@ bootstrap tasks without an issue number (`Issue: none (bootstrap)`).
 - Task: Implement the minimal agent-control protocol from `docs/agent_architecture_audit.md` §5: GitHub issues as the single task queue with `docs/frontier/OPENWORK_INBOX.md` as mirror/bootstrapping ledger; explicit rules for READY→RUNNING→DONE, issue comments and commit SHAs, refreshing RESEARCH_STATE.md and OPENWORK_STATUS.md, closing completed issues, marking stale state, and ChatGPT verification of completed work. Create `docs/agent_control_protocol.md`. Do not modify solver code, production jobs, or run databases/checkpoints/logs; do not restart or stop bucket 1022.
 - Result: `docs/agent_control_protocol.md` created (ADOPTED 2026-09-22); `docs/frontier/OPENWORK_STATUS.md` updated to reference the protocol and the issue queue; `docs/frontier/RESEARCH_STATE.md` updated with a stale marker for the outdated "no processes running" claim (indexed in §11). Commit: `4eee615` on `frontier-solutions`. No solver code, production jobs, databases, checkpoints, or logs touched; bucket 1022 untouched.
 
+## ISSUE-007
+
+- ID: `ISSUE-007`
+- Issue: `#7`
+- Status: `RUNNING`
+- Task: Plan safe V45 continuation after bucket 1022 (analysis only — do not start or resume V45; do not modify solver code, jobs, databases, checkpoints, or logs). Determine: (1) feasibility of resuming only bucket 1257 with the current disk budget; (2) whether completed-bucket DB retention should change and what audit evidence is lost if pruned; (3) minimum free-space floor and stop policy for a resumed bucket; (4) shard 2 alone vs a different scheduling strategy; (5) whether the 20 h per-bucket cap is appropriate; (6) a concrete recommended resume procedure (not executed). Produce a concise decision document and report the recommendation.
+- Started: 2026-09-23 (queue poll; issue #7 READY, lowest-numbered open issue after #4 which remains STOPPED/RESUMABLE awaiting the resume decision)
+
 ## ISSUE-006
 
 - ID: `ISSUE-006`
