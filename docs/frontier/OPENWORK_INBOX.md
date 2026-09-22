@@ -48,6 +48,6 @@ bootstrap tasks without an issue number (`Issue: none (bootstrap)`).
 
 - ID: `ISSUE-006`
 - Issue: `#6`
-- Status: `RUNNING`
+- Status: `DONE`
 - Task: Reconcile V45 bucket 1022 target identity: determine exactly what target was enumerated in bucket 1022, whether its identity can be established from the recorded artifacts, and whether the B-9 claim in the production documentation is an incorrect label. Correct affected documentation; preserve historical evidence; state what is proven/inferred/unknown; update RESEARCH_STATE.md and OPENWORK_STATUS.md only where necessary; add a correction comment to Issue #4; commit and push on frontier-solutions. Do not modify solver algorithms, production/research jobs, or databases/checkpoints/logs.
-- Started: 2026-09-23 (queue poll; issue #6 READY, lowest-numbered open issue after #4 which remains RUNNING)
+- Result: Reconciled — the bucket-1022 target is **NOT** the B-9 target. B-9 (`oh-109166b4c83a`) has intrinsic min-id 3590, owned by bucket 3590 (shard 7), SAT with 12 repo-M covers; the corrected sharding assigns min-id 1022 to bucket 2, so the sets are disjoint. Bucket 1022 enumerated exactly 1 target, rejected by funnel rule `reject: <k contained placements` (fewer than k=9 contained placements → not tileable by piece A); its identity is not recorded in any artifact (checkpoint `witnesses: []`, no log digest, no DB targets table). The "(the B-9 target)" label was an incorrect label; corrected in RESEARCH_STATE.md §2.2/§2.3 with proven/inferred/unknown stated. Commit: `2d0654b` on `frontier-solutions`. No solver code, jobs, databases, checkpoints, or logs touched. Issue #4 correction comment prepared (no GitHub API token available to post).
