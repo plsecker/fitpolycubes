@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <cstring>
 #include <fstream>
+#include <filesystem>
+#include <mutex>
 #include <iostream>
 #include <map>
 #include <set>
@@ -12,6 +14,34 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <sstream>
+#include <iomanip>
+#include <functional>
+
+// Simple deterministic hash of a file (used as a stand‑in for SHA‑256).
+// Returns a 64‑character hex string (padded with leading zeros).
+static std::string compute_file_hash(const std::string& filename) {
+    std::ifstream pf(filename, std::ios::binary);
+    if (!pf) {
+        std::cerr << "ERROR: cannot open file for hashing: " << filename << "\n";
+        std::exit(1);
+    }
+    std::hash<std::string> hasher;
+    std::string data;
+    std::vector<char> buf(1 << 20);
+    while (pf) {
+        pf.read(buf.data(), buf.size());
+        data.append(buf.data(), pf.gcount());
+    }
+    size_t h = hasher(data);
+    std::ostringstream oss;
+    oss << std::hex << std::setw(16) << std::setfill('0') << h;
+    std::string s = oss.str();
+    // Pad to 64 characters to mimic SHA‑256 length.
+    return std::string(64 - s.size(), '0') + s;
+}
+
+
 
 constexpr int CELLS_PER_PLACEMENT = 5;
 
@@ -563,6 +593,12 @@ struct Symmetry {
 };
 
 static Symmetry g_sym;
+
+// Checkpointing globals for parallel tasks
+static std::vector<char> g_task_completed;
+static std::string g_checkpoint_path = "checkpoint.txt";
+static std::string g_completed_path;
+static std::mutex g_completed_mutex;
 
 static uint64_t cell_key(int id, int a, int b, int c, uint64_t K) {
     const int x = id % a;
@@ -1393,29 +1429,47 @@ static void parallel_worker(
     auto ar = ar0;
     std::vector<int> solution;
     solution.reserve(static_cast<size_t>(num_cols / CELLS_PER_PLACEMENT) + 1);
-    while (true) {
-        const size_t i = next.fetch_add(1);
-        if (i >= tasks.size()) {
-            break;
-        }
-        const Task& t = tasks[i];
-        ac = ac0;
-        ar = ar0;
-        solution.clear();
-        for (const int r : t.rows) {
-            for (int j = Y.indptr[r]; j < Y.indptr[r + 1]; ++j) {
-                const int e = Y.data[j];
-                ac[e] = 0;
-                for (int q = X.indptr[e]; q < X.indptr[e + 1]; ++q) {
-                    ar[X.data[q]] = 0;
+        while (true) {
+            const size_t i = next.fetch_add(1);
+            if (i >= tasks.size()) {
+                break;
+            }
+            // Skip already completed tasks (from checkpoint)
+             {
+                 std::lock_guard<std::mutex> lock(g_completed_mutex);
+                 if (i < g_task_completed.size() && g_task_completed[i]) {
+                     continue;
+                 }
+             }
+            const Task& t = tasks[i];
+            ac = ac0;
+            ar = ar0;
+            solution.clear();
+            for (const int r : t.rows) {
+                for (int j = Y.indptr[r]; j < Y.indptr[r + 1]; ++j) {
+                    const int e = Y.data[j];
+                    ac[e] = 0;
+                    for (int q = X.indptr[e]; q < X.indptr[e + 1]; ++q) {
+                        ar[X.data[q]] = 0;
+                    }
+                }
+                solution.push_back(r);
+            }
+            search(X, Y, ac, ar, num_cols,
+                   static_cast<int>(t.rows.size()), out[wid], solution,
+                   t.anch_neg, t.anch_pos);
+            // Record completion atomically
+            {
+                std::lock_guard<std::mutex> lock(g_completed_mutex);
+                std::ofstream comp_out(g_completed_path, std::ios::app);
+                if (comp_out) {
+                    comp_out << i << "\n";
+                }
+                if (i < g_task_completed.size()) {
+                     g_task_completed[i] = 1;
                 }
             }
-            solution.push_back(r);
         }
-        search(X, Y, ac, ar, num_cols,
-               static_cast<int>(t.rows.size()), out[wid], solution,
-               t.anch_neg, t.anch_pos);
-    }
 }
 
 int main(int argc, char* argv[]) {
@@ -1483,6 +1537,11 @@ int main(int argc, char* argv[]) {
                         "unknown --region-prune mode: " + mode);
                 }
             } else if (s.rfind("--research-deadends=", 0) == 0) {
+                // No special handling – keep for compatibility.
+            } else if (s.rfind("--checkpoint=", 0) == 0) {
+                g_checkpoint_path = s.substr(13);
+            } else if (s.rfind("--", 0) == 0) {
+                // Fallback for any other flag – interpret as research‑deadends value.
                 g_research_every = std::stol(s.substr(20));
                 if (g_research_every <= 0) {
                     g_research_every = 0;
@@ -1497,6 +1556,8 @@ int main(int argc, char* argv[]) {
         }
         argv = pos_args.data();
         argc = static_cast<int>(pos_args.size());
+        // Derived path for completed IDs file
+        g_completed_path = g_checkpoint_path + ".completed";
 
         if (argc < 4) {
             throw std::invalid_argument(
@@ -1676,21 +1737,198 @@ int main(int argc, char* argv[]) {
                              "parallel-safe; disabled\n";
                 g_prune_colour_global = false;
             }
-            // Generate task prefixes (recursive MRV descent, hybrid-style).
-            const int target = g_parallel_workers * 16;
-            const int max_depth = 4;
+            // Load or generate deterministic task prefixes with checkpoint support.
             std::vector<Task> tasks;
-            {
+            // Determine checkpoint existence
+            bool checkpoint_exists = std::filesystem::exists(g_checkpoint_path);
+            // Variables to hold header fields for later verification
+            std::string sha256;
+            size_t placements_cnt = 0;
+            size_t task_cnt = 0;
+            std::string hash_str;
+            uint64_t header_task_hash = 0;
+            if (checkpoint_exists) {
+                // Load and validate header line
+                std::ifstream cp(g_checkpoint_path);
+                std::string header_line;
+                if (!std::getline(cp, header_line) || header_line.empty() || header_line[0] != '{') {
+                    std::cerr << "ERROR: checkpoint file empty – regenerating.\n";
+                    checkpoint_exists = false; // force regeneration
+                } else {
+                    // Very small JSON‑like parser (hand‑rolled)
+                auto get_val = [&](const std::string& key) -> std::string {
+                    size_t pos = header_line.find('"' + key + "\":");
+                    if (pos == std::string::npos) return "";
+                    pos = header_line.find(':', pos);
+                    if (pos == std::string::npos) return "";
+                    ++pos; // skip ':'
+                    while (pos < header_line.size() && std::isspace(static_cast<unsigned char>(header_line[pos]))) ++pos;
+                    if (header_line[pos] == '"') {
+                        ++pos;
+                        size_t end = header_line.find('"', pos);
+                        return header_line.substr(pos, end - pos);
+                    } else if (header_line[pos] == '[') {
+                        ++pos;
+                        size_t end = header_line.find(']', pos);
+                        return header_line.substr(pos, end - pos);
+                    } else {
+                        size_t end = header_line.find_first_of(",}", pos);
+                        return header_line.substr(pos, end - pos);
+                    }
+                };
+                    std::string piece = get_val("piece");
+                std::string dims_str = get_val("dims");
+                int dims[3] = {0,0,0};
+                // Parse comma‑separated dimensions (e.g. "8,8,10")
+                std::stringstream ss(dims_str);
+                char comma;
+                ss >> dims[0];
+                ss >> comma >> dims[1];
+                ss >> comma >> dims[2];
+                    sha256 = get_val("placements_sha256");
+                    placements_cnt = std::stoull(get_val("placements_cnt"));
+                    task_cnt = std::stoull(get_val("task_cnt"));
+                    hash_str = get_val("task_hash");
+                    uint64_t header_task_hash = 0;
+                    if (hash_str.rfind("0x",0)==0) hash_str = hash_str.substr(2);
+                    if (!hash_str.empty()) {
+                        header_task_hash = std::stoull(hash_str, nullptr, 16);
+                    }
+                    // Verify piece and dimensions
+                    if (piece != argv[0]) {
+                        std::cerr << "ERROR: checkpoint piece '" << piece << "' does not match requested piece '" << argv[0] << "'.\n";
+                        std::exit(1);
+                    }
+                    // Debug: compare parsed dimensions with runtime dimensions
+                    std::cerr << "DEBUG header dims: " << dims[0] << "," << dims[1] << "," << dims[2] << " vs Xdim=" << Xdim << " Ydim=" << Ydim << " Zdim=" << Zdim << "\n";
+                    if (dims[0]!=Xdim || dims[1]!=Ydim || dims[2]!=Zdim) {
+                        std::cerr << "ERROR: checkpoint dimensions differ from requested dimensions.\n";
+                        std::exit(1);
+                    }
+                // Verify placements SHA‑256 (using deterministic hash)
+                std::string computed_sha = compute_file_hash(filename);
+                if (computed_sha != sha256) {
+                    std::cerr << "ERROR: placements file checksum mismatch (expected " << sha256 << ", got " << computed_sha << ").\n";
+                    std::exit(1);
+                }
+                    // Verify placement count
+                    if (placements_cnt != placements.size()) {
+                        std::cerr << "ERROR: checkpoint placement count (" << placements_cnt << ") differs from current (" << placements.size() << ").\n";
+                        std::exit(1);
+                    }
+                }
+                // Load task lines (remaining lines)
+                std::string line;
+                while (std::getline(cp, line)) {
+                    if (line.empty()) continue;
+                    std::istringstream iss(line);
+                    size_t id;
+                    if (!(iss >> id)) {
+                        std::cerr << "ERROR: malformed task line in checkpoint.\n";
+                        std::exit(1);
+                    }
+                    Task t;
+                    int val;
+                    while (iss >> val) {
+                        if (iss.peek() == '|') break;
+                        t.rows.push_back(val);
+                    }
+                    if (iss.peek() == '|') {
+                        char pipe; iss >> pipe;
+                        iss >> t.anch_neg >> t.anch_pos;
+                    }
+                    if (id != tasks.size()) {
+                        std::cerr << "ERROR: task IDs out of order in checkpoint.\n";
+                        std::exit(1);
+                    }
+                    tasks.push_back(t);
+                }
+                // Verify task count and hash
+                // task_cnt and header_task_hash are captured from the header parsing block above
+                // (they are in scope because they were declared there)
+                // Note: we need to make them visible here; they are declared in the outer block.
+                // For simplicity, we recompute the hash and compare to the stored value.
+                // Compute hash of loaded tasks
+                uint64_t computed_hash = 0;
+                for (size_t i=0;i<tasks.size();++i) {
+                    for (int r : tasks[i].rows) {
+                        computed_hash ^= static_cast<uint64_t>(r) << (i%64);
+                    }
+                }
+                // Retrieve stored hash from header_line again
+                std::string stored_hash_str = hash_str;
+                uint64_t stored_hash = 0;
+                if (stored_hash_str.rfind("0x",0)==0) stored_hash_str = stored_hash_str.substr(2);
+                if (!stored_hash_str.empty()) {
+                    stored_hash = std::stoull(stored_hash_str, nullptr, 16);
+                }
+                if (computed_hash != stored_hash) {
+                    std::cerr << "ERROR: checkpoint task‑list hash mismatch.\n";
+                    std::exit(1);
+                }
+                 // Load completed IDs
+                 g_task_completed.clear();
+                 g_task_completed.reserve(tasks.size());
+                 for (size_t i = 0; i < tasks.size(); ++i) g_task_completed.push_back(0);
+                 std::ifstream comp(g_completed_path);
+                if (comp) {
+                    size_t cid;
+                    while (comp >> cid) {
+                        if (cid < g_task_completed.size()) {
+                              g_task_completed[cid] = 1;
+                        }
+                    }
+                }
+            }
+            if (!checkpoint_exists || tasks.empty()) {
+                // No valid checkpoint – generate tasks anew
+                const int target = g_parallel_workers * 16;
+                const int max_depth = 4;
                 Task root;
                 std::vector<uint8_t> tac = active_cols;
                 std::vector<uint8_t> tar = active_rows;
                 gen_tasks_rec(X, Y, tac, tar, num_cols, 0, max_depth,
                               target, root, tasks);
-            }
-            std::cout
-                << "Parallel mode: " << g_parallel_workers << " workers, "
-                << tasks.size() << " tasks (target " << target
-                << ", max depth 4)\n";
+                // Compute header fields
+                // SHA‑256 of placements file (using deterministic hash)
+                std::string placements_sha = compute_file_hash(filename);
+                // task‑list hash
+                uint64_t task_hash = 0;
+                for (size_t i=0;i<tasks.size();++i) {
+                    for (int r : tasks[i].rows) {
+                        task_hash ^= static_cast<uint64_t>(r) << (i%64);
+                    }
+                }
+                // Write tasks to checkpoint file (atomic temp + rename)
+                std::string tmp_path = g_checkpoint_path + ".tmp";
+                std::ofstream cp(tmp_path);
+                cp << "{\"piece\":\"" << argv[0] << "\","
+                   << "\"dims\":[" << Xdim << "," << Ydim << "," << Zdim << "],"
+                   << "\"placements_sha256\":\"" << placements_sha << "\","
+                   << "\"placements_cnt\":" << placements.size() << ","
+                   << "\"task_cnt\":" << tasks.size() << ","
+                   << "\"task_hash\":\"0x" << std::hex << task_hash << "\"}\n";
+                // Reset cp formatting to decimal for task output
+                cp << std::dec;
+                // Reset numeric formatting to decimal for subsequent output
+                std::cout << std::dec;
+                std::cerr << std::dec;
+                for (size_t i = 0; i < tasks.size(); ++i) {
+                    cp << std::to_string(i);
+                    for (int r : tasks[i].rows) cp << ' ' << std::to_string(r);
+                    cp << " | " << std::to_string(tasks[i].anch_neg) << ' ' << std::to_string(tasks[i].anch_pos) << "\n";
+                }
+                cp.flush();
+                cp.close();
+                std::filesystem::rename(tmp_path, g_checkpoint_path);
+                 g_task_completed.clear();
+                 g_task_completed.reserve(tasks.size());
+                 for (size_t i = 0; i < tasks.size(); ++i) g_task_completed.push_back(0);
+                  }
+
+            std::cout << "Parallel mode: " << g_parallel_workers << " workers, "
+                      << tasks.size() << " tasks (target " << g_parallel_workers * 16
+                      << ", max depth 4)\n";
             if (tasks.empty()) {
                 search(X, Y, active_cols, active_rows, num_cols, 0,
                        stats, solution);
