@@ -1,0 +1,25 @@
+P pentacube 3x3x10 — C++ raw enumeration
+
+Placement set:
+  placements_P_3x3x10.txt
+  Raw placements: 760
+  SHA256: 22af21c51a6e510150259f3da5e5e063eca77a0d7b81152611ba1c81ab2bc14d
+
+Command:
+  ./solver_a P 3 3 10 placements_P_3x3x10.txt 0 \
+    --connectivity --region-prune=colour --region-prune=propagate \
+    --parallel=3 --dump=/dev/null
+
+Result:
+  Solutions: 23723064
+  Nodes: 299444683
+  Time: 223.553 s
+  Nodes/sec: 1339480
+  Solutions/sec: 106118
+
+Pruning:
+  Connectivity checks: 504281680
+  Pruned by connectivity: 47161558
+  Colour-component rejections: 0
+  Propagation rejections: 25507334
+  Forced placements processed: 218712146
