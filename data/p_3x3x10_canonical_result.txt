@@ -1,0 +1,50 @@
+P pentacube 3x3x10 — canonical raw result
+
+Exact raw tiling count:
+  23,723,064
+
+Independent verification:
+  Earlier Python raw enumeration: 23,723,064
+  Current C++ raw enumeration:   23,723,064
+
+C++ verification run:
+  Placement set: placements_P_3x3x10.txt
+  Raw placements: 760
+  SHA256: 22af21c51a6e510150259f3da5e5e063eca77a0d7b81152611ba1c81ab2bc14d
+
+  Command:
+    ./solver_a P 3 3 10 placements_P_3x3x10.txt 0 \
+      --connectivity --region-prune=colour --region-prune=propagate \
+      --parallel=3 --dump=/dev/null
+
+  Nodes: 299,444,683
+  Time: 223.553 s
+  Nodes/sec: 1,339,480
+  Solutions/sec: 106,118
+
+  Connectivity checks: 504,281,680
+  Pruned by connectivity: 47,161,558
+  Colour-component rejections: 0
+  Propagation rejections: 25,507,334
+  Forced placements processed: 218,712,146
+
+Middle-boundary calculation:
+  3x3x5 raw tilings: 2,448
+  Non-crossing 3x3x10 tilings = 2,448^2
+                                 = 5,992,704
+
+  Crossing-middle-boundary tilings
+    = 23,723,064 - 5,992,704
+    = 17,730,360
+
+Therefore:
+  23,723,064 total raw tilings
+  5,992,704 do not cross the middle 5/5 boundary
+  17,730,360 involve at least one P piece crossing that boundary
+
+C++ speedup versus earlier Python raw enumeration:
+  Python time:  7,224.630 s
+  C++ time:       223.553 s
+  Speedup:       32.317x
+  Wall time saved: 7,001.077 s
+  Reduction in wall time: 96.9%
