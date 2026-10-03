@@ -1,0 +1,25 @@
+P PENTACUBE — 3 x 3 x 10 RAW ENUMERATION
+==========================================
+
+Exact raw tiling count:
+23,723,064
+
+Run:
+.venv/bin/python -u solvers/fitpolycubes_fast.py P --box 3 3 10 --no-symmetry
+
+Elapsed time:
+7224.6300 seconds
+
+Non-crossing count (independent 3x3x5 × 3x3x5 construction):
+5,992,704
+
+Crossing count:
+17,730,360
+
+Crossing count calculation:
+23,723,064 - 5,992,704 = 17,730,360
+
+Note:
+This was an unrestricted raw enumeration (--no-symmetry).
+Individual solutions were sent to /dev/null to avoid filling the filesystem.
+The reported total is therefore the exact raw count, not a symmetry-reduced count.
