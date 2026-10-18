@@ -1,0 +1,32 @@
+TW1-24 host readiness observation
+Host: philip-VirtualBox, 8 logical CPUs
+Observation window: 2026-10-17 09:04:34–09:05:01 NZDT (~75s+, 16 vmstat samples + initial snapshot)
+Uptime at start: load average 4.99, 2.32, 1.71 (8 days uptime)
+
+Per-sample CPU idle % (vmstat, all CPUs):
+  82, 51, 75, 47, 72, 89, 65, 62, 50, 70, 50, 60, 60, 75, 66, 55
+Average idle: 64.3% (sum 1029 / 16) — GATE REQUIRES >85%: FAIL
+
+Load averages (1-min / 5-min) across window:
+  start: 4.99 / 1.71
+  samples: 4.44–5.76 (1-min), 2.29–2.65 (5-min)
+  1-min load never below 4.0 — GATE REQUIRES <4.0 on 8-CPU host: FAIL
+
+Memory:
+  MemTotal: 12034596 kB (11752 MB)
+  MemAvailable: 4320676–4493424 kB (~4.1–4.3 GB) across window
+  /proc/pressure/memory: some avg10=0.00 avg60=0.00 avg300=0.00; full all 0.00 — no current pressure: PASS
+  Swap: 4194300 kB total, ~2971204 kB used (~2.9 GB occupied, stable SwapFree ~1223100 kB)
+  vmstat si/so: 6/14, 4/0, 0/0 at start; 0/0 throughout 75s observation window.
+  Verdict: accumulated swap occupancy only, no sustained swap-in/swap-out activity: PASS (per instruction not to fail solely on occupied swap)
+
+Competing processes:
+  pgrep for solver|benchmark|pentacube: no solver or benchmark processes (only pentacube-monitor collector/agent python daemons, idle). PASS.
+
+Major desktop consumers:
+  firefox (main 8.8% MEM + content procs, one 11.8% MEM), gnome-system-monitor 12.6% MEM,
+  gnome-shell, OpenWork renderer/sidecar procs (transient 20–52% CPU at snapshot).
+  Substantial desktop + memory load present — consistent with TW1-20 note.
+
+GATE OUTCOME: FAIL (CPU idle 64.3% < 85%; 1-min load 4.44–5.76 > 4.0).
+Action per protocol: STOP. No solver jobs run. No code modified.

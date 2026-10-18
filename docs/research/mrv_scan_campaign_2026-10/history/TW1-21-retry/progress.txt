@@ -1,0 +1,20 @@
+# TW1-21 RETRY Progress
+
+**Status:** BLOCKED — no suitable quiet host available
+**Date:** 2026-10-16 (Pacific/Auckland)
+
+## Completed
+- Read TW1-20 debug + perf reports; verified baseline src a4fdcf12…, activex src 42fad94b…, all three placement files — hashes match.
+- Searched for nz-vdi-psecker: unresolvable (SERVFAIL), no SSH config/credentials; no address to gate-check.
+- Checked Tailscale: only Windows peers (one online without SSH, one offline); no Linux compute host.
+- Checked local alternatives: no docker/lxc/virsh/cloud CLIs; SSH-open endpoints are network appliances; visualsvn SSH times out.
+- Local VM still loaded (1-min load 4.30, gate <4.0) — re-running here explicitly out of scope.
+- Stopped per instructions rather than inventing results. No code modified; no commits/merges/deploys; prior artifacts untouched.
+
+## Artifacts
+- `/tmp/pentacube-bench/tw21-retry/tw21_retry_report.md` — blocker report
+- `/tmp/pentacube-bench/tw21-retry/progress.txt` — this file
+- `/tmp/pentacube-bench/tw21-retry/benchmark_results.csv` — header only, zero data rows
+
+## To unblock
+- Provide reachable Linux host + SSH access with g++, or a quiet window on this VM (re-run TW1-21 gate first).

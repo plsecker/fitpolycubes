@@ -1,0 +1,260 @@
+0000000000011de0 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]>:
+   11de0:	f3 0f 1e fa          	endbr64
+   11de4:	41 57                	push   %r15
+   11de6:	49 89 ff             	mov    %rdi,%r15
+   11de9:	41 56                	push   %r14
+   11deb:	49 89 d6             	mov    %rdx,%r14
+   11dee:	41 55                	push   %r13
+   11df0:	49 89 f5             	mov    %rsi,%r13
+   11df3:	41 54                	push   %r12
+   11df5:	55                   	push   %rbp
+   11df6:	53                   	push   %rbx
+   11df7:	48 83 ec 48          	sub    $0x48,%rsp
+   11dfb:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+   11e02:	00 00 
+   11e04:	48 89 44 24 38       	mov    %rax,0x38(%rsp)
+   11e09:	31 c0                	xor    %eax,%eax
+   11e0b:	c7 07 3f 42 0f 00    	movl   $0xf423f,(%rdi)
+   11e11:	64 80 3c 25 f0 ff ff 	cmpb   $0x0,%fs:0xfffffffffffffff0
+   11e18:	ff 00 
+   11e1a:	0f 84 91 02 00 00    	je     120b1 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x2d1>
+   11e20:	64 8b 04 25 2c ff ff 	mov    %fs:0xffffffffffffff2c,%eax
+   11e27:	ff 
+   11e28:	85 c0                	test   %eax,%eax
+   11e2a:	0f 8e 96 02 00 00    	jle    120c6 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x2e6>
+   11e30:	4d 85 ed             	test   %r13,%r13
+   11e33:	0f 84 9a 02 00 00    	je     120d3 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x2f3>
+   11e39:	48 8d 4c 24 34       	lea    0x34(%rsp),%rcx
+   11e3e:	c7 44 24 14 ff ff ff 	movl   $0xffffffff,0x14(%rsp)
+   11e45:	ff 
+   11e46:	4c 8d 04 25 10 ff ff 	lea    0xffffffffffffff10,%r8
+   11e4d:	ff 
+   11e4e:	48 c7 44 24 18 00 00 	movq   $0x0,0x18(%rsp)
+   11e55:	00 00 
+   11e57:	48 89 4c 24 28       	mov    %rcx,0x28(%rsp)
+   11e5c:	0f 1f 40 00          	nopl   0x0(%rax)
+   11e60:	64 49 8b 10          	mov    %fs:(%r8),%rdx
+   11e64:	48 8b 4c 24 18       	mov    0x18(%rsp),%rcx
+   11e69:	48 8b 2c ca          	mov    (%rdx,%rcx,8),%rbp
+   11e6d:	48 85 ed             	test   %rbp,%rbp
+   11e70:	74 72                	je     11ee4 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x104>
+   11e72:	41 89 cc             	mov    %ecx,%r12d
+   11e75:	41 c1 e4 06          	shl    $0x6,%r12d
+   11e79:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+   11e80:	31 db                	xor    %ebx,%ebx
+   11e82:	f3 48 0f bc dd       	tzcnt  %rbp,%rbx
+   11e87:	44 01 e3             	add    %r12d,%ebx
+   11e8a:	64 41 3b 58 18       	cmp    %fs:0x18(%r8),%ebx
+   11e8f:	7d 4e                	jge    11edf <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0xff>
+   11e91:	89 5c 24 34          	mov    %ebx,0x34(%rsp)
+   11e95:	64 80 3c 25 f0 ff ff 	cmpb   $0x0,%fs:0xfffffffffffffff0
+   11e9c:	ff 00 
+   11e9e:	0f 84 ac 01 00 00    	je     12050 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x270>
+   11ea4:	64 48 8b 14 25 80 ff 	mov    %fs:0xffffffffffffff80,%rdx
+   11eab:	ff ff 
+   11ead:	48 63 c3             	movslq %ebx,%rax
+   11eb0:	4d 85 f6             	test   %r14,%r14
+   11eb3:	44 8b 1c 82          	mov    (%rdx,%rax,4),%r11d
+   11eb7:	45 89 5c 85 00       	mov    %r11d,0x0(%r13,%rax,4)
+   11ebc:	74 0a                	je     11ec8 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0xe8>
+   11ebe:	41 83 fb 01          	cmp    $0x1,%r11d
+   11ec2:	0f 84 a0 01 00 00    	je     12068 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x288>
+   11ec8:	45 3b 1f             	cmp    (%r15),%r11d
+   11ecb:	0f 8d 6f 01 00 00    	jge    12040 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x260>
+   11ed1:	45 89 1f             	mov    %r11d,(%r15)
+   11ed4:	c4 e2 d0 f3 cd       	blsr   %rbp,%rbp
+   11ed9:	89 5c 24 14          	mov    %ebx,0x14(%rsp)
+   11edd:	75 a1                	jne    11e80 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0xa0>
+   11edf:	64 41 8b 40 1c       	mov    %fs:0x1c(%r8),%eax
+   11ee4:	48 83 44 24 18 01    	addq   $0x1,0x18(%rsp)
+   11eea:	48 8b 4c 24 18       	mov    0x18(%rsp),%rcx
+   11eef:	39 c8                	cmp    %ecx,%eax
+   11ef1:	0f 8f 69 ff ff ff    	jg     11e60 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x80>
+   11ef7:	4d 85 f6             	test   %r14,%r14
+   11efa:	0f 84 f4 00 00 00    	je     11ff4 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x214>
+   11f00:	49 8b 06             	mov    (%r14),%rax
+   11f03:	49 3b 46 08          	cmp    0x8(%r14),%rax
+   11f07:	74 04                	je     11f0d <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x12d>
+   11f09:	49 89 46 08          	mov    %rax,0x8(%r14)
+   11f0d:	64 80 3c 25 f0 ff ff 	cmpb   $0x0,%fs:0xfffffffffffffff0
+   11f14:	ff 00 
+   11f16:	0f 84 8b 01 00 00    	je     120a7 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x2c7>
+   11f1c:	64 8b 34 25 74 ff ff 	mov    %fs:0xffffffffffffff74,%esi
+   11f23:	ff 
+   11f24:	85 f6                	test   %esi,%esi
+   11f26:	0f 8e c8 00 00 00    	jle    11ff4 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x214>
+   11f2c:	48 8d 44 24 34       	lea    0x34(%rsp),%rax
+   11f31:	4c 8d 3c 25 40 ff ff 	lea    0xffffffffffffff40,%r15
+   11f38:	ff 
+   11f39:	48 c7 44 24 18 00 00 	movq   $0x0,0x18(%rsp)
+   11f40:	00 00 
+   11f42:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+   11f47:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+   11f4e:	00 00 
+   11f50:	64 49 8b 47 18       	mov    %fs:0x18(%r15),%rax
+   11f55:	48 8b 4c 24 18       	mov    0x18(%rsp),%rcx
+   11f5a:	4c 8b 24 c8          	mov    (%rax,%rcx,8),%r12
+   11f5e:	4d 85 e4             	test   %r12,%r12
+   11f61:	74 70                	je     11fd3 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x1f3>
+   11f63:	41 89 cd             	mov    %ecx,%r13d
+   11f66:	41 c1 e5 06          	shl    $0x6,%r13d
+   11f6a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   11f70:	31 ed                	xor    %ebp,%ebp
+   11f72:	f3 49 0f bc ec       	tzcnt  %r12,%rbp
+   11f77:	44 01 ed             	add    %r13d,%ebp
+   11f7a:	39 f5                	cmp    %esi,%ebp
+   11f7c:	7d 55                	jge    11fd3 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x1f3>
+   11f7e:	64 49 8b 3f          	mov    %fs:(%r15),%rdi
+   11f82:	48 63 d5             	movslq %ebp,%rdx
+   11f85:	48 8b 1c d7          	mov    (%rdi,%rdx,8),%rbx
+   11f89:	48 85 db             	test   %rbx,%rbx
+   11f8c:	74 3e                	je     11fcc <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x1ec>
+   11f8e:	c1 e5 06             	shl    $0x6,%ebp
+   11f91:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+   11f98:	31 d2                	xor    %edx,%edx
+   11f9a:	f3 48 0f bc d3       	tzcnt  %rbx,%rdx
+   11f9f:	01 ea                	add    %ebp,%edx
+   11fa1:	64 41 3b 57 30       	cmp    %fs:0x30(%r15),%edx
+   11fa6:	7d 1f                	jge    11fc7 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x1e7>
+   11fa8:	49 8b 76 08          	mov    0x8(%r14),%rsi
+   11fac:	49 3b 76 10          	cmp    0x10(%r14),%rsi
+   11fb0:	89 54 24 34          	mov    %edx,0x34(%rsp)
+   11fb4:	74 6a                	je     12020 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x240>
+   11fb6:	89 16                	mov    %edx,(%rsi)
+   11fb8:	48 83 c6 04          	add    $0x4,%rsi
+   11fbc:	c4 e2 e0 f3 cb       	blsr   %rbx,%rbx
+   11fc1:	49 89 76 08          	mov    %rsi,0x8(%r14)
+   11fc5:	75 d1                	jne    11f98 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x1b8>
+   11fc7:	64 41 8b 77 34       	mov    %fs:0x34(%r15),%esi
+   11fcc:	c4 c2 98 f3 cc       	blsr   %r12,%r12
+   11fd1:	75 9d                	jne    11f70 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x190>
+   11fd3:	89 f2                	mov    %esi,%edx
+   11fd5:	48 83 44 24 18 01    	addq   $0x1,0x18(%rsp)
+   11fdb:	8d 46 7e             	lea    0x7e(%rsi),%eax
+   11fde:	48 8b 4c 24 18       	mov    0x18(%rsp),%rcx
+   11fe3:	83 c2 3f             	add    $0x3f,%edx
+   11fe6:	0f 49 c2             	cmovns %edx,%eax
+   11fe9:	c1 f8 06             	sar    $0x6,%eax
+   11fec:	39 c8                	cmp    %ecx,%eax
+   11fee:	0f 8f 5c ff ff ff    	jg     11f50 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x170>
+   11ff4:	48 8b 44 24 38       	mov    0x38(%rsp),%rax
+   11ff9:	64 48 2b 04 25 28 00 	sub    %fs:0x28,%rax
+   12000:	00 00 
+   12002:	0f 85 b9 01 00 00    	jne    121c1 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x3e1>
+   12008:	8b 44 24 14          	mov    0x14(%rsp),%eax
+   1200c:	48 83 c4 48          	add    $0x48,%rsp
+   12010:	5b                   	pop    %rbx
+   12011:	5d                   	pop    %rbp
+   12012:	41 5c                	pop    %r12
+   12014:	41 5d                	pop    %r13
+   12016:	41 5e                	pop    %r14
+   12018:	41 5f                	pop    %r15
+   1201a:	c3                   	ret
+   1201b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+   12020:	48 8b 54 24 08       	mov    0x8(%rsp),%rdx
+   12025:	4c 89 f7             	mov    %r14,%rdi
+   12028:	e8 43 7e ff ff       	call   9e70 <void std::vector<int, std::allocator<int> >::_M_realloc_insert<int const&>(__gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >, int const&)>
+   1202d:	c4 e2 e0 f3 cb       	blsr   %rbx,%rbx
+   12032:	0f 85 60 ff ff ff    	jne    11f98 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x1b8>
+   12038:	eb 8d                	jmp    11fc7 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x1e7>
+   1203a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   12040:	c4 e2 d0 f3 cd       	blsr   %rbp,%rbp
+   12045:	0f 85 35 fe ff ff    	jne    11e80 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0xa0>
+   1204b:	e9 8f fe ff ff       	jmp    11edf <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0xff>
+   12050:	4c 89 44 24 08       	mov    %r8,0x8(%rsp)
+   12055:	e8 66 8a ff ff       	call   aac0 <__tls_init.part.0.lto_priv.0>
+   1205a:	4c 8b 44 24 08       	mov    0x8(%rsp),%r8
+   1205f:	e9 40 fe ff ff       	jmp    11ea4 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0xc4>
+   12064:	0f 1f 40 00          	nopl   0x0(%rax)
+   12068:	49 8b 76 08          	mov    0x8(%r14),%rsi
+   1206c:	49 3b 76 10          	cmp    0x10(%r14),%rsi
+   12070:	74 0f                	je     12081 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x2a1>
+   12072:	89 1e                	mov    %ebx,(%rsi)
+   12074:	48 83 c6 04          	add    $0x4,%rsi
+   12078:	49 89 76 08          	mov    %rsi,0x8(%r14)
+   1207c:	e9 47 fe ff ff       	jmp    11ec8 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0xe8>
+   12081:	48 8b 54 24 28       	mov    0x28(%rsp),%rdx
+   12086:	4c 89 f7             	mov    %r14,%rdi
+   12089:	4c 89 44 24 20       	mov    %r8,0x20(%rsp)
+   1208e:	44 89 5c 24 08       	mov    %r11d,0x8(%rsp)
+   12093:	e8 d8 7d ff ff       	call   9e70 <void std::vector<int, std::allocator<int> >::_M_realloc_insert<int const&>(__gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >, int const&)>
+   12098:	4c 8b 44 24 20       	mov    0x20(%rsp),%r8
+   1209d:	44 8b 5c 24 08       	mov    0x8(%rsp),%r11d
+   120a2:	e9 21 fe ff ff       	jmp    11ec8 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0xe8>
+   120a7:	e8 14 8a ff ff       	call   aac0 <__tls_init.part.0.lto_priv.0>
+   120ac:	e9 6b fe ff ff       	jmp    11f1c <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x13c>
+   120b1:	e8 0a 8a ff ff       	call   aac0 <__tls_init.part.0.lto_priv.0>
+   120b6:	64 8b 04 25 2c ff ff 	mov    %fs:0xffffffffffffff2c,%eax
+   120bd:	ff 
+   120be:	85 c0                	test   %eax,%eax
+   120c0:	0f 8f 6a fd ff ff    	jg     11e30 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x50>
+   120c6:	c7 44 24 14 ff ff ff 	movl   $0xffffffff,0x14(%rsp)
+   120cd:	ff 
+   120ce:	e9 24 fe ff ff       	jmp    11ef7 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x117>
+   120d3:	48 8d 4c 24 34       	lea    0x34(%rsp),%rcx
+   120d8:	c7 44 24 14 ff ff ff 	movl   $0xffffffff,0x14(%rsp)
+   120df:	ff 
+   120e0:	31 db                	xor    %ebx,%ebx
+   120e2:	4c 8d 04 25 10 ff ff 	lea    0xffffffffffffff10,%r8
+   120e9:	ff 
+   120ea:	48 89 4c 24 18       	mov    %rcx,0x18(%rsp)
+   120ef:	64 49 8b 10          	mov    %fs:(%r8),%rdx
+   120f3:	4c 8b 2c da          	mov    (%rdx,%rbx,8),%r13
+   120f7:	4d 85 ed             	test   %r13,%r13
+   120fa:	0f 84 8c 00 00 00    	je     1218c <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x3ac>
+   12100:	89 dd                	mov    %ebx,%ebp
+   12102:	c1 e5 06             	shl    $0x6,%ebp
+   12105:	eb 36                	jmp    1213d <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x35d>
+   12107:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+   1210e:	00 00 
+   12110:	64 48 8b 14 25 80 ff 	mov    %fs:0xffffffffffffff80,%rdx
+   12117:	ff ff 
+   12119:	49 63 c4             	movslq %r12d,%rax
+   1211c:	4d 85 f6             	test   %r14,%r14
+   1211f:	8b 04 82             	mov    (%rdx,%rax,4),%eax
+   12122:	74 05                	je     12129 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x349>
+   12124:	83 f8 01             	cmp    $0x1,%eax
+   12127:	74 47                	je     12170 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x390>
+   12129:	41 39 07             	cmp    %eax,(%r15)
+   1212c:	7e 08                	jle    12136 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x356>
+   1212e:	41 89 07             	mov    %eax,(%r15)
+   12131:	44 89 64 24 14       	mov    %r12d,0x14(%rsp)
+   12136:	c4 c2 90 f3 cd       	blsr   %r13,%r13
+   1213b:	74 4a                	je     12187 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x3a7>
+   1213d:	45 31 e4             	xor    %r12d,%r12d
+   12140:	f3 4d 0f bc e5       	tzcnt  %r13,%r12
+   12145:	41 01 ec             	add    %ebp,%r12d
+   12148:	64 45 39 60 18       	cmp    %r12d,%fs:0x18(%r8)
+   1214d:	7e 38                	jle    12187 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x3a7>
+   1214f:	44 89 64 24 34       	mov    %r12d,0x34(%rsp)
+   12154:	64 80 3c 25 f0 ff ff 	cmpb   $0x0,%fs:0xfffffffffffffff0
+   1215b:	ff 00 
+   1215d:	75 b1                	jne    12110 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x330>
+   1215f:	4c 89 44 24 08       	mov    %r8,0x8(%rsp)
+   12164:	e8 57 89 ff ff       	call   aac0 <__tls_init.part.0.lto_priv.0>
+   12169:	4c 8b 44 24 08       	mov    0x8(%rsp),%r8
+   1216e:	eb a0                	jmp    12110 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x330>
+   12170:	49 8b 76 08          	mov    0x8(%r14),%rsi
+   12174:	49 39 76 10          	cmp    %rsi,0x10(%r14)
+   12178:	74 23                	je     1219d <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x3bd>
+   1217a:	44 89 26             	mov    %r12d,(%rsi)
+   1217d:	48 83 c6 04          	add    $0x4,%rsi
+   12181:	49 89 76 08          	mov    %rsi,0x8(%r14)
+   12185:	eb a2                	jmp    12129 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x349>
+   12187:	64 41 8b 40 1c       	mov    %fs:0x1c(%r8),%eax
+   1218c:	48 83 c3 01          	add    $0x1,%rbx
+   12190:	39 d8                	cmp    %ebx,%eax
+   12192:	0f 8f 57 ff ff ff    	jg     120ef <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x30f>
+   12198:	e9 5a fd ff ff       	jmp    11ef7 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x117>
+   1219d:	48 8b 54 24 18       	mov    0x18(%rsp),%rdx
+   121a2:	4c 89 f7             	mov    %r14,%rdi
+   121a5:	4c 89 44 24 20       	mov    %r8,0x20(%rsp)
+   121aa:	89 44 24 08          	mov    %eax,0x8(%rsp)
+   121ae:	e8 bd 7c ff ff       	call   9e70 <void std::vector<int, std::allocator<int> >::_M_realloc_insert<int const&>(__gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >, int const&)>
+   121b3:	8b 44 24 08          	mov    0x8(%rsp),%eax
+   121b7:	4c 8b 44 24 20       	mov    0x20(%rsp),%r8
+   121bc:	e9 68 ff ff ff       	jmp    12129 <choose_best_column(CSR const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int&, int*, std::vector<int, std::allocator<int> >*) [clone .isra.0]+0x349>
+   121c1:	e8 1a 16 ff ff       	call   37e0 <__stack_chk_fail@plt>
+   121c6:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+   121cd:	00 00 00 
+

@@ -1,0 +1,61 @@
+RUN=sanitizer_KSS1000
+COMMAND=env DEBUG_DEG=1 DEG_TRAIL_DEBUG=1 ./solver_coalesced_sanitized KSSref 5 5 5 /tmp/pentacube-bench/coalesced-degree-delta/placements_KSSref_5x5x5.txt 1000 --connectivity --region-prune=colour --region-prune=propagate --symmetry 
+Piece: KSSref
+Box: 5 x 5 x 5
+Cells: 125
+Expected pieces: 25
+Placements file: /tmp/pentacube-bench/coalesced-degree-delta/placements_KSSref_5x5x5.txt
+Placements loaded: 2304
+X CSR: 11520 entries
+Y CSR: 11520 entries
+Symmetry: chiral-safe group |G|=48 ; filter subgroup |H|=48 ; anchor=centre (cell 62) ; anchor placements 240, removed 233
+Connectivity pruning: ON (always)
+Colour invariant: max placement imbalance = 1 -> STRONG test armed (|B-W| <= pieces)
+
+=== RESULTS ===
+Nodes: 1057
+Solutions: 0
+Dead ends: 612
+Max depth: 22 / 25
+Time: 0.0724302 s
+Nodes/sec: 14593.4
+Connectivity checks: 1800
+Pruned by connectivity: 198
+Colour-component rejections: 0 (of which MRV also dead: 0)
+Propagation rejections: 142 (forced placements processed: 272)
+Genuine-new rejection depth histogram (32 buckets):
+  bucket 0: 0
+  bucket 1: 0
+  bucket 2: 0
+  bucket 3: 0
+  bucket 4: 0
+  bucket 5: 0
+  bucket 6: 0
+  bucket 7: 0
+  bucket 8: 0
+  bucket 9: 0
+  bucket 10: 0
+  bucket 11: 0
+  bucket 12: 0
+  bucket 13: 0
+  bucket 14: 0
+  bucket 15: 0
+  bucket 16: 0
+  bucket 17: 4
+  bucket 18: 6
+  bucket 19: 19
+  bucket 20: 22
+  bucket 21: 0
+  bucket 22: 29
+  bucket 23: 24
+  bucket 24: 20
+  bucket 25: 16
+  bucket 26: 0
+  bucket 27: 2
+  bucket 28: 0
+  bucket 29: 0
+  bucket 30: 0
+  bucket 31: 0
+DEG_TRAIL_DEBUG_CHECKS=1056
+EXTERNAL elapsed=0.14 user=0.12 sys=0.02 maxrss_kb=27280
+EXIT_STATUS=0

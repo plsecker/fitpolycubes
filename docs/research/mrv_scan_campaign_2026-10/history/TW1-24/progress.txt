@@ -1,0 +1,13 @@
+TW1-24 progress — BLOCKED at Phase 1 (host readiness gate failed).
+
+2026-10-17 09:04–09:05 NZDT, host philip-VirtualBox (8 CPUs):
+- Observed host >=75s (16 samples). Avg CPU idle 64.3% (gate >85%): FAIL.
+- 1-min load 4.44-5.76 (gate <4.0): FAIL.
+- No competing solver/bench processes: PASS. No memory pressure (0.00), no active swap si/so: PASS (2.9GB occupied swap is accumulated, not active).
+- Major load: firefox, gnome-system-monitor, gnome-shell, OpenWork renderer/sidecar.
+
+Per protocol: STOPPED. No Phase 2 verification, no Phase 3 correctness gate,
+no Phase 4 benchmarks, no solver code modified, all prior artifacts preserved.
+No performance runs were performed. See tw24_report.md and host_diagnostics.txt.
+Next: retry when host is quiescent (1-min load <4.0, idle >85% sustained).
+Outcome: BLOCKED.

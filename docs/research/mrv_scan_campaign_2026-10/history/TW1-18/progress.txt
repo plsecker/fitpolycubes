@@ -1,0 +1,26 @@
+# TW1-18 Progress
+
+**Status:** COMPLETE — REJECTED
+**Date:** 2026-10-16 (NZDT)
+
+## Completed
+- Established baseline from coalesced source (SHA256: a4fdcf12...)
+- Audited Propagator::run() semantics and overlap graph equivalence
+- Estimated overlap graph memory cost (912 KB for W 5x7x9)
+- Implemented isolated candidate with precomputed row-overlap CSR
+- Correctness verified: V 5x5x6, KSSref 5x5x5, W 5x7x9 — all counters match
+- 5 paired benchmark runs on W 5x7x9 (2.5M cap) — candidate consistently slower
+
+## Result
+- Median paired reduction: -7.86% (candidate is slower)
+- Decision: REJECT
+- The overlap graph has high average degree (126.7 for W), visiting many already-killed rows
+- CSR traversal benefits from spatial locality; overlap graph is large random-access structure
+
+## Artifacts
+- `/tmp/pentacube-bench/tw18/tw18_report.md` — final report
+- `/tmp/pentacube-bench/tw18/progress.txt` — this file
+- `/tmp/pentacube-bench/tw18/solver_coalesced.cpp` — baseline source
+- `/tmp/pentacube-bench/tw18/solver_overlap.cpp` — candidate source
+- `/tmp/pentacube-bench/tw18/solver_baseline` — baseline binary
+- `/tmp/pentacube-bench/tw18/solver_overlap` — candidate binary

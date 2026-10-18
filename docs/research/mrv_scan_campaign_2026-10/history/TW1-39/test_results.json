@@ -1,0 +1,32 @@
+{
+  "suite": "mrv_scan_diagnostic_counters",
+  "approach": "direct-production-TU with -DMRV_SCAN_DIAGNOSTICS",
+  "builds": {
+    "normal": {
+      "flags": "-O2 -std=c++17 -pthread -DMRV_SCAN_DIAGNOSTICS",
+      "pass": 12,
+      "fail": 0
+    },
+    "asan_ubsan": {
+      "flags": "-O1 -g -fsanitize=address,undefined -DMRV_SCAN_DIAGNOSTICS",
+      "pass": 12,
+      "fail": 0
+    }
+  },
+  "cases": [
+    "A-empty",
+    "B-all-positive",
+    "C-zero-first",
+    "D-zero-middle",
+    "E-zero-last",
+    "F-multi-zero",
+    "G-ones-around-zero",
+    "H-inactive-zero-one",
+    "I-multiword",
+    "J-no-zero-multi-one",
+    "X-single-zero",
+    "X-single-nonzero"
+  ],
+  "production_search_launched": false,
+  "workload_run_executed": false
+}

@@ -1,0 +1,16 @@
+TW1-37 progress — DIFFERENTIAL TESTS PASS.
+
+Verified implementation (baseline a4fdcf12..., candidate 274c3796..., exact
+39-line diff only). Direct-production test TU (production source included
+with main renamed; independent ascending-scan oracle; search never launched).
+Coverage: packed iteration (empty/single/order/stop positions/word boundaries/
+partial word/inactive+padding bits), 16 targeted MRV/tie-break states, forced
+collection incl. zero path + one_deg_set order, deg_out alias invariant +
+distinct-buffer bound, exhaustive n=3 (64 states), 3000 seeded random states.
+Result: 3151/3151 assertions pass under -O2 AND -fsanitize=address,undefined
+(zero sanitizer findings). One test-harness bug caught and fixed during
+development (init-sets-all-bits semantics; production was correct).
+Historical evidence re-verified (V/KSSref/W logs + 4884-line traces + both
+binaries unchanged), not rerun. Limitations + permanent-regression
+recommendation in test_report.md. See artifacts in /tmp/pentacube-bench/tw37/.
+Performance hypothesis still untested. No code/benchmark/host-gate activity.

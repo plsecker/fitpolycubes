@@ -1,0 +1,12 @@
+TW1-30 progress — BLOCKED (host gate failed; no benchmarks run).
+
+Artifacts verified: baseline source a4fdcf12...93278, candidate source 274c3796...bfb418,
+baseline binary 79dff337...c95ebc47, candidate binary f7f9b3f8...36715715, W placements
+a7a421cd... — all match; binaries unchanged so TW1-29 correctness evidence reused
+(V/KSSref/W identical + forced trace identical), no reruns.
+Host gate FAIL — 81s epoch-verified (10:48:40-10:50:01 NZDT): avg idle 61.2% (<85%),
+1-min load 6.30-8.73 every sample (>4.0), significant memory pressure (full avg10 4.77
+at start), sustained swap-in plus swap-out bursts (2667/388/2310 pages). Worst host
+state of the series for a 2% effect. Stopped per protocol; CSV has no benchmark rows.
+Hypothesis (>=2%) untested, not falsified; candidate stays RETAIN AS EXPERIMENTAL.
+No code modified; no commit/merge/deploy. See tw30_report.md.

@@ -1,0 +1,18 @@
+# TW1-22 Progress
+
+**Status:** BLOCKED — host gate failed, no benchmarks run
+**Date:** 2026-10-16 (Pacific/Auckland)
+
+## Completed
+- Rechecked all hashes: baseline src a4fdcf12…, activex src 42fad94b…, baseline bin 79dff337…, activex bin fe8ea52f…, all three placement files — match.
+- Ran 75 s host gate: no competing solvers, but idle ~50% (gate >85%), load 5.06→5.17 (gate <4.0), swap 67–70% full with active swap-out.
+- Gate FAILED 3/4 — worse than TW1-21. Did not benchmark. No code modified; no commits/merges/deploys; prior artifacts untouched.
+
+## Artifacts
+- `/tmp/pentacube-bench/tw22/tw22_report.md` — blocker report
+- `/tmp/pentacube-bench/tw22/progress.txt` — this file
+- `/tmp/pentacube-bench/tw22/benchmark_results.csv` — header only, zero data rows
+- `/tmp/pentacube-bench/tw22/host_vmstat.txt`, `host_top.txt`, `host_mem.txt` — raw diagnostics
+
+## To unblock
+- Quiet dedicated/headless host, or quiet window here with desktop load closed; re-run gate first, then unchanged five-pair W 2.5M protocol.

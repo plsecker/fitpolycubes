@@ -1,0 +1,30 @@
+test_14_csv_column_count_every_row (__main__.TestData.test_14_csv_column_count_every_row) ... ok
+test_15_csv_special_chars_valid (__main__.TestData.test_15_csv_special_chars_valid) ... ok
+test_16_internal_external_timings_separate (__main__.TestData.test_16_internal_external_timings_separate) ... ok
+test_17_paired_reductions_correct_on_synthetic_data (__main__.TestData.test_17_paired_reductions_correct_on_synthetic_data) ... ok
+test_18_missing_pairs_stay_missing (__main__.TestData.test_18_missing_pairs_stay_missing) ... ok
+test_19_hash_change_invalidates_evidence (__main__.TestEvidence.test_19_hash_change_invalidates_evidence) ... ok
+test_20_prior_report_cannot_authorize_different_binary (__main__.TestEvidence.test_20_prior_report_cannot_authorize_different_binary) ... ok
+test_08_dry_run_prints_without_executing (__main__.TestExecution.test_08_dry_run_prints_without_executing) ... ok
+test_09_real_execution_requires_explicit_opt_in (__main__.TestExecution.test_09_real_execution_requires_explicit_opt_in) ... ok
+test_10_stub_processes_execute_sequentially (__main__.TestExecution.test_10_stub_processes_execute_sequentially) ... ok
+test_11_nonzero_exit_captured (__main__.TestExecution.test_11_nonzero_exit_captured) ... ok
+test_12_interrupted_invocation_marked_incomplete (__main__.TestExecution.test_12_interrupted_invocation_marked_incomplete) ... ok
+test_13_restart_ignores_incomplete_runs (__main__.TestExecution.test_13_restart_ignores_incomplete_runs) ... ok
+test_06_failed_gate_launches_zero_subprocesses (__main__.TestGate.test_06_failed_gate_launches_zero_subprocesses) ... ok
+test_07_passing_fixture_reaches_next_state (__main__.TestGate.test_07_passing_fixture_reaches_next_state) ... ok
+test_observe_enforces_duration_with_fake_clock (__main__.TestGate.test_observe_enforces_duration_with_fake_clock) ... ok
+test_01_sha256_passes_on_exact_fixture (__main__.TestPreflight.test_01_sha256_passes_on_exact_fixture) ... ok
+test_02_sha256_mismatch_detected_before_execution (__main__.TestPreflight.test_02_sha256_mismatch_detected_before_execution) ... ok
+test_03_missing_binary_stops_run (__main__.TestPreflight.test_03_missing_binary_stops_run) ... ok
+test_04_missing_placement_stops_run (__main__.TestPreflight.test_04_missing_placement_stops_run) ... ok
+test_05_invalid_manifest_rejected (__main__.TestPreflight.test_05_invalid_manifest_rejected) ... ok
+test_21_profiling_binaries_rejected (__main__.TestPreflight.test_21_profiling_binaries_rejected) ... ok
+test_22_no_fixture_overwrites_previous_experiments (__main__.TestPreflight.test_22_no_fixture_overwrites_previous_experiments) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.106s
+
+OK
+refusing to execute: pass --execute to launch real binaries.
+Use 'dry-run' to preview commands.

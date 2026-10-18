@@ -1,0 +1,15 @@
+TW1-38 progress — CODEGEN SUPPORTS THE OPTIMISATION HYPOTHESIS.
+
+Verified identities (all hashes match; compiler g++ 13.3.0; binaries read-only).
+Diff confirmed 39 lines / 3 regions only. Release-binary inspection (objdump/nm/
+size, nothing executed): choose_best_column inlined .isra.0 clone at same address
+both binaries; no standalone for_each symbols; no indirect dispatch. Candidate
+body 215 vs 260 lines (-17%), text -208 bytes. Early-stop is a real test/je
+branch on the new-minimum path exiting to the shared epilogue (tie-break intact,
+post-scan work preserved). Baseline scan-region degree-1 push sequence (cmp $0x1
++ inline store/bump + 2 realloc slow paths) is gone from the candidate hot loop;
+sole remaining realloc site is the retained one_deg_set re-collection. Hot-loop
+calls 3->1, no new calls or common-path branches. No isolated assembly needed
+(release bodies complete). Gaps: zero-hit rates, iteration savings, cache/BP
+behaviour, elapsed time — five-pair benchmark remains arbiter; no speedup
+claimed. See tw38_report.md + excerpts. No modifications of any kind.

@@ -1,0 +1,41 @@
+{
+  "run": "W 5x7x9 cap 250000 (stopped at 250037 nodes: cap means stop-after-exceed)",
+  "exit_status": 0,
+  "executable": "INSTRUMENTED (never for release comparison)",
+  "nodes": 250037,
+  "solutions": 0,
+  "dead_ends": 114203,
+  "counters": {
+    "calls": 227239,
+    "visited": 32890203,
+    "zero_calls": 33526,
+    "zero_pos_sum": 2132447,
+    "no_zero_calls": 193713,
+    "avoided_tail": 2820977,
+    "discarded_pushes": 179841,
+    "authoritative_forced": 210457,
+    "max_visits": 315,
+    "exit_hist": [
+      0,
+      1564,
+      1380,
+      676,
+      748,
+      878,
+      441,
+      27839
+    ]
+  },
+  "derived": {
+    "zero_fraction": 0.1475,
+    "mean_zero_pos": 63.6,
+    "mean_visits_per_call": 144.7,
+    "avoided_per_call": 12.4,
+    "hist_sums_to_zero_calls": true,
+    "calls_equal_zero_plus_nozero": true
+  },
+  "swap_during_run": {
+    "si": 0,
+    "so": 0
+  }
+}

@@ -1,0 +1,26 @@
+RUN=15 variant=tw13
+COMMAND=/tmp/pentacube-bench/coalesced-degree-delta/solver_tw13 V 5 5 6 /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt 0
+SOURCE_SHA256=9289644a9c968182f14c734fa96ac83a4612ffd93bc822cacea376e24130443c
+BINARY_SHA256=4e2ff001cd69e6a7bfdebde86b90d0ec1a8dc9bc7115cad6a28ba4018e6e310d
+PLACEMENT_SHA256=dc22870d591d5c5789f4b7df8f546a36682e325474dbcb938b723afc46c100fe
+LOAD_BEFORE=2026-10-16T09:23:30+1300 load=3.61, 2.35, 3.29
+Piece: V
+Box: 5 x 5 x 6
+Cells: 150
+Expected pieces: 30
+Placements file: /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt
+Placements loaded: 696
+X CSR: 3480 entries
+Y CSR: 3480 entries
+
+=== RESULTS ===
+Nodes: 366907
+Solutions: 144
+Dead ends: 131833
+Max depth: 30 / 30
+Time: 0.610203 s
+Nodes/sec: 601286
+Solutions/sec: 235.987
+EXTERNAL_WALL_S=0.613878207
+EXIT_STATUS=0
+LOAD_AFTER=2026-10-16T09:23:30+1300 load=3.61, 2.35, 3.29

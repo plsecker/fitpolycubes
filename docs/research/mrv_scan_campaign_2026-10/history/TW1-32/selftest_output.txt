@@ -1,0 +1,52 @@
+test_14_csv_column_count_every_row (__main__.TestData.test_14_csv_column_count_every_row) ... ok
+test_15_csv_special_chars_valid (__main__.TestData.test_15_csv_special_chars_valid) ... ok
+test_16_internal_external_timings_separate (__main__.TestData.test_16_internal_external_timings_separate) ... ok
+test_17_paired_reductions_correct_on_synthetic_data (__main__.TestData.test_17_paired_reductions_correct_on_synthetic_data) ... ok
+test_18_missing_pairs_stay_missing (__main__.TestData.test_18_missing_pairs_stay_missing) ... ok
+test_19_hash_change_invalidates_evidence (__main__.TestEvidence.test_19_hash_change_invalidates_evidence) ... ok
+test_20_prior_report_cannot_authorize_different_binary (__main__.TestEvidence.test_20_prior_report_cannot_authorize_different_binary) ... ok
+test_08_dry_run_prints_without_executing (__main__.TestExecution.test_08_dry_run_prints_without_executing) ... ok
+test_09_real_execution_requires_explicit_opt_in (__main__.TestExecution.test_09_real_execution_requires_explicit_opt_in) ... ok
+test_10_stub_processes_execute_sequentially (__main__.TestExecution.test_10_stub_processes_execute_sequentially) ... ok
+test_11_nonzero_exit_captured (__main__.TestExecution.test_11_nonzero_exit_captured) ... ok
+test_12_interrupted_invocation_marked_incomplete (__main__.TestExecution.test_12_interrupted_invocation_marked_incomplete) ... ok
+test_13_restart_ignores_incomplete_runs (__main__.TestExecution.test_13_restart_ignores_incomplete_runs) ... ok
+test_06_failed_gate_launches_zero_subprocesses (__main__.TestGate.test_06_failed_gate_launches_zero_subprocesses) ... ok
+test_07_passing_fixture_reaches_next_state (__main__.TestGate.test_07_passing_fixture_reaches_next_state) ... ok
+test_observe_enforces_duration_with_fake_clock (__main__.TestGate.test_observe_enforces_duration_with_fake_clock) ... ok
+test_23_deterioration_after_completed_run_prevents_next_launch (__main__.TestMidCampaignProtection.test_23_deterioration_after_completed_run_prevents_next_launch) ... /tmp/pentacube-bench/tw32/test_bench_runner.py:513: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tw32mid_49x9tlp9/run/host_stop.json' mode='r' encoding='UTF-8'>
+  stop = json.load(open(os.path.join(self.run_dir, "host_stop.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_24_host_gate_failure_records_stop_reason (__main__.TestMidCampaignProtection.test_24_host_gate_failure_records_stop_reason) ... /tmp/pentacube-bench/tw32/test_bench_runner.py:535: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tw32mid_c635op48/run/host_stop.json' mode='r' encoding='UTF-8'>
+  stop = json.load(open(os.path.join(self.run_dir, "host_stop.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_25_incomplete_pair_stays_incomplete_after_restart (__main__.TestMidCampaignProtection.test_25_incomplete_pair_stays_incomplete_after_restart) ... ok
+test_26_no_stats_fabricated_for_incomplete_pair (__main__.TestMidCampaignProtection.test_26_no_stats_fabricated_for_incomplete_pair) ... ok
+test_27_completed_records_survive_interruption (__main__.TestMidCampaignProtection.test_27_completed_records_survive_interruption) ... ok
+test_28_rss_timing_fields_distinct_with_timev (__main__.TestMidCampaignProtection.test_28_rss_timing_fields_distinct_with_timev) ... ok
+test_29_hash_mismatch_still_prevents_execution (__main__.TestMidCampaignProtection.test_29_hash_mismatch_still_prevents_execution) ... ok
+test_30_default_and_dryrun_never_execute (__main__.TestMidCampaignProtection.test_30_default_and_dryrun_never_execute) ... ok
+test_31_explicit_execute_still_required (__main__.TestMidCampaignProtection.test_31_explicit_execute_still_required) ... ok
+test_32_inter_pair_check_uses_same_thresholds (__main__.TestMidCampaignProtection.test_32_inter_pair_check_uses_same_thresholds) ... ok
+test_01_sha256_passes_on_exact_fixture (__main__.TestPreflight.test_01_sha256_passes_on_exact_fixture) ... ok
+test_02_sha256_mismatch_detected_before_execution (__main__.TestPreflight.test_02_sha256_mismatch_detected_before_execution) ... ok
+test_03_missing_binary_stops_run (__main__.TestPreflight.test_03_missing_binary_stops_run) ... ok
+test_04_missing_placement_stops_run (__main__.TestPreflight.test_04_missing_placement_stops_run) ... ok
+test_05_invalid_manifest_rejected (__main__.TestPreflight.test_05_invalid_manifest_rejected) ... ok
+test_21_profiling_binaries_rejected (__main__.TestPreflight.test_21_profiling_binaries_rejected) ... ok
+test_22_no_fixture_overwrites_previous_experiments (__main__.TestPreflight.test_22_no_fixture_overwrites_previous_experiments) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 0.156s
+
+OK
+refusing to execute: pass --execute to launch real binaries.
+Use 'dry-run' to preview commands.
+refusing to execute: pass --execute to launch real binaries.
+Use 'dry-run' to preview commands.
+dry-run: the following commands WOULD run (nothing executed):
+  pair 1 first [baseline]: /tmp/tw32mid_qypaygc0/bin_base W 5 7 9 /tmp/tw32mid_qypaygc0/placement.txt 2500000 --connectivity
+  pair 1 second [candidate]: /tmp/tw32mid_qypaygc0/bin_cand W 5 7 9 /tmp/tw32mid_qypaygc0/placement.txt 2500000 --connectivity
+dry-run complete: no solver started (pass --execute to run).

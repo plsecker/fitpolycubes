@@ -1,0 +1,20 @@
+# TW1-21 Progress
+
+**Status:** BLOCKED — host gate failed, no benchmarks run
+**Date:** 2026-10-16 (Pacific/Auckland)
+
+## Completed
+- Read TW1-20 debug + perf reports and progress.
+- Verified all hashes: baseline src a4fdcf12…, activex src 42fad94b…, baseline bin 79dff337…, activex bin fe8ea52f…, W placements a7a421cd… — all match, no rebuild needed.
+- Collected 135+ s of host diagnostics: no competing solvers, but idle 65–71% (gate >85%), load spikes to 5.6 (gate <4.0 on 8 CPUs), swap 67% full.
+- Gate FAILED on 3 of 4 criteria. Did not run benchmarks per instructions. No solver code modified; no commits/merges/deploys.
+
+## Artifacts
+- `/tmp/pentacube-bench/tw21/tw21_report.md` — blocker report with gate evidence
+- `/tmp/pentacube-bench/tw21/progress.txt` — this file
+- `/tmp/pentacube-bench/tw21/benchmark_results.csv` — header only, zero data rows
+- `/tmp/pentacube-bench/tw21/host_cpu_observation.txt`, `host_cpu_observation2.txt`, `host_freq.txt`, `host_top.txt` — raw host diagnostics
+
+## Recommendation
+- Re-run on a quiet host (or later quiet period): close desktop load or use a dedicated headless machine; require swap mostly free and sustained idle >85%.
+- Keep the five-pair alternating W 5x7x9 / 2.5M-cap / single-threaded propagate protocol unchanged.

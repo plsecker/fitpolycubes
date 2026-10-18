@@ -1,0 +1,23 @@
+RUN=V_coalesced
+COMMAND=./solver_coalesced V 5 5 6 /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt 0 
+BEFORE= 08:59:20 up 7 days,  1:21,  2 users,  load average: 2.71, 4.19, 4.21
+Piece: V
+Box: 5 x 5 x 6
+Cells: 150
+Expected pieces: 30
+Placements file: /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt
+Placements loaded: 696
+X CSR: 3480 entries
+Y CSR: 3480 entries
+
+=== RESULTS ===
+Nodes: 366907
+Solutions: 144
+Dead ends: 131833
+Max depth: 30 / 30
+Time: 0.768583 s
+Nodes/sec: 477381
+Solutions/sec: 187.358
+EXTERNAL elapsed=0.77 user=0.74 sys=0.01 maxrss_kb=4148
+EXIT_STATUS=0
+AFTER= 08:59:21 up 7 days,  1:21,  2 users,  load average: 2.71, 4.19, 4.21

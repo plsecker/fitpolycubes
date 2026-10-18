@@ -1,0 +1,23 @@
+RUN=2 variant=coalesced
+COMMAND=/usr/bin/time -f EXTERNAL ./solver_coalesced V 5 5 6 /tmp/pentacube-bench/coalesced-degree-delta/placements_V_5x5x6.txt 0
+BEFORE= 09:11:00 up 7 days,  1:33,  2 users,  load average: 5.14, 4.82, 4.67
+Piece: V
+Box: 5 x 5 x 6
+Cells: 150
+Expected pieces: 30
+Placements file: /tmp/pentacube-bench/coalesced-degree-delta/placements_V_5x5x6.txt
+Placements loaded: 696
+X CSR: 3480 entries
+Y CSR: 3480 entries
+
+=== RESULTS ===
+Nodes: 366907
+Solutions: 144
+Dead ends: 131833
+Max depth: 30 / 30
+Time: 0.828838 s
+Nodes/sec: 442676
+Solutions/sec: 173.737
+EXTERNAL elapsed=0.83 user=0.77 sys=0.04 maxrss_kb=4152
+EXIT_STATUS=0
+AFTER= 09:11:01 up 7 days,  1:33,  2 users,  load average: 5.14, 4.82, 4.67

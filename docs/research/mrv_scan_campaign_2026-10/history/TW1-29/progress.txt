@@ -1,0 +1,15 @@
+TW1-29 progress — RETAIN AS EXPERIMENTAL (correctness passes; performance unmeasured).
+
+Phase 1: baseline verified (a4fdcf12...93278); TW1-27 CSV has 10 rows, all 5 pairs favour baseline.
+Phase 2: MRV audit from actual source — ascending packed iteration (tie-break safe);
+ scan forced_out pushes always cleared before authoritative one_deg_set re-collection;
+ dead-end check precedes prop_forced use; deg_out self-copy no-op. Both changes safe.
+Phase 3: candidate solver_mrv_scan.cpp (274c3796...) — for_each_until + early exit at
+ degree 0 + removed discarded pushes; 39-line diff; both built -Ofast -march=native -flto
+ (baseline binary reproduces 79dff337...; candidate f7f9b3f8...).
+Phase 4: CORRECTNESS PASS — V 70033/18/34236, KSSref 10000068, W 2500040, all IDENTICAL;
+ DEBUG_COMPARE forced trace 4884 lines IDENTICAL.
+Phase 5: HOST GATE FAIL — 82s verified: avg idle 60.6% (<85%), 1-min load 6.14-11.63
+ (>4.0 throughout). Stopped before benchmarking per protocol; CSV has no benchmark rows.
+Hypothesis (>=2%) untested, not falsified. See tw29_report.md.
+Outcome: RETAIN AS EXPERIMENTAL. No code outside tw29; no commit/merge/deploy.

@@ -1,0 +1,11 @@
+pair,order,implementation,command,exit_status,nodes,solutions,dead_ends,conn_checks,conn_pruned,prop_rejections,forced_processed,internal_time_s,wall_clock,peak_rss_kb,log_path
+1,1,baseline,"./solver_baseline W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,21.5526,0:21.56,4296,bench_p1_baseline.log
+1,2,activex,"./solver_active_x W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,24.8392,0:24.84,4508,bench_p1_activex.log
+2,1,activex,"./solver_active_x W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,15.7737,0:15.78,4616,bench_p2_activex.log
+2,2,baseline,"./solver_baseline W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,20.9634,0:20.97,4280,bench_p2_baseline.log
+3,1,baseline,"./solver_baseline W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,21.3437,0:21.35,4336,bench_p3_baseline.log
+3,2,activex,"./solver_active_x W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,15.0896,0:15.09,4268,bench_p3_activex.log
+4,1,activex,"./solver_active_x W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,27.5927,0:27.60,4472,bench_p4_activex.log
+4,2,baseline,"./solver_baseline W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,23.9020,0:23.91,4340,bench_p4_baseline.log
+5,1,baseline,"./solver_baseline W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,13.5872,0:13.59,4484,bench_p5_baseline.log
+5,2,activex,"./solver_active_x W 5 7 9 placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate",0,2500040,0,1136291,2499999,233966,564316,1525974,23.7767,0:23.78,4432,bench_p5_activex.log

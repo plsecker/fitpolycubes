@@ -1,0 +1,12 @@
+TW1-27 progress — REJECT (ActiveX consistently slower).
+
+Host gate PASSED: 81s epoch-verified observation, avg idle 87.3% (>85%), 1-min load 1.40-2.28 (<4.0 throughout), zero memory pressure, no swap activity, no competing solvers.
+Artifacts verified (all 7 hashes match); verified binaries used, no rebuild.
+Correctness gate PASSED: V/KSSref/W all exit 0, counter-identical.
+Five paired W 5x7x9 2.5M benchmarks complete (sequential, alternating order):
+ pair1 -31.39%, pair2 -22.62%, pair3 -57.63%, pair4 -36.72%, pair5 -52.52%.
+Median baseline 14.8586s, median ActiveX 19.8304s, median paired reduction -36.72%.
+All 10 runs counter-identical (2500040 nodes). Desktop load returned mid-campaign
+(load 3.7-9.1) but all five pairs unanimously favour baseline incl. calmest pair.
+Memory: no concern (RSS medians within 3%). See tw27_report.md + benchmark_results.csv.
+Outcome: REJECT on performance; correctness stands. No code modified.

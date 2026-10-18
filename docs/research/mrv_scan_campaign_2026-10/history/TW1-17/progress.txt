@@ -1,0 +1,25 @@
+# TW1-17 Progress
+
+**Status:** COMPLETE
+**Date:** 2026-10-16 (NZDT)
+
+## Completed
+- Provenance audit of all existing profiles (4 profiles classified)
+- TW1-16 KSSref replication validated (10 runs, all CSV values match logs)
+- Fresh gprof profiling of TW1-13 and coalesced on W 5×7×9 (2.5M cap)
+- Profile discrepancy resolved (gmon.out overwrite issue fixed)
+- One next optimization selected: Propagator row-overlap precomputation
+
+## Artifacts
+- `/tmp/pentacube-bench/tw17/tw17_report.md` — final report
+- `/tmp/pentacube-bench/tw17/progress.txt` — this file
+- `/tmp/pentacube-bench/tw17/solver_tw13.cpp` — TW1-13 profiling source
+- `/tmp/pentacube-bench/tw17/solver_coalesced.cpp` — coalesced profiling source
+- `/tmp/pentacube-bench/tw17/solver_tw13_profile` — TW1-13 profiling binary
+- `/tmp/pentacube-bench/tw17/solver_coalesced_profile` — coalesced profiling binary
+- `/tmp/pentacube-bench/tw17/gmon_tw13.out` — TW1-13 gprof data
+- `/tmp/pentacube-bench/tw17/gmon_coalesced.out` — coalesced gprof data
+
+## Next Move
+- Implement Propagator row-overlap precomputation in isolated directory
+- Benchmark against TW1-13 with paired repetitions on W and V

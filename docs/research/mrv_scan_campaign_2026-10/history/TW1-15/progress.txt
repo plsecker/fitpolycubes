@@ -1,0 +1,61 @@
+TW1-15 status checkpoint — 2026-10-16 (NZDT)
+
+Completed:
+- Read-only identity/profile/history audit. No pre-existing repository,
+  source, binary, placement, checkpoint, report, or benchmark CSV changed.
+- Confirmed source-matched current-heap gprof evidence is from the dirty
+  primary source hash 384adc60... (W, 2.5M); it is not the TW1-13 linear
+  candidate profile. Historical `experiments/benchmarks/gprof.txt` is not
+  provenance-valid for the current solver.
+- Audited TW1-13 row-removal transaction: candidate row deactivates cells and
+  all overlapping rows; degree deltas are applied before recursion; no
+  `g_deg`/`one_deg_set` consumer observes intermediate row-removal state;
+  trail entries are `(column, negative delta)` and rollback adds the delta
+  back. `gen_tasks_rec` and `parallel_worker` retain their old per-row helper.
+- Built an isolated TW1-13 instrumentation copy and measured full V and
+  KSSref 10M-capped searches. Counters and result tuples matched the ordinary
+  TW1-13 run; profile logs are retained in this directory.
+- Observed coalescing opportunity: V 29,785,099 decrement events across
+  366,906 row-removal transactions affect 10,344,644 unique columns (19,440,455
+  repeated updates avoidable; 65.27%). KSSref 1,593,796,088 decrements across
+  10,000,069 transactions affect 204,271,191 unique columns (1,389,524,897
+  repeated updates avoidable; 87.18%). Histogram overflow is zero.
+- Created `solver_coalesced.cpp`, an isolated candidate copy based byte-for-byte
+  on TW1-13 source before this one-change edit. It adds a reusable epoch-stamped
+  per-thread delta scratch and applies one net `(column, -count)` trail entry
+  per affected active column before recursion.
+- Patch verification: `patch --dry-run -R -p0` on solver_coalesced.cpp with
+  coalesced_degree_delta.patch exits 0 (PASS). Diff confirms only coalescing
+  changes, no unintended debug/profiling instrumentation.
+- Correctness tests PASS: V exhaustive and KSSref 10M-cap produce identical
+  nodes/solutions/dead-ends across reference, tw13, and coalesced. Forced
+  placement sequences (DEBUG_COMPARE) are identical. ASAN build with
+  DEG_TRAIL_DEBUG passes 367,962 checks with zero failures.
+- V benchmark: 5 paired runs (r1-r5). Median internal runtime: reference 0.909s,
+  tw13 0.763s, coalesced 0.782s. Coalesced is 2.5% slower than tw13 at median.
+- KSSref 10M-cap benchmark (single run): coalesced 40.7s vs tw13 55.5s
+  (26.6% faster). Note: reference uses different data structure (std::set).
+- Final report written to coalesced_degree_delta_report.md.
+- V benchmark audit CSV written to V_benchmark_audit.csv.
+
+Remaining uncertainties:
+- Source-to-binary provenance is UNVERIFIED: no build log retained; hashes
+  recorded in precise benchmark logs but not independently verified.
+- Build flags inferred from progress.txt as `g++ -Ofast -std=c++17 -pthread`;
+  not independently confirmed against binary.
+- KSSref benchmark is a single run; no repeated measurements for statistical
+  confidence.
+- No statistical significance testing performed on V benchmark data.
+
+Final artifact paths:
+- Report: /tmp/pentacube-bench/coalesced-degree-delta/coalesced_degree_delta_report.md
+- V benchmark CSV: /tmp/pentacube-bench/coalesced-degree-delta/V_benchmark_audit.csv
+- Patch: /tmp/pentacube-bench/coalesced-degree-delta/coalesced_degree_delta.patch
+- Source files: /tmp/pentacube-bench/coalesced-degree-delta/solver_*.cpp
+- Release binaries: /tmp/pentacube-bench/coalesced-degree-delta/solver_{tw13_uninstrumented,coalesced,reference}
+- Benchmark logs: /tmp/pentacube-bench/coalesced-degree-delta/V_bench_r*.log, V_precise_r*.log
+- Correctness logs: /tmp/pentacube-bench/coalesced-degree-delta/correctness_*.log
+- Profile logs: /tmp/pentacube-bench/coalesced-degree-delta/*_profile*.log
+- Sanitizer logs: /tmp/pentacube-bench/coalesced-degree-delta/sanitizer_*.log
+
+Verdict: RETAIN AS EXPERIMENTAL

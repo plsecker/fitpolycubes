@@ -1,0 +1,8 @@
+executable: INSTRUMENTED (/tmp/pentacube-bench/tw39/solver_mrv_scan_diagnostic)
+command: timeout 180 /tmp/pentacube-bench/tw39/solver_mrv_scan_diagnostic W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 250000 --connectivity --symmetry --region-prune=propagate
+exit_status: 0 (124 means external timeout)
+start_ts: 2026-10-17T14:29:39+13:00
+end_ts: 2026-10-17T14:29:40+13:00
+swapin_delta: 0
+swapout_delta: 0
+NOTE: elapsed time is INSTRUMENTED overhead-inclusive; never use for release comparison.

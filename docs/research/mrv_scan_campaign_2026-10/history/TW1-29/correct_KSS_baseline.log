@@ -1,0 +1,55 @@
+Piece: KSSref
+Box: 5 x 5 x 5
+Cells: 125
+Expected pieces: 25
+Placements file: /home/philip/Work/fitpolycubes/placements_KSSref_5x5x5.txt
+Placements loaded: 2304
+X CSR: 11520 entries
+Y CSR: 11520 entries
+Symmetry: chiral-safe group |G|=48 ; filter subgroup |H|=48 ; anchor=centre (cell 62) ; anchor placements 240, removed 233
+Connectivity pruning: ON (always)
+Colour invariant: max placement imbalance = 1 -> STRONG test armed (|B-W| <= pieces)
+
+=== RESULTS ===
+Nodes: 10000068
+Solutions: 0
+Dead ends: 6335178
+Max depth: 24 / 25
+Time: 40.2106 s
+Nodes/sec: 248692
+Connectivity checks: 9999999
+Pruned by connectivity: 3070835
+Propagation rejections: 1297394 (forced placements processed: 2464552)
+Genuine-new rejection depth histogram (32 buckets):
+  bucket 0: 0
+  bucket 1: 0
+  bucket 2: 0
+  bucket 3: 0
+  bucket 4: 0
+  bucket 5: 0
+  bucket 6: 0
+  bucket 7: 0
+  bucket 8: 0
+  bucket 9: 0
+  bucket 10: 0
+  bucket 11: 16
+  bucket 12: 140
+  bucket 13: 483
+  bucket 14: 1373
+  bucket 15: 0
+  bucket 16: 3414
+  bucket 17: 10033
+  bucket 18: 29490
+  bucket 19: 69678
+  bucket 20: 134879
+  bucket 21: 0
+  bucket 22: 192306
+  bucket 23: 229669
+  bucket 24: 233001
+  bucket 25: 232575
+  bucket 26: 0
+  bucket 27: 146480
+  bucket 28: 13857
+  bucket 29: 0
+  bucket 30: 0
+  bucket 31: 0

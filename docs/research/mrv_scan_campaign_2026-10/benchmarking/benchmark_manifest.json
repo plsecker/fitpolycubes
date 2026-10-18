@@ -1,0 +1,64 @@
+{
+  "description": "TW1-29 MRV-scan candidate vs coalesced baseline, W 5x7x9 2.5M cap. Requires explicit --execute and a passing host gate; default modes never start a solver.",
+  "workload": {
+    "piece": "W",
+    "dims": [5, 7, 9]
+  },
+  "node_cap": 2500000,
+  "search_options": ["--connectivity", "--symmetry", "--region-prune=propagate"],
+  "expected_argv_tail": ["W", "5", "7", "9", "/home/philip/Work/fitpolycubes/placements_W_5x7x9.txt", "2500000", "--connectivity", "--symmetry", "--region-prune=propagate"],
+  "baseline": {
+    "label": "baseline",
+    "source_path": "/tmp/pentacube-bench/tw18/solver_coalesced.cpp",
+    "source_sha256": "a4fdcf12e070acca810a827f3eb14bbba385fa84578693d40ca02a93ead93278",
+    "binary_path": "/tmp/pentacube-bench/tw29/solver_baseline",
+    "binary_sha256": "79dff337875560de88f2501a602e8aeebabc26220a61197204adf910c95ebc47"
+  },
+  "candidate": {
+    "label": "candidate",
+    "source_path": "/tmp/pentacube-bench/tw29/solver_mrv_scan.cpp",
+    "source_sha256": "274c3796c00658e1e4eee4b56304c86a7a470e05bd8f3aa3bef6e6be85bfb418",
+    "binary_path": "/tmp/pentacube-bench/tw29/solver_mrv_scan",
+    "binary_sha256": "f7f9b3f86d45e520b06097e0b9fcefbe08dbedf05608cc956f06d3d073476715"
+  },
+  "placement": {
+    "path": "/home/philip/Work/fitpolycubes/placements_W_5x7x9.txt",
+    "sha256": "a7a421cde69049fcfa7fd7ee8aa71a82a4ad4c7bfc9631c04ab035d663f8b045"
+  },
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "build_flags": ["-Ofast", "-march=native", "-flto", "-std=c++17", "-pthread"],
+  "allow_instrumented": false,
+  "expected_counters": {
+    "V_5x5x6": {"nodes": 70033, "solutions": 18, "dead_ends": 34236, "propagation_rejections": 14452, "forced_processed": 42099},
+    "KSSref_5x5x5_cap10M": {"nodes": 10000068, "solutions": 0, "dead_ends": 6335178, "propagation_rejections": 1297394, "forced_processed": 2464552},
+    "W_5x7x9_cap2.5M": {"nodes": 2500040, "solutions": 0, "dead_ends": 1136291, "propagation_rejections": 564316, "forced_processed": 1525974}
+  },
+  "correctness_evidence": {
+    "binary_sha256": {
+      "baseline": "79dff337875560de88f2501a602e8aeebabc26220a61197204adf910c95ebc47",
+      "candidate": "f7f9b3f86d45e520b06097e0b9fcefbe08dbedf05608cc956f06d3d073476715"
+    },
+    "log_refs": [
+      {"label": "V baseline", "path": "/tmp/pentacube-bench/tw29/correct_V_baseline.log", "sha256": "3c2a3b5c9057ee4ceb0b8662ecf2047a6b911624548b0bef5f3a67723c142f8d"},
+      {"label": "V candidate", "path": "/tmp/pentacube-bench/tw29/correct_V_candidate.log", "sha256": "783078ea5fb1386486a101541f0d235bf1e6432fad64366fe2547e060e4253ea"},
+      {"label": "KSSref baseline", "path": "/tmp/pentacube-bench/tw29/correct_KSS_baseline.log", "sha256": "cbbb1a58b70b7e1a7bc109b7ebb8c88f4d203652f76af78dbdddecf624c5c01f"},
+      {"label": "KSSref candidate", "path": "/tmp/pentacube-bench/tw29/correct_KSS_candidate.log", "sha256": "e48f5a3f4d54c73aaf40895271760ce4112ac96b2bbb7d2925ebfc02d02374e6"},
+      {"label": "W baseline", "path": "/tmp/pentacube-bench/tw29/correct_W_baseline.log", "sha256": "a9d02f5e07dbb583da2b6ac01c162c0ac9f0e28546a426c70a6e0631da298b7d"},
+      {"label": "W candidate", "path": "/tmp/pentacube-bench/tw29/correct_W_candidate.log", "sha256": "e45b8a3a325fe09acd8aff42d971928864e24542a402bbc93edaf7a613545427"},
+      {"label": "forced trace baseline (4884 lines)", "path": "/tmp/pentacube-bench/tw29/forced_baseline.txt", "sha256": "67985dba9773994894cbce191b9efe2560b4deeec6c313184b24919b63e36994"},
+      {"label": "forced trace candidate (4884 lines)", "path": "/tmp/pentacube-bench/tw29/forced_candidate.txt", "sha256": "67985dba9773994894cbce191b9efe2560b4deeec6c313184b24919b63e36994"}
+    ]
+  },
+  "readiness": {
+    "min_observation_s": 75,
+    "min_avg_idle_pct": 85.0,
+    "max_load_1min": 4.0,
+    "max_pressure_avg10": 5.0,
+    "max_swap_pages_per_sample": 1000,
+    "allow_swap_occupancy": true,
+    "inter_pair_observation_s": 20,
+    "ignore_patterns": ["pentacube-monitor", "collector.py", "pentacube_agent", "bench_runner"]
+  },
+  "use_time_v": true,
+  "pair_order": [[1, "baseline"], [1, "candidate"], [2, "candidate"], [2, "baseline"], [3, "baseline"], [3, "candidate"], [4, "candidate"], [4, "baseline"], [5, "baseline"], [5, "candidate"]]
+}

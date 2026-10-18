@@ -1,0 +1,12 @@
+dry-run: the following commands WOULD run (nothing executed):
+  pair 1 first [baseline]: /tmp/pentacube-bench/tw29/solver_baseline W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+  pair 1 second [candidate]: /tmp/pentacube-bench/tw29/solver_mrv_scan W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+  pair 2 first [candidate]: /tmp/pentacube-bench/tw29/solver_mrv_scan W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+  pair 2 second [baseline]: /tmp/pentacube-bench/tw29/solver_baseline W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+  pair 3 first [baseline]: /tmp/pentacube-bench/tw29/solver_baseline W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+  pair 3 second [candidate]: /tmp/pentacube-bench/tw29/solver_mrv_scan W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+  pair 4 first [candidate]: /tmp/pentacube-bench/tw29/solver_mrv_scan W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+  pair 4 second [baseline]: /tmp/pentacube-bench/tw29/solver_baseline W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+  pair 5 first [baseline]: /tmp/pentacube-bench/tw29/solver_baseline W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+  pair 5 second [candidate]: /tmp/pentacube-bench/tw29/solver_mrv_scan W 5 7 9 /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt 2500000 --connectivity --symmetry --region-prune=propagate
+dry-run complete: no solver started (pass --execute to run).

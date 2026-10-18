@@ -1,0 +1,14 @@
+TW1-39 progress — DIAGNOSTIC READY FOR REVIEW.
+
+Verified sources (baseline a4fdcf12..., candidate 274c3796...) + TW1-38 codegen
+evidence. Built solver_mrv_scan_diagnostic.cpp (guarded MRV_SCAN_DIAGNOSTICS
+counters for all 12 required metrics; absent from plain build; semantics
+preserved) + mrv_scan_diagnostic_test.cpp (direct production TU, independent
+oracle, cases A-J + extras, counter-exact validation). Tests 12/12 pass under
+-O2 AND ASan/UBSan (zero findings); diagnostic solver binary builds clean.
+Future run_workload_diagnostic.sh prepared but NOT executed (hash preflight,
+fresh-dir refusal, instrumented-only marking). Interpretation: static vs
+synthetic vs (uncollected) workload vs (unresolved) performance kept distinct;
+counters measure exposure, never speedup. See tw39_report.md + artifacts in
+/tmp/pentacube-bench/tw39/. No search/benchmark/gate run; nothing modified
+outside tw39.

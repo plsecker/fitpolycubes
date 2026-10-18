@@ -1,0 +1,1 @@
+DIAG-TESTS pass=12 fail=0

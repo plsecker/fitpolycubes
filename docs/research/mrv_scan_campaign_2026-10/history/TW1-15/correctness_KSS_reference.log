@@ -1,0 +1,62 @@
+RUN=KSS_reference
+COMMAND=./solver_reference KSSref 5 5 5 /tmp/pentacube-bench/coalesced-degree-delta/placements_KSSref_5x5x5.txt 10000000 --connectivity --region-prune=colour --region-prune=propagate --symmetry 
+BEFORE= 08:59:21 up 7 days,  1:21,  2 users,  load average: 2.71, 4.19, 4.21
+Piece: KSSref
+Box: 5 x 5 x 5
+Cells: 125
+Expected pieces: 25
+Placements file: /tmp/pentacube-bench/coalesced-degree-delta/placements_KSSref_5x5x5.txt
+Placements loaded: 2304
+X CSR: 11520 entries
+Y CSR: 11520 entries
+Symmetry: chiral-safe group |G|=48 ; filter subgroup |H|=48 ; anchor=centre (cell 62) ; anchor placements 240, removed 233
+Connectivity pruning: ON (always)
+Colour invariant: max placement imbalance = 1 -> STRONG test armed (|B-W| <= pieces)
+
+=== RESULTS ===
+Nodes: 10000070
+Solutions: 0
+Dead ends: 6335406
+Max depth: 24 / 25
+Time: 53.5948 s
+Nodes/sec: 186587
+Connectivity checks: 16914078
+Pruned by connectivity: 3085920
+Colour-component rejections: 0 (of which MRV also dead: 0)
+Propagation rejections: 1296950 (forced placements processed: 2463947)
+Genuine-new rejection depth histogram (32 buckets):
+  bucket 0: 0
+  bucket 1: 0
+  bucket 2: 0
+  bucket 3: 0
+  bucket 4: 0
+  bucket 5: 0
+  bucket 6: 0
+  bucket 7: 0
+  bucket 8: 0
+  bucket 9: 0
+  bucket 10: 0
+  bucket 11: 16
+  bucket 12: 141
+  bucket 13: 483
+  bucket 14: 1375
+  bucket 15: 0
+  bucket 16: 3415
+  bucket 17: 10036
+  bucket 18: 29495
+  bucket 19: 69708
+  bucket 20: 134917
+  bucket 21: 0
+  bucket 22: 192361
+  bucket 23: 229726
+  bucket 24: 232907
+  bucket 25: 232272
+  bucket 26: 0
+  bucket 27: 146259
+  bucket 28: 13839
+  bucket 29: 0
+  bucket 30: 0
+  bucket 31: 0
+EXTERNAL elapsed=53.61 user=52.78 sys=0.53 maxrss_kb=4496
+EXIT_STATUS=0
+AFTER= 09:00:14 up 7 days,  1:22,  2 users,  load average: 3.14, 4.04, 4.16

@@ -1,0 +1,15 @@
+TW1-35 progress — NOT READY (gate failed mid-window; stop, no benchmark).
+
+Intervention check 13:51: 5-min load 1.36, pressure falling, but same desktop
+cast resident and swap 99% full. Sustained pre-check (3 min, 5-min load
+1.25-1.45, pressure 0.00) met the TW1-34 trigger, so formal observation ran.
+Formal 83s window (13:54:53-13:56:16 NZDT): avg idle 46.1% (<85%), 1-min load
+1.63->9.69 (nine samples >=4.0), pressure avg10 to 18.60, sustained swap-in
+plus swap-out bursts to 4713 pages. A new firefox content proc + kblockd
+workers + D-state at ~13:55:24 destroyed a window that began at 87% idle —
+same paging-storm signature as TW1-34.
+Decision: NOT READY. No solver/bench run. Next attempt needs tabs actually
+closed, system-monitor quit, and swap materially reduced (operator action).
+Trigger must be strengthened: calm 5-min load alone does not predict 80s.
+Hypothesis untested; candidate stays experimental. See tw35_report.md.
+No code/config changes; no commit/merge/deploy.

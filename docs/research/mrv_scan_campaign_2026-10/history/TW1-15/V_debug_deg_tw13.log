@@ -1,0 +1,23 @@
+RUN=V_debug_deg_tw13
+COMMAND=env DEBUG_DEG=1 ./solver_tw13_debug V 5 5 6 /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt 0 
+BEFORE= 09:07:48 up 7 days,  1:29,  2 users,  load average: 4.34, 4.95, 4.68
+Piece: V
+Box: 5 x 5 x 6
+Cells: 150
+Expected pieces: 30
+Placements file: /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt
+Placements loaded: 696
+X CSR: 3480 entries
+Y CSR: 3480 entries
+
+=== RESULTS ===
+Nodes: 366907
+Solutions: 144
+Dead ends: 131833
+Max depth: 30 / 30
+Time: 9.28519 s
+Nodes/sec: 39515.3
+Solutions/sec: 15.5086
+EXTERNAL elapsed=9.29 user=9.22 sys=0.03 maxrss_kb=4236
+EXIT_STATUS=0
+AFTER= 09:07:58 up 7 days,  1:30,  2 users,  load average: 4.05, 4.87, 4.65

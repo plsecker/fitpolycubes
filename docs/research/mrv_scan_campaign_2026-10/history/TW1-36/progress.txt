@@ -1,0 +1,10 @@
+TW1-36 progress — PRECONDITION UNMET, no observation run.
+
+Checked 13:59:09 NZDT: operator cleanup has not occurred — firefox (+content
+procs), gnome-system-monitor (~1.16GB), opencode sidecar, openwork all still
+resident; load 5.04; swap 100% full (4095/4095 MB). No solver/bench jobs.
+The single TW1-36 assessment was deliberately not spent on a known-dirty host;
+per stop rule, no repeat without material change. Operator must: close firefox,
+quit system-monitor, pause background work, idle until 5-min load <2 sustained
+and pressure 0.00 — then the 90s observation may run. Hypothesis untested;
+candidate stays experimental. See tw36_report.md. No changes of any kind.

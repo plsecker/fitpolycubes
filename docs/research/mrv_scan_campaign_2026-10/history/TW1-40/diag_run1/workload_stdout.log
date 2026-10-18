@@ -1,0 +1,55 @@
+Piece: W
+Box: 5 x 7 x 9
+Cells: 315
+Expected pieces: 63
+Placements file: /home/philip/Work/fitpolycubes/placements_W_5x7x9.txt
+Placements loaded: 1828
+X CSR: 9140 entries
+Y CSR: 9140 entries
+Symmetry: chiral-safe group |G|=8 ; filter subgroup |H|=8 ; anchor=centre (cell 157) ; anchor placements 60, removed 45
+Connectivity pruning: ON (always)
+Colour invariant: max placement imbalance = 1 -> STRONG test armed (|B-W| <= pieces)
+
+=== RESULTS ===
+Nodes: 250037
+Solutions: 0
+Dead ends: 114203
+Max depth: 56 / 63
+Time: 1.39326 s
+Nodes/sec: 179462
+Connectivity checks: 249999
+Pruned by connectivity: 22760
+Propagation rejections: 57917 (forced placements processed: 156628)
+Genuine-new rejection depth histogram (32 buckets):
+  bucket 0: 0
+  bucket 1: 0
+  bucket 2: 0
+  bucket 3: 0
+  bucket 4: 0
+  bucket 5: 0
+  bucket 6: 5
+  bucket 7: 16
+  bucket 8: 46
+  bucket 9: 192
+  bucket 10: 755
+  bucket 11: 1927
+  bucket 12: 4006
+  bucket 13: 5839
+  bucket 14: 7212
+  bucket 15: 7544
+  bucket 16: 6728
+  bucket 17: 5746
+  bucket 18: 5375
+  bucket 19: 4741
+  bucket 20: 3673
+  bucket 21: 2241
+  bucket 22: 1132
+  bucket 23: 468
+  bucket 24: 207
+  bucket 25: 51
+  bucket 26: 12
+  bucket 27: 1
+  bucket 28: 0
+  bucket 29: 0
+  bucket 30: 0
+  bucket 31: 0

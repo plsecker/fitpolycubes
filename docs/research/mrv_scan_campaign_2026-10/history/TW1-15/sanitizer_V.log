@@ -1,0 +1,22 @@
+RUN=sanitizer_V
+COMMAND=env DEBUG_DEG=1 DEG_TRAIL_DEBUG=1 ./solver_coalesced_sanitized V 5 5 6 /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt 0 
+Piece: V
+Box: 5 x 5 x 6
+Cells: 150
+Expected pieces: 30
+Placements file: /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt
+Placements loaded: 696
+X CSR: 3480 entries
+Y CSR: 3480 entries
+
+=== RESULTS ===
+Nodes: 366907
+Solutions: 144
+Dead ends: 131833
+Max depth: 30 / 30
+Time: 13.9057 s
+Nodes/sec: 26385.4
+Solutions/sec: 10.3555
+DEG_TRAIL_DEBUG_CHECKS=366906
+EXTERNAL elapsed=14.16 user=13.68 sys=0.40 maxrss_kb=419240
+EXIT_STATUS=0

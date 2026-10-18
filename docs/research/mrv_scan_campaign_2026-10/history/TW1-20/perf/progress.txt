@@ -1,0 +1,24 @@
+# TW1-20 PERF Progress
+
+**Status:** COMPLETE — RETAIN AS EXPERIMENTAL (noisy host, no distinguishable speedup)
+**Date:** 2026-10-16 (Pacific/Auckland)
+
+## Completed
+- Verified debug-report hashes: baseline src a4fdcf12…, fixed src 42fad94b…, fixed binary fe8ea52f… — all match.
+- Determined verified binary is a release (-Ofast) build with harmless unstripped debug metadata; no invariant/profiling code in release sources or binaries.
+- Established prior -7.86% table as UNVERIFIED (byte-identical to TW18 overlap table; hash points at overlap candidate; no raw logs). Not used as result.
+- Built fresh isolated release binaries in perf/ with identical flags (-Ofast -march=native -flto -std=c++17 -pthread); bit-identical to verified binaries; originals untouched.
+- Verified release builds: V exhaustive, KSSref 10M, W 2.5M — all counters IDENTICAL, exit 0.
+- Ran five paired W 2.5M benchmarks sequentially with /usr/bin/time -v (internal + wall + RSS recorded separately).
+- Results: median paired reduction -15.25% but noise-dominated (baseline 13.59–23.90 s under host load ~5); correctness identical across all ten runs.
+- Decision: RETAIN AS EXPERIMENTAL. No commits/merges/deploys; no source modifications.
+
+## Artifacts
+- `/tmp/pentacube-bench/tw20/perf/tw20_perf_report.md` — final report
+- `/tmp/pentacube-bench/tw20/perf/progress.txt` — this file
+- `/tmp/pentacube-bench/tw20/perf/benchmark_results.csv` — ten-run table
+- `/tmp/pentacube-bench/tw20/perf/solver_baseline_src.cpp`, `solver_active_x_src.cpp` — verified sources
+- `/tmp/pentacube-bench/tw20/perf/solver_baseline`, `solver_active_x` — fresh release binaries
+- `/tmp/pentacube-bench/tw20/perf/build_*.log`, `binary_hashes.txt` — build provenance
+- `/tmp/pentacube-bench/tw20/perf/verify_*` — pre-timing correctness logs
+- `/tmp/pentacube-bench/tw20/perf/bench_p*.log`, `bench_p*.time` — ten raw benchmark logs

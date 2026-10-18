@@ -1,0 +1,8 @@
+TW1-41 progress — BLOCKED (no usable hardware counters).
+
+Identities verified (all 5 hashes match; release binaries confirmed, diagnostic
+excluded). perf 7.0.14 present but perf_event_paranoid=4: hardware AND software
+events refused ("No supported events found"); no valgrind; no PMU flags. Lowering
+paranoid needs privilege/host access — out of scope. Per protocol, no wall-clock
+fallback. Zero solvers launched. CSV headers only, no fabricated rows.
+Hypothesis untested. See tw41_report.md. Nothing modified.

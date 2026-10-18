@@ -1,0 +1,30 @@
+# TW1-19 Progress
+
+**Status:** COMPLETE
+**Date:** 2026-10-16 (NZDT)
+
+## Completed
+- Verified coalesced source identity (SHA256: a4fdcf12...)
+- Audited Propagator::run() phases and semantics
+- Built instrumented diagnostic binary with phase counters
+- Measured all Propagator phases on W 5×7×9 (2.5M cap)
+- Verified correctness on V 5×5×6 and W 5×7×9
+- Analyzed degree-array copy cost: 1.21 GB total, ~60ms estimated — NOT dominant
+- Identified inactive row skips as dominant cost: 164.9M (71.2% of conflict scans)
+- Recommended filtered X CSR to eliminate inactive row scans
+
+## Artifacts
+- `/tmp/pentacube-bench/tw19/tw19_report.md` — final report
+- `/tmp/pentacube-bench/tw19/progress.txt` — this file
+- `/tmp/pentacube-bench/tw19/solver_coalesced.cpp` — coalesced source
+- `/tmp/pentacube-bench/tw19/solver_instrumented.cpp` — instrumented source
+- `/tmp/pentacube-bench/tw19/solver_instrumented` — instrumented binary
+- `/tmp/pentacube-bench/tw19/build_instrumented.log` — build log
+- `/tmp/pentacube-bench/tw19/instrumented_w5x7x9.log` — W 5×7×9 log
+- `/tmp/pentacube-bench/tw19/instrumented_v5x5x6.log` — V 5×5×6 log
+
+## Conclusion
+- Degree-array copy is NOT a significant cost (~60ms of 19s)
+- Inactive row skips dominate (164.9M, 71.2% of conflict scans)
+- Recommended: filtered X CSR to eliminate inactive row scans
+- No optimization implemented in this task

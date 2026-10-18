@@ -1,0 +1,12 @@
+Piece: V
+Box: 5 x 5 x 6
+Cells: 150
+Expected pieces: 30
+Placements file: /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt
+Placements loaded: 696
+X CSR: 3480 entries
+Y CSR: 3480 entries
+Symmetry: chiral-safe group |G|=16 ; filter subgroup |H|=16 ; anchor=centre-pair (cell 62) ; anchor placements 120, removed 50
+Centre-pair scheme: cells (62,87) ; S-tuple candidates 1788, canonical 142, rows pre-deactivated 50
+Connectivity pruning: ON (always)
+Colour invariant: max placement imbalance = 1 -> STRONG test armed (|B-W| <= pieces)

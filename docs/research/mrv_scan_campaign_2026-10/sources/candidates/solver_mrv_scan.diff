@@ -1,0 +1,39 @@
+227a228,244
+> 
+>       // Iterate over set bits in ascending column order, stopping early
+>       // when func returns true. (TW1-29: lets the MRV scan stop at the
+>       // first degree-0 column, which is an unbeatable minimum.)
+>       template<typename Func>
+>       void for_each_until(Func&& func) const {
+>           for (int w = 0; w < word_count; ++w) {
+>               uint64_t word = words[w];
+>               while (word) {
+>                   int bit = __builtin_ctzll(word);
+>                   int col = (w << 6) + bit;
+>                   if (col >= num_cols) break;
+>                   if (func(col)) return;
+>                   word &= word - 1;
+>               }
+>           }
+>       }
+562a580,584
+>     // TW1-29: (1) stop the scan at the first degree-0 column — degrees are
+>     // non-negative so 0 is unbeatable, iteration is ascending so the
+>     // lowest-index degree-0 column (the original tie-break winner) is kept;
+>     // (2) collect forced columns in a single pass from one_deg_set — the
+>     // scan's own degree-1 pushes were always cleared and discarded.
+566c588
+<     active_cols_packed.for_each([&](int c) {
+---
+>     active_cols_packed.for_each_until([&](int c) {
+572,574d593
+<         if (forced_out && count == 1) {
+<             forced_out->push_back(c);
+<         }
+580,581c599
+<                 // Note: we can't break from for_each easily, so we'll let it continue
+<                 // The overhead is minimal since degree-0 columns are rare
+---
+>                 return true;  // unbeatable minimum: stop scanning
+583a602
+>         return false;

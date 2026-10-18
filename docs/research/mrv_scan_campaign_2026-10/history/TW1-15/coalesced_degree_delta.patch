@@ -1,0 +1,119 @@
+--- solver_tw13_uninstrumented.cpp
++++ solver_coalesced.cpp
+@@ -239,6 +239,45 @@
+ // Record degree changes for rollback. Each entry is (col, delta).
+ using DegChange = std::pair<int,int>;
+ 
++// Reusable per-thread scratch for coalescing all degree decrements in one
++// selected-row removal transaction. Epoch marks avoid clearing O(num_cols)
++// scratch on every branch. Only columns that remain active are recorded.
++struct DegreeDeltaScratch {
++    std::vector<uint32_t> seen_epoch;
++    std::vector<int> pending_delta;
++    std::vector<int> touched_cols;
++    uint32_t epoch = 0;
++
++    void init(int num_cols) {
++        if (seen_epoch.size() != static_cast<size_t>(num_cols)) {
++            seen_epoch.assign(static_cast<size_t>(num_cols), 0);
++            pending_delta.assign(static_cast<size_t>(num_cols), 0);
++            epoch = 0;
++        }
++        touched_cols.clear();
++        touched_cols.reserve(static_cast<size_t>(num_cols));
++    }
++
++    void begin_transaction() {
++        touched_cols.clear();
++        if (++epoch == 0) {
++            std::fill(seen_epoch.begin(), seen_epoch.end(), 0);
++            epoch = 1;
++        }
++    }
++
++    void add_decrement(int col) {
++        const size_t i = static_cast<size_t>(col);
++        if (seen_epoch[i] != epoch) {
++            seen_epoch[i] = epoch;
++            pending_delta[i] = 0;
++            touched_cols.push_back(col);
++        }
++        ++pending_delta[i];
++    }
++};
++static thread_local DegreeDeltaScratch g_degree_delta_scratch;
++
+ static void apply_row_removal(const CSR& Y,
+                                const std::vector<uint8_t>& active_cols,
+                                int row,
+@@ -257,6 +296,7 @@
+                           const std::vector<uint8_t>& active_cols,
+                           const std::vector<uint8_t>& active_rows,
+                           int num_cols) {
++    g_degree_delta_scratch.init(num_cols);
+     g_deg.assign(static_cast<size_t>(num_cols), 0);
+     for (int c = 0; c < num_cols; ++c) {
+         if (!active_cols[c]) continue;
+@@ -301,6 +341,40 @@
+ }
+ 
+ 
++// Accumulate the degree effects of all rows killed by one selected placement,
++// then update each still-active column and its degree-1 membership once.
++// No search, propagation, or forced-column query occurs until this transaction
++// has committed, so only the final degrees and one_deg_set state are observable.
++static void apply_row_removals_coalesced(
++    const CSR& Y,
++    const std::vector<uint8_t>& active_cols,
++    const std::vector<int>& removed_rows,
++    std::vector<DegChange>& changes) {
++    g_degree_delta_scratch.begin_transaction();
++    for (const int row : removed_rows) {
++        for (int k = Y.indptr[row]; k < Y.indptr[row + 1]; ++k) {
++            const int col = Y.data[k];
++            if (active_cols[col]) {
++                g_degree_delta_scratch.add_decrement(col);
++            }
++        }
++    }
++
++    for (const int col : g_degree_delta_scratch.touched_cols) {
++        const int decrement =
++            g_degree_delta_scratch.pending_delta[static_cast<size_t>(col)];
++        const int old_deg = g_deg[col];
++        const int new_deg = old_deg - decrement;
++        // Preserve the trail's existing (column, negative-delta) convention;
++        // rollback_deg_changes adds the coalesced amount back in one step.
++        changes.emplace_back(col, -decrement);
++        g_deg[col] = new_deg;
++        mrv_update_one_deg(col, old_deg, new_deg, true);
++    }
++    g_degree_delta_scratch.touched_cols.clear();
++}
++
++
+ static void rollback_deg_changes(const std::vector<DegChange>& changes) {
+     for (auto it = changes.rbegin(); it != changes.rend(); ++it) {
+         int col = it->first;
+@@ -1524,10 +1598,10 @@
+             col_backup.emplace_back(c, g_deg[c]);
+             g_deg[c] = 0;
+         }
+-        // For each deactivated row, decrement degree of its active columns.
+-        for (int other : deactivated_rows) {
+-            apply_row_removal(Y, active_cols, other, deg_changes);
+-        }
++        // Coalesce repeated degree decrements across all rows removed by this
++        // placement. The resulting degrees are committed before recursion.
++        apply_row_removals_coalesced(
++            Y, active_cols, deactivated_rows, deg_changes);
+ 
+         solution.push_back(r);
+ 
+@@ -2235,4 +2309,4 @@
+     }
+ 
+     return 0;
+-}
+\ No newline at end of file
++}

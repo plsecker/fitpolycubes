@@ -1,0 +1,60 @@
+Piece: V
+Box: 5 x 5 x 6
+Cells: 150
+Expected pieces: 30
+Placements file: /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt
+Placements loaded: 696
+X CSR: 3480 entries
+Y CSR: 3480 entries
+Overlap graph: 68312 edges
+Symmetry: chiral-safe group |G|=16 ; filter subgroup |H|=16 ; anchor=centre-pair (cell 62) ; anchor placements 120, removed 50
+Centre-pair scheme: cells (62,87) ; S-tuple candidates 1788, canonical 142, rows pre-deactivated 50
+Connectivity pruning: ON (always)
+Colour invariant: max placement imbalance = 1 -> STRONG test armed (|B-W| <= pieces)
+
+=== RESULTS ===
+Nodes: 34816
+Solutions: 0
+Dead ends: 17724
+Max depth: 24 / 30
+Time: 0.335444 s
+Nodes/sec: 103791
+Connectivity checks: 68481
+Pruned by connectivity: 1151
+Centre-pair runtime checks: 1416
+Centre-pair runtime prunes: 461
+Colour-component rejections: 0 (of which MRV also dead: 0)
+Propagation rejections: 7793 (forced placements processed: 20006)
+Genuine-new rejection depth histogram (32 buckets):
+  bucket 0: 0
+  bucket 1: 0
+  bucket 2: 4
+  bucket 3: 8
+  bucket 4: 44
+  bucket 5: 109
+  bucket 6: 180
+  bucket 7: 331
+  bucket 8: 474
+  bucket 9: 479
+  bucket 10: 542
+  bucket 11: 614
+  bucket 12: 705
+  bucket 13: 575
+  bucket 14: 556
+  bucket 15: 654
+  bucket 16: 687
+  bucket 17: 551
+  bucket 18: 512
+  bucket 19: 366
+  bucket 20: 247
+  bucket 21: 110
+  bucket 22: 32
+  bucket 23: 13
+  bucket 24: 0
+  bucket 25: 0
+  bucket 26: 0
+  bucket 27: 0
+  bucket 28: 0
+  bucket 29: 0
+  bucket 30: 0
+  bucket 31: 0

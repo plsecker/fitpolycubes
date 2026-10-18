@@ -1,0 +1,18 @@
+{
+  "conclusion": "CODEGEN_SUPPORTS_THE_OPTIMISATION_HYPOTHESIS",
+  "function": "choose_best_column[clone .isra.0]",
+  "baseline_lines": 260,
+  "candidate_lines": 215,
+  "text_bytes": {
+    "baseline": 97060,
+    "candidate": 96852
+  },
+  "hot_loop_realloc_sites": {
+    "baseline": 2,
+    "candidate": 0
+  },
+  "early_stop_branch": "test-je to shared epilogue",
+  "dispatch": "direct calls only, callbacks inlined",
+  "isolated_assembly": "not required",
+  "speedup_claimed": false
+}

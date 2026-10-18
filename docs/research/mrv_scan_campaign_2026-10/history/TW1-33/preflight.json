@@ -1,0 +1,37 @@
+[
+  {
+    "actual_sha256": "a4fdcf12e070acca810a827f3eb14bbba385fa84578693d40ca02a93ead93278",
+    "expected_sha256": "a4fdcf12e070acca810a827f3eb14bbba385fa84578693d40ca02a93ead93278",
+    "label": "baseline source",
+    "ok": true,
+    "path": "/tmp/pentacube-bench/tw18/solver_coalesced.cpp"
+  },
+  {
+    "actual_sha256": "274c3796c00658e1e4eee4b56304c86a7a470e05bd8f3aa3bef6e6be85bfb418",
+    "expected_sha256": "274c3796c00658e1e4eee4b56304c86a7a470e05bd8f3aa3bef6e6be85bfb418",
+    "label": "candidate source",
+    "ok": true,
+    "path": "/tmp/pentacube-bench/tw29/solver_mrv_scan.cpp"
+  },
+  {
+    "actual_sha256": "79dff337875560de88f2501a602e8aeebabc26220a61197204adf910c95ebc47",
+    "expected_sha256": "79dff337875560de88f2501a602e8aeebabc26220a61197204adf910c95ebc47",
+    "label": "baseline binary",
+    "ok": true,
+    "path": "/tmp/pentacube-bench/tw29/solver_baseline"
+  },
+  {
+    "actual_sha256": "f7f9b3f86d45e520b06097e0b9fcefbe08dbedf05608cc956f06d3d073476715",
+    "expected_sha256": "f7f9b3f86d45e520b06097e0b9fcefbe08dbedf05608cc956f06d3d073476715",
+    "label": "candidate binary",
+    "ok": true,
+    "path": "/tmp/pentacube-bench/tw29/solver_mrv_scan"
+  },
+  {
+    "actual_sha256": "a7a421cde69049fcfa7fd7ee8aa71a82a4ad4c7bfc9631c04ab035d663f8b045",
+    "expected_sha256": "a7a421cde69049fcfa7fd7ee8aa71a82a4ad4c7bfc9631c04ab035d663f8b045",
+    "label": "placement file",
+    "ok": true,
+    "path": "/home/philip/Work/fitpolycubes/placements_W_5x7x9.txt"
+  }
+]

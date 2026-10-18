@@ -1,0 +1,39 @@
+TW1-16 status checkpoint — 2026-10-16 (NZDT)
+
+Completed:
+- Read TW1-15 report and progress file. Reviewed provenance limitations.
+- Independently verified binary SHA256 hashes before benchmarking:
+  solver_tw13_uninstrumented: 4e2ff001cd69e6a7bfdebde86b90d0ec1a8dc9bc7115cad6a28ba4018e6e310d
+  solver_coalesced: 214b4de314f63dd5240ef178be7b4851ccd2e2b43137c29e4ea0dedf23df3180
+- Verified placement file SHA256:
+  placements_KSSref_5x5x5.txt: 9786dd438861f4668cc4b7f8f179d2b2e844426681d17c44d7375e901b1de291
+- Confirmed no active benchmark processes at start.
+- Ran five paired KSSref 5x5x5 repetitions (10 runs total), alternating order:
+  Pair 1: tw13 (46.65s), coalesced (44.80s) — 3.98% reduction
+  Pair 2: coalesced (45.09s), tw13 (46.13s) — 2.26% reduction
+  Pair 3: tw13 (46.71s), coalesced (44.90s) — 3.87% reduction
+  Pair 4: coalesced (43.49s), tw13 (47.05s) — 7.57% reduction
+  Pair 5: tw13 (45.83s), coalesced (45.48s) — 0.75% reduction
+- All 10 runs produced identical deterministic counters:
+  Nodes: 10,000,070, Solutions: 0, Dead ends: 6,335,406
+- Median paired reduction: 3.87% (internal), 3.89% (wall-clock)
+- TW1-15 single-run result (26.6% faster) does not reproduce at that magnitude.
+  The TW1-15 run was taken under high system load (3.14 → 9.11), likely
+  penalizing the TW1-13 run disproportionately.
+- Wrote benchmark_results.csv, tw16_report.md, and progress.txt.
+- TW1-15 artifacts left unchanged.
+
+Remaining uncertainties:
+- Source-to-binary provenance remains UNVERIFIED (no build log retained).
+- Build flags inferred from TW1-15 progress.txt as g++ -Ofast -std=c++17 -pthread.
+- Only 5 repetitions; no statistical significance testing performed.
+- Only KSSref 5x5x5 workload tested; results may not generalize.
+- Load averages not systematically recorded during TW1-16.
+
+Final artifact paths:
+- Report: /tmp/pentacube-bench/coalesced-degree-delta/tw16/tw16_report.md
+- Benchmark CSV: /tmp/pentacube-bench/coalesced-degree-delta/tw16/benchmark_results.csv
+- Progress: /tmp/pentacube-bench/coalesced-degree-delta/tw16/progress.txt
+- Raw logs: /tmp/pentacube-bench/coalesced-degree-delta/tw16/KSS_bench_p{1-5}_{tw13,coalesced}.log
+
+Verdict: RETAIN AS EXPERIMENTAL

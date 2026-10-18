@@ -1,0 +1,22 @@
+{
+  "suite": "mrv_scan_differential",
+  "approach": "direct-production-TU",
+  "builds": {
+    "normal": {
+      "flags": "-O2 -std=c++17 -pthread",
+      "pass": 3151,
+      "fail": 0
+    },
+    "asan_ubsan": {
+      "flags": "-O1 -g -fsanitize=address,undefined",
+      "pass": 3151,
+      "fail": 0
+    }
+  },
+  "states": {
+    "exhaustive_n3": 64,
+    "pseudorandom": 3000,
+    "targeted": 16
+  },
+  "production_search_launched": false
+}

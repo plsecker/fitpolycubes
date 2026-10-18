@@ -1,0 +1,17 @@
+# TW1-23 Progress
+
+**Status:** BLOCKED — gate failed (idle ~77% vs >85%; swap 69% full)
+**Date:** 2026-10-16 (Pacific/Auckland)
+
+## Completed
+- 75 s host gate: no competing solvers; load 3.69→3.33 PASS; idle 56/82/83/86 avg ~77% FAIL; swap 69% full FAIL.
+- Improved vs TW1-22 but insufficient. No solver jobs launched, no files modified, prior artifacts untouched.
+
+## Artifacts
+- `/tmp/pentacube-bench/tw23/tw23_report.md` — diagnostic report
+- `/tmp/pentacube-bench/tw23/progress.txt` — this file
+- `/tmp/pentacube-bench/tw23/benchmark_results.csv` — header only, zero data rows
+- `/tmp/pentacube-bench/tw23/host_vmstat.txt`, `host_top.txt`, `host_mem.txt` — raw diagnostics
+
+## To unblock
+- Close desktop load or reboot to clear swap; re-run gate; then hashes → correctness → five-pair W 2.5M protocol.

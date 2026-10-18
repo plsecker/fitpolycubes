@@ -1,0 +1,15 @@
+TW1-31 progress — TOOLING READY FOR REVIEW.
+
+Built fail-closed paired benchmark harness in /tmp/pentacube-bench/tw31/:
+bench_runner.py (stdlib only: preflight incl. instrumentation scan, >=75s host gate,
+evidence binding, dry-run, sequential executor with journal + Ctrl-C safety, CSV
+schemas, analyzer, exits 0/2/3/4/5/6), test_bench_runner.py (23 self-tests pass,
+stubs/fakes only, no real solver), benchmark_manifest.json (pinned TW1-29 pair:
+all 5 file hashes + 8 evidence-log hashes independently re-verified), README.md,
+tw31_report.md.
+Verified safe: --help/preflight/evidence/dry-run ok against real manifest;
+run-without---execute exits 2 with no runs.csv; no solver process launched.
+Limitations: no fresh-correctness mode yet (changed binary refused, not validated);
+no auto-stop on mid-campaign degradation; no time-v RSS wiring; W-only manifest.
+Next: operator reviews manifest and runs `run --execute` on a quiet host.
+No MRV performance claim made. No code/binary/worktree changes; no commit/deploy.

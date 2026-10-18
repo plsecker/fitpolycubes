@@ -1,0 +1,14 @@
+TW1-28 progress — ActiveX closed; next target selected (no implementation).
+
+ActiveX REJECTED permanently (TW1-27 verified: 5/5 pairs slower, median -36.72%;
+correctness evidence retained, design not to be merged/deployed/retried).
+Baseline verified: tw18/solver_coalesced.cpp = a4fdcf12...93278.
+History reviewed (TW1-15..27 + older profiles; pre-coalesced/heap profiles excluded).
+Next target (design only, not implemented): choose_best_column early-exit on
+min_rows==0 + single-pass forced collection (lines 553-595). Evidence: TW1-17
+gprof on exact coalesced source (0.56s / 2.27M calls) + source inspection showing
+no-break for_each and discarded forced_out pushes. Hypothesis: >=2% on W 5x7x9
+2.5M cap, counters identical. See tw28_report.md for invariants, risks, tests,
+benchmark plan, and optional cheap counter measurement.
+Recommendation: implement the MRV-scan fix next under the TW1-27 gate protocol.
+No code modified; no commit/merge/deploy.

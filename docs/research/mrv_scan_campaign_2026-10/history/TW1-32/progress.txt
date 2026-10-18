@@ -1,0 +1,16 @@
+TW1-32 progress — READY FOR CONTROLLED BENCHMARK.
+
+Verified TW1-31 (hashes match, 23/23 pass), audited all 1009 lines, hardened:
+fixed dead read_pressure loop; single-sourced thresholds via gate_thresholds();
+added 20s inter_pair_health_check before each new pair (same thresholds, never
+touches other processes); execute_plan stops with host_stop.json + HOST_STOPPED
+journal, preserving completed rows, never fabricating pairs; timev_launcher
+(/usr/bin/time -v) for peak RSS with graceful fallback; manifest gains
+inter_pair_observation_s + use_time_v.
+Tests: 33/33 pass (10 new: deterioration blocks next launch, stop reason
+recorded, incomplete pair stays incomplete, no fabricated stats, records
+survive interruption, RSS/timing distinct, hash/opt-in/dry-run guards,
+threshold identity). Safe modes verified live; no solver launched.
+Limitations: no fresh-correctness mode; running solver finishes before stop;
+W-only; RSS empty if time(1) absent. MRV hypothesis untested. See tw32_report.md.
+No solver changes; no commit/merge/deploy.

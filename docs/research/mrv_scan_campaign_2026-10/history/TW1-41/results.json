@@ -1,0 +1,1 @@
+{"blocked":true,"blocker":"perf_event_paranoid=4; no hardware, software, or PMU events measurable; no valgrind; lowering paranoid requires privilege out of scope","complete_pairs":0,"solver_invocations":0}

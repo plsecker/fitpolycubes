@@ -1,0 +1,23 @@
+RUN=V_reference
+COMMAND=./solver_reference V 5 5 6 /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt 0 
+BEFORE= 08:59:18 up 7 days,  1:21,  2 users,  load average: 2.71, 4.19, 4.21
+Piece: V
+Box: 5 x 5 x 6
+Cells: 150
+Expected pieces: 30
+Placements file: /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt
+Placements loaded: 696
+X CSR: 3480 entries
+Y CSR: 3480 entries
+
+=== RESULTS ===
+Nodes: 366907
+Solutions: 144
+Dead ends: 131833
+Max depth: 30 / 30
+Time: 0.998219 s
+Nodes/sec: 367561
+Solutions/sec: 144.257
+EXTERNAL elapsed=1.01 user=0.96 sys=0.04 maxrss_kb=4144
+EXIT_STATUS=0
+AFTER= 08:59:19 up 7 days,  1:21,  2 users,  load average: 2.71, 4.19, 4.21

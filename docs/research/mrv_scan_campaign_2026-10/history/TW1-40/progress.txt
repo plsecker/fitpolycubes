@@ -1,0 +1,13 @@
+TW1-40 progress — WORTH RELEASE BENCHMARK (prioritisation only, no speedup claim).
+
+Verified diagnostic (all hashes match, MRV-DIAG marker present). Memory gate
+passed (MemAvailable 3254MB, pressure 0.00, swap deltas 5/0 then 0/0 during run;
+CPU idle not a criterion). One bounded W 5x7x9 run at 250k cap: exit 0,
+250037 nodes, 0 sol, 114203 dead ends. Counters: 227239 MRV calls, 32.89M
+visited (144.7/call), 33526 zero-hits (14.75%), mean zero pos 63.6, avoided
+tail 2820977 (12.4/call, ~8.6% of visits), exit hist 83% skipping 6+ cols,
+179841 discarded pushes, 210457 authoritative forced, max 315. All consistent.
+Interpretation: both mechanisms engage substantially on real search — exposure
+supports retaining the candidate for a future controlled release benchmark;
+no runtime percentage inferred (instrumented 1.39s never compared). See
+tw40_report.md + diag_run1/ + diagnostic_results.json. Nothing modified.

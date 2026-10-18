@@ -1,0 +1,18 @@
+TW1-34 progress — REMEDIATION PLAN READY (read-only diagnosis, no solvers run).
+
+Machine: philip-VirtualBox (oracle guest), 8 CPUs, 11.75GB RAM, swap 96% full;
+no solver/bench jobs running. History reviewed (TW1-33/30/32).
+102s observation (13:18:06-13:19:48 NZDT, /proc/stat deltas): avg idle 61.8%,
+load 2.32->6.44, steal 0.0% throughout, iowait negligible. Verdict: category A —
+few desktop apps dominate (opencode ~13-14%, firefox ~12.7% + content procs,
+gnome-shell 8.1%, system-monitor 5.3%, openwork ~6%). Bursty on 10s timescale.
+Memory: two live paging storms captured (so 3002 + 2243-4870 pages/5s, pressure
+avg10 to 5.79); episodic active paging is a real timing-variability source.
+No cgroup limits; host-level headroom unknowable from inside (stated, not guessed).
+Plan: (1) quiet window — close/pause heavy tabs, quit system-monitor, pause
+opencode work; (2) shrink desktop anon (~2-3GB reclaimable) to stop storms;
+(3) if still failing, host-level RAM/vCPU or move host (needs owner).
+Verify: one harness readiness run — PASS + pressure ~0 + zero swap-out;
+trigger next check only after tabs closed + 5-min load <2 sustained.
+Campaign protected: all TW1-29/32/33 hashes unchanged, no solver started,
+TW1-33 not restarted, hypothesis untested. See tw34_report.md.

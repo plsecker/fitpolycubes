@@ -1,0 +1,26 @@
+RUN=15 variant=coalesced
+COMMAND=/tmp/pentacube-bench/coalesced-degree-delta/solver_coalesced V 5 5 6 /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt 0
+SOURCE_SHA256=a4fdcf12e070acca810a827f3eb14bbba385fa84578693d40ca02a93ead93278
+BINARY_SHA256=214b4de314f63dd5240ef178be7b4851ccd2e2b43137c29e4ea0dedf23df3180
+PLACEMENT_SHA256=dc22870d591d5c5789f4b7df8f546a36682e325474dbcb938b723afc46c100fe
+LOAD_BEFORE=2026-10-16T09:23:29+1300 load=3.61, 2.35, 3.29
+Piece: V
+Box: 5 x 5 x 6
+Cells: 150
+Expected pieces: 30
+Placements file: /home/philip/Work/fitpolycubes/placements_V_5x5x6.txt
+Placements loaded: 696
+X CSR: 3480 entries
+Y CSR: 3480 entries
+
+=== RESULTS ===
+Nodes: 366907
+Solutions: 144
+Dead ends: 131833
+Max depth: 30 / 30
+Time: 0.647079 s
+Nodes/sec: 567021
+Solutions/sec: 222.539
+EXTERNAL_WALL_S=0.650719486
+EXIT_STATUS=0
+LOAD_AFTER=2026-10-16T09:23:30+1300 load=3.61, 2.35, 3.29
