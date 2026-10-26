@@ -215,27 +215,63 @@ int choose_best_column(
     int best_col = -1;
     min_rows = 999999;
 
+    // TW1-59 experiment C1: when the caller does not need exact per-column
+    // degrees (no unit-propagation bookkeeping), a column whose active count
+    // has already reached the current minimum can never replace best_col:
+    // ties keep the earlier column, and only a strictly smaller count updates
+    // the choice. Stop counting that column immediately.
+    //
+    // TW1-59 experiment C3: the propagation bookkeeping tests are loop
+    // invariant, so the rare full-degree path and the default fast path are
+    // emitted as separate loops. The fast loop contains only the work the
+    // default search needs: active-column test, count until the current
+    // minimum is reached, and the strict-minimum update.
+    if (deg_out != nullptr || forced_out != nullptr) {
+        for (int c = 0; c < num_cols; ++c) {
+            if (!active_cols[c]) {
+                continue;
+            }
+
+            int count = 0;
+            for (int k = X.indptr[c]; k < X.indptr[c + 1]; ++k) {
+                if (active_rows[X.data[k]]) {
+                    ++count;
+                }
+            }
+
+            if (deg_out) {
+                deg_out[c] = count;
+            }
+            if (forced_out && count == 1) {
+                forced_out->push_back(c);
+            }
+
+            if (count < min_rows) {
+                min_rows = count;
+                best_col = c;
+
+                if (count == 0) {
+                    break;
+                }
+            }
+        }
+        return best_col;
+    }
+
     for (int c = 0; c < num_cols; ++c) {
         if (!active_cols[c]) {
             continue;
         }
 
         int count = 0;
-
         const int start = X.indptr[c];
         const int end = X.indptr[c + 1];
 
         for (int k = start; k < end; ++k) {
-            if (active_rows[X.data[k]]) {
-                ++count;
+            count += active_rows[X.data[k]];
+            if (count >= min_rows) {
+                break;  // cannot beat best_col (ties keep earlier column)
             }
-        }
-
-        if (deg_out) {
-            deg_out[c] = count;
-        }
-        if (forced_out && count == 1) {
-            forced_out->push_back(c);
         }
 
         if (count < min_rows) {
@@ -1208,6 +1244,14 @@ void search(
         deactivated_cols.clear();
         deactivated_rows.clear();
 
+        // TW1-54 candidate D (part B): deactivate the current row `r`
+        // explicitly once. `r`'s self-reference occurs in the conflict scan of
+        // every one of its five covered columns (X.indptr[c] includes `r`),
+        // so skipping it below avoids five redundant active_rows[r] tests per
+        // node; the explicit deactivation preserves identical semantics.
+        active_rows[r] = 0;
+        deactivated_rows.push_back(r);
+
         // This row covers exactly five columns.
         const int y_start = Y.indptr[r];
         const int y_end = Y.indptr[r + 1];
@@ -1215,10 +1259,11 @@ void search(
         for (int j = y_start; j < y_end; ++j) {
             const int c = Y.data[j];
 
-            if (!active_cols[c]) {
-                continue;
-            }
-
+            // TW1-54 candidate D (part C): the `!active_cols[c]` guard is dead
+            // code here. `r` is an active placement being placed, so every one
+            // of its five cells is uncovered and every covering column `c` is
+            // active; active_cols[c] is therefore always 1 at this point.
+            // Removing the check saves one load+branch per column (5 per node).
             active_cols[c] = 0;
             deactivated_cols.push_back(c);
             if (g_prune_colour_global) {
@@ -1231,6 +1276,7 @@ void search(
             for (int q = x_start; q < x_end; ++q) {
                 const int other = X.data[q];
 
+                if (other == r) continue;          // self excluded (deactivated above)
                 if (active_rows[other]) {
                     active_rows[other] = 0;
                     deactivated_rows.push_back(other);
