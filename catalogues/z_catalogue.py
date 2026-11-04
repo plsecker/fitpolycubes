@@ -105,7 +105,7 @@ MINIMAL_EVEN = Box(6, 10, 10)
 SEARCHED_NO_SOLUTION = {
     # 6x7x10: no tiling -- complete SAT decision (CaDiCaL, UNSAT),
     # independently verified DRAT proof (drat-trim: VERIFIED). 2026-11-04.
-    # See docs/frontier/z_piece/z_6710_certificate/.
+    # DRAT SHA-256: 30ec94b1c5c86f958d18af2deb66afcafcd56c6e358c366680f85fcf0bc11145
     Box(6, 7, 10),
     # 6x6x10: no tiling -- complete SAT decision (CaDiCaL, UNSAT in 287 s)
     # with an independently verified DRAT proof (drat-trim s VERIFIED 455 s;
