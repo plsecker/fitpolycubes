@@ -103,6 +103,10 @@ MINIMAL_ODD = Box(5, 9, 15)
 MINIMAL_EVEN = Box(6, 10, 10)
 
 SEARCHED_NO_SOLUTION = {
+    # 6x7x10: no tiling -- complete SAT decision (CaDiCaL, UNSAT),
+    # independently verified DRAT proof (drat-trim: VERIFIED). 2026-11-04.
+    # See docs/frontier/z_piece/z_6710_certificate/.
+    Box(6, 7, 10),
     # 6x6x10: no tiling -- complete SAT decision (CaDiCaL, UNSAT in 287 s)
     # with an independently verified DRAT proof (drat-trim s VERIFIED 455 s;
     # lrat-check c VERIFIED 25 s on the emitted LRAT). 2026-08-29.
